@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>donorLink x Fayda MVP Blueprint</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        donorRed: '#e11d48',
+                        faydaBlue: '#1e40af',
+                        codeBg: '#1e293b',
+                        surface: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .code-container { font-family: 'Fira Code', 'Courier New', monospace; font-size: 0.85rem; }
+        .chart-container { position: relative; width: 100%; height: 300px; max-height: 350px; }
+        .active-tab { border-bottom: 2px solid #e11d48; color: #e11d48; }
+        .token-glow { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body class="bg-surface text-slate-800">
+
+<nav class="bg-white border-b border-slate-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-donorRed rounded-lg flex items-center justify-center text-white font-bold">D</div>
+                <span class="text-xl font-bold tracking-tight">donorLink <span class="text-slate-400 font-light">| MVP</span></span>
+            </div>
+            <div class="flex space-x-6 text-sm font-medium text-slate-500">
+                <a href="#arch" class="hover:text-donorRed">Architecture</a>
+                <a href="#code" class="hover:text-donorRed">The Code</a>
+                <a href="#demo" class="hover:text-donorRed">Live Sim</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto p-6 md:p-10 space-y-12">
+        
+        <section id="arch">
+            <h2 class="text-2xl font-bold mb-2">1. System Architecture</h2>
+            <p class="text-slate-500 mb-8">This is how your MERN stack communicates with Fayda eSignet using TanStack's ecosystem.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-red-100 text-donorRed rounded-full flex items-center justify-center mb-4">🏠</div>
+                    <h3 class="font-bold text-sm">React UI</h3>
+                    <p class="text-xs text-slate-400 mt-2">TanStack Router handles `/login` route protection.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-blue-100 text-faydaBlue rounded-full flex items-center justify-center mb-4">🛡️</div>
+                    <h3 class="font-bold text-sm">Fayda OIDC</h3>
+                    <p class="text-xs text-slate-400 mt-2">User authenticates via National ID (OTP/Bio).</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-4">⚙️</div>
+                    <h3 class="font-bold text-sm">Express Backend</h3>
+                    <p class="text-xs text-slate-400 mt-2">Server trades Auth Code for Tokens via Private Key JWT.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
+                    <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mb-4">💾</div>
+                    <h3 class="font-bold text-sm">MongoDB</h3>
+                    <p class="text-xs text-slate-400 mt-2">User profile & donor status stored for query via TanStack Query.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="code" class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-lg">
+            <div class="flex border-b border-slate-200 bg-slate-50">
+                <button onclick="switchTab('backend')" id="tab-backend" class="px-6 py-4 text-sm font-bold active-tab transition-all">Backend (Express + OIDC)</button>
+                <button onclick="switchTab('frontend')" id="tab-frontend" class="px-6 py-4 text-sm font-bold text-slate-500 transition-all">Frontend (React + TanStack)</button>
+            </div>
+
+            <div class="p-0">
+                <div id="code-backend" class="block">
+                    <div class="bg-codeBg p-6 text-slate-300 code-container overflow-x-auto">
+<pre><code>// 1. Configure OIDC Client (using 'openid-client' library)
+const { Issuer } = require('openid-client');
+
+const faydaIssuer = await Issuer.discover('https://id.gov.et/api');
+const client = new faydaIssuer.Client({
+  client_id: process.env.FAYDA_CLIENT_ID,
+  token_endpoint_auth_method: 'private_key_jwt',
+}, { 
+  keys: [JSON.parse(process.env.MY_PRIVATE_JWK)] 
+});
+
+// 2. Callback Route
+app.get('/auth/callback', async (req, res) => {
+  const params = client.callbackParams(req);
+  const tokenSet = await client.callback(
+    process.env.REDIRECT_URI, 
+    params, 
+    { code_verifier: req.session.verifier }
+  );
+
+  // 3. Get Demographic Data (KYC)
+  const userinfo = await client.userinfo(tokenSet.access_token);
+  
+  // 4. MERN: Upsert User in MongoDB
+  const user = await User.findOneAndUpdate(
+    { nationalId: userinfo.sub },
+    { name: userinfo.name, lastLogin: new Date() },
+    { upsert: true, new: true }
+  );
+
+  res.redirect(`http://localhost:3000/dashboard?token=${tokenSet.id_token}`);
+});</code></pre>
+                    </div>
+                </div>
+
+                <div id="code-frontend" class="hidden">
+                    <div class="bg-codeBg p-6 text-slate-300 code-container overflow-x-auto">
+<pre><code>// 1. TanStack Router Setup
+const rootRoute = createRootRoute({ component: Layout });
+const dashboardRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/dashboard',
+  beforeLoad: ({ location }) => {
+    if (!isAuthenticated()) throw redirect({ to: '/login' });
+  },
+  component: Dashboard,
+});
+
+// 2. TanStack Query for Profile
+function Dashboard() {
+  const { data: profile, isLoading } = useQuery({
+    queryKey: ['donorProfile'],
+    queryFn: async () => {
+      const res = await axios.get('/api/me');
+      return res.data;
+    }
+  });
+
+  if (isLoading) return &lt;Loader /&gt;;
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;Welcome, {profile.name}&lt;/h1&gt;
+      &lt;p&gt;Verified National ID: {profile.nationalId}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-blue-50 p-4 border-t border-blue-100 flex items-start space-x-3">
+                <span class="text-xl">💡</span>
+                <p class="text-sm text-blue-800 leading-relaxed">
+                    <strong>Pro-Tip:</strong> donorLink should use the <code>sub</code> (Subject) field from Fayda as the unique identifier in MongoDB. Never store the actual National ID number as a plain string if you can help it; the <code>sub</code> is a persistent, unique hash that identifies the user without exposing sensitive PII unnecessarily.
+                </p>
+            </div>
+        </section>
+
+        <section id="demo">
+            <h2 class="text-2xl font-bold mb-6">3. Real-Time Data Flow Simulator</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold mb-4 flex items-center">
+                        <span class="w-3 h-3 bg-green-500 rounded-full mr-2"></span> 
+                        Login Success Payload (ID Token)
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-4">When a donor logs into donorLink, Fayda returns a JWT. Here is what's inside:</p>
+                    <div class="bg-slate-900 rounded-lg p-4 font-mono text-xs text-blue-400 overflow-x-auto">
+<pre><code>{
+  "iss": "https://id.gov.et",
+  "sub": "ETH-9902-8821-44",
+  "aud": "donorLink_client_id",
+  "exp": 1713589200,
+  "iat": 1713585600,
+  "name": "Dawit Tesfaye",
+  "birthdate": "1994-11-20",
+  "gender": "male",
+  "acr": "mosip:idp:acr:otp"
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-slate-200">
+                    <h3 class="font-bold mb-4">Auth Performance</h3>
+                    <div class="chart-container">
+                        <canvas id="authChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Tab Switching Logic
+        function switchTab(type) {
+            const backend = document.getElementById('code-backend');
+            const frontend = document.getElementById('code-frontend');
+            const tabB = document.getElementById('tab-backend');
+            const tabF = document.getElementById('tab-frontend');
+
+            if (type === 'backend') {
+                backend.classList.remove('hidden');
+                frontend.classList.add('hidden');
+                tabB.classList.add('active-tab');
+                tabB.classList.remove('text-slate-500');
+                tabF.classList.remove('active-tab');
+                tabF.classList.add('text-slate-500');
+            } else {
+                frontend.classList.remove('hidden');
+                backend.classList.add('hidden');
+                tabF.classList.add('active-tab');
+                tabF.classList.remove('text-slate-500');
+                tabB.classList.remove('active-tab');
+                tabB.classList.add('text-slate-500');
+            }
+        }
+
+        // Performance Chart
+        const ctx = document.getElementById('authChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Local Auth', 'Google OAuth', 'Fayda eSignet'],
+                datasets: [{
+                    label: 'Avg. Auth Latency (ms)',
+                    data: [150, 450, 850],
+                    backgroundColor: ['#cbd5e1', '#3b82f6', '#e11d48'],
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: { beginAtZero: true, grid: { display: false } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

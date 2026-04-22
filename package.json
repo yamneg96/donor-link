@@ -1,0 +1,20 @@
+{
+  "name": "donorlink",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "dev": "pnpm --parallel dev",
+    "dev:api": "pnpm --filter @donorlink/api dev",
+    "dev:web": "pnpm --filter @donorlink/web dev",
+    "dev:mobile": "pnpm --filter @donorlink/mobile dev",
+    "build": "pnpm --filter @donorlink/types build && pnpm --filter @donorlink/validators build && pnpm --filter @donorlink/api build && pnpm --filter @donorlink/web build",
+    "test": "pnpm --parallel test",
+    "lint": "pnpm --parallel lint",
+    "typecheck": "pnpm --parallel typecheck",
+    "db:seed": "pnpm --filter @donorlink/api seed"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

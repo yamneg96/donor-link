@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>donorLink: Fayda ID Integration Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        donorPrimary: '#dc2626',
+                        donorLight: '#fef2f2',
+                        faydaBlue: '#2563eb',
+                        faydaLight: '#eff6ff',
+                        neutralBg: '#fdfbf7',
+                        neutralCard: '#ffffff',
+                        textMain: '#334155',
+                        textMuted: '#64748b'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #fdfbf7; color: #334155; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 400px; }
+        }
+        .step-active { border-color: #dc2626; background-color: #fef2f2; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transform: translateY(-2px); }
+        .step-inactive { border-color: #e2e8f0; background-color: #ffffff; opacity: 0.7; }
+        .transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 300ms; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="antialiased font-sans flex flex-col min-h-screen">
+
+<!-- Chosen Palette: Warm Neutrals with donorLink Red (#dc2626) and Fayda Blue (#2563eb) accents -->
+
+<!-- Application Structure Plan: A linear, educational dashboard designed specifically for a developer integrating Fayda into a health app. It flows from theoretical foundations (OAuth vs OpenID) to visual workflows (Interactive Auth Flow), and finally practical implementation (API Payload Explorer). This logical progression ensures the user understands the *why* before the *how*. -->
+
+<!-- Visualization & Content Choices: 
+1. Radar Chart (Chart.js): Goal is to compare OAuth 2.0 and OpenID Connect. Radar chart effectively shows how OpenID expands on OAuth's capabilities across multiple dimensions.
+2. Interactive Flow Diagram (HTML/Tailwind/JS): Goal is to explain the eSignet integration process step-by-step. Using clickable HTML cards instead of SVG ensures compliance while maintaining interactivity.
+3. Tabbed Code Explorer (HTML/JS): Goal is to provide concrete payload examples for the VeriFayda 2.0 API. Tabs keep the interface clean and organized. -->
+
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <nav class="bg-neutralCard border-b border-gray-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-donorPrimary tracking-tight">🩸 donorLink</span>
+                    <span class="ml-2 text-sm font-medium text-textMuted border-l pl-2 border-gray-300">Fayda Integration Hub</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#foundations" class="text-sm font-medium text-textMuted hover:text-donorPrimary transition-colors">1. Foundations</a>
+                    <a href="#flow" class="text-sm font-medium text-textMuted hover:text-donorPrimary transition-colors">2. eSignet Flow</a>
+                    <a href="#api" class="text-sm font-medium text-textMuted hover:text-donorPrimary transition-colors">3. API Explorer</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h1 class="text-4xl font-extrabold text-textMain mb-4">Empowering <span class="text-donorPrimary">donorLink</span> with Fayda National ID</h1>
+                <p class="text-lg text-textMuted">
+                    To securely connect blood donors with recipients, verifying identity is critical. This guide breaks down how to use OpenID Connect and the eSignet/VeriFayda 2.0 API to seamlessly authenticate Ethiopian citizens on your platform.
+                </p>
+            </div>
+
+            <div id="foundations" class="scroll-mt-24 mb-20">
+                <div class="bg-neutralCard rounded-2xl shadow-sm border border-gray-100 p-8">
+                    <h2 class="text-2xl font-bold text-textMain mb-2">1. Foundations: OAuth 2.0 vs OpenID Connect (OIDC)</h2>
+                    <p class="text-textMuted mb-8">Before integrating Fayda, it is crucial to understand the protocols it uses. Fayda's eSignet acts as an <strong>Identity Provider (IdP)</strong> using OpenID Connect, which is a layer built on top of OAuth 2.0.</p>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div class="mb-6 p-4 rounded-lg bg-gray-50 border border-gray-100">
+                                <h3 class="text-lg font-bold text-textMain flex items-center mb-2"><span class="text-2xl mr-2">🔑</span> OAuth 2.0 (Authorization)</h3>
+                                <p class="text-sm text-textMuted">Designed to grant a third-party application (donorLink) limited access to an HTTP service. It answers: <em>"What is donorLink allowed to do?"</em> It does <strong>not</strong> tell you who the user is.</p>
+                            </div>
+                            <div class="p-4 rounded-lg bg-faydaLight border border-blue-100">
+                                <h3 class="text-lg font-bold text-faydaBlue flex items-center mb-2"><span class="text-2xl mr-2">🛡️</span> OpenID Connect (Authentication)</h3>
+                                <p class="text-sm text-textMuted">Built on OAuth 2.0, OIDC adds an identity layer. It introduces the <code>id_token</code> (a JSON Web Token) and a standardized <code>/userinfo</code> endpoint. It answers: <em>"Who is this user?"</em> <strong>This is what Fayda uses.</strong></p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl border border-gray-50">
+                            <h4 class="text-center text-sm font-semibold text-textMuted mb-4">Capability Comparison</h4>
+                            <div class="chart-container">
+                                <canvas id="protocolChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="flow" class="scroll-mt-24 mb-20">
+                <h2 class="text-2xl font-bold text-textMain mb-2">2. The eSignet/VeriFayda 2.0 Authentication Flow</h2>
+                <p class="text-textMuted mb-8">This interactive diagram shows exactly how a blood donor authenticates via their Ethiopian National ID to use donorLink. Click through the steps to understand the data exchange.</p>
+
+                <div class="bg-neutralCard rounded-2xl shadow-sm border border-gray-100 p-8">
+                    
+                    <div class="flex flex-col md:flex-row justify-between items-center mb-12 relative">
+                        <div class="absolute hidden md:block top-1/2 left-0 w-full h-1 bg-gray-100 -z-10 transform -translate-y-1/2"></div>
+                        
+                        <div class="flex flex-col items-center bg-white p-4 z-10 w-40">
+                            <div class="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center text-3xl mb-2 border-2 border-red-200">👤</div>
+                            <span class="font-bold text-sm text-center">Blood Donor</span>
+                        </div>
+
+                        <div class="hidden md:flex text-gray-300 text-3xl">&#8644;</div>
+
+                        <div class="flex flex-col items-center bg-white p-4 z-10 w-40">
+                            <div class="w-16 h-16 rounded-full bg-donorLight flex items-center justify-center text-3xl mb-2 border-2 border-donorPrimary">🩸</div>
+                            <span class="font-bold text-sm text-center">donorLink App (RP)</span>
+                        </div>
+
+                        <div class="hidden md:flex text-gray-300 text-3xl">&#8644;</div>
+
+                        <div class="flex flex-col items-center bg-white p-4 z-10 w-40">
+                            <div class="w-16 h-16 rounded-full bg-faydaLight flex items-center justify-center text-3xl mb-2 border-2 border-faydaBlue">🛡️</div>
+                            <span class="font-bold text-sm text-center">Fayda eSignet (IdP)</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                        <div class="lg:col-span-1">
+                            <div class="space-y-3" id="flow-steps-container">
+                            </div>
+                        </div>
+                        
+                        <div class="lg:col-span-2">
+                            <div class="bg-gray-50 rounded-xl p-6 h-full border border-gray-200 flex flex-col">
+                                <div class="flex items-center justify-between mb-4 pb-4 border-b border-gray-200">
+                                    <h3 class="text-lg font-bold text-textMain" id="flow-detail-title">Select a step</h3>
+                                    <span class="bg-donorLight text-donorPrimary text-xs font-bold px-3 py-1 rounded-full" id="flow-detail-actor">Actor</span>
+                                </div>
+                                <p class="text-textMuted mb-6 flex-grow" id="flow-detail-desc">Click on the steps to the left to see detailed interactions.</p>
+                                
+                                <div class="bg-gray-800 rounded-lg p-4 font-mono text-sm text-green-400 overflow-x-auto">
+                                    <div id="flow-detail-code">Ready to trace network events...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="api" class="scroll-mt-24 mb-20">
+                <h2 class="text-2xl font-bold text-textMain mb-2">3. API Payload Explorer (VeriFayda 2.0)</h2>
+                <p class="text-textMuted mb-8">See exactly what donorLink needs to send and what eSignet returns at each crucial endpoint during the Authorization Code flow.</p>
+
+                <div class="bg-neutralCard rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="flex flex-wrap border-b border-gray-200 bg-gray-50" id="api-tabs">
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-gray-200">
+                        <div class="p-6 bg-white">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Request from donorLink</h4>
+                            <pre class="bg-gray-50 p-4 rounded-lg text-sm font-mono text-gray-700 overflow-x-auto border border-gray-100 min-h-[300px]" id="api-req-display"></pre>
+                        </div>
+                        <div class="p-6 bg-gray-50">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Response from Fayda eSignet</h4>
+                            <pre class="bg-gray-800 p-4 rounded-lg text-sm font-mono text-blue-300 overflow-x-auto min-h-[300px]" id="api-res-display"></pre>
+                        </div>
+                    </div>
+                    <div class="p-6 bg-blue-50 border-t border-blue-100">
+                        <h4 class="text-sm font-bold text-faydaBlue mb-2">💡 Integration Note for donorLink</h4>
+                        <p class="text-sm text-gray-700" id="api-note-display"></p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm text-gray-500">
+                Interactive Concept for donorLink & Fayda National ID Integration. <br>
+                Based on standard OpenID Connect and MOSIP/eSignet architectures.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('protocolChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['Identity Verif.', 'API Access', 'Standardized Endpoints', 'JWT Token Usage', 'User Info Extraction'],
+                datasets: [
+                    {
+                        label: 'OAuth 2.0 (Base)',
+                        data: [20, 100, 60, 40, 0],
+                        fill: true,
+                        backgroundColor: 'rgba(203, 213, 225, 0.2)',
+                        borderColor: 'rgba(100, 116, 139, 1)',
+                        pointBackgroundColor: 'rgba(100, 116, 139, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(100, 116, 139, 1)'
+                    },
+                    {
+                        label: 'OpenID Connect (Fayda)',
+                        data: [100, 100, 100, 100, 100],
+                        fill: true,
+                        backgroundColor: 'rgba(37, 99, 235, 0.2)',
+                        borderColor: 'rgba(37, 99, 235, 1)',
+                        pointBackgroundColor: 'rgba(37, 99, 235, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(37, 99, 235, 1)'
+                    }
+                ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(0, 0, 0, 0.05)' },
+                        grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                        pointLabels: { font: { family: 'Inter', size: 11 }, color: '#64748b' },
+                        ticks: { display: false, min: 0, max: 100 }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'bottom', labels: { usePointStyle: true, padding: 20, font: { family: 'Inter' } } },
+                    tooltip: { backgroundColor: '#334155', titleFont: { family: 'Inter' }, bodyFont: { family: 'Inter' } }
+                }
+            }
+        });
+
+        const flowData = [
+            {
+                id: 1,
+                title: "Login Intent",
+                actor: "User & donorLink",
+                short: "User clicks 'Login with Fayda'",
+                desc: "A blood donor opens the donorLink app and chooses to authenticate using their National ID. donorLink prepares to redirect them to eSignet.",
+                code: "// donorLink constructs the auth URL\nconst authUrl = `https://id.gov.et/api/authorize\n  ?client_id=donorLink_prod\n  &response_type=code\n  &scope=openid individual_id\n  &redirect_uri=https://donorlink.et/callback\n  &state=xyz123\n  &nonce=abc987`;\n\nwindow.location.href = authUrl;"
+            },
+            {
+                id: 2,
+                title: "Authentication",
+                actor: "Fayda eSignet",
+                short: "eSignet verifies identity via OTP/Bio",
+                desc: "The user is now on the official Fayda portal. They enter their National ID number. Fayda prompts them for an OTP sent to their registered phone, or asks for biometric verification.",
+                code: "POST /v1/auth/authenticate\n{\n  \"individualId\": \"1234567890\",\n  \"authFactorType\": \"OTP\",\n  \"otp\": \"459812\"\n}\n// Handled internally by eSignet UI"
+            },
+            {
+                id: 3,
+                title: "Authorization Code",
+                actor: "Fayda eSignet",
+                short: "eSignet redirects with 'code'",
+                desc: "Authentication succeeds. eSignet redirects the user's browser back to donorLink's redirect URI, attaching a temporary, single-use Authorization Code.",
+                code: "HTTP/1.1 302 Found\nLocation: https://donorlink.et/callback\n  ?code=SplxlOBeZQQYbYS6WxSbIA\n  &state=xyz123"
+            },
+            {
+                id: 4,
+                title: "Token Exchange",
+                actor: "donorLink Backend",
+                short: "donorLink trades code for tokens",
+                desc: "donorLink's secure backend server takes the code and makes a direct, server-to-server POST request to eSignet to exchange it for an Access Token and an ID Token.",
+                code: "POST /api/v1/oauth/token\nHost: id.gov.et\nContent-Type: application/x-www-form-urlencoded\n\ngrant_type=authorization_code\n&code=SplxlOBeZQQYbYS6WxSbIA\n&client_id=donorLink_prod\n&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer\n&client_assertion=eyJh..."
+            },
+            {
+                id: 5,
+                title: "Identity Parsing",
+                actor: "donorLink Backend",
+                short: "donorLink reads the ID Token (JWT)",
+                desc: "eSignet responds with the tokens. The ID Token is a signed JSON Web Token (JWT). donorLink validates the signature using Fayda's public keys, verifying the user's login session.",
+                code: "// Decoded ID Token Payload\n{\n  \"iss\": \"https://id.gov.et\",\n  \"sub\": \"9876543210\", // Fayda ID\n  \"aud\": \"donorLink_prod\",\n  \"exp\": 1680000000,\n  \"iat\": 1679996400,\n  \"nonce\": \"abc987\"\n}"
+            },
+            {
+                id: 6,
+                title: "Fetch KYC Data",
+                actor: "donorLink Backend",
+                short: "Call /userinfo for demographics",
+                desc: "Using the Access Token, donorLink calls the eSignet /userinfo endpoint to get verified demographic data (Name, DoB, Gender) to populate the donor's profile securely.",
+                code: "GET /api/v1/oidc/userinfo\nAuthorization: Bearer <access_token>\n\n// Response:\n{\n  \"sub\": \"9876543210\",\n  \"name\": \"Abebe Bikila\",\n  \"birthdate\": \"1990-05-15\",\n  \"gender\": \"Male\"\n}"
+            }
+        ];
+
+        const container = document.getElementById('flow-steps-container');
+        const titleEl = document.getElementById('flow-detail-title');
+        const actorEl = document.getElementById('flow-detail-actor');
+        const descEl = document.getElementById('flow-detail-desc');
+        const codeEl = document.getElementById('flow-detail-code');
+
+        function renderFlowSteps() {
+            container.innerHTML = '';
+            flowData.forEach((step, index) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-4 rounded-xl border transition-all ${index === 0 ? 'step-active' : 'step-inactive hover:border-gray-300'}`;
+                btn.innerHTML = `
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 h-6 w-6 rounded-full bg-gray-200 text-gray-600 text-xs flex items-center justify-center font-bold mt-0.5 mr-3">${step.id}</div>
+                        <div>
+                            <h4 class="font-bold text-sm text-textMain">${step.title}</h4>
+                            <p class="text-xs text-textMuted mt-1">${step.short}</p>
+                        </div>
+                    </div>
+                `;
+                btn.onclick = () => updateFlowDetail(index, btn);
+                container.appendChild(btn);
+            });
+            updateFlowDetail(0, container.firstChild);
+        }
+
+        function updateFlowDetail(index, btnElement) {
+            Array.from(container.children).forEach(child => {
+                child.classList.remove('step-active');
+                child.classList.add('step-inactive');
+            });
+            btnElement.classList.add('step-active');
+            btnElement.classList.remove('step-inactive');
+
+            const data = flowData[index];
+            titleEl.textContent = `${data.id}. ${data.title}`;
+            actorEl.textContent = data.actor;
+            descEl.textContent = data.desc;
+            
+            codeEl.innerHTML = '';
+            let i = 0;
+            const text = data.code;
+            codeEl.textContent = text;
+        }
+
+        const apiData = [
+            {
+                id: 'auth',
+                label: '1. /authorize',
+                req: `GET /authorize?
+  client_id=donorLink_prod
+  &response_type=code
+  &scope=openid profile
+  &redirect_uri=https://donorlink.et/callback
+  &state=8a9b2c
+  &nonce=f1e2d3
+  &acr_values=mosip:idp:acr:generated-otp
+  &ui_locales=en
+HTTP/1.1
+Host: id.gov.et`,
+                res: `// User authenticates on eSignet UI
+// Browser is redirected back:
+
+HTTP/1.1 302 Found
+Location: https://donorlink.et/callback?
+  code=eyJhbGciOiJSUzI1NiIs...
+  &state=8a9b2c`,
+                note: "This happens in the browser. You redirect the user here. Important: In VeriFayda, acr_values determine how the user logs in (e.g., OTP vs Biometrics). donorLink might request OTP for ease of use."
+            },
+            {
+                id: 'token',
+                label: '2. /token',
+                req: `POST /v1/oauth/token HTTP/1.1
+Host: id.gov.et
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=authorization_code
+&code=eyJhbGciOiJSUzI1NiIs...
+&client_id=donorLink_prod
+&redirect_uri=https://donorlink.et/callback
+&client_assertion_type=urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+&client_assertion=eyJhbGciOiJSUzI... (Signed by donorLink Private Key)`,
+                res: `HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "access_token": "SlAV32hkKG...",
+  "token_type": "Bearer",
+  "expires_in": 3600,
+  "id_token": "eyJhbGciOiJSU...",
+  "scope": "openid profile"
+}`,
+                note: "Highly Secure! VeriFayda heavily relies on Private Key JWT for client authentication instead of a simple client_secret. donorLink must sign a JWT with its private key to prove identity to eSignet."
+            },
+            {
+                id: 'userinfo',
+                label: '3. /userinfo',
+                req: `GET /v1/oidc/userinfo HTTP/1.1
+Host: id.gov.et
+Authorization: Bearer SlAV32hkKG...`,
+                res: `HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "sub": "2948192039",
+  "name": "Abebe Bikila",
+  "birthdate": "1985-08-07",
+  "gender": "Male",
+  "phone_number": "+251911234567",
+  "phone_number_verified": true,
+  "address": {
+    "region": "Addis Ababa",
+    "city": "Addis Ababa"
+  }
+}`,
+                note: "This provides trusted KYC data. For donorLink, you can trust this name and age are verified by the Ethiopian government. Note: Blood Type is NOT typically in the standard OIDC payload; you will ask the user for this within your app after login."
+            }
+        ];
+
+        const tabsContainer = document.getElementById('api-tabs');
+        const reqDisplay = document.getElementById('api-req-display');
+        const resDisplay = document.getElementById('api-res-display');
+        const noteDisplay = document.getElementById('api-note-display');
+
+        function renderApiTabs() {
+            apiData.forEach((tab, index) => {
+                const btn = document.createElement('button');
+                btn.className = `flex-1 py-3 px-4 text-sm font-medium text-center border-b-2 transition-colors ${index === 0 ? 'border-donorPrimary text-donorPrimary bg-white' : 'border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-100'}`;
+                btn.textContent = tab.label;
+                btn.onclick = () => updateApiDisplay(index, btn);
+                tabsContainer.appendChild(btn);
+            });
+            updateApiDisplay(0, tabsContainer.firstChild);
+        }
+
+        function updateApiDisplay(index, btnElement) {
+            Array.from(tabsContainer.children).forEach(child => {
+                child.classList.remove('border-donorPrimary', 'text-donorPrimary', 'bg-white');
+                child.classList.add('border-transparent', 'text-gray-500');
+            });
+            btnElement.classList.remove('border-transparent', 'text-gray-500');
+            btnElement.classList.add('border-donorPrimary', 'text-donorPrimary', 'bg-white');
+
+            reqDisplay.textContent = apiData[index].req;
+            resDisplay.textContent = apiData[index].res;
+            noteDisplay.textContent = apiData[index].note;
+        }
+
+        renderFlowSteps();
+        renderApiTabs();
+    </script>
+</body>
+</html>
