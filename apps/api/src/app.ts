@@ -36,7 +36,7 @@ const app = express();
 app.use(helmet());
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
-    ? ['https://donorlink.et', 'https://admin.donorlink.et']
+    ? ['https://donorlink.et', 'https://admin.donorlink.et', 'https://donor-link-v1.vercel.app']
     : ['http://localhost:5173', 'http://localhost:8081'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],

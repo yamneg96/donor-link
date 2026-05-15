@@ -15,13 +15,13 @@ export async function comparePassword(password: string, hash: string): Promise<b
 
 export function generateAccessToken(payload: Record<string, unknown>): string {
   return jwt.sign(payload, env.JWT_ACCESS_SECRET, {
-    expiresIn: env.JWT_ACCESS_EXPIRY as string,
+    expiresIn: env.JWT_ACCESS_EXPIRY as any,
   });
 }
 
 export function generateRefreshToken(payload: Record<string, unknown>): string {
   return jwt.sign(payload, env.JWT_REFRESH_SECRET, {
-    expiresIn: env.JWT_REFRESH_EXPIRY as string,
+    expiresIn: env.JWT_REFRESH_EXPIRY as any,
   });
 }
 

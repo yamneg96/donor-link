@@ -15,10 +15,12 @@ async function seed() {
     logger.info('🌱 Starting database seed...');
 
     // Clear existing data (dropping collections to remove stale indexes)
-    const collections = await mongoose.connection.db.listCollections().toArray();
-    for (const collection of collections) {
-      await mongoose.connection.db.dropCollection(collection.name);
-      logger.info(`Dropped collection: ${collection.name}`);
+    if (mongoose.connection.db) {
+      const collections = await mongoose.connection.db.listCollections().toArray();
+      for (const collection of collections) {
+        await mongoose.connection.db.dropCollection(collection.name);
+        logger.info(`Dropped collection: ${collection.name}`);
+      }
     }
 
     // --- Organizations ---

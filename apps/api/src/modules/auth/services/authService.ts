@@ -94,6 +94,7 @@ export class AuthService {
       password: hashedPassword,
       role: data.role || Role.DONOR,
       status: UserStatus.ACTIVE,
+      organizationId: data.organizationId as any,
     });
 
     eventBus.emitEvent(EventType.USER_CREATED, { userId: user._id.toString() }, user._id.toString());

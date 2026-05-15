@@ -2,3 +2,5 @@ Design/
 node_modules/
 *.pdf
 .env
+apps/web/dist/
+apps/api/dist/

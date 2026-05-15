@@ -52,7 +52,7 @@ export function errorHandler(
   }
 
   // Handle Mongoose duplicate key errors
-  if (err.name === 'MongoServerError' && (err as Record<string, unknown>).code === 11000) {
+  if (err.name === 'MongoServerError' && (err as any).code === 11000) {
     res.status(409).json({
       success: false,
       message: 'Duplicate entry detected',
