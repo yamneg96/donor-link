@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import compression from 'compression';
 import { errorHandler, requestLogger, rateLimiter } from './core/middleware';
 import { sendSuccess } from './core/utils';
+import { initializeApplication } from './server'; // Import the safe warmup check
 
 // Module route imports
 import { authRoutes } from './modules/auth';
@@ -27,6 +28,19 @@ import { auditRoutes } from './modules/audit';
 import { dashboardRoutes } from './modules/dashboard';
 
 const app = express();
+
+// ==================================================
+// Serverless Cold-Start Infrastructure Verification 
+// ==================================================
+app.use(async (_req, _res, next) => {
+  try {
+    // Instantly ensures DB links exist on cold starts before reaching operational modules
+    await initializeApplication();
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 // ==================================================
 // Global Middleware
@@ -56,37 +70,35 @@ app.use(requestLogger);
 // Rate limiting
 app.use(rateLimiter);
 
-//  / route : 
+// Base route 
 app.get('/api', (_req, res) => {
   sendSuccess(res, {
     status: 'healthy',
-    service: 'DonorLink API',
+    service: 'DonorLink API Gateway',
     version: '1.0.0',
     uptime: process.uptime(),
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV,
-  }, 'Service is healthy');
+  }, 'Service operational');
 });
 
 // ==================================================
 // Health Check
 // ==================================================
-
 app.get('/api/v1/health', (_req, res) => {
   sendSuccess(res, {
     status: 'healthy',
-    service: 'DonorLink API',
+    service: 'DonorLink API Gateway',
     version: '1.0.0',
     uptime: process.uptime(),
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV,
-  }, 'Service is healthy');
+  }, 'Service operational');
 });
 
 // ==================================================
 // API Routes — v1
 // ==================================================
-
 const API_PREFIX = '/api/v1';
 
 app.use(`${API_PREFIX}/auth`, authRoutes);
@@ -112,7 +124,6 @@ app.use(`${API_PREFIX}/dashboard`, dashboardRoutes);
 // ==================================================
 // 404 Handler
 // ==================================================
-
 app.use((_req, res) => {
   res.status(404).json({
     success: false,
@@ -125,7 +136,6 @@ app.use((_req, res) => {
 // ==================================================
 // Global Error Handler (must be last)
 // ==================================================
-
 app.use(errorHandler);
 
-export { app };
+export default app;

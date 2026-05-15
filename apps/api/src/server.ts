@@ -1,69 +1,89 @@
-import { app } from './app';
+import app from './app';
 import { env, connectDatabase, logger, disconnectDatabase } from './config';
 import { registerEventHandlers } from './modules/events';
 import { initializeJobScheduler } from './jobs';
 
-async function bootstrap(): Promise<void> {
+let isReady = false;
+
+// Dedicated operational warmup block optimized for serverless executions
+export async function initializeApplication(): Promise<void> {
+  if (isReady) return;
+
   try {
-    console.log('\n======================================');
-    console.log('🔄 Booting up DonorLink API...');
-    console.log('======================================');
-    logger.info('🚀 Starting DonorLink API Server...');
-
+    logger.info('🔄 Warmup: Initializing DonorLink Core Systems...');
+    
     // Connect to MongoDB
-    console.log('-> Connecting to MongoDB...');
     await connectDatabase();
-    console.log('✅ MongoDB connection successful');
-
+    logger.info('✅ MongoDB pipeline established successfully.');
 
     // Register domain event handlers
     registerEventHandlers();
 
-    // Initialize scheduled jobs
-    initializeJobScheduler();
+    // Only run background processing loops if executing outside a serverless edge context
+    if (process.env.VERCEL !== '1') {
+      initializeJobScheduler();
+      logger.info('⏰ Enterprise internal job scheduler initialized.');
+    }
 
-    // Start HTTP server
-    const PORT = env.PORT;
-    const server = app.listen(PORT, () => {
-      logger.info(`✅ DonorLink API running on port ${PORT}`);
-      logger.info(`📡 Environment: ${env.NODE_ENV}`);
-      logger.info(`🔗 Health: http://localhost:${PORT}/api/v1/health`);
-    });
-
-    // Graceful shutdown
-    const shutdown = async (signal: string) => {
-      logger.info(`\n${signal} received. Starting graceful shutdown...`);
-
-      server.close(async () => {
-        logger.info('HTTP server closed');
-
-        await disconnectDatabase();
-        logger.info('✅ Graceful shutdown complete');
-        process.exit(0);
-      });
-
-      // Force exit after 30s
-      setTimeout(() => {
-        logger.error('Forced shutdown after timeout');
-        process.exit(1);
-      }, 30000);
-    };
-
-    process.on('SIGTERM', () => shutdown('SIGTERM'));
-    process.on('SIGINT', () => shutdown('SIGINT'));
-
-    process.on('unhandledRejection', (reason: unknown) => {
-      logger.error('Unhandled Rejection:', reason);
-    });
-
-    process.on('uncaughtException', (error: Error) => {
-      logger.error('Uncaught Exception:', error);
-      process.exit(1);
-    });
+    isReady = true;
   } catch (error) {
-    logger.error('❌ Failed to start server:', error);
-    process.exit(1);
+    logger.error('❌ Application critical initialization block failed:', error);
+    throw error;
   }
 }
 
-bootstrap();
+// Classical Standalone Runtime Engine (Triggers only for local monolithic or Docker runs)
+if (process.env.VERCEL !== '1') {
+  async function bootstrap(): Promise<void> {
+    try {
+      console.log('\n======================================');
+      console.log('🔄 Booting up DonorLink API Monolith...');
+      console.log('======================================');
+      
+      await initializeApplication();
+
+      const PORT = env.PORT || 8080;
+      const server = app.listen(PORT, () => {
+        logger.info(`✅ DonorLink API running locally on port ${PORT}`);
+        logger.info(`📡 Target Operational Environment: ${env.NODE_ENV}`);
+        logger.info(`🔗 Health Interface: http://localhost:${PORT}/api/v1/health`);
+      });
+
+      // Standard infrastructure process termination watchers
+      const shutdown = async (signal: string) => {
+        logger.info(`\n${signal} intercepted. Graceful drainage executing...`);
+        server.close(async () => {
+          logger.info('HTTP entry gateway dropped.');
+          await disconnectDatabase();
+          logger.info('✅ Database context safe separation completed. System exiting clean.');
+          process.exit(0);
+        });
+
+        setTimeout(() => {
+          logger.error('Forced infrastructure clearance triggered after 30s limit.');
+          process.exit(1);
+        }, 30000);
+      };
+
+      process.on('SIGTERM', () => shutdown('SIGTERM'));
+      process.on('SIGINT', () => shutdown('SIGINT'));
+    } catch (error) {
+      logger.error('❌ Failed execution on platform bootstrap:', error);
+      process.exit(1);
+    }
+  }
+
+  bootstrap();
+}
+
+// Global Runtime Intercept catch routines (Valid solely for standalone processes)
+if (process.env.VERCEL !== '1') {
+  process.on('unhandledRejection', (reason: unknown) => {
+    logger.error('Unhandled System Promise Rejection caught:', reason);
+  });
+
+  process.on('uncaughtException', (error: Error) => {
+    logger.error('Uncaught Native Runtime Exception intercepted:', error);
+    process.exit(1);
+  });
+}
