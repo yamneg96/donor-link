@@ -1,0 +1,11 @@
+import { Router } from 'express';
+import { RecommendationController } from '../controllers/recommendationController';
+import { authenticate, authorize } from '../../../core/middleware';
+import { Role } from '../../../core/constants';
+const router = Router();
+router.use(authenticate);
+router.get('/', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), RecommendationController.getAll);
+router.get('/:id', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), RecommendationController.getById);
+router.post('/:id/accept', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), RecommendationController.accept);
+router.post('/:id/reject', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), RecommendationController.reject);
+export { router as recommendationRoutes };

@@ -1,0 +1,10 @@
+import { Router } from 'express';
+import { NotificationController } from '../controllers/notificationController';
+import { authenticate } from '../../../core/middleware';
+const router = Router();
+router.use(authenticate);
+router.get('/', NotificationController.getMyNotifications);
+router.get('/unread-count', NotificationController.getUnreadCount);
+router.post('/mark-all-read', NotificationController.markAllRead);
+router.post('/:id/read', NotificationController.markAsRead);
+export { router as notificationRoutes };

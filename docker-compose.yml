@@ -1,0 +1,125 @@
+# ==================================================
+# DonorLink - Base Docker Compose
+# National Blood Infrastructure Platform
+# ==================================================
+
+name: donorlink
+
+services:
+  # ==================================================
+  # API SERVICE
+  # ==================================================
+  api:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+      target: production
+
+    container_name: donorlink-api
+
+    restart: unless-stopped
+
+    env_file:
+      - ./apps/api/.env
+
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+
+      # Database
+      MONGO_URI: mongodb+srv://yamlaknegash96_db_user:scFbYAZA5SibNiDQ@cluster0.hgzxxxv.mongodb.net/donorlink?authSource=admin
+
+      # JWT
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:-donorlink-access-secret}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-donorlink-refresh-secret}
+
+      JWT_ACCESS_EXPIRY: 15m
+      JWT_REFRESH_EXPIRY: 7d
+
+    ports:
+      - "${API_PORT:-5000}:5000"
+
+    depends_on:
+      mongodb:
+        condition: service_healthy
+
+    healthcheck:
+      test:
+        ["CMD", "wget", "--spider", "-q", "http://localhost:5000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
+
+    networks:
+      - donorlink-network
+
+  # ==================================================
+  # MONGODB
+  # ==================================================
+  mongodb:
+    image: mongo:7
+
+    container_name: donorlink-mongodb
+
+    restart: unless-stopped
+
+    ports:
+      - "${MONGO_PORT:-27017}:27017"
+
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: donorlink_user
+      MONGO_INITDB_ROOT_PASSWORD: donorlink_pass
+      MONGO_INITDB_DATABASE: donorlink
+
+    command: ["mongod", "--config", "/etc/mongod.conf"]
+
+    volumes:
+      - mongodb_data:/data/db
+      - ./infrastructure/docker/mongo/mongod.conf:/etc/mongod.conf:ro
+
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+    networks:
+      - donorlink-network
+
+  # ==================================================
+  # NGINX
+  # ==================================================
+  nginx:
+    image: nginx:alpine
+
+    container_name: donorlink-nginx
+
+    restart: unless-stopped
+
+    ports:
+      - "${NGINX_PORT:-80}:80"
+
+    volumes:
+      - ./infrastructure/docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+    depends_on:
+      - api
+
+    networks:
+      - donorlink-network
+
+# ==================================================
+# VOLUMES
+# ==================================================
+volumes:
+  mongodb_data:
+    driver: local
+
+# ==================================================
+# NETWORKS
+# ==================================================
+networks:
+  donorlink-network:
+    driver: bridge

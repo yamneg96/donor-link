@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import { EmergencyController } from '../controllers/emergencyController';
+import { authenticate, authorize } from '../../../core/middleware';
+import { Role } from '../../../core/constants';
+const router = Router();
+router.use(authenticate);
+router.get('/', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), EmergencyController.getAll);
+router.get('/:id', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), EmergencyController.getById);
+router.post('/declare', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), EmergencyController.declare);
+router.put('/:id', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN), EmergencyController.update);
+router.post('/:id/resolve', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN), EmergencyController.resolve);
+export { router as emergencyRoutes };

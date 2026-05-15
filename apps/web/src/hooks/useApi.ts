@@ -266,6 +266,13 @@ export function useMyHospital() {
   });
 }
 
+export function useHospitals(params?: any) {
+  return useQuery({
+    queryKey: QK.hospitals(params),
+    queryFn: () => hospitalApi.list(params).then((r) => r.data.data),
+  });
+}
+
 export function useUpdateInventory() {
   const qc = useQueryClient();
   return useMutation({

@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate, Link } from "@tanstack/react-router";
-import { Droplets, Mail, Lock, Fingerprint, ArrowRight, Shield, ChevronDown } from "lucide-react";
+import { 
+  Droplets, Mail, Lock, Fingerprint, Shield, 
+  ChevronDown, HelpCircle, Loader2 
+} from "lucide-react";
 import { loginWithEmailSchema, type LoginWithEmailInput } from "@donorlink/validators";
 import { useLoginWithEmail, useFaydaAuthorize } from "../../hooks/useApi";
 import { Button, Input, AlertBanner, Divider } from "../../components/ui";
@@ -24,7 +27,6 @@ export function LoginPage() {
     setError("");
     try {
       const data = await faydaAuth.mutateAsync(selectedRole);
-      // Redirect to Fayda eSignet
       window.location.href = data.authorizationUrl;
     } catch (err) {
       setError(getApiError(err));
@@ -43,22 +45,26 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden" style={{ backgroundColor: "#f8f9ff" }}>
-      {/* ── Decorative Background Blobs ──────────────────────────────── */}
-      <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-pulse/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-tertiary/5 rounded-full blur-[120px] translate-x-1/3 translate-y-1/3 pointer-events-none" />
+    <div className="min-h-screen flex flex-col relative overflow-hidden bg-background text-foreground transition-colors duration-300">
+      {/* ── Background Aesthetics ──────────────────────────────────── */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-50 dark:opacity-100" />
+      <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-primary/5 rounded-full blur-[140px] translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
       {/* ── Header ───────────────────────────────────────────────────── */}
       <header className="w-full z-50 relative">
-        <div className="flex justify-between items-center w-full px-6 sm:px-10 py-6 max-w-[1440px] mx-auto">
-          <Link to="/" className="flex items-center gap-2 text-2xl font-extrabold text-midnight tracking-tight font-headline">
-            <div className="w-9 h-9 primary-gradient rounded-xl flex items-center justify-center text-white shadow-lg">
-              <Droplets className="size-4" />
+        <div className="flex justify-between items-center w-full px-6 sm:px-10 py-6 max-w-7xl mx-auto">
+          <Link to="/" className="flex items-center gap-2 text-2xl font-extrabold tracking-tight font-headline">
+            <div className="w-10 h-10 clinical-gradient rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
+              <Droplets className="size-5" />
             </div>
-            <span>DonorLink</span>
+            <span className="text-foreground">DonorLink</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link to="/register" className="primary-gradient text-white font-body text-sm font-semibold py-2 px-6 rounded-full hover:opacity-90 transition-opacity btn-glow">
+          <div className="flex items-center gap-6">
+            <Link to="/help" className="text-muted-foreground text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
+              <HelpCircle className="size-4" />
+              <span className="hidden sm:inline">Help Center</span>
+            </Link>
+            <Link to="/register" className="clinical-gradient text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
               Register
             </Link>
           </div>
@@ -66,103 +72,101 @@ export function LoginPage() {
       </header>
 
       {/* ── Main Content ─────────────────────────────────────────────── */}
-      <div className="flex-grow flex flex-col items-center justify-center relative w-full">
-        <main className="w-full max-w-md px-6 py-12 relative z-10">
-          <div className="bg-white rounded-3xl ambient-shadow p-8 sm:p-10" style={{ border: "1px solid rgba(230, 189, 184, 0.15)" }}>
+      <div className="flex-grow flex flex-col items-center justify-center relative w-full px-6 z-10">
+        <main className="w-full max-w-md py-12">
+          <div className="bg-card rounded-[2.5rem] p-8 sm:p-10 border border-border shadow-2xl backdrop-blur-sm">
             {/* Branding Header */}
             <div className="flex flex-col items-center text-center mb-8">
-              <div className="bg-pulse/10 p-3 rounded-full mb-4">
-                <Droplets className="size-7 text-pulse" />
+              <div className="bg-primary/10 p-4 rounded-2xl mb-4">
+                <Droplets className="size-8 text-primary" />
               </div>
-              <h1 className="font-headline text-2xl font-extrabold text-midnight mb-2 tracking-tight">Welcome Back</h1>
-              <p className="font-body text-on-surface-variant text-sm leading-relaxed">
-                Sign in to coordinate and manage critical medical data securely.
+              <h1 className="font-headline text-3xl font-extrabold tracking-tight text-foreground">Welcome Back</h1>
+              <p className="text-muted-foreground text-sm leading-relaxed mt-2">
+                Secure clinical portal for donor coordination.
               </p>
             </div>
 
             {error && (
-              <div className="mb-5">
-                <AlertBanner message={error} onDismiss={() => setError("")} />
+              <div className="mb-6">
+                <AlertBanner message={error} onDismiss={() => setError("")} variant="error" />
               </div>
             )}
 
             {/* ── Role Selector ────────────────────────────────────────── */}
-            <div className="flex bg-surface-container-low rounded-xl p-1 mb-6">
-              {([
-                { value: "donor", label: "Donor" },
-                { value: "hospital_admin", label: "Clinician" },
-              ] as const).map(({ value, label }) => (
+            <div className="flex bg-secondary/50 rounded-2xl p-1.5 mb-8">
+              {(["donor", "hospital_admin"] as const).map((role) => (
                 <button
-                  key={value}
+                  key={role}
                   type="button"
-                  onClick={() => setSelectedRole(value)}
-                  className={`flex-1 py-2.5 rounded-lg text-sm font-bold font-headline transition-all ${
-                    selectedRole === value
-                      ? "bg-white text-midnight shadow-sm"
-                      : "text-secondary hover:text-midnight"
+                  onClick={() => setSelectedRole(role)}
+                  className={`flex-1 py-3 rounded-xl text-sm font-bold font-headline transition-all duration-200 ${
+                    selectedRole === role
+                      ? "bg-card text-foreground shadow-md ring-1 ring-border"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {label}
+                  {role === "donor" ? "Donor" : "Clinician"}
                 </button>
               ))}
             </div>
 
-            {/* ── Primary: Fayda Login ─────────────────────────────────── */}
-            <button
-              type="button"
-              onClick={handleFaydaLogin}
-              disabled={faydaAuth.isPending}
-              className="w-full primary-gradient text-white font-headline font-bold text-base py-3.5 rounded-xl btn-glow hover:opacity-95 transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-60"
-            >
-              {faydaAuth.isPending ? (
-                <span className="animate-spin inline-block w-5 h-5 border-2 border-white/30 border-t-white rounded-full" />
-              ) : (
-                <>
-                  <Shield className="size-5" />
-                  Sign in with Fayda National ID
-                </>
-              )}
-            </button>
-
-            {/* ── Biometric Option ─────────────────────────────────────── */}
-            {selectedRole === "donor" && (
+            {/* ── Primary Action: Fayda Login ─────────────────────────── */}
+            <div className="space-y-4">
               <button
                 type="button"
                 onClick={handleFaydaLogin}
-                className="w-full mt-3 bg-surface-container-low hover:bg-surface-container border border-outline-variant/30 text-midnight font-headline font-semibold text-sm py-3.5 rounded-xl transition-all duration-200 flex justify-center items-center gap-2"
+                disabled={faydaAuth.isPending}
+                className="w-full clinical-gradient text-white font-headline font-bold text-base py-4 rounded-2xl shadow-xl shadow-primary/20 hover:opacity-95 active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-50"
               >
-                <Fingerprint className="size-5 text-tertiary" />
-                <span>Use Biometric Login</span>
+                {faydaAuth.isPending ? (
+                  <Loader2 className="size-5 animate-spin" />
+                ) : (
+                  <>
+                    <Shield className="size-5" />
+                    Sign in with Fayda ID
+                  </>
+                )}
               </button>
-            )}
 
-            {/* ── Divider ──────────────────────────────────────────────── */}
-            <div className="my-6">
-              <Divider label="Or" />
+              {selectedRole === "donor" && (
+                <button
+                  type="button"
+                  onClick={handleFaydaLogin}
+                  className="w-full bg-secondary border border-border text-foreground font-headline font-semibold text-sm py-4 rounded-2xl hover:bg-background transition-all flex justify-center items-center gap-3 active:scale-[0.98]"
+                >
+                  <Fingerprint className="size-5 text-primary" />
+                  <span>Use Biometric Login</span>
+                </button>
+              )}
             </div>
 
-            {/* ── Expandable Email/Password Form ──────────────────────── */}
+            <div className="my-8">
+              <Divider label="Or continue with" className="text-muted-foreground/50 uppercase tracking-widest text-[10px] font-bold" />
+            </div>
+
+            {/* ── Expandable Traditional Form ──────────────────────────── */}
             {!showEmailForm ? (
               <button
                 type="button"
                 onClick={() => setShowEmailForm(true)}
-                className="w-full text-sm text-secondary font-semibold font-body hover:text-midnight transition-colors flex items-center justify-center gap-1"
+                className="w-full text-sm text-muted-foreground font-semibold hover:text-primary transition-colors flex items-center justify-center gap-2 group"
               >
-                Sign in with email & password
-                <ChevronDown className="size-4" />
+                Sign in with email credentials
+                <ChevronDown className="size-4 group-hover:translate-y-0.5 transition-transform" />
               </button>
             ) : (
-              <form onSubmit={handleSubmit(onEmailSubmit)} className="space-y-4 animate-fade-in">
+              <form onSubmit={handleSubmit(onEmailSubmit)} className="space-y-5 animate-in fade-in slide-in-from-top-2 duration-300">
                 <Input
                   {...register("email")}
-                  label="Email address"
-                  placeholder="you@hospital.org"
+                  label="Clinical Email"
+                  placeholder="dr.smith@hospital.org"
                   type="email"
                   leftIcon={<Mail className="size-4" />}
                   error={errors.email?.message}
-                  autoComplete="email"
+                  className="bg-secondary/30 border-border focus:ring-primary/20"
                 />
-                <div>
+                
+                <div className="space-y-1">
                   <Input
                     {...register("password")}
                     label="Password"
@@ -170,41 +174,44 @@ export function LoginPage() {
                     placeholder="••••••••"
                     leftIcon={<Lock className="size-4" />}
                     error={errors.password?.message}
-                    autoComplete="current-password"
+                    className="bg-secondary/30 border-border focus:ring-primary/20"
                   />
-                  <div className="text-right mt-1.5">
-                    <a className="font-body text-xs font-semibold text-pulse hover:text-pulse-deep transition-colors" href="#">
+                  <div className="flex justify-end">
+                    <Link to="/forgot-password" size="sm" className="text-xs font-bold text-primary hover:underline">
                       Forgot Password?
-                    </a>
+                    </Link>
                   </div>
                 </div>
 
-                <Button type="submit" loading={loginEmail.isPending} className="w-full" size="lg">
-                  <Mail className="size-4" />
-                  Sign In with Email
+                <Button 
+                  type="submit" 
+                  loading={loginEmail.isPending} 
+                  className="w-full py-4 rounded-2xl font-headline font-bold"
+                  size="lg"
+                >
+                  Confirm Identity
                 </Button>
               </form>
             )}
 
-            {/* ── Register Link ────────────────────────────────────────── */}
-            <div className="mt-8 text-center font-body text-sm text-on-surface-variant">
-              New to DonorLink?{" "}
-              <Link to="/register" className="font-semibold text-pulse hover:text-pulse-deep transition-colors">
+            <div className="mt-10 text-center text-sm text-muted-foreground">
+              New to the sanctuary?{" "}
+              <Link to="/register" className="font-bold text-primary hover:underline underline-offset-4">
                 Register now
               </Link>
             </div>
           </div>
 
-          {/* ── Trust Signals ──────────────────────────────────────────── */}
-          <div className="mt-8 flex justify-center items-center gap-6 text-xs font-body text-secondary">
-            <div className="flex items-center gap-1.5">
-              <Shield className="size-4" />
+          {/* ── Footer Trust Marks ───────────────────────────────────── */}
+          <div className="mt-8 flex justify-center items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-muted-foreground/60">
+            <div className="flex items-center gap-2">
+              <Shield className="size-3.5 text-primary" />
               <span>HIPAA Compliant</span>
             </div>
-            <div className="w-1 h-1 rounded-full bg-outline-variant" />
-            <div className="flex items-center gap-1.5">
-              <Lock className="size-4" />
-              <span>Encrypted</span>
+            <div className="w-1 h-1 rounded-full bg-border" />
+            <div className="flex items-center gap-2">
+              <Lock className="size-3.5" />
+              <span>AES-256 Encrypted</span>
             </div>
           </div>
         </main>

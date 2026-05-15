@@ -1,4 +1,4 @@
-Design-Web/
-Design-Mobile/
+Design/
 node_modules/
 *.pdf
+.env

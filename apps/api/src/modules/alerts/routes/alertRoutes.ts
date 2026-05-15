@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import { AlertController } from '../controllers/alertController';
+import { authenticate, authorize } from '../../../core/middleware';
+import { Role } from '../../../core/constants';
+const router = Router();
+router.use(authenticate);
+router.get('/', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), AlertController.getAll);
+router.get('/:id', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), AlertController.getById);
+router.post('/', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN), AlertController.create);
+router.post('/:id/acknowledge', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), AlertController.acknowledge);
+router.post('/:id/resolve', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), AlertController.resolve);
+export { router as alertRoutes };

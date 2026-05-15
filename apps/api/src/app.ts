@@ -1,60 +1,119 @@
-import express from "express";
-import cors from "cors";
-import helmet from "helmet";
-import compression from "compression";
-import morgan from "morgan";
-import cookieParser from "cookie-parser";
+import express from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import compression from 'compression';
+import { errorHandler, requestLogger, rateLimiter } from './core/middleware';
+import { sendSuccess } from './core/utils';
 
-import { config } from "./config/env";
-import { logger } from "./utils/logger";
-import { apiLimiter } from "./middleware/rateLimiter";
-import { errorHandler, notFoundHandler } from "./middleware/errorHandler";
-
-import authRoutes from "./routes/auth";
-import donorRoutes from "./routes/donor";
-import hospitalRoutes from "./routes/hospital";
-import requestRoutes from "./routes/request";
-import donationRoutes from "./routes/donation";
-import analyticsRoutes from "./routes/analytics";
+// Module route imports
+import { authRoutes } from './modules/auth';
+import { userRoutes } from './modules/users';
+import { organizationRoutes } from './modules/organizations';
+import { hospitalRoutes } from './modules/hospitals';
+import { donorRoutes } from './modules/donors';
+import { donationRoutes } from './modules/donations';
+import { inventoryRoutes } from './modules/inventory';
+import { requestRoutes } from './modules/requests';
+import { transferRoutes } from './modules/transfers';
+import { logisticsRoutes } from './modules/logistics';
+import { analyticsRoutes } from './modules/analytics';
+import { alertRoutes } from './modules/alerts';
+import { campaignRoutes } from './modules/campaigns';
+import { emergencyRoutes } from './modules/emergency';
+import { forecastingRoutes } from './modules/forecasting';
+import { recommendationRoutes } from './modules/recommendations';
+import { notificationRoutes } from './modules/notifications';
+import { auditRoutes } from './modules/audit';
+import { dashboardRoutes } from './modules/dashboard';
 
 const app = express();
 
+// ==================================================
+// Global Middleware
+// ==================================================
+
+// Security
 app.use(helmet());
-app.use(
-  cors({
-    origin: [config.WEB_APP_URL, config.MOBILE_APP_URL],
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production'
+    ? ['https://donorlink.et', 'https://admin.donorlink.et']
+    : '*',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+}));
 
+// Compression
 app.use(compression());
-app.use(express.json({ limit: "10mb" }));
-app.use(express.urlencoded({ extended: true, limit: "10mb" }));
-app.use(cookieParser());
-app.use(
-  morgan("combined", {
-    stream: { write: (msg) => logger.http(msg.trim()) },
-    skip: () => config.NODE_ENV === "test",
-  })
-);
 
-app.use(`/api/${config.API_VERSION}`, apiLimiter);
+// Body parsing
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-app.get("/health", (_req, res) => {
-  res.json({ status: "ok", version: config.API_VERSION, env: config.NODE_ENV });
+// Request logging
+app.use(requestLogger);
+
+// Rate limiting
+app.use(rateLimiter);
+
+// ==================================================
+// Health Check
+// ==================================================
+
+app.get('/api/v1/health', (_req, res) => {
+  sendSuccess(res, {
+    status: 'healthy',
+    service: 'DonorLink API',
+    version: '1.0.0',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV,
+  }, 'Service is healthy');
 });
 
-const base = `/api/${config.API_VERSION}`;
-app.use(`${base}/auth`, authRoutes);
-app.use(`${base}/donors`, donorRoutes);
-app.use(`${base}/hospitals`, hospitalRoutes);
-app.use(`${base}/requests`, requestRoutes);
-app.use(`${base}/donations`, donationRoutes);
-app.use(`${base}/analytics`, analyticsRoutes);
+// ==================================================
+// API Routes — v1
+// ==================================================
 
-app.use(notFoundHandler);
+const API_PREFIX = '/api/v1';
+
+app.use(`${API_PREFIX}/auth`, authRoutes);
+app.use(`${API_PREFIX}/users`, userRoutes);
+app.use(`${API_PREFIX}/organizations`, organizationRoutes);
+app.use(`${API_PREFIX}/hospitals`, hospitalRoutes);
+app.use(`${API_PREFIX}/donors`, donorRoutes);
+app.use(`${API_PREFIX}/donations`, donationRoutes);
+app.use(`${API_PREFIX}/inventory`, inventoryRoutes);
+app.use(`${API_PREFIX}/requests`, requestRoutes);
+app.use(`${API_PREFIX}/transfers`, transferRoutes);
+app.use(`${API_PREFIX}/logistics`, logisticsRoutes);
+app.use(`${API_PREFIX}/analytics`, analyticsRoutes);
+app.use(`${API_PREFIX}/alerts`, alertRoutes);
+app.use(`${API_PREFIX}/campaigns`, campaignRoutes);
+app.use(`${API_PREFIX}/emergency`, emergencyRoutes);
+app.use(`${API_PREFIX}/forecasting`, forecastingRoutes);
+app.use(`${API_PREFIX}/recommendations`, recommendationRoutes);
+app.use(`${API_PREFIX}/notifications`, notificationRoutes);
+app.use(`${API_PREFIX}/audit`, auditRoutes);
+app.use(`${API_PREFIX}/dashboard`, dashboardRoutes);
+
+// ==================================================
+// 404 Handler
+// ==================================================
+
+app.use((_req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found',
+    code: 'NOT_FOUND',
+    timestamp: new Date().toISOString(),
+  });
+});
+
+// ==================================================
+// Global Error Handler (must be last)
+// ==================================================
+
 app.use(errorHandler);
 
-export default app;
+export { app };

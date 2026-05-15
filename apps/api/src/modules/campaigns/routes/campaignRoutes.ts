@@ -1,0 +1,13 @@
+import { Router } from 'express';
+import { CampaignController } from '../controllers/campaignController';
+import { authenticate, authorize } from '../../../core/middleware';
+import { Role } from '../../../core/constants';
+const router = Router();
+router.use(authenticate);
+router.get('/', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN, Role.DONOR_COORDINATOR), CampaignController.getAll);
+router.get('/:id', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), CampaignController.getById);
+router.post('/', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN), CampaignController.create);
+router.put('/:id', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN), CampaignController.update);
+router.delete('/:id', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN), CampaignController.delete);
+router.patch('/:id/progress', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN), CampaignController.updateProgress);
+export { router as campaignRoutes };

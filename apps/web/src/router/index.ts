@@ -43,11 +43,28 @@ export const loginRoute = createRoute({
   component: lazyRouteComponent(() => import("../pages/auth/LoginPage"), "LoginPage"),
 });
 
+export const faydaCallbackRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/auth/fayda/callback",
+  beforeLoad: requireGuest,
+  component: lazyRouteComponent(() => import("../pages/auth/FaydaCallbackPage"), "FaydaCallbackPage"),
+});
+
 export const registerRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/register",
   beforeLoad: requireGuest,
   component: lazyRouteComponent(() => import("../pages/auth/RegisterPage"), "RegisterPage"),
+});
+
+export const onboardingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/onboarding",
+  beforeLoad: () => {
+    requireAuth();
+    if (!authStore.needsOnboarding()) throw redirect({ to: "/dashboard" });
+  },
+  component: lazyRouteComponent(() => import("../pages/auth/OnboardingPage"), "OnboardingPage"),
 });
 
 export const respondRoute = createRoute({
@@ -103,7 +120,7 @@ export const hospitalRequestsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/hospital/requests",
   beforeLoad: () => requireRole(UserRole.HOSPITAL_ADMIN, UserRole.BLOOD_BANK_ADMIN, UserRole.SUPER_ADMIN),
-  component: lazyRouteComponent(() => import("../pages/hospital/RequestsPage"), "RequestsPage"),
+  component: lazyRouteComponent(() => import("../pages/hospital/RequestsPage"), "default"),
 });
 
 export const newRequestRoute = createRoute({
@@ -142,11 +159,46 @@ export const adminHospitalsRoute = createRoute({
   component: lazyRouteComponent(() => import("../pages/admin/HospitalsPage"), "default"),
 });
 
+export const recipientDashboardRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/hospital/recipients",
+  beforeLoad: () => requireRole(UserRole.HOSPITAL_ADMIN, UserRole.BLOOD_BANK_ADMIN, UserRole.SUPER_ADMIN),
+  component: lazyRouteComponent(() => import("../pages/hospital/RecipientDashboard"), "RecipientDashboard"),
+});
+
+export const matchingRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/hospital/matching",
+  beforeLoad: () => requireRole(UserRole.HOSPITAL_ADMIN, UserRole.BLOOD_BANK_ADMIN, UserRole.SUPER_ADMIN),
+  component: lazyRouteComponent(() => import("../pages/hospital/MatchingPage"), "MatchingPage"),
+});
+
+// ─── Static routes ──────────────────────────────────────────────────────────────
+export const clinicalGuidelinesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/clinical-guidelines",
+  component: lazyRouteComponent(() => import("../pages/admin/ClinicalGuidelinesPage"), "default"),
+});
+
+export const privacyPolicyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/privacy",
+  component: lazyRouteComponent(() => import("../pages/admin/PrivacyPolicyPage"), "default"),
+});
+
+export const termsOfServiceRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/terms",
+  component: lazyRouteComponent(() => import("../pages/admin/TermsOfServicePage"), "default"),
+});
+
 // ─── Router ───────────────────────────────────────────────────────────────────
 const routeTree = rootRoute.addChildren([
   indexRoute,
   loginRoute,
+  faydaCallbackRoute,
   registerRoute,
+  onboardingRoute,
   respondRoute,
   unauthorizedRoute,
   donorDashboardRoute,
@@ -157,9 +209,14 @@ const routeTree = rootRoute.addChildren([
   hospitalRequestsRoute,
   newRequestRoute,
   hospitalInventoryRoute,
+  recipientDashboardRoute,
+  matchingRoute,
   adminAnalyticsRoute,
   adminDonorsRoute,
   adminHospitalsRoute,
+  clinicalGuidelinesRoute,
+  privacyPolicyRoute,
+  termsOfServiceRoute,
 ]);
 
 export const router = createRouter({

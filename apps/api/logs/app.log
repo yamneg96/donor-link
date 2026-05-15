@@ -1,0 +1,430 @@
+2026-05-15 21:19:34 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:19:34 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:19:34 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:19:34 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:19:40 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:19:40 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:19:40 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-15 21:19:40 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-15 21:19:40 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-15 21:19:40 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-15 21:19:40 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-15 21:19:40 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-15 21:19:40 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-15 21:19:40 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-15 21:19:40 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-15 21:19:40 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-15 21:19:40 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-15 21:19:40 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-15 21:19:40 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-15 21:19:40 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-15 21:19:40 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-15 21:19:40 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:19:40 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:19:40 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:19:40 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:19:40 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:19:40 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:19:41 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:19:41 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:19:42 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:19:42 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:19:43 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:19:43 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:19:44 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:19:44 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:19:45 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:19:45 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:19:47 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:19:47 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:19:49 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:19:49 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:19:51 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:19:51 [error]: ❌ Redis: max retries reached {"service":"donorlink-api"}
+2026-05-15 21:22:39 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:22:39 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:22:43 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:22:43 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:22:44 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:22:44 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-15 21:22:44 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-15 21:22:44 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-15 21:22:44 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-15 21:22:44 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-15 21:22:44 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-15 21:22:44 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-15 21:22:44 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-15 21:22:44 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-15 21:22:44 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-15 21:22:44 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-15 21:22:44 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-15 21:22:44 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-15 21:22:44 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-15 21:22:44 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-15 21:22:44 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:22:44 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:22:44 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:22:44 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:22:45 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:22:45 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:22:45 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:22:45 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:22:46 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:22:46 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:22:47 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:22:47 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:22:47 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:22:48 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:22:48 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:22:50 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:22:50 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:22:52 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:22:52 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:22:53 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:22:53 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:22:55 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:22:55 [error]: ❌ Redis: max retries reached {"service":"donorlink-api"}
+2026-05-15 21:27:55 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:27:55 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:28:02 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:28:02 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-15 21:28:02 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-15 21:28:02 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-15 21:28:02 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-15 21:28:02 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-15 21:28:02 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-15 21:28:02 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-15 21:28:02 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-15 21:28:02 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-15 21:28:02 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-15 21:28:02 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-15 21:28:02 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-15 21:28:02 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-15 21:28:02 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-15 21:28:02 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-15 21:28:02 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:02 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:02 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:02 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:03 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:03 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:03 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:03 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:04 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:04 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:05 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:05 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:06 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:06 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:08 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:08 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:09 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:09 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:11 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:11 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:13 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:13 [error]: ❌ Redis: max retries reached {"service":"donorlink-api"}
+2026-05-15 21:28:21 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:28:21 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:28:21 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:28:22 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:28:24 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:28:24 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-15 21:28:24 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-15 21:28:24 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-15 21:28:24 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-15 21:28:24 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-15 21:28:24 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-15 21:28:24 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-15 21:28:24 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-15 21:28:24 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-15 21:28:24 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-15 21:28:24 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-15 21:28:24 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-15 21:28:24 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-15 21:28:24 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-15 21:28:24 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-15 21:28:24 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:24 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:24 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:28:24 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:24 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:25 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:25 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:25 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:25 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:26 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:26 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:27 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:27 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:28 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:28 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:33 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:28:33 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:28:33 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:28:33 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:28:37 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:28:37 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:28:37 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-15 21:28:37 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-15 21:28:37 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-15 21:28:37 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-15 21:28:37 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-15 21:28:37 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-15 21:28:37 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-15 21:28:37 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-15 21:28:37 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-15 21:28:37 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-15 21:28:37 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-15 21:28:37 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-15 21:28:37 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-15 21:28:37 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-15 21:28:37 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-15 21:28:37 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:37 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:37 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:37 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:37 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:37 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:51 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:28:51 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:28:51 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:28:51 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:28:53 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:28:53 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:28:53 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-15 21:28:53 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-15 21:28:53 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-15 21:28:53 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-15 21:28:53 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-15 21:28:53 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-15 21:28:53 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-15 21:28:53 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-15 21:28:53 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-15 21:28:53 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-15 21:28:53 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-15 21:28:53 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-15 21:28:53 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-15 21:28:53 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-15 21:28:53 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-15 21:28:53 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:53 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:53 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:53 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:54 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:54 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:54 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:54 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:55 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:55 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:56 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:56 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:57 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:57 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:28:59 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:28:59 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:00 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:00 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:02 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:02 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:04 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:04 [error]: ❌ Redis: max retries reached {"service":"donorlink-api"}
+2026-05-15 21:29:36 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:29:36 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:29:37 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:29:37 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:29:46 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:29:46 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:29:46 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:29:46 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:29:49 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:29:49 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-15 21:29:49 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-15 21:29:49 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-15 21:29:49 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-15 21:29:49 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-15 21:29:49 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-15 21:29:49 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-15 21:29:49 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-15 21:29:49 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-15 21:29:49 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-15 21:29:49 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-15 21:29:49 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-15 21:29:49 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-15 21:29:49 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-15 21:29:49 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-15 21:29:49 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:49 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:49 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:49 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:49 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:49 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:50 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:50 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:50 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:29:51 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:51 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:52 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:52 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:53 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:53 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:54 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:54 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:56 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:56 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:29:58 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:29:58 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:30:00 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:30:00 [error]: ❌ Redis: max retries reached {"service":"donorlink-api"}
+2026-05-15 21:38:18 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:38:18 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:38:21 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:38:21 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-15 21:38:21 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-15 21:38:21 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-15 21:38:21 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-15 21:38:21 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-15 21:38:21 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-15 21:38:21 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-15 21:38:21 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-15 21:38:21 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-15 21:38:21 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-15 21:38:21 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-15 21:38:21 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-15 21:38:21 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-15 21:38:21 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-15 21:38:21 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-15 21:38:21 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:38:21 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:38:21 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:38:21 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:38:22 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:38:22 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:38:22 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:38:22 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:38:23 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:38:23 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:38:24 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:38:24 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:38:25 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:38:25 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:38:27 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:38:27 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:38:28 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:38:28 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:38:30 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:38:30 [warn]: Redis reconnecting... {"service":"donorlink-api"}
+2026-05-15 21:38:32 [error]: Redis connection error: {"service":"donorlink-api"}
+2026-05-15 21:38:32 [error]: ❌ Redis: max retries reached {"service":"donorlink-api"}
+2026-05-15 21:50:20 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:50:20 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:50:24 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:50:35 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:50:35 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:50:37 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:50:37 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-15 21:50:37 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-15 21:50:37 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-15 21:50:37 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-15 21:50:37 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-15 21:50:37 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-15 21:50:37 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-15 21:50:37 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-15 21:50:37 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-15 21:50:37 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-15 21:50:37 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-15 21:50:37 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-15 21:50:37 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-15 21:50:37 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-15 21:50:37 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-15 21:51:25 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:51:25 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:51:29 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:51:29 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-15 21:51:29 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-15 21:51:29 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-15 21:51:29 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-15 21:51:29 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-15 21:51:29 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-15 21:51:29 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-15 21:51:29 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-15 21:51:29 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-15 21:51:29 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-15 21:51:29 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-15 21:51:29 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-15 21:51:29 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-15 21:51:29 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-15 21:51:29 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-15 21:52:13 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-15 21:52:13 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 21:52:15 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 21:52:15 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-15 21:52:15 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-15 21:52:15 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-15 21:52:15 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-15 21:52:15 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-15 21:52:15 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-15 21:52:15 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-15 21:52:15 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-15 21:52:15 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-15 21:52:15 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-15 21:52:15 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-15 21:52:15 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-15 21:52:15 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-15 21:52:15 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-15 21:52:15 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-15 21:52:56 [info]: ::1 GET / 404 103 - 19.420 ms {"service":"donorlink-api"}
+2026-05-15 21:52:56 [info]: ::1 GET / 404 103 - 2.696 ms {"service":"donorlink-api"}
+2026-05-15 21:52:58 [info]: ::1 GET /favicon.ico 404 103 - 0.821 ms {"service":"donorlink-api"}
+2026-05-15 21:53:09 [info]: ::1 GET / 404 103 - 1.791 ms {"service":"donorlink-api"}
+2026-05-15 21:53:10 [info]: ::1 GET / 404 103 - 1.311 ms {"service":"donorlink-api"}
+2026-05-15 21:53:22 [info]: ::1 GET /api/v/health 404 103 - 1.428 ms {"service":"donorlink-api"}
+2026-05-15 21:53:26 [info]: ::1 GET /api/v/health 404 103 - 0.833 ms {"service":"donorlink-api"}
+2026-05-15 21:55:05 [info]: ::1 GET /api/v1/health 200 246 - 2.176 ms {"service":"donorlink-api"}
+2026-05-15 22:13:33 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 22:13:35 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 22:13:35 [info]: 🌱 Starting database seed... {"service":"donorlink-api"}
+2026-05-15 22:13:39 [error]: MongoServerError: E11000 duplicate key error collection: donorlink.hospitals index: licenseNumber_1 dup key: { licenseNumber: null }
+    at InsertOneOperation.handleOk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongodb@6.20.0\node_modules\mongodb\src\operations\insert.ts:79:13)
+    at tryOperation (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongodb@6.20.0\node_modules\mongodb\src\operations\execute_operation.ts:290:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async executeOperation (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongodb@6.20.0\node_modules\mongodb\src\operations\execute_operation.ts:119:12)
+    at async Collection.insertOne (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongodb@6.20.0\node_modules\mongodb\src\collection.ts:294:12) {"service":"donorlink-api","errorLabelSet":{},"errorResponse":{"index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: donorlink.hospitals index: licenseNumber_1 dup key: { licenseNumber: null }","keyPattern":{"licenseNumber":1},"keyValue":{"licenseNumber":null}},"index":0,"code":11000,"keyPattern":{"licenseNumber":1},"keyValue":{"licenseNumber":null}}
+2026-05-15 22:13:49 [info]: 
+SIGINT received. Starting graceful shutdown... {"service":"donorlink-api"}
+2026-05-15 22:14:10 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 22:14:12 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 22:14:12 [info]: 🌱 Starting database seed... {"service":"donorlink-api"}
+2026-05-15 22:14:16 [error]: MongoServerError: E11000 duplicate key error collection: donorlink.hospitals index: licenseNumber_1 dup key: { licenseNumber: null }
+    at InsertOneOperation.handleOk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongodb@6.20.0\node_modules\mongodb\src\operations\insert.ts:79:13)
+    at tryOperation (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongodb@6.20.0\node_modules\mongodb\src\operations\execute_operation.ts:290:26)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async executeOperation (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongodb@6.20.0\node_modules\mongodb\src\operations\execute_operation.ts:119:12)
+    at async Collection.insertOne (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongodb@6.20.0\node_modules\mongodb\src\collection.ts:294:12) {"service":"donorlink-api","errorLabelSet":{},"errorResponse":{"index":0,"code":11000,"errmsg":"E11000 duplicate key error collection: donorlink.hospitals index: licenseNumber_1 dup key: { licenseNumber: null }","keyPattern":{"licenseNumber":1},"keyValue":{"licenseNumber":null}},"index":0,"code":11000,"keyPattern":{"licenseNumber":1},"keyValue":{"licenseNumber":null}}
+2026-05-15 22:16:43 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-15 22:16:46 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-15 22:16:46 [info]: 🌱 Starting database seed... {"service":"donorlink-api"}
+2026-05-15 22:16:47 [info]: Dropped collection: hospitals {"service":"donorlink-api"}
+2026-05-15 22:16:48 [info]: Dropped collection: auditlogs {"service":"donorlink-api"}
+2026-05-15 22:16:48 [info]: Dropped collection: bloodunits {"service":"donorlink-api"}
+2026-05-15 22:16:48 [info]: Dropped collection: campaigns {"service":"donorlink-api"}
+2026-05-15 22:16:49 [info]: Dropped collection: alerts {"service":"donorlink-api"}
+2026-05-15 22:16:49 [info]: Dropped collection: transfershipments {"service":"donorlink-api"}
+2026-05-15 22:16:49 [info]: Dropped collection: emergencyevents {"service":"donorlink-api"}
+2026-05-15 22:16:49 [info]: Dropped collection: organizations {"service":"donorlink-api"}
+2026-05-15 22:16:49 [info]: Dropped collection: inventoryledgers {"service":"donorlink-api"}
+2026-05-15 22:16:50 [info]: Dropped collection: users {"service":"donorlink-api"}
+2026-05-15 22:16:50 [info]: Dropped collection: notifications {"service":"donorlink-api"}
+2026-05-15 22:16:50 [info]: Dropped collection: recommendations {"service":"donorlink-api"}
+2026-05-15 22:16:51 [info]: Dropped collection: donors {"service":"donorlink-api"}
+2026-05-15 22:16:51 [info]: Dropped collection: donations {"service":"donorlink-api"}
+2026-05-15 22:16:51 [info]: Dropped collection: refreshtokens {"service":"donorlink-api"}
+2026-05-15 22:16:51 [info]: Dropped collection: bloodrequests {"service":"donorlink-api"}
+2026-05-15 22:16:52 [info]: Dropped collection: transferrequests {"service":"donorlink-api"}
+2026-05-15 22:16:57 [info]: ✅ Seed complete:
+      Organizations: 4
+      Hospitals: 2
+      Users: 5
+      Donors: 1
+      Blood Units: 32
+     {"service":"donorlink-api"}

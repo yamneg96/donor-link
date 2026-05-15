@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import { AnalyticsController } from '../controllers/analyticsController';
+import { authenticate, authorize } from '../../../core/middleware';
+import { Role } from '../../../core/constants';
+const router = Router();
+router.use(authenticate);
+router.get('/national', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST), AnalyticsController.getNationalAnalytics);
+router.get('/hospital/:orgId', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN), AnalyticsController.getHospitalAnalytics);
+router.get('/transfers', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST), AnalyticsController.getTransferAnalytics);
+router.get('/wastage', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST), AnalyticsController.getWastageAnalytics);
+router.get('/donors', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST), AnalyticsController.getDonorAnalytics);
+export { router as analyticsRoutes };

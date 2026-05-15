@@ -45,7 +45,7 @@ export function FaydaCallbackPage() {
   }, [code, state, processed]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: "#f8f9ff" }}>
+    <div className="min-h-screen flex items-center justify-center bg-background">
       <div className="text-center max-w-sm px-6">
         {error ? (
           <div className="space-y-6 animate-fade-in">

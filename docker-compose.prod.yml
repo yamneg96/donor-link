@@ -1,0 +1,25 @@
+# ==================================================
+# DonorLink - Production Overrides
+# ==================================================
+
+services:
+  api:
+    restart: always
+
+    environment:
+      NODE_ENV: production
+
+    deploy:
+      resources:
+        limits:
+          cpus: "1.5"
+          memory: 1.5G
+
+  mongodb:
+    restart: always
+
+  redis:
+    restart: always
+
+  nginx:
+    restart: always

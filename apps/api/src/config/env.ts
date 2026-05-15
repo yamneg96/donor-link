@@ -1,69 +1,62 @@
-import { z } from "zod";
-import dotenv from "dotenv";
-
-dotenv.config();
+import 'dotenv/config';
+import { z } from 'zod';
 
 const envSchema = z.object({
-  NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
+  // Server
+  NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   PORT: z.coerce.number().default(5000),
-  API_VERSION: z.string().default("v1"),
+  API_PREFIX: z.string().default('/api/v1'),
 
-  MONGODB_URI: z.string().min(1),
+  // Database
+  MONGO_URI: z.string().min(1, 'MONGO_URI is required'),
 
-  JWT_ACCESS_SECRET: z.string().min(32),
-  JWT_REFRESH_SECRET: z.string().min(32),
-  JWT_ACCESS_EXPIRES_IN: z.string().default("15m"),
-  JWT_REFRESH_EXPIRES_IN: z.string().default("7d"),
+  // JWT
+  JWT_ACCESS_SECRET: z.string().min(1, 'JWT_ACCESS_SECRET is required'),
+  JWT_REFRESH_SECRET: z.string().min(1, 'JWT_REFRESH_SECRET is required'),
+  JWT_ACCESS_EXPIRY: z.string().default('15m'),
+  JWT_REFRESH_EXPIRY: z.string().default('7d'),
 
-  REDIS_URL: z.string().default("redis://localhost:6379"),
+  // SMTP
+  SMTP_HOST: z.string().default('smtp.gmail.com'),
+  SMTP_PORT: z.coerce.number().default(587),
+  SMTP_USER: z.string().optional(),
+  SMTP_PASS: z.string().optional(),
+  SMTP_FROM: z.string().default('noreply@donorlink.et'),
 
-  // ─── Fayda eSignet (OIDC) ───────────────────────────────────────────────────
-  // Set FAYDA_MOCK=true for development without real eSignet sandbox
-  FAYDA_MOCK: z.coerce.boolean().default(true),
-  FAYDA_ISSUER: z.string().default("https://esignet.collab.mosip.net"),
-  FAYDA_CLIENT_ID: z.string().default("donorlink-dev"),
-  FAYDA_REDIRECT_URI: z.string().default("http://localhost:5173/auth/fayda/callback"),
-  FAYDA_PRIVATE_KEY_JWK: z.string().optional(), // Base64-encoded RSA JWK — optional when mock=true
-  FAYDA_ALGORITHM: z.string().default("RS256"),
-  FAYDA_DONOR_ACR: z.string().default("mosip:idp:acr:biometrics"),
-  FAYDA_RECIPIENT_ACR: z.string().default("mosip:idp:acr:generated-code"),
+  // SMS
+  SMS_API_URL: z.string().optional(),
+  SMS_API_KEY: z.string().optional(),
+  SMS_SENDER_ID: z.string().default('DonorLink'),
 
-  // ─── External Services ──────────────────────────────────────────────────────
-  TWILIO_ACCOUNT_SID: z.string().optional(),
-  TWILIO_AUTH_TOKEN: z.string().optional(),
-  TWILIO_PHONE_NUMBER: z.string().optional(),
+  // Storage
+  STORAGE_TYPE: z.enum(['local', 's3']).default('local'),
+  STORAGE_PATH: z.string().default('./uploads'),
+  S3_BUCKET: z.string().optional(),
+  S3_REGION: z.string().optional(),
+  S3_ACCESS_KEY: z.string().optional(),
+  S3_SECRET_KEY: z.string().optional(),
 
-  AT_API_KEY: z.string().optional(),
-  AT_USERNAME: z.string().optional(),
-
-  FIREBASE_PROJECT_ID: z.string().optional(),
-  FIREBASE_CLIENT_EMAIL: z.string().optional(),
-  FIREBASE_PRIVATE_KEY: z.string().optional(),
-
-  RESEND_API_KEY: z.string().optional(),
-  RESEND_FROM_EMAIL: z.string().email().default("noreply@donorlink.et"),
-
-  BLOB_READ_WRITE_TOKEN: z.string().optional(),
-
-  MAPBOX_ACCESS_TOKEN: z.string().optional(),
-
-  WEB_APP_URL: z.string().url().default("http://localhost:5173"),
-  MOBILE_APP_URL: z.string().default("exp://localhost:8081"),
-
+  // Rate Limiting
   RATE_LIMIT_WINDOW_MS: z.coerce.number().default(900000),
-  RATE_LIMIT_MAX: z.coerce.number().default(100),
+  RATE_LIMIT_MAX_REQUESTS: z.coerce.number().default(100),
 
-  SUPER_ADMIN_PHONE: z.string().optional(),
-  SUPER_ADMIN_PASSWORD: z.string().optional(),
+  // Logging
+  LOG_LEVEL: z.enum(['error', 'warn', 'info', 'debug']).default('info'),
+  LOG_FILE: z.string().default('./logs/app.log'),
 });
 
-const parsed = envSchema.safeParse(process.env);
+export type Env = z.infer<typeof envSchema>;
 
-if (!parsed.success) {
-  console.error("❌  Invalid environment variables:");
-  console.error(parsed.error.flatten().fieldErrors);
-  process.exit(1);
+function validateEnv(): Env {
+  const parsed = envSchema.safeParse(process.env);
+
+  if (!parsed.success) {
+    console.error('❌ Invalid environment variables:');
+    console.error(parsed.error.flatten().fieldErrors);
+    process.exit(1);
+  }
+
+  return parsed.data;
 }
 
-export const config = parsed.data;
-export type Config = typeof config;
+export const env = validateEnv();

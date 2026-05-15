@@ -1,40 +1,56 @@
-import mongoose from "mongoose";
-import { config } from "./env";
-import { logger } from "../utils/logger";
+import mongoose from 'mongoose';
+import { env } from './env';
+import { logger } from './logger';
 
-const RETRY_DELAY = 5000;
-const MAX_RETRIES = 5;
+export async function connectDatabase(): Promise<void> {
+  const MAX_RETRIES = 5;
+  const RETRY_DELAY_MS = 5000;
 
-export async function connectDB(retries = MAX_RETRIES): Promise<void> {
-  try {
-    await mongoose.connect(config.MONGODB_URI, {
-      dbName: "donorlink",
-      maxPoolSize: 10,
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 45000,
-    });
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    try {
+      logger.info(`🗄️  Connecting to MongoDB (attempt ${attempt}/${MAX_RETRIES})...`);
 
-    logger.info("✅  MongoDB Atlas connected");
+      await mongoose.connect(env.MONGO_URI, {
+        maxPoolSize: 10,
+        serverSelectionTimeoutMS: 5000,
+        socketTimeoutMS: 45000,
+      });
 
-    mongoose.connection.on("error", (err) => {
-      logger.error("MongoDB connection error", { error: err.message });
-    });
+      logger.info('✅ MongoDB connected successfully');
 
-    mongoose.connection.on("disconnected", () => {
-      logger.warn("MongoDB disconnected — attempting reconnect");
-    });
-  } catch (err) {
-    if (retries > 0) {
-      logger.warn(`MongoDB connection failed — retrying in ${RETRY_DELAY / 1000}s (${retries} left)`);
-      await new Promise((res) => setTimeout(res, RETRY_DELAY));
-      return connectDB(retries - 1);
+      // Connection event handlers
+      mongoose.connection.on('error', (err) => {
+        logger.error('MongoDB connection error:', err);
+      });
+
+      mongoose.connection.on('disconnected', () => {
+        logger.warn('MongoDB disconnected');
+      });
+
+      mongoose.connection.on('reconnected', () => {
+        logger.info('MongoDB reconnected');
+      });
+
+      return;
+    } catch (error) {
+      logger.error(`MongoDB connection attempt ${attempt} failed:`, error);
+
+      if (attempt === MAX_RETRIES) {
+        logger.error('❌ Failed to connect to MongoDB after maximum retries');
+        process.exit(1);
+      }
+
+      logger.info(`Retrying in ${RETRY_DELAY_MS / 1000}s...`);
+      await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY_MS));
     }
-    logger.error("MongoDB connection exhausted", { error: (err as Error).message });
-    process.exit(1);
   }
 }
 
-export async function disconnectDB(): Promise<void> {
-  await mongoose.disconnect();
-  logger.info("MongoDB disconnected");
+export async function disconnectDatabase(): Promise<void> {
+  try {
+    await mongoose.disconnect();
+    logger.info('MongoDB disconnected gracefully');
+  } catch (error) {
+    logger.error('Error disconnecting from MongoDB:', error);
+  }
 }
