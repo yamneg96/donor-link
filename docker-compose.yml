@@ -27,7 +27,7 @@ services:
       PORT: 5000
 
       # Database
-      MONGO_URI: mongodb+srv://yamlaknegash96_db_user:scFbYAZA5SibNiDQ@cluster0.hgzxxxv.mongodb.net/donorlink?authSource=admin
+      MONGO_URI: mongodb+srv://yamlaknegash96_db_user:<db_password>@cluster0.hgzxxxv.mongodb.net/donorlink?authSource=admin
 
       # JWT
       JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:-donorlink-access-secret}
