@@ -1,6 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { BloodType, RequestUrgency } from "@donorlink/types";
+import { BloodType, RequestUrgency } from "../types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -26,20 +26,20 @@ export function timeAgo(date: string | Date) {
 }
 
 export const BLOOD_TYPE_COLORS: Record<BloodType, string> = {
-  [BloodType.A_POS]:  "bg-red-100 text-red-700",
-  [BloodType.A_NEG]:  "bg-red-50 text-red-600",
-  [BloodType.B_POS]:  "bg-orange-100 text-orange-700",
-  [BloodType.B_NEG]:  "bg-orange-50 text-orange-600",
-  [BloodType.AB_POS]: "bg-purple-100 text-purple-700",
-  [BloodType.AB_NEG]: "bg-purple-50 text-purple-600",
-  [BloodType.O_POS]:  "bg-brand-100 text-brand-700",
-  [BloodType.O_NEG]:  "bg-brand-50 text-brand-600",
+  [BloodType.A_POSITIVE]:  "bg-red-100 text-red-700",
+  [BloodType.A_NEGATIVE]:  "bg-red-50 text-red-600",
+  [BloodType.B_POSITIVE]:  "bg-orange-100 text-orange-700",
+  [BloodType.B_NEGATIVE]:  "bg-orange-50 text-orange-600",
+  [BloodType.AB_POSITIVE]: "bg-purple-100 text-purple-700",
+  [BloodType.AB_NEGATIVE]: "bg-purple-50 text-purple-600",
+  [BloodType.O_POSITIVE]:  "bg-rose-100 text-rose-700",
+  [BloodType.O_NEGATIVE]:  "bg-rose-50 text-rose-600",
 };
 
 export const URGENCY_BADGE: Record<RequestUrgency, string> = {
-  [RequestUrgency.CRITICAL]: "badge-critical",
-  [RequestUrgency.URGENT]:   "badge-urgent",
-  [RequestUrgency.STANDARD]: "badge-standard",
+  [RequestUrgency.EMERGENCY]: "bg-m3-error-container text-m3-on-error-container",
+  [RequestUrgency.URGENT]:    "bg-amber-100 text-amber-700",
+  [RequestUrgency.ROUTINE]:   "bg-m3-surface-variant text-m3-on-surface-variant",
 };
 
 export function getApiError(error: unknown): string {

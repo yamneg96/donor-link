@@ -1,135 +1,127 @@
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-} from "@tanstack/react-query";
-import {
-  authApi,
-  donorApi,
-  requestApi,
-  hospitalApi,
-  donationApi,
-  analyticsApi,
-} from "../api/client";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { authApi } from "../api/auth";
+import { inventoryApi } from "../api/inventory";
+import { transferApi } from "../api/transfers";
+import { emergencyApi } from "../api/emergency";
+import { campaignApi } from "../api/campaigns";
+import { alertApi } from "../api/alerts";
+import { analyticsApi } from "../api/analytics";
+import { dashboardApi } from "../api/dashboard";
+import { organizationApi } from "../api/organizations";
+import { userApi } from "../api/users";
+import { donorApi } from "../api/donors";
+import { hospitalApi } from "../api/hospitals";
+import { notificationApi } from "../api/notifications";
+import { auditApi } from "../api/audit";
+import { forecastingApi } from "../api/forecasting";
+import { recommendationApi } from "../api/recommendations";
+import { requestApi } from "../api/requests";
+import { donationApi } from "../api/donations";
 import { authStore } from "../store/authStore";
 
-// ─── Keys ─────────────────────────────────────────────────────────────────────
+// ─── Query Keys ───────────────────────────────────────────────────────────────
+
 export const QK = {
+  // Auth
   me: ["auth", "me"] as const,
-  donorProfile: ["donor", "profile"] as const,
-  donorDonations: (p?: any) => ["donor", "donations", p] as const,
-  donorAlerts: ["donor", "alerts"] as const,
-  requests: (p?: any) => ["requests", p] as const,
+  // Inventory
+  inventoryAll: (p?: unknown) => ["inventory", "all", p] as const,
+  stockLevels: (p?: unknown) => ["inventory", "stock-levels", p] as const,
+  stockByOrg: ["inventory", "stock-by-org"] as const,
+  expiring: (p?: unknown) => ["inventory", "expiring", p] as const,
+  inventoryStats: ["inventory", "stats"] as const,
+  inventoryUnit: (id: string) => ["inventory", id] as const,
+  unitLedger: (id: string) => ["inventory", id, "ledger"] as const,
+  // Transfers
+  transfers: (p?: unknown) => ["transfers", p] as const,
+  transfer: (id: string) => ["transfers", id] as const,
+  shipment: (id: string) => ["transfers", id, "shipment"] as const,
+  // Emergency
+  emergencies: (p?: unknown) => ["emergencies", p] as const,
+  emergency: (id: string) => ["emergencies", id] as const,
+  // Campaigns
+  campaigns: (p?: unknown) => ["campaigns", p] as const,
+  campaign: (id: string) => ["campaigns", id] as const,
+  // Alerts
+  alerts: (p?: unknown) => ["alerts", p] as const,
+  alert: (id: string) => ["alerts", id] as const,
+  // Analytics
+  analyticsNational: ["analytics", "national"] as const,
+  analyticsHospital: (orgId: string) => ["analytics", "hospital", orgId] as const,
+  analyticsTransfers: ["analytics", "transfers"] as const,
+  analyticsWastage: ["analytics", "wastage"] as const,
+  analyticsDonors: ["analytics", "donors"] as const,
+  // Dashboard
+  dashboardNational: ["dashboard", "national"] as const,
+  dashboardHospital: (orgId?: string) => ["dashboard", "hospital", orgId] as const,
+  // Organizations
+  organizations: (p?: unknown) => ["organizations", p] as const,
+  organization: (id: string) => ["organizations", id] as const,
+  orgStats: ["organizations", "stats"] as const,
+  // Users
+  users: (p?: unknown) => ["users", p] as const,
+  user: (id: string) => ["users", id] as const,
+  // Donors
+  donors: (p?: unknown) => ["donors", p] as const,
+  donor: (id: string) => ["donors", id] as const,
+  donorProfile: ["donors", "me"] as const,
+  // Hospitals
+  hospitals: (p?: unknown) => ["hospitals", p] as const,
+  hospital: (id: string) => ["hospitals", id] as const,
+  myHospital: ["hospitals", "my"] as const,
+  // Notifications
+  notifications: (p?: unknown) => ["notifications", p] as const,
+  // Audit
+  auditLogs: (p?: unknown) => ["audit", p] as const,
+  // Forecasting
+  forecasts: (p?: unknown) => ["forecasting", p] as const,
+  // Recommendations
+  recommendations: (p?: unknown) => ["recommendations", p] as const,
+  // Requests
+  requests: (p?: unknown) => ["requests", p] as const,
   request: (id: string) => ["requests", id] as const,
-  requestAlerts: (id: string) => ["requests", id, "alerts"] as const,
-  hospitals: (p?: any) => ["hospitals", p] as const,
-  myHospital: ["hospital", "my"] as const,
-  hospitalDonations: (p?: any) => ["hospital", "donations", p] as const,
-  dashboard: ["analytics", "dashboard"] as const,
-  inventory: ["analytics", "inventory"] as const,
-  requestsTrend: (days?: number) => ["analytics", "trend", days] as const,
-  donorsByRegion: ["analytics", "regions"] as const,
-  allDonors: (p?: any) => ["admin", "donors", p] as const,
 };
 
-// ─── Auth ─────────────────────────────────────────────────────────────────────
+// ─── Auth Hooks ───────────────────────────────────────────────────────────────
 
 export function useMe() {
   return useQuery({
     queryKey: QK.me,
     queryFn: () => authApi.me().then((r) => r.data.data),
     enabled: authStore.isAuthenticated(),
-    staleTime: 5 * 60 * 1000,
+    staleTime: 5 * 60_000,
   });
 }
 
-/** Legacy login (phone + password) */
 export function useLogin() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { phone: string; password: string }) => authApi.login(data),
+    mutationFn: (data: { email: string; password: string }) =>
+      authApi.login(data),
     onSuccess: (res) => {
-      const { user, tokens } = res.data.data;
-      authStore.setAuth(user, tokens.accessToken, tokens.refreshToken);
+      const { user, accessToken, refreshToken } = res.data.data;
+      authStore.setAuth(user, accessToken, refreshToken);
       qc.invalidateQueries({ queryKey: QK.me });
     },
   });
 }
 
-/** Hybrid login (email + password) */
-export function useLoginWithEmail() {
+export function useRegister() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: { email: string; password: string }) => authApi.loginWithEmail(data),
+    mutationFn: (data: {
+      firstName: string;
+      lastName: string;
+      email: string;
+      password: string;
+      phone?: string;
+      role?: string;
+      organizationId?: string;
+    }) => authApi.register(data),
     onSuccess: (res) => {
-      const { user, tokens } = res.data.data;
-      authStore.setAuth(user, tokens.accessToken, tokens.refreshToken);
+      const { user, accessToken, refreshToken } = res.data.data;
+      authStore.setAuth(user, accessToken, refreshToken);
       qc.invalidateQueries({ queryKey: QK.me });
-    },
-  });
-}
-
-/** Hybrid register (email + password for any role) */
-export function useRegisterWithEmail() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: any) => authApi.registerWithEmail(data),
-    onSuccess: (res) => {
-      const { user, tokens } = res.data.data;
-      authStore.setAuth(user, tokens.accessToken, tokens.refreshToken);
-      qc.invalidateQueries({ queryKey: QK.me });
-    },
-  });
-}
-
-/** Legacy register (phone + password + full donor data) */
-export function useRegisterDonor() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: any) => authApi.registerDonor(data),
-    onSuccess: (res) => {
-      const { user, tokens } = res.data.data;
-      authStore.setAuth(user, tokens.accessToken, tokens.refreshToken);
-      qc.invalidateQueries({ queryKey: QK.me });
-    },
-  });
-}
-
-/** Get Fayda authorization URL — redirects user to eSignet */
-export function useFaydaAuthorize() {
-  return useMutation({
-    mutationFn: (role: string) => authApi.faydaAuthorize(role).then((r) => r.data.data),
-  });
-}
-
-/** Handle Fayda callback — exchange code for tokens */
-export function useFaydaCallback() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: ({ code, state }: { code: string; state: string }) =>
-      authApi.faydaCallback(code, state),
-    onSuccess: (res) => {
-      const { user, tokens } = res.data.data;
-      authStore.setAuth(user, tokens.accessToken, tokens.refreshToken);
-      qc.invalidateQueries({ queryKey: QK.me });
-    },
-  });
-}
-
-/** Post-login onboarding (donor-specific data) */
-export function useOnboardDonor() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (data: any) => authApi.onboard(data),
-    onSuccess: (res) => {
-      const { user } = res.data.data;
-      // Update user in store with onboardingComplete=true
-      const tokens = authStore.getState();
-      if (tokens.accessToken && tokens.refreshToken) {
-        authStore.setAuth(user, tokens.accessToken, tokens.refreshToken);
-      }
-      qc.invalidateQueries({ queryKey: QK.me });
-      qc.invalidateQueries({ queryKey: QK.donorProfile });
     },
   });
 }
@@ -148,60 +140,463 @@ export function useLogout() {
   });
 }
 
-// ─── Donor ────────────────────────────────────────────────────────────────────
-
-export function useDonorProfile() {
-  return useQuery({
-    queryKey: QK.donorProfile,
-    queryFn: () => donorApi.getProfile().then((r) => r.data.data),
-    enabled: authStore.isAuthenticated(),
+export function useForgotPassword() {
+  return useMutation({
+    mutationFn: (email: string) => authApi.forgotPassword(email),
   });
 }
 
-export function useUpdateDonorProfile() {
+export function useResetPassword() {
+  return useMutation({
+    mutationFn: (data: { token: string; password: string }) =>
+      authApi.resetPassword(data),
+  });
+}
+
+// ─── Inventory Hooks ──────────────────────────────────────────────────────────
+
+export function useInventoryAll(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.inventoryAll(params),
+    queryFn: () => inventoryApi.getAll(params).then((r) => r.data.data),
+  });
+}
+
+export function useStockLevels(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.stockLevels(params),
+    queryFn: () => inventoryApi.getStockLevels(params).then((r) => r.data.data),
+    refetchInterval: 60_000,
+  });
+}
+
+export function useStockByOrg() {
+  return useQuery({
+    queryKey: QK.stockByOrg,
+    queryFn: () => inventoryApi.getStockByOrg().then((r) => r.data.data),
+  });
+}
+
+export function useExpiringUnits(params?: { days?: number }) {
+  return useQuery({
+    queryKey: QK.expiring(params),
+    queryFn: () => inventoryApi.getExpiring(params).then((r) => r.data.data),
+  });
+}
+
+export function useInventoryStats() {
+  return useQuery({
+    queryKey: QK.inventoryStats,
+    queryFn: () => inventoryApi.getStats().then((r) => r.data.data),
+  });
+}
+
+export function useInventoryUnit(id: string) {
+  return useQuery({
+    queryKey: QK.inventoryUnit(id),
+    queryFn: () => inventoryApi.getById(id).then((r) => r.data.data),
+    enabled: !!id,
+  });
+}
+
+export function useReserveUnit() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: any) => donorApi.updateProfile(data),
-    onSuccess: () => qc.invalidateQueries({ queryKey: QK.donorProfile }),
+    mutationFn: ({ id, data }: { id: string; data?: Record<string, unknown> }) =>
+      inventoryApi.reserve(id, data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["inventory"] }),
   });
 }
 
-export function useCheckEligibility() {
+export function useDiscardUnit() {
+  const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: any) => donorApi.checkEligibility(data).then((r) => r.data.data),
+    mutationFn: ({ id, reason }: { id: string; reason: string }) =>
+      inventoryApi.discard(id, { reason }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["inventory"] }),
   });
 }
 
-export function useMyDonations(params?: any) {
+// ─── Transfer Hooks ───────────────────────────────────────────────────────────
+
+export function useTransfers(params?: Record<string, unknown>) {
   return useQuery({
-    queryKey: QK.donorDonations(params),
-    queryFn: () => donorApi.getMyDonations(params).then((r) => r.data.data),
-    enabled: authStore.isAuthenticated(),
+    queryKey: QK.transfers(params),
+    queryFn: () => transferApi.getAll(params).then((r) => r.data.data),
+    refetchInterval: 60_000,
   });
 }
 
-export function useMyAlerts() {
+export function useTransfer(id: string) {
   return useQuery({
-    queryKey: QK.donorAlerts,
-    queryFn: () => donorApi.getMyAlerts().then((r) => r.data.data),
-    enabled: authStore.isAuthenticated(),
+    queryKey: QK.transfer(id),
+    queryFn: () => transferApi.getById(id).then((r) => r.data.data),
+    enabled: !!id,
+  });
+}
+
+export function useCreateTransfer() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Record<string, unknown>) => transferApi.create(data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["transfers"] }),
+  });
+}
+
+export function useApproveTransfer() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => transferApi.approve(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["transfers"] }),
+  });
+}
+
+export function useRejectTransfer() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, reason }: { id: string; reason?: string }) =>
+      transferApi.reject(id, { reason }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["transfers"] }),
+  });
+}
+
+export function useDispatchTransfer() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, data }: { id: string; data: Record<string, unknown> }) =>
+      transferApi.dispatch(id, data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["transfers"] }),
+  });
+}
+
+export function useReceiveTransfer() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => transferApi.receive(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["transfers"] }),
+  });
+}
+
+// ─── Emergency Hooks ──────────────────────────────────────────────────────────
+
+export function useEmergencies(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.emergencies(params),
+    queryFn: () => emergencyApi.getAll(params).then((r) => r.data.data),
     refetchInterval: 30_000,
   });
 }
 
-export function useAllDonors(params?: any) {
+export function useEmergency(id: string) {
   return useQuery({
-    queryKey: QK.allDonors(params),
-    queryFn: () => donorApi.listAll(params).then((r) => r.data.data),
+    queryKey: QK.emergency(id),
+    queryFn: () => emergencyApi.getById(id).then((r) => r.data.data),
+    enabled: !!id,
   });
 }
 
-// ─── Blood Requests ───────────────────────────────────────────────────────────
+export function useDeclareEmergency() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Record<string, unknown>) => emergencyApi.declare(data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["emergencies"] }),
+  });
+}
 
-export function useRequests(params?: any) {
+export function useResolveEmergency() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => emergencyApi.resolve(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["emergencies"] }),
+  });
+}
+
+// ─── Campaign Hooks ───────────────────────────────────────────────────────────
+
+export function useCampaigns(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.campaigns(params),
+    queryFn: () => campaignApi.getAll(params).then((r) => r.data.data),
+  });
+}
+
+export function useCampaign(id: string) {
+  return useQuery({
+    queryKey: QK.campaign(id),
+    queryFn: () => campaignApi.getById(id).then((r) => r.data.data),
+    enabled: !!id,
+  });
+}
+
+export function useCreateCampaign() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Record<string, unknown>) => campaignApi.create(data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["campaigns"] }),
+  });
+}
+
+export function useUpdateCampaign() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, data }: { id: string; data: Record<string, unknown> }) =>
+      campaignApi.update(id, data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["campaigns"] }),
+  });
+}
+
+export function useDeleteCampaign() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => campaignApi.delete(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["campaigns"] }),
+  });
+}
+
+// ─── Alert Hooks ──────────────────────────────────────────────────────────────
+
+export function useAlerts(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.alerts(params),
+    queryFn: () => alertApi.getAll(params).then((r) => r.data.data),
+    refetchInterval: 30_000,
+  });
+}
+
+export function useAcknowledgeAlert() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => alertApi.acknowledge(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["alerts"] }),
+  });
+}
+
+export function useResolveAlert() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => alertApi.resolve(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["alerts"] }),
+  });
+}
+
+// ─── Analytics Hooks ──────────────────────────────────────────────────────────
+
+export function useNationalAnalytics() {
+  return useQuery({
+    queryKey: QK.analyticsNational,
+    queryFn: () => analyticsApi.national().then((r) => r.data.data),
+    staleTime: 2 * 60_000,
+  });
+}
+
+export function useTransferAnalytics() {
+  return useQuery({
+    queryKey: QK.analyticsTransfers,
+    queryFn: () => analyticsApi.transfers().then((r) => r.data.data),
+  });
+}
+
+export function useWastageAnalytics() {
+  return useQuery({
+    queryKey: QK.analyticsWastage,
+    queryFn: () => analyticsApi.wastage().then((r) => r.data.data),
+  });
+}
+
+export function useDonorAnalytics() {
+  return useQuery({
+    queryKey: QK.analyticsDonors,
+    queryFn: () => analyticsApi.donors().then((r) => r.data.data),
+  });
+}
+
+// ─── Dashboard Hooks ──────────────────────────────────────────────────────────
+
+export function useNationalDashboard() {
+  return useQuery({
+    queryKey: QK.dashboardNational,
+    queryFn: () => dashboardApi.national().then((r) => r.data.data),
+    staleTime: 2 * 60_000,
+    refetchInterval: 5 * 60_000,
+  });
+}
+
+export function useHospitalDashboard(orgId?: string) {
+  return useQuery({
+    queryKey: QK.dashboardHospital(orgId),
+    queryFn: () => dashboardApi.hospital(orgId).then((r) => r.data.data),
+    staleTime: 2 * 60_000,
+  });
+}
+
+// ─── Organization Hooks ───────────────────────────────────────────────────────
+
+export function useOrganizations(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.organizations(params),
+    queryFn: () => organizationApi.getAll(params).then((r) => r.data.data),
+  });
+}
+
+export function useOrganization(id: string) {
+  return useQuery({
+    queryKey: QK.organization(id),
+    queryFn: () => organizationApi.getById(id).then((r) => r.data.data),
+    enabled: !!id,
+  });
+}
+
+export function useOrgStats() {
+  return useQuery({
+    queryKey: QK.orgStats,
+    queryFn: () => organizationApi.getStats().then((r) => r.data.data),
+  });
+}
+
+export function useCreateOrganization() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Record<string, unknown>) => organizationApi.create(data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["organizations"] }),
+  });
+}
+
+export function useUpdateOrganization() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, data }: { id: string; data: Record<string, unknown> }) =>
+      organizationApi.update(id, data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["organizations"] }),
+  });
+}
+
+export function useDeleteOrganization() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => organizationApi.delete(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["organizations"] }),
+  });
+}
+
+// ─── User Hooks ───────────────────────────────────────────────────────────────
+
+export function useUsers(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.users(params),
+    queryFn: () => userApi.getAll(params).then((r) => r.data.data),
+  });
+}
+
+export function useUser(id: string) {
+  return useQuery({
+    queryKey: QK.user(id),
+    queryFn: () => userApi.getById(id).then((r) => r.data.data),
+    enabled: !!id,
+  });
+}
+
+export function useCreateUser() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Record<string, unknown>) => userApi.create(data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["users"] }),
+  });
+}
+
+export function useUpdateUser() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, data }: { id: string; data: Record<string, unknown> }) =>
+      userApi.update(id, data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["users"] }),
+  });
+}
+
+export function useDeleteUser() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => userApi.delete(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["users"] }),
+  });
+}
+
+// ─── Donor Hooks ──────────────────────────────────────────────────────────────
+
+export function useDonors(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.donors(params),
+    queryFn: () => donorApi.getAll(params).then((r) => r.data.data),
+  });
+}
+
+// ─── Hospital Hooks ───────────────────────────────────────────────────────────
+
+export function useHospitals(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.hospitals(params),
+    queryFn: () => hospitalApi.getAll(params).then((r) => r.data.data),
+  });
+}
+
+// ─── Notification Hooks ───────────────────────────────────────────────────────
+
+export function useNotifications(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.notifications(params),
+    queryFn: () => notificationApi.getAll(params).then((r) => r.data.data),
+    refetchInterval: 30_000,
+  });
+}
+
+export function useMarkNotificationRead() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => notificationApi.markRead(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["notifications"] }),
+  });
+}
+
+// ─── Audit Hooks ──────────────────────────────────────────────────────────────
+
+export function useAuditLogs(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.auditLogs(params),
+    queryFn: () => auditApi.getAll(params).then((r) => r.data.data),
+  });
+}
+
+// ─── Forecasting Hooks ────────────────────────────────────────────────────────
+
+export function useForecasts(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.forecasts(params),
+    queryFn: () => forecastingApi.getAll(params).then((r) => r.data.data),
+  });
+}
+
+// ─── Recommendation Hooks ─────────────────────────────────────────────────────
+
+export function useRecommendations(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.recommendations(params),
+    queryFn: () => recommendationApi.getAll(params).then((r) => r.data.data),
+  });
+}
+
+export function useAcceptRecommendation() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => recommendationApi.accept(id),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["recommendations"] }),
+  });
+}
+
+// ─── Blood Request Hooks ──────────────────────────────────────────────────────
+
+export function useRequests(params?: Record<string, unknown>) {
   return useQuery({
     queryKey: QK.requests(params),
-    queryFn: () => requestApi.list(params).then((r) => r.data.data),
+    queryFn: () => requestApi.getAll(params).then((r) => r.data.data),
     refetchInterval: 60_000,
   });
 }
@@ -209,7 +604,7 @@ export function useRequests(params?: any) {
 export function useRequest(id: string) {
   return useQuery({
     queryKey: QK.request(id),
-    queryFn: () => requestApi.get(id).then((r) => r.data.data),
+    queryFn: () => requestApi.getById(id).then((r) => r.data.data),
     enabled: !!id,
   });
 }
@@ -217,114 +612,17 @@ export function useRequest(id: string) {
 export function useCreateRequest() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: any) => requestApi.create(data),
+    mutationFn: (data: Record<string, unknown>) => requestApi.create(data),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["requests"] }),
   });
 }
 
-export function useRespondToRequest() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: ({ requestId, response }: { requestId: string; response: "accepted" | "declined" }) =>
-      requestApi.respond(requestId, response),
-    onSuccess: () => {
-      qc.invalidateQueries({ queryKey: QK.donorAlerts });
-      qc.invalidateQueries({ queryKey: ["requests"] });
-    },
-  });
-}
-
-export function useCancelRequest() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (id: string) => requestApi.cancel(id),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["requests"] }),
-  });
-}
-
-export function useFulfillRequest() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (id: string) => requestApi.fulfill(id),
-    onSuccess: () => qc.invalidateQueries({ queryKey: ["requests"] }),
-  });
-}
-
-export function useRetriggerAlerts() {
-  return useMutation({
-    mutationFn: (id: string) => requestApi.retrigger(id),
-  });
-}
-
-// ─── Hospital ─────────────────────────────────────────────────────────────────
-
-export function useMyHospital() {
-  return useQuery({
-    queryKey: QK.myHospital,
-    queryFn: () => hospitalApi.getMyHospital().then((r) => r.data.data),
-    enabled: authStore.hasRole("hospital_admin" as any, "blood_bank_admin" as any, "super_admin" as any),
-  });
-}
-
-export function useHospitals(params?: any) {
-  return useQuery({
-    queryKey: QK.hospitals(params),
-    queryFn: () => hospitalApi.list(params).then((r) => r.data.data),
-  });
-}
-
-export function useUpdateInventory() {
-  const qc = useQueryClient();
-  return useMutation({
-    mutationFn: (inventory: any[]) => hospitalApi.updateInventory(inventory),
-    onSuccess: () => qc.invalidateQueries({ queryKey: QK.myHospital }),
-  });
-}
-
-export function useHospitalDonations(params?: any) {
-  return useQuery({
-    queryKey: QK.hospitalDonations(params),
-    queryFn: () => donationApi.getHospitalDonations(params).then((r) => r.data.data),
-  });
-}
+// ─── Donation Hooks ───────────────────────────────────────────────────────────
 
 export function useScheduleDonation() {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: (data: any) => donationApi.schedule(data),
-    onSuccess: () => qc.invalidateQueries({ queryKey: QK.donorDonations() }),
-  });
-}
-
-// ─── Analytics ────────────────────────────────────────────────────────────────
-
-export function useDashboardStats() {
-  return useQuery({
-    queryKey: QK.dashboard,
-    queryFn: () => analyticsApi.dashboard().then((r) => r.data.data),
-    staleTime: 2 * 60 * 1000,
-    refetchInterval: 5 * 60 * 1000,
-  });
-}
-
-export function useInventoryOverview() {
-  return useQuery({
-    queryKey: QK.inventory,
-    queryFn: () => analyticsApi.inventory().then((r) => r.data.data),
-    staleTime: 2 * 60 * 1000,
-  });
-}
-
-export function useRequestsTrend(days = 30) {
-  return useQuery({
-    queryKey: QK.requestsTrend(days),
-    queryFn: () => analyticsApi.requestsTrend(days).then((r) => r.data.data),
-  });
-}
-
-export function useDonorsByRegion() {
-  return useQuery({
-    queryKey: QK.donorsByRegion,
-    queryFn: () => analyticsApi.donorsByRegion().then((r) => r.data.data),
+    mutationFn: (data: Record<string, unknown>) => donationApi.schedule(data),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ["donations"] }),
   });
 }

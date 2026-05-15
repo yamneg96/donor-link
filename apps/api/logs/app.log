@@ -428,3 +428,109 @@ SIGINT received. Starting graceful shutdown... {"service":"donorlink-api"}
       Donors: 1
       Blood Units: 32
      {"service":"donorlink-api"}
+2026-05-16 00:25:48 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-16 00:25:48 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-16 00:25:51 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-16 00:25:51 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-16 00:25:51 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-16 00:25:51 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-16 00:25:51 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-16 00:25:51 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-16 00:25:51 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-16 00:25:51 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-16 00:25:51 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-16 00:25:51 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-16 00:25:51 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-16 00:25:51 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-16 00:25:51 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-16 00:25:51 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-16 00:25:51 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-16 00:25:51 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-16 00:28:49 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-16 00:28:49 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-16 00:28:55 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-16 00:28:55 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-16 00:29:03 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-16 00:29:03 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-16 00:29:03 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-16 00:29:03 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-16 00:29:03 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-16 00:29:03 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-16 00:29:03 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-16 00:29:03 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-16 00:29:03 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-16 00:29:03 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-16 00:29:03 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-16 00:29:03 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-16 00:29:03 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-16 00:29:03 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-16 00:29:03 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-16 00:29:03 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-16 00:29:14 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-16 00:29:14 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-16 00:29:17 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-16 00:29:17 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-16 00:29:17 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-16 00:29:17 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-16 00:29:17 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-16 00:29:17 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-16 00:29:17 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-16 00:29:17 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-16 00:29:17 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-16 00:29:17 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-16 00:29:17 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-16 00:29:17 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-16 00:29:17 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-16 00:29:17 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-16 00:29:17 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-16 00:29:17 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-16 00:29:26 [debug]: Event emitted: user_login {"service":"donorlink-api","payload":"{\"userId\":\"6a07712590143f78499ded23\"}"}
+2026-05-16 00:29:26 [info]: ::1 POST /api/v1/auth/login 200 791 - 3593.870 ms {"service":"donorlink-api"}
+2026-05-16 00:29:50 [debug]: Event emitted: user_login {"service":"donorlink-api","payload":"{\"userId\":\"6a07712590143f78499ded23\"}"}
+2026-05-16 00:29:50 [info]: ::1 POST /api/v1/auth/login 200 791 - 2106.375 ms {"service":"donorlink-api"}
+2026-05-16 00:31:37 [debug]: Event emitted: user_login {"service":"donorlink-api","payload":"{\"userId\":\"6a07712590143f78499ded23\"}"}
+2026-05-16 00:31:37 [info]: ::1 POST /api/v1/auth/login 200 791 - 2153.820 ms {"service":"donorlink-api"}
+2026-05-16 00:50:44 [debug]: Event emitted: user_login {"service":"donorlink-api","payload":"{\"userId\":\"6a07712590143f78499ded23\"}"}
+2026-05-16 00:50:44 [info]: ::1 POST /api/v1/auth/login 200 791 - 1603.061 ms {"service":"donorlink-api"}
+2026-05-16 00:50:45 [info]: ::1 GET /api/v1/dashboard/national 200 397 - 250.827 ms {"service":"donorlink-api"}
+2026-05-16 00:50:45 [info]: ::1 GET /api/v1/alerts?limit=5 200 176 - 385.972 ms {"service":"donorlink-api"}
+2026-05-16 00:50:45 [info]: ::1 GET /api/v1/recommendations?limit=3 200 176 - 381.392 ms {"service":"donorlink-api"}
+2026-05-16 00:51:10 [info]: ::1 GET /api/v1/inventory/stock-levels 200 612 - 264.284 ms {"service":"donorlink-api"}
+2026-05-16 00:51:10 [info]: ::1 GET /api/v1/inventory?page=1&limit=10 200 - - 558.104 ms {"service":"donorlink-api"}
+2026-05-16 00:51:30 [info]: ::1 GET /api/v1/inventory?limit=20 200 - - 526.020 ms {"service":"donorlink-api"}
+2026-05-16 00:51:48 [info]: ::1 GET /api/v1/transfers 200 177 - 209.441 ms {"service":"donorlink-api"}
+2026-05-16 00:51:52 [info]: ::1 GET /api/v1/transfers?status=dispatched 200 177 - 208.589 ms {"service":"donorlink-api"}
+2026-05-16 00:51:56 [info]: ::1 GET /api/v1/inventory/expiring?days=7 200 95 - 205.928 ms {"service":"donorlink-api"}
+2026-05-16 00:51:56 [info]: ::1 GET /api/v1/inventory/expiring?days=14 200 95 - 206.855 ms {"service":"donorlink-api"}
+2026-05-16 00:51:57 [info]: ::1 GET /api/v1/inventory/expiring?days=30 200 - - 815.988 ms {"service":"donorlink-api"}
+2026-05-16 00:52:02 [info]: ::1 GET /api/v1/donors?limit=20 200 787 - 2108.397 ms {"service":"donorlink-api"}
+2026-05-16 00:52:08 [info]: ::1 GET /api/v1/emergency 200 177 - 255.604 ms {"service":"donorlink-api"}
+2026-05-16 00:52:18 [info]: ::1 GET /api/v1/analytics/national 200 379 - 311.148 ms {"service":"donorlink-api"}
+2026-05-16 00:52:18 [info]: ::1 GET /api/v1/analytics/transfers 200 125 - 485.684 ms {"service":"donorlink-api"}
+2026-05-16 00:52:18 [info]: ::1 GET /api/v1/analytics/donors 200 204 - 495.878 ms {"service":"donorlink-api"}
+2026-05-16 00:52:18 [info]: ::1 GET /api/v1/analytics/wastage 200 156 - 526.021 ms {"service":"donorlink-api"}
+2026-05-16 00:52:22 [info]: ::1 GET /api/v1/campaigns 200 177 - 238.298 ms {"service":"donorlink-api"}
+2026-05-16 00:52:28 [info]: ::1 GET /api/v1/alerts 200 177 - 988.193 ms {"service":"donorlink-api"}
+2026-05-16 00:52:32 [info]: ::1 GET /api/v1/organizations 200 - - 1478.149 ms {"service":"donorlink-api"}
+2026-05-16 00:52:38 [info]: ::1 GET /api/v1/users 200 - - 1020.514 ms {"service":"donorlink-api"}
+2026-05-16 00:52:50 [info]: ::1 GET /api/v1/audit?page=1&limit=20 200 177 - 223.542 ms {"service":"donorlink-api"}
+2026-05-16 00:53:01 [info]: ::1 GET /api/v1/dashboard/national 200 397 - 657.610 ms {"service":"donorlink-api"}
+2026-05-16 00:53:01 [info]: ::1 GET /api/v1/alerts?limit=5 200 176 - 809.423 ms {"service":"donorlink-api"}
+2026-05-16 00:53:01 [info]: ::1 GET /api/v1/recommendations?limit=3 200 176 - 828.661 ms {"service":"donorlink-api"}
+2026-05-16 00:53:10 [info]: ::1 GET /api/v1/inventory/stock-levels 200 612 - 203.843 ms {"service":"donorlink-api"}
+2026-05-16 00:53:11 [info]: ::1 GET /api/v1/inventory?page=1&limit=10 200 - - 550.947 ms {"service":"donorlink-api"}
+2026-05-16 00:53:16 [info]: ::1 GET /api/v1/inventory?page=2&limit=10 200 - - 887.587 ms {"service":"donorlink-api"}
+2026-05-16 00:53:19 [info]: ::1 GET /api/v1/inventory?page=3&limit=10 200 - - 892.234 ms {"service":"donorlink-api"}
+2026-05-16 00:53:23 [info]: ::1 GET /api/v1/emergency 200 177 - 228.158 ms {"service":"donorlink-api"}
+2026-05-16 00:53:26 [info]: ::1 GET /api/v1/donors?limit=20 200 787 - 1047.241 ms {"service":"donorlink-api"}
+2026-05-16 00:53:27 [info]: ::1 GET /api/v1/transfers?status=dispatched 200 177 - 289.734 ms {"service":"donorlink-api"}
+2026-05-16 00:53:29 [info]: ::1 GET /api/v1/inventory?limit=20 200 - - 995.431 ms {"service":"donorlink-api"}
+2026-05-16 00:53:29 [info]: ::1 GET /api/v1/alerts 200 177 - 336.864 ms {"service":"donorlink-api"}
+2026-05-16 00:53:31 [info]: ::1 GET /api/v1/organizations 200 - - 511.324 ms {"service":"donorlink-api"}
+2026-05-16 00:53:33 [info]: ::1 GET /api/v1/users 200 - - 590.062 ms {"service":"donorlink-api"}
+2026-05-16 00:53:35 [info]: ::1 GET /api/v1/audit?page=1&limit=20 200 177 - 347.919 ms {"service":"donorlink-api"}
+2026-05-16 00:53:43 [info]: ::1 POST /api/v1/auth/logout 200 123 - 223.805 ms {"service":"donorlink-api"}
+2026-05-16 00:53:43 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-05-16 00:53:43 [info]: ::1 GET /api/v1/audit?page=1&limit=20 401 115 - 6.426 ms {"service":"donorlink-api"}
+2026-05-16 00:53:55 [info]: 
+SIGINT received. Starting graceful shutdown... {"service":"donorlink-api"}

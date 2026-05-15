@@ -1,7 +1,7 @@
-import type { IUser, UserRole } from "@donorlink/types";
+import type { IUser, UserRole } from "../types";
 
 interface AuthState {
-  user: Omit<IUser, "passwordHash"> | null;
+  user: IUser | null;
   accessToken: string | null;
   refreshToken: string | null;
 }
@@ -28,7 +28,7 @@ function notify() {
 export const authStore = {
   getState: () => state,
 
-  setAuth(user: Omit<IUser, "passwordHash">, accessToken: string, refreshToken: string) {
+  setAuth(user: IUser, accessToken: string, refreshToken: string) {
     state = { user, accessToken, refreshToken };
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("accessToken", accessToken);
@@ -52,13 +52,5 @@ export const authStore = {
   isAuthenticated: () => !!state.accessToken && !!state.user,
 
   hasRole: (...roles: UserRole[]) =>
-    state.user ? roles.includes(state.user.role as UserRole) : false,
-
-  /** True if user logged in but hasn't completed the onboarding wizard */
-  needsOnboarding: () =>
-    state.user ? !state.user.onboardingComplete : false,
-
-  /** True if user authenticated via Fayda */
-  isFaydaUser: () =>
-    state.user?.authMethod === "fayda_oidc",
+    state.user ? roles.includes(state.user.role) : false,
 };

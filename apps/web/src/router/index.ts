@@ -1,230 +1,240 @@
-import { 
-  createRouter, 
-  createRoute, 
-  createRootRoute, 
-  redirect, 
-  lazyRouteComponent 
+import {
+  createRouter,
+  createRootRoute,
+  createRoute,
+  redirect,
+  Outlet,
 } from "@tanstack/react-router";
-import { RootLayout } from "../components/layout/RootLayout";
 import { authStore } from "../store/authStore";
-import { UserRole } from "@donorlink/types";
+import { RootLayout } from "../components/layout/RootLayout";
+import { lazy } from "react";
 
-// ─── Root ─────────────────────────────────────────────────────────────────────
-export const rootRoute = createRootRoute({ component: RootLayout });
+// ─── Lazy Page Imports ────────────────────────────────────────────────────────
+const LandingPage = lazy(() => import("../pages/LandingPage"));
+const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
+const RegisterPage = lazy(() => import("../pages/auth/RegisterPage"));
+const ForgotPasswordPage = lazy(() => import("../pages/auth/ForgotPasswordPage"));
+const ResetPasswordPage = lazy(() => import("../pages/auth/ResetPasswordPage"));
+const UnauthorizedPage = lazy(() => import("../pages/unauthorizedPage"));
+const CommandCenterPage = lazy(() => import("../pages/dashboard/CommandCenterPage"));
+const InventoryPage = lazy(() => import("../pages/inventory/InventoryPage"));
+const UnitTrackingPage = lazy(() => import("../pages/inventory/UnitTrackingPage"));
+const ExpiryRiskPage = lazy(() => import("../pages/inventory/ExpiryRiskPage"));
+const MarketplacePage = lazy(() => import("../pages/transfers/MarketplacePage"));
+const OperationsPage = lazy(() => import("../pages/transfers/OperationsPage"));
+const DonorManagementPage = lazy(() => import("../pages/donors/DonorManagementPage"));
+const CampaignsPage = lazy(() => import("../pages/campaigns/CampaignsPage"));
+const EmergencyPage = lazy(() => import("../pages/emergency/EmergencyPage"));
+const AlertCenterPage = lazy(() => import("../pages/alerts/AlertCenterPage"));
+const AnalyticsPage = lazy(() => import("../pages/analytics/AnalyticsPage"));
+const OrganizationsPage = lazy(() => import("../pages/organizations/OrganizationsPage"));
+const UsersPage = lazy(() => import("../pages/users/UsersPage"));
+const RolesPage = lazy(() => import("../pages/settings/RolesPage"));
+const NotificationsPage = lazy(() => import("../pages/notifications/NotificationsPage"));
+const AuditLogPage = lazy(() => import("../pages/audit/AuditLogPage"));
 
-// ─── Auth guard helpers ───────────────────────────────────────────────────────
+// ─── Guard helpers ────────────────────────────────────────────────────────────
 function requireAuth() {
   if (!authStore.isAuthenticated()) throw redirect({ to: "/login" });
-}
-
-function requireRole(...roles: UserRole[]) {
-  requireAuth();
-  if (!authStore.hasRole(...roles)) throw redirect({ to: "/unauthorized" });
 }
 
 function requireGuest() {
   if (authStore.isAuthenticated()) throw redirect({ to: "/dashboard" });
 }
 
-// ─── Public routes ────────────────────────────────────────────────────────────
-export const indexRoute = createRoute({
+// ─── Root ─────────────────────────────────────────────────────────────────────
+const rootRoute = createRootRoute({ component: RootLayout });
+
+// ─── Public Routes ────────────────────────────────────────────────────────────
+const landingRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/",
-  beforeLoad: () => {
-    if (authStore.isAuthenticated()) throw redirect({ to: "/dashboard" });
-  },
-  component: lazyRouteComponent(() => import("../pages/LandingPage"), "default"),
+  component: LandingPage,
 });
 
-export const loginRoute = createRoute({
+const loginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/login",
   beforeLoad: requireGuest,
-  component: lazyRouteComponent(() => import("../pages/auth/LoginPage"), "LoginPage"),
+  component: LoginPage,
 });
 
-export const faydaCallbackRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/auth/fayda/callback",
-  beforeLoad: requireGuest,
-  component: lazyRouteComponent(() => import("../pages/auth/FaydaCallbackPage"), "FaydaCallbackPage"),
-});
-
-export const registerRoute = createRoute({
+const registerRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/register",
   beforeLoad: requireGuest,
-  component: lazyRouteComponent(() => import("../pages/auth/RegisterPage"), "RegisterPage"),
+  component: RegisterPage,
 });
 
-export const onboardingRoute = createRoute({
+const forgotPasswordRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/onboarding",
-  beforeLoad: () => {
-    requireAuth();
-    if (!authStore.needsOnboarding()) throw redirect({ to: "/dashboard" });
-  },
-  component: lazyRouteComponent(() => import("../pages/auth/OnboardingPage"), "OnboardingPage"),
+  path: "/forgot-password",
+  beforeLoad: requireGuest,
+  component: ForgotPasswordPage,
 });
 
-export const respondRoute = createRoute({
+const resetPasswordRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/respond/$requestId",
-  component: lazyRouteComponent(() => import("../pages/RespondPage"), "default"),
+  path: "/reset-password",
+  component: ResetPasswordPage,
+  validateSearch: (search: Record<string, unknown>) => ({
+    token: (search.token as string) || "",
+  }),
 });
 
-export const unauthorizedRoute = createRoute({
+const unauthorizedRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/unauthorized",
-  component: lazyRouteComponent(() => import("../pages/unauthorizedPage"), "default"),
+  component: UnauthorizedPage,
 });
 
-// ─── Donor routes ─────────────────────────────────────────────────────────────
-export const donorDashboardRoute = createRoute({
+// ─── Authenticated Routes ─────────────────────────────────────────────────────
+
+const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/dashboard",
   beforeLoad: requireAuth,
-  component: lazyRouteComponent(() => import("../pages/donor/DashboardPage"), "DashboardPage"),
+  component: CommandCenterPage,
 });
 
-export const donorProfileRoute = createRoute({
+const inventoryRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/profile",
+  path: "/inventory",
   beforeLoad: requireAuth,
-  component: lazyRouteComponent(() => import("../pages/donor/ProfilePage"), "default"),
+  component: InventoryPage,
 });
 
-export const donorDonationsRoute = createRoute({
+const unitTrackingRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/donations",
+  path: "/inventory/tracking",
   beforeLoad: requireAuth,
-  component: lazyRouteComponent(() => import("../pages/donor/DonationsPage"), "default"),
+  component: UnitTrackingPage,
 });
 
-export const donorAlertsRoute = createRoute({
+const expiryRiskRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/inventory/expiry",
+  beforeLoad: requireAuth,
+  component: ExpiryRiskPage,
+});
+
+const marketplaceRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/transfers/marketplace",
+  beforeLoad: requireAuth,
+  component: MarketplacePage,
+});
+
+const operationsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/transfers/operations",
+  beforeLoad: requireAuth,
+  component: OperationsPage,
+});
+
+const donorManagementRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/donors",
+  beforeLoad: requireAuth,
+  component: DonorManagementPage,
+});
+
+const campaignsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/campaigns",
+  beforeLoad: requireAuth,
+  component: CampaignsPage,
+});
+
+const emergencyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/emergency",
+  beforeLoad: requireAuth,
+  component: EmergencyPage,
+});
+
+const alertsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/alerts",
   beforeLoad: requireAuth,
-  component: lazyRouteComponent(() => import("../pages/donor/AlertsPage"), "default"),
+  component: AlertCenterPage,
 });
 
-// ─── Hospital routes ──────────────────────────────────────────────────────────
-export const hospitalDashboardRoute = createRoute({
+const analyticsRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/hospital",
-  beforeLoad: () => requireRole(UserRole.HOSPITAL_ADMIN, UserRole.BLOOD_BANK_ADMIN, UserRole.SUPER_ADMIN),
-  component: lazyRouteComponent(() => import("../pages/hospital/HospitalDashboard"), "HospitalDashboard"),
+  path: "/analytics",
+  beforeLoad: requireAuth,
+  component: AnalyticsPage,
 });
 
-export const hospitalRequestsRoute = createRoute({
+const organizationsRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/hospital/requests",
-  beforeLoad: () => requireRole(UserRole.HOSPITAL_ADMIN, UserRole.BLOOD_BANK_ADMIN, UserRole.SUPER_ADMIN),
-  component: lazyRouteComponent(() => import("../pages/hospital/RequestsPage"), "default"),
+  path: "/organizations",
+  beforeLoad: requireAuth,
+  component: OrganizationsPage,
 });
 
-export const newRequestRoute = createRoute({
+const usersRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/hospital/requests/new",
-  beforeLoad: () => requireRole(UserRole.HOSPITAL_ADMIN, UserRole.BLOOD_BANK_ADMIN, UserRole.SUPER_ADMIN),
-  component: lazyRouteComponent(() => import("../pages/hospital/NewRequestPage"), "NewRequestPage"),
+  path: "/users",
+  beforeLoad: requireAuth,
+  component: UsersPage,
 });
 
-export const hospitalInventoryRoute = createRoute({
+const rolesRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/hospital/inventory",
-  beforeLoad: () => requireRole(UserRole.HOSPITAL_ADMIN, UserRole.BLOOD_BANK_ADMIN, UserRole.SUPER_ADMIN),
-  component: lazyRouteComponent(() => import("../pages/hospital/InventoryPage"), "default"),
+  path: "/settings/roles",
+  beforeLoad: requireAuth,
+  component: RolesPage,
 });
 
-// ─── MoH / Admin routes ───────────────────────────────────────────────────────
-export const adminAnalyticsRoute = createRoute({
+const notificationsRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/admin/analytics",
-  beforeLoad: () => requireRole(UserRole.MOH_ADMIN, UserRole.SUPER_ADMIN),
-  component: lazyRouteComponent(() => import("../pages/admin/AnalyticsPage"), "AnalyticsPage"),
+  path: "/notifications",
+  beforeLoad: requireAuth,
+  component: NotificationsPage,
 });
 
-export const adminDonorsRoute = createRoute({
+const auditRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/admin/donors",
-  beforeLoad: () => requireRole(UserRole.BLOOD_BANK_ADMIN, UserRole.MOH_ADMIN, UserRole.SUPER_ADMIN),
-  component: lazyRouteComponent(() => import("../pages/admin/DonorPage"), "default"),
+  path: "/audit",
+  beforeLoad: requireAuth,
+  component: AuditLogPage,
 });
 
-export const adminHospitalsRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/admin/hospitals",
-  beforeLoad: () => requireRole(UserRole.MOH_ADMIN, UserRole.SUPER_ADMIN),
-  component: lazyRouteComponent(() => import("../pages/admin/HospitalsPage"), "default"),
-});
-
-export const recipientDashboardRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/hospital/recipients",
-  beforeLoad: () => requireRole(UserRole.HOSPITAL_ADMIN, UserRole.BLOOD_BANK_ADMIN, UserRole.SUPER_ADMIN),
-  component: lazyRouteComponent(() => import("../pages/hospital/RecipientDashboard"), "RecipientDashboard"),
-});
-
-export const matchingRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/hospital/matching",
-  beforeLoad: () => requireRole(UserRole.HOSPITAL_ADMIN, UserRole.BLOOD_BANK_ADMIN, UserRole.SUPER_ADMIN),
-  component: lazyRouteComponent(() => import("../pages/hospital/MatchingPage"), "MatchingPage"),
-});
-
-// ─── Static routes ──────────────────────────────────────────────────────────────
-export const clinicalGuidelinesRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/clinical-guidelines",
-  component: lazyRouteComponent(() => import("../pages/admin/ClinicalGuidelinesPage"), "default"),
-});
-
-export const privacyPolicyRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/privacy",
-  component: lazyRouteComponent(() => import("../pages/admin/PrivacyPolicyPage"), "default"),
-});
-
-export const termsOfServiceRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/terms",
-  component: lazyRouteComponent(() => import("../pages/admin/TermsOfServicePage"), "default"),
-});
-
-// ─── Router ───────────────────────────────────────────────────────────────────
+// ─── Route Tree ───────────────────────────────────────────────────────────────
 const routeTree = rootRoute.addChildren([
-  indexRoute,
+  landingRoute,
   loginRoute,
-  faydaCallbackRoute,
   registerRoute,
-  onboardingRoute,
-  respondRoute,
+  forgotPasswordRoute,
+  resetPasswordRoute,
   unauthorizedRoute,
-  donorDashboardRoute,
-  donorProfileRoute,
-  donorDonationsRoute,
-  donorAlertsRoute,
-  hospitalDashboardRoute,
-  hospitalRequestsRoute,
-  newRequestRoute,
-  hospitalInventoryRoute,
-  recipientDashboardRoute,
-  matchingRoute,
-  adminAnalyticsRoute,
-  adminDonorsRoute,
-  adminHospitalsRoute,
-  clinicalGuidelinesRoute,
-  privacyPolicyRoute,
-  termsOfServiceRoute,
+  dashboardRoute,
+  inventoryRoute,
+  unitTrackingRoute,
+  expiryRiskRoute,
+  marketplaceRoute,
+  operationsRoute,
+  donorManagementRoute,
+  campaignsRoute,
+  emergencyRoute,
+  alertsRoute,
+  analyticsRoute,
+  organizationsRoute,
+  usersRoute,
+  rolesRoute,
+  notificationsRoute,
+  auditRoute,
 ]);
 
+// ─── Router Instance ──────────────────────────────────────────────────────────
 export const router = createRouter({
   routeTree,
   defaultPreload: "intent",
-  defaultPreloadStaleTime: 0,
 });
 
+// Type registration for TanStack Router
 declare module "@tanstack/react-router" {
   interface Register {
     router: typeof router;

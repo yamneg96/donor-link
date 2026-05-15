@@ -1,16 +1,16 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "@tanstack/react-router";
-import { Heart, FileText, ArrowRight, Activity, MapPin } from "lucide-react";
-import { onboardDonorSchema, type OnboardDonorInput } from "@donorlink/validators";
+import { onboardDonorSchema, type OnboardDonorInput } from "../../types";
 import { useOnboardDonor } from "../../hooks/useApi";
 import { authStore } from "../../store/authStore";
 import { Button, Input, Select, AlertBanner } from "../../components/ui";
 import { getApiError } from "../../lib/utils";
 import { useState } from "react";
-import { BloodType, RegionEthiopia } from "@donorlink/types";
+import { BloodType, RegionEthiopia } from "../../types";
+import { MaterialIcon } from "../../components/shared/MaterialIcon";
 
-export function OnboardingPage() {
+export default function OnboardingPage() {
   const navigate = useNavigate();
   const onboard = useOnboardDonor();
   const [error, setError] = useState("");
@@ -42,18 +42,18 @@ export function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-6 relative bg-background">
-      {/* Decorative Blob */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-tertiary/5 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+    <div className="min-h-screen flex items-center justify-center py-12 px-6 relative bg-m3-surface">
+      {/* Decorative Gradient */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-m3-primary/5 rounded-full blur-[100px] translate-x-1/3 -translate-y-1/3 pointer-events-none" />
 
-      <main className="w-full max-w-2xl bg-white rounded-3xl ambient-shadow-lg p-8 sm:p-12 relative z-10 border border-outline-variant/20">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="w-12 h-12 rounded-full primary-gradient flex items-center justify-center shadow-md">
-            <FileText className="size-6 text-white" />
+      <main className="w-full max-w-2xl bg-m3-surface-container-lowest rounded-3xl shadow-ambient-lg p-8 sm:p-12 relative z-10 border border-m3-outline-variant/30">
+        <div className="flex items-center gap-4 mb-8">
+          <div className="w-14 h-14 rounded-full bg-m3-primary-container flex items-center justify-center shadow-sm">
+            <MaterialIcon icon="person_add" filled className="text-m3-on-primary-container" size={28} />
           </div>
           <div>
-            <h1 className="font-headline text-2xl font-bold text-midnight tracking-tight">Complete Your Profile</h1>
-            <p className="text-sm font-body text-on-surface-variant">
+            <h1 className="text-display-sm text-m3-on-surface tracking-tight">Complete Your Profile</h1>
+            <p className="text-body-main text-m3-on-surface-variant mt-1">
               Just a few medical details needed to start saving lives.
             </p>
           </div>
@@ -69,8 +69,8 @@ export function OnboardingPage() {
           
           {/* Medical Information */}
           <section>
-            <h2 className="flex items-center gap-2 text-sm font-bold font-headline uppercase tracking-wider text-secondary mb-4 border-b border-surface-container pb-2">
-              <Activity className="size-4" />
+            <h2 className="flex items-center gap-2 text-label-caps text-m3-secondary mb-4 border-b border-m3-outline-variant pb-2">
+              <MaterialIcon icon="health_and_safety" size={18} />
               Medical Vitals
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -102,8 +102,8 @@ export function OnboardingPage() {
 
           {/* Contact & Location */}
           <section>
-            <h2 className="flex items-center gap-2 text-sm font-bold font-headline uppercase tracking-wider text-secondary mb-4 border-b border-surface-container pb-2">
-              <MapPin className="size-4" />
+            <h2 className="flex items-center gap-2 text-label-caps text-m3-secondary mb-4 border-b border-m3-outline-variant pb-2">
+              <MaterialIcon icon="location_on" size={18} />
               Contact & Location
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
@@ -143,18 +143,18 @@ export function OnboardingPage() {
           </section>
 
           {/* Preferences */}
-          <section className="bg-surface-container-low p-5 rounded-2xl border border-surface-container">
+          <section className="bg-m3-surface-container-low p-6 rounded-2xl border border-m3-outline-variant">
             <label className="flex items-start gap-4 cursor-pointer group">
               <div className="flex items-center h-6">
                 <input
                   type="checkbox"
                   {...register("availableForEmergency")}
-                  className="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary transition-colors cursor-pointer"
+                  className="w-5 h-5 rounded border-m3-outline text-m3-primary focus:ring-m3-primary transition-colors cursor-pointer"
                 />
               </div>
               <div className="flex-1">
-                <p className="font-headline font-bold text-midnight text-sm">Emergency Ready</p>
-                <p className="font-body text-xs text-on-surface-variant mt-1 leading-relaxed">
+                <p className="text-title-sm text-m3-on-surface">Emergency Ready</p>
+                <p className="text-body-compact text-m3-on-surface-variant mt-1 leading-relaxed">
                   I am willing to be contacted outside normal hours for critical, life-threatening blood shortages in my immediate area.
                 </p>
               </div>
@@ -167,11 +167,11 @@ export function OnboardingPage() {
               type="submit"
               size="lg"
               loading={onboard.isPending}
-              className="primary-gradient text-white btn-glow px-8"
+              className="bg-m3-primary text-m3-on-primary hover:opacity-90 shadow-md px-10 rounded-full h-14"
             >
-              <Heart className="size-5 mr-2" />
+              <MaterialIcon icon="favorite" className="mr-2" filled />
               Complete Profile
-              <ArrowRight className="size-5 ml-2" />
+              <MaterialIcon icon="arrow_forward" className="ml-2" />
             </Button>
           </div>
         </form>

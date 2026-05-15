@@ -1,221 +1,164 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate, Link } from "@tanstack/react-router";
-import { 
-  Droplets, Mail, Lock, Fingerprint, Shield, 
-  ChevronDown, HelpCircle, Loader2 
-} from "lucide-react";
-import { loginWithEmailSchema, type LoginWithEmailInput } from "@donorlink/validators";
-import { useLoginWithEmail, useFaydaAuthorize } from "../../hooks/useApi";
-import { Button, Input, AlertBanner, Divider } from "../../components/ui";
-import { getApiError } from "../../lib/utils";
+import { MaterialIcon } from "../../components/shared/MaterialIcon";
+import { useLogin } from "../../hooks/useApi";
 
-export function LoginPage() {
-  const navigate = useNavigate();
-  const loginEmail = useLoginWithEmail();
-  const faydaAuth = useFaydaAuthorize();
+const ROLES = [
+  { key: "SUPER_ADMIN", label: "Super Admin", icon: "verified_user" },
+  { key: "NATIONAL_ADMIN", label: "National Admin", icon: "admin_panel_settings" },
+  { key: "HOSPITAL_ADMIN", label: "Hospital Admin", icon: "local_hospital" },
+  { key: "LAB_STAFF", label: "Field Staff", icon: "badge" },
+];
+
+export default function LoginPage() {
+  const [selectedRole, setSelectedRole] = useState("SUPER_ADMIN");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const [showEmailForm, setShowEmailForm] = useState(false);
-  const [selectedRole, setSelectedRole] = useState<"donor" | "hospital_admin">("donor");
+  const navigate = useNavigate();
+  const login = useLogin();
 
-  const { register, handleSubmit, formState: { errors } } = useForm<LoginWithEmailInput>({
-    resolver: zodResolver(loginWithEmailSchema),
-  });
-
-  const handleFaydaLogin = async () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     setError("");
     try {
-      const data = await faydaAuth.mutateAsync(selectedRole);
-      window.location.href = data.authorizationUrl;
-    } catch (err) {
-      setError(getApiError(err));
-    }
-  };
-
-  const onEmailSubmit = async (data: LoginWithEmailInput) => {
-    setError("");
-    try {
-      const res = await loginEmail.mutateAsync(data);
-      const { needsOnboarding } = res.data.data;
-      navigate({ to: needsOnboarding ? "/onboarding" : "/dashboard" });
-    } catch (err) {
-      setError(getApiError(err));
+      await login.mutateAsync({ email, password });
+      navigate({ to: "/dashboard" });
+    } catch (err: any) {
+      setError(err?.response?.data?.message || "Authentication failed. Please check your credentials.");
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden bg-background text-foreground transition-colors duration-300">
-      {/* ── Background Aesthetics ──────────────────────────────────── */}
-      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-50 dark:opacity-100" />
-      <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-primary/5 rounded-full blur-[140px] translate-x-1/3 translate-y-1/3 pointer-events-none" />
+    <div className="bg-m3-surface text-m3-on-surface min-h-screen flex items-center justify-center p-4 relative">
+      {/* Grid background */}
+      <div
+        className="fixed inset-0 z-0 pointer-events-none opacity-[0.03]"
+        style={{ backgroundImage: "linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px)", backgroundSize: "32px 32px" }}
+      />
 
-      {/* ── Header ───────────────────────────────────────────────────── */}
-      <header className="w-full z-50 relative">
-        <div className="flex justify-between items-center w-full px-6 sm:px-10 py-6 max-w-7xl mx-auto">
-          <Link to="/" className="flex items-center gap-2 text-2xl font-extrabold tracking-tight font-headline">
-            <div className="w-10 h-10 clinical-gradient rounded-xl flex items-center justify-center text-white shadow-lg shadow-primary/20">
-              <Droplets className="size-5" />
-            </div>
-            <span className="text-foreground">DonorLink</span>
-          </Link>
-          <div className="flex items-center gap-6">
-            <Link to="/help" className="text-muted-foreground text-sm font-medium hover:text-primary transition-colors flex items-center gap-1">
-              <HelpCircle className="size-4" />
-              <span className="hidden sm:inline">Help Center</span>
-            </Link>
-            <Link to="/register" className="clinical-gradient text-white text-sm font-bold py-2.5 px-6 rounded-full shadow-lg shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
-              Register
-            </Link>
+      <main className="w-full max-w-md bg-m3-surface-container-lowest rounded-xl border border-m3-outline-variant shadow-sm overflow-hidden flex flex-col relative z-10">
+        {/* Header */}
+        <header className="bg-m3-surface-container-highest px-6 py-8 border-b border-m3-outline-variant flex flex-col items-center text-center relative">
+          <div className="absolute top-0 left-0 w-full h-1 bg-m3-primary" />
+          <div className="w-16 h-16 rounded-full bg-m3-primary-container flex items-center justify-center mb-4 border-[3px] border-m3-surface-container-lowest shadow-sm">
+            <MaterialIcon icon="security" filled className="text-m3-on-primary text-[32px]" />
           </div>
-        </div>
-      </header>
+          <h1 className="text-headline-md text-m3-primary mb-1">DonorLink</h1>
+          <p className="text-body-compact text-m3-on-surface-variant">Secure Staff Access</p>
+        </header>
 
-      {/* ── Main Content ─────────────────────────────────────────────── */}
-      <div className="flex-grow flex flex-col items-center justify-center relative w-full px-6 z-10">
-        <main className="w-full max-w-md py-12">
-          <div className="bg-card rounded-[2.5rem] p-8 sm:p-10 border border-border shadow-2xl backdrop-blur-sm">
-            {/* Branding Header */}
-            <div className="flex flex-col items-center text-center mb-8">
-              <div className="bg-primary/10 p-4 rounded-2xl mb-4">
-                <Droplets className="size-8 text-primary" />
-              </div>
-              <h1 className="font-headline text-3xl font-extrabold tracking-tight text-foreground">Welcome Back</h1>
-              <p className="text-muted-foreground text-sm leading-relaxed mt-2">
-                Secure clinical portal for donor coordination.
-              </p>
-            </div>
-
-            {error && (
-              <div className="mb-6">
-                <AlertBanner message={error} onDismiss={() => setError("")} variant="error" />
-              </div>
-            )}
-
-            {/* ── Role Selector ────────────────────────────────────────── */}
-            <div className="flex bg-secondary/50 rounded-2xl p-1.5 mb-8">
-              {(["donor", "hospital_admin"] as const).map((role) => (
+        {/* Form Content */}
+        <div className="p-6 flex flex-col gap-6">
+          {/* Role Selection */}
+          <div className="flex flex-col gap-2">
+            <label className="text-label-caps text-m3-on-surface-variant">OPERATIONAL ROLE</label>
+            <div className="grid grid-cols-2 gap-3">
+              {ROLES.map((role) => (
                 <button
-                  key={role}
+                  key={role.key}
                   type="button"
-                  onClick={() => setSelectedRole(role)}
-                  className={`flex-1 py-3 rounded-xl text-sm font-bold font-headline transition-all duration-200 ${
-                    selectedRole === role
-                      ? "bg-card text-foreground shadow-md ring-1 ring-border"
-                      : "text-muted-foreground hover:text-foreground"
+                  onClick={() => setSelectedRole(role.key)}
+                  className={`flex items-center gap-2 px-3 py-2 border rounded text-left text-body-compact transition-colors ${
+                    selectedRole === role.key
+                      ? "border-m3-primary bg-m3-surface-variant text-m3-primary"
+                      : "border-m3-outline-variant bg-m3-surface-container-lowest text-m3-on-surface hover:border-m3-outline hover:bg-m3-surface-container"
                   }`}
                 >
-                  {role === "donor" ? "Donor" : "Clinician"}
+                  <MaterialIcon icon={role.icon} size={18} className={selectedRole === role.key ? "" : "text-m3-on-surface-variant"} />
+                  <span>{role.label}</span>
                 </button>
               ))}
             </div>
+          </div>
 
-            {/* ── Primary Action: Fayda Login ─────────────────────────── */}
-            <div className="space-y-4">
-              <button
-                type="button"
-                onClick={handleFaydaLogin}
-                disabled={faydaAuth.isPending}
-                className="w-full clinical-gradient text-white font-headline font-bold text-base py-4 rounded-2xl shadow-xl shadow-primary/20 hover:opacity-95 active:scale-[0.98] transition-all flex items-center justify-center gap-3 disabled:opacity-50"
-              >
-                {faydaAuth.isPending ? (
-                  <Loader2 className="size-5 animate-spin" />
-                ) : (
-                  <>
-                    <Shield className="size-5" />
-                    Sign in with Fayda ID
-                  </>
-                )}
-              </button>
+          <hr className="border-m3-outline-variant" />
 
-              {selectedRole === "donor" && (
-                <button
-                  type="button"
-                  onClick={handleFaydaLogin}
-                  className="w-full bg-secondary border border-border text-foreground font-headline font-semibold text-sm py-4 rounded-2xl hover:bg-background transition-all flex justify-center items-center gap-3 active:scale-[0.98]"
-                >
-                  <Fingerprint className="size-5 text-primary" />
-                  <span>Use Biometric Login</span>
-                </button>
-              )}
-            </div>
-
-            <div className="my-8">
-              <Divider label="Or continue with" className="text-muted-foreground/50 uppercase tracking-widest text-[10px] font-bold" />
-            </div>
-
-            {/* ── Expandable Traditional Form ──────────────────────────── */}
-            {!showEmailForm ? (
-              <button
-                type="button"
-                onClick={() => setShowEmailForm(true)}
-                className="w-full text-sm text-muted-foreground font-semibold hover:text-primary transition-colors flex items-center justify-center gap-2 group"
-              >
-                Sign in with email credentials
-                <ChevronDown className="size-4 group-hover:translate-y-0.5 transition-transform" />
-              </button>
-            ) : (
-              <form onSubmit={handleSubmit(onEmailSubmit)} className="space-y-5 animate-in fade-in slide-in-from-top-2 duration-300">
-                <Input
-                  {...register("email")}
-                  label="Clinical Email"
-                  placeholder="dr.smith@hospital.org"
-                  type="email"
-                  leftIcon={<Mail className="size-4" />}
-                  error={errors.email?.message}
-                  className="bg-secondary/30 border-border focus:ring-primary/20"
-                />
-                
-                <div className="space-y-1">
-                  <Input
-                    {...register("password")}
-                    label="Password"
-                    type="password"
-                    placeholder="••••••••"
-                    leftIcon={<Lock className="size-4" />}
-                    error={errors.password?.message}
-                    className="bg-secondary/30 border-border focus:ring-primary/20"
-                  />
-                  <div className="flex justify-end">
-                    <Link to="/forgot-password" size="sm" className="text-xs font-bold text-primary hover:underline">
-                      Forgot Password?
-                    </Link>
-                  </div>
-                </div>
-
-                <Button 
-                  type="submit" 
-                  loading={loginEmail.isPending} 
-                  className="w-full py-4 rounded-2xl font-headline font-bold"
-                  size="lg"
-                >
-                  Confirm Identity
-                </Button>
-              </form>
+          {/* Credentials */}
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            {error && (
+              <div className="bg-m3-error-container/20 border border-m3-error-container p-3 rounded flex items-center gap-2">
+                <MaterialIcon icon="error" size={18} className="text-m3-error" />
+                <p className="text-body-compact text-m3-error">{error}</p>
+              </div>
             )}
 
-            <div className="mt-10 text-center text-sm text-muted-foreground">
-              New to the sanctuary?{" "}
-              <Link to="/register" className="font-bold text-primary hover:underline underline-offset-4">
-                Register now
-              </Link>
+            <div className="flex flex-col gap-2">
+              <label className="text-label-caps text-m3-on-surface-variant" htmlFor="identifier">STAFF ID / EMAIL</label>
+              <div className="relative">
+                <MaterialIcon icon="badge" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-m3-on-surface-variant" />
+                <input
+                  id="identifier"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="admin@donorlink.et"
+                  className="w-full bg-m3-surface-container-lowest border border-m3-outline-variant rounded pl-10 pr-3 py-3 font-mono text-data-mono text-m3-on-surface focus:border-m3-primary focus:ring-1 focus:ring-m3-primary placeholder:text-m3-on-surface-variant/50 transition-colors"
+                />
+              </div>
             </div>
-          </div>
 
-          {/* ── Footer Trust Marks ───────────────────────────────────── */}
-          <div className="mt-8 flex justify-center items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-muted-foreground/60">
-            <div className="flex items-center gap-2">
-              <Shield className="size-3.5 text-primary" />
-              <span>HIPAA Compliant</span>
+            <div className="flex flex-col gap-2">
+              <div className="flex justify-between items-center">
+                <label className="text-label-caps text-m3-on-surface-variant" htmlFor="password">AUTHORIZATION KEY</label>
+                <Link to="/forgot-password" className="text-label-caps text-m3-primary hover:underline">Forgot Key?</Link>
+              </div>
+              <div className="relative">
+                <MaterialIcon icon="key" size={20} className="absolute left-3 top-1/2 -translate-y-1/2 text-m3-on-surface-variant" />
+                <input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••••••"
+                  className="w-full bg-m3-surface-container-lowest border border-m3-outline-variant rounded pl-10 pr-10 py-3 font-mono text-data-mono text-m3-on-surface focus:border-m3-primary focus:ring-1 focus:ring-m3-primary placeholder:text-m3-on-surface-variant/50 transition-colors"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-m3-on-surface-variant hover:text-m3-on-surface"
+                >
+                  <MaterialIcon icon={showPassword ? "visibility" : "visibility_off"} size={20} />
+                </button>
+              </div>
             </div>
-            <div className="w-1 h-1 rounded-full bg-border" />
-            <div className="flex items-center gap-2">
-              <Lock className="size-3.5" />
-              <span>AES-256 Encrypted</span>
-            </div>
-          </div>
-        </main>
-      </div>
+
+            <button
+              type="submit"
+              disabled={login.isPending}
+              className="mt-2 w-full bg-m3-primary hover:bg-m3-primary/90 text-m3-on-primary text-title-sm py-3 rounded flex items-center justify-center gap-2 transition-colors disabled:opacity-50 shadow-ambient-md"
+            >
+              {login.isPending ? (
+                <span className="animate-spin"><MaterialIcon icon="progress_activity" size={20} /></span>
+              ) : (
+                <MaterialIcon icon="login" filled size={20} />
+              )}
+              {login.isPending ? "Authenticating..." : "Authenticate Session"}
+            </button>
+          </form>
+        </div>
+
+        {/* Footer */}
+        <footer className="bg-m3-error-container/20 border-t border-m3-error-container p-3 flex items-start gap-3">
+          <MaterialIcon icon="warning" size={20} className="text-m3-error shrink-0 mt-0.5" />
+          <p className="text-body-compact text-m3-on-surface-variant text-[11px] leading-tight">
+            Warning: This is a restricted national infrastructure portal. Unauthorized access attempts are monitored and logged by the command center.
+          </p>
+        </footer>
+
+        {/* Register link */}
+        <div className="p-4 text-center border-t border-m3-outline-variant">
+          <p className="text-body-compact text-m3-on-surface-variant">
+            New staff member?{" "}
+            <Link to="/register" className="text-m3-primary font-semibold hover:underline">
+              Request Access
+            </Link>
+          </p>
+        </div>
+      </main>
     </div>
   );
 }
