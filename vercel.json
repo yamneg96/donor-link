@@ -19,11 +19,14 @@
       "dest": "apps/api/src/app.ts"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
-      "dest": "apps/web/$1"
+      "dest": "/index.html"
     }
   ],
   "env": {
     "NODE_ENV": "production"
   }
-}
+}
