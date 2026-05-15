@@ -11,7 +11,9 @@ export const api = axios.create({
 // ─── Request interceptor — attach access token ─────────────────────────────
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("accessToken");
-  if (token) config.headers.Authorization = `Bearer ${token}`;
+  if (token && config.headers) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
   return config;
 });
 
@@ -22,7 +24,7 @@ let refreshQueue: Array<(token: string) => void> = [];
 api.interceptors.response.use(
   (res) => res,
   async (error: AxiosError) => {
-    const original = error.config as any;
+    const original = error.config as any & { _retry?: boolean };
 
     if (error.response?.status === 401 && !original._retry) {
       original._retry = true;

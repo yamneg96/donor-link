@@ -18,6 +18,7 @@ import { recommendationApi } from "../api/recommendations";
 import { requestApi } from "../api/requests";
 import { donationApi } from "../api/donations";
 import { authStore } from "../store/authStore";
+import type { ApiResponse, IUser, LoginResponse } from "../types";
 
 // ─── Query Keys ───────────────────────────────────────────────────────────────
 
@@ -87,7 +88,7 @@ export const QK = {
 export function useMe() {
   return useQuery({
     queryKey: QK.me,
-    queryFn: () => authApi.me().then((r) => r.data.data),
+    queryFn: () => authApi.me().then((r: { data: ApiResponse<IUser> }) => r.data.data),
     enabled: authStore.isAuthenticated(),
     staleTime: 5 * 60_000,
   });
@@ -98,9 +99,9 @@ export function useLogin() {
   return useMutation({
     mutationFn: (data: { email: string; password: string }) =>
       authApi.login(data),
-    onSuccess: (res) => {
-      const { user, accessToken, refreshToken } = res.data.data;
-      authStore.setAuth(user, accessToken, refreshToken);
+    onSuccess: (res: { data: ApiResponse<LoginResponse> }) => {
+      const { user, tokens } = res.data.data;
+      authStore.setAuth(user, tokens.accessToken, tokens.refreshToken);
       qc.invalidateQueries({ queryKey: QK.me });
     },
   });
@@ -118,9 +119,9 @@ export function useRegister() {
       role?: string;
       organizationId?: string;
     }) => authApi.register(data),
-    onSuccess: (res) => {
-      const { user, accessToken, refreshToken } = res.data.data;
-      authStore.setAuth(user, accessToken, refreshToken);
+    onSuccess: (res: { data: ApiResponse<LoginResponse> }) => {
+      const { user, tokens } = res.data.data;
+      authStore.setAuth(user, tokens.accessToken, tokens.refreshToken);
       qc.invalidateQueries({ queryKey: QK.me });
     },
   });

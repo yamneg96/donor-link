@@ -56,6 +56,18 @@ app.use(requestLogger);
 // Rate limiting
 app.use(rateLimiter);
 
+//  / route : 
+app.get('/api', (_req, res) => {
+  sendSuccess(res, {
+    status: 'healthy',
+    service: 'DonorLink API',
+    version: '1.0.0',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+    environment: process.env.NODE_ENV,
+  }, 'Service is healthy');
+});
+
 // ==================================================
 // Health Check
 // ==================================================
