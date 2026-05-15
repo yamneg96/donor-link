@@ -40,7 +40,9 @@ export default function LoginPage() {
 
       <main className="w-full max-w-md bg-m3-surface-container-lowest rounded-xl border border-m3-outline-variant shadow-sm overflow-hidden flex flex-col relative z-10">
         {/* Header */}
-        <header className="bg-m3-surface-container-highest px-6 py-8 border-b border-m3-outline-variant flex flex-col items-center text-center relative">
+        <header 
+        onClick={() => navigate({ to: '/' })}
+        className="bg-m3-surface-container-highest px-6 py-8 border-b border-m3-outline-variant flex flex-col items-center text-center relative">
           <div className="absolute top-0 left-0 w-full h-1 bg-m3-primary" />
           <div className="w-16 h-16 rounded-full bg-m3-primary-container flex items-center justify-center mb-4 border-[3px] border-m3-surface-container-lowest shadow-sm">
             <MaterialIcon icon="security" filled className="text-m3-on-primary text-[32px]" />

@@ -73,8 +73,10 @@ export class AuthService {
         role: user.role,
         organizationId: user.organizationId,
       },
-      accessToken,
-      refreshToken,
+      tokens: {
+        accessToken,
+        refreshToken,
+      },
     };
   }
 
@@ -99,13 +101,42 @@ export class AuthService {
 
     eventBus.emitEvent(EventType.USER_CREATED, { userId: user._id.toString() }, user._id.toString());
 
-    return {
-      id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
+    // Generate tokens
+    const tokenPayload = {
+      id: user._id.toString(),
       email: user.email,
       role: user.role,
-      organizationId: user.organizationId,
+      organizationId: user.organizationId?.toString() || null,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    };
+
+    const accessToken = generateAccessToken(tokenPayload);
+    const refreshToken = generateRefreshToken({ id: user._id.toString() });
+
+    // Save refresh token
+    const expiresAt = new Date();
+    expiresAt.setDate(expiresAt.getDate() + 7);
+
+    await this.authRepo.saveRefreshToken({
+      userId: user._id,
+      token: refreshToken,
+      expiresAt,
+    });
+
+    return {
+      user: {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        role: user.role,
+        organizationId: user.organizationId,
+      },
+      tokens: {
+        accessToken,
+        refreshToken,
+      },
     };
   }
 
@@ -141,7 +172,7 @@ export class AuthService {
 
     const accessToken = generateAccessToken(tokenPayload);
 
-    return { accessToken };
+    return { accessToken, refreshToken: refreshTokenStr };
   }
 
   async logout(refreshTokenStr: string) {

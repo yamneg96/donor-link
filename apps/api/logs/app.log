@@ -802,3 +802,83 @@ SIGINT received. Starting graceful shutdown... {"service":"donorlink-api"}
 SIGINT intercepted. Graceful drainage executing... {"service":"donorlink-api"}
 2026-05-16 02:42:51 [info]: HTTP entry gateway dropped. {"service":"donorlink-api"}
 2026-05-16 02:42:51 [warn]: MongoDB disconnected {"service":"donorlink-api"}
+2026-05-16 02:43:17 [info]: 🔄 Warmup: Initializing DonorLink Core Systems... {"service":"donorlink-api"}
+2026-05-16 02:43:17 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-16 02:43:20 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-16 02:43:20 [info]: ✅ MongoDB pipeline established successfully. {"service":"donorlink-api"}
+2026-05-16 02:43:20 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-16 02:43:20 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-16 02:43:20 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-16 02:43:20 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-16 02:43:20 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-16 02:43:20 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-16 02:43:20 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-16 02:43:20 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-16 02:43:20 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-16 02:43:20 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-16 02:43:20 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-16 02:43:20 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-16 02:43:20 [info]: ⏰ Enterprise internal job scheduler initialized. {"service":"donorlink-api"}
+2026-05-16 02:43:20 [info]: ✅ DonorLink API running locally on port 5000 {"service":"donorlink-api"}
+2026-05-16 02:43:20 [info]: 📡 Target Operational Environment: development {"service":"donorlink-api"}
+2026-05-16 02:43:20 [info]: 🔗 Health Interface: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-16 02:49:23 [info]: ::1 GET /api/v1/dashboard/stats 200 157 - 1292.946 ms {"service":"donorlink-api"}
+2026-05-16 02:49:27 [info]: ::1 GET /api/v1/dashboard/stats 200 157 - 211.412 ms {"service":"donorlink-api"}
+2026-05-16 02:49:40 [debug]: Event emitted: user_login {"service":"donorlink-api","payload":"{\"userId\":\"6a07712590143f78499ded23\"}"}
+2026-05-16 02:49:40 [info]: ::1 POST /api/v1/auth/login 200 791 - 1211.323 ms {"service":"donorlink-api"}
+2026-05-16 02:49:50 [debug]: Event emitted: user_login {"service":"donorlink-api","payload":"{\"userId\":\"6a07712590143f78499ded23\"}"}
+2026-05-16 02:49:50 [info]: ::1 POST /api/v1/auth/login 200 791 - 3307.814 ms {"service":"donorlink-api"}
+2026-05-16 02:52:28 [info]: 🔄 Warmup: Initializing DonorLink Core Systems... {"service":"donorlink-api"}
+2026-05-16 02:52:28 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-16 02:52:35 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-16 02:52:35 [info]: ✅ MongoDB pipeline established successfully. {"service":"donorlink-api"}
+2026-05-16 02:52:35 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-16 02:52:35 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-16 02:52:35 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-16 02:52:35 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-16 02:52:35 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-16 02:52:35 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-16 02:52:35 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-16 02:52:35 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-16 02:52:35 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-16 02:52:35 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-16 02:52:35 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-16 02:52:35 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-16 02:52:35 [info]: ⏰ Enterprise internal job scheduler initialized. {"service":"donorlink-api"}
+2026-05-16 02:52:35 [info]: ✅ DonorLink API running locally on port 5000 {"service":"donorlink-api"}
+2026-05-16 02:52:35 [info]: 📡 Target Operational Environment: development {"service":"donorlink-api"}
+2026-05-16 02:52:35 [info]: 🔗 Health Interface: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-16 02:52:45 [debug]: Event emitted: user_login {"service":"donorlink-api","payload":"{\"userId\":\"6a07712590143f78499ded23\"}"}
+2026-05-16 02:52:45 [info]: ::1 POST /api/v1/auth/login 200 802 - 2839.558 ms {"service":"donorlink-api"}
+2026-05-16 02:52:48 [info]: ::1 GET /api/v1/alerts?limit=5 200 176 - 625.254 ms {"service":"donorlink-api"}
+2026-05-16 02:52:49 [info]: ::1 GET /api/v1/recommendations?limit=3 200 176 - 1247.966 ms {"service":"donorlink-api"}
+2026-05-16 02:52:51 [info]: ::1 GET /api/v1/dashboard/national 200 397 - 3471.791 ms {"service":"donorlink-api"}
+2026-05-16 02:53:13 [info]: 🔄 Warmup: Initializing DonorLink Core Systems... {"service":"donorlink-api"}
+2026-05-16 02:53:13 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-16 02:53:18 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-16 02:53:18 [info]: ✅ MongoDB pipeline established successfully. {"service":"donorlink-api"}
+2026-05-16 02:53:18 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-16 02:53:18 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-16 02:53:18 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-16 02:53:18 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-16 02:53:18 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-16 02:53:18 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-16 02:53:18 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-16 02:53:18 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-16 02:53:18 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-16 02:53:18 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-16 02:53:18 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-16 02:53:18 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-16 02:53:18 [info]: ⏰ Enterprise internal job scheduler initialized. {"service":"donorlink-api"}
+2026-05-16 02:53:18 [info]: ✅ DonorLink API running locally on port 5000 {"service":"donorlink-api"}
+2026-05-16 02:53:18 [info]: 📡 Target Operational Environment: development {"service":"donorlink-api"}
+2026-05-16 02:53:18 [info]: 🔗 Health Interface: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-16 02:53:24 [info]: ::1 GET /api/v1/alerts?limit=5 200 176 - 5977.517 ms {"service":"donorlink-api"}
+2026-05-16 02:53:40 [info]: ::1 POST /api/v1/auth/logout 200 123 - 2064.018 ms {"service":"donorlink-api"}
+2026-05-16 02:53:40 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-05-16 02:53:40 [info]: ::1 GET /api/v1/dashboard/national 401 115 - 10.200 ms {"service":"donorlink-api"}
+2026-05-16 02:53:40 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-05-16 02:53:40 [info]: ::1 GET /api/v1/alerts?limit=5 401 115 - 7.459 ms {"service":"donorlink-api"}
+2026-05-16 02:53:40 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-05-16 02:53:40 [info]: ::1 GET /api/v1/recommendations?limit=3 401 115 - 4.959 ms {"service":"donorlink-api"}
+2026-05-16 02:55:03 [info]: ::1 GET /api/v1/dashboard/stats 200 157 - 2202.099 ms {"service":"donorlink-api"}
