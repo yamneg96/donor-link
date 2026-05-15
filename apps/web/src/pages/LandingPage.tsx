@@ -1,11 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { MaterialIcon } from "../components/shared/MaterialIcon";
-
-const STATS = [
-  { label: "National Blood Units", value: "14,285", icon: "water_drop", status: "STABLE INVENTORY", statusColor: "bg-green-500" },
-  { label: "Active Transfers", value: "112", icon: "local_shipping", status: "EN ROUTE", statusColor: "bg-blue-500 animate-pulse" },
-  { label: "Critical Shortages", value: "3", icon: "warning", status: "ACTION REQUIRED", statusColor: "bg-m3-on-primary-container", isAlert: true },
-];
+import { usePublicStats } from "../hooks/useApi";
 
 const LIFECYCLE = [
   { icon: "favorite", label: "Donor", desc: "Generous individuals give life.", color: "bg-m3-primary-fixed text-m3-primary" },
@@ -16,6 +11,32 @@ const LIFECYCLE = [
 ];
 
 export default function LandingPage() {
+  const { data: stats } = usePublicStats();
+
+  const STATS = [
+    { 
+      label: "National Blood Units", 
+      value: stats?.totalUnits?.toLocaleString() ?? "0", 
+      icon: "water_drop", 
+      status: stats?.totalUnits > 5000 ? "STABLE INVENTORY" : "LOW INVENTORY", 
+      statusColor: stats?.totalUnits > 5000 ? "bg-green-500" : "bg-orange-500" 
+    },
+    { 
+      label: "Active Transfers", 
+      value: stats?.activeTransfers?.toLocaleString() ?? "0", 
+      icon: "local_shipping", 
+      status: "EN ROUTE", 
+      statusColor: "bg-blue-500 animate-pulse" 
+    },
+    { 
+      label: "Critical Shortages", 
+      value: stats?.criticalShortages?.toLocaleString() ?? "0", 
+      icon: "warning", 
+      status: stats?.criticalShortages > 0 ? "ACTION REQUIRED" : "NO CRITICAL ALERTS", 
+      statusColor: stats?.criticalShortages > 0 ? "bg-m3-on-primary-container" : "bg-green-500", 
+      isAlert: stats?.criticalShortages > 0 
+    },
+  ];
   return (
     <div className="min-h-screen bg-m3-surface flex flex-col">
       {/* TopNavBar */}

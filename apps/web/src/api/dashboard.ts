@@ -7,4 +7,5 @@ export const dashboardApi = {
     orgId
       ? api.get(`/dashboard/hospital/${orgId}`)
       : api.get("/dashboard/hospital"),
+  publicStats: () => api.get("/dashboard/stats"),
 };

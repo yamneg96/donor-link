@@ -432,6 +432,15 @@ export function useNationalDashboard() {
   });
 }
 
+export function usePublicStats() {
+  return useQuery({
+    queryKey: ["public-stats"],
+    queryFn: () => dashboardApi.publicStats().then((r) => r.data.data),
+    staleTime: 5 * 60_000,
+    refetchInterval: 10 * 60_000,
+  });
+}
+
 export function useHospitalDashboard(orgId?: string) {
   return useQuery({
     queryKey: QK.dashboardHospital(orgId),

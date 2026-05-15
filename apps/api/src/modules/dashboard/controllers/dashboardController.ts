@@ -7,9 +7,20 @@ import { TransferRequest } from '../../transfers/models/TransferRequest';
 import { Alert } from '../../alerts/models/Alert';
 import { EmergencyEvent } from '../../emergency/models/EmergencyEvent';
 import { Campaign } from '../../campaigns/models/Campaign';
-import { BloodUnitStatus, AlertStatus, EmergencyStatus, CampaignStatus } from '../../../core/constants';
+import { BloodUnitStatus, AlertStatus, EmergencyStatus, CampaignStatus, AlertSeverity } from '../../../core/constants';
 
 export class DashboardController {
+  static async getPublicStats(_req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const [totalUnits, activeTransfers, criticalShortages] = await Promise.all([
+        BloodUnit.countDocuments({ status: BloodUnitStatus.AVAILABLE, isDeleted: false }),
+        TransferRequest.countDocuments({ status: { $in: ['pending', 'in-transit'] } }),
+        Alert.countDocuments({ status: AlertStatus.ACTIVE, severity: AlertSeverity.CRITICAL }),
+      ]);
+      sendSuccess(res, { totalUnits, activeTransfers, criticalShortages }, 'Public stats retrieved');
+    } catch (e) { next(e); }
+  }
+
   static async getNationalDashboard(_req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const [totalAvailableUnits, totalOrgs, totalDonors, activeAlerts, activeEmergencies, activeCampaigns, pendingTransfers, stockByBloodType, recentAlerts] = await Promise.all([

@@ -534,3 +534,153 @@ SIGINT received. Starting graceful shutdown... {"service":"donorlink-api"}
 2026-05-16 00:53:43 [info]: ::1 GET /api/v1/audit?page=1&limit=20 401 115 - 6.426 ms {"service":"donorlink-api"}
 2026-05-16 00:53:55 [info]: 
 SIGINT received. Starting graceful shutdown... {"service":"donorlink-api"}
+2026-05-16 02:22:59 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-16 02:22:59 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-16 02:23:06 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-16 02:23:06 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-16 02:23:06 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-16 02:23:06 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-16 02:23:06 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-16 02:23:06 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-16 02:23:06 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-16 02:23:06 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-16 02:23:06 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-16 02:23:06 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-16 02:23:06 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-16 02:23:06 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-16 02:23:06 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-16 02:23:06 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-16 02:23:06 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-16 02:23:06 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-16 02:23:16 [error]: ReferenceError: AlertSeverity is not defined
+    at getPublicStats (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\dashboard\controllers\dashboardController.ts:18:70)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-16 02:23:16 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 19.617 ms {"service":"donorlink-api"}
+2026-05-16 02:23:17 [error]: ReferenceError: AlertSeverity is not defined
+    at getPublicStats (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\dashboard\controllers\dashboardController.ts:18:70)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-16 02:23:17 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 4.582 ms {"service":"donorlink-api"}
+2026-05-16 02:23:18 [error]: ReferenceError: AlertSeverity is not defined
+    at getPublicStats (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\dashboard\controllers\dashboardController.ts:18:70)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-16 02:23:18 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 3.189 ms {"service":"donorlink-api"}
+2026-05-16 02:24:52 [error]: ReferenceError: AlertSeverity is not defined
+    at getPublicStats (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\dashboard\controllers\dashboardController.ts:18:70)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-16 02:24:52 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 2.336 ms {"service":"donorlink-api"}
+2026-05-16 02:24:53 [error]: ReferenceError: AlertSeverity is not defined
+    at getPublicStats (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\dashboard\controllers\dashboardController.ts:18:70)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-16 02:24:53 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 2.172 ms {"service":"donorlink-api"}
+2026-05-16 02:25:00 [error]: ReferenceError: AlertSeverity is not defined
+    at getPublicStats (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\dashboard\controllers\dashboardController.ts:18:70)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-16 02:25:00 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 5.563 ms {"service":"donorlink-api"}
+2026-05-16 02:25:02 [error]: ReferenceError: AlertSeverity is not defined
+    at getPublicStats (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\dashboard\controllers\dashboardController.ts:18:70)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-16 02:25:02 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 2.023 ms {"service":"donorlink-api"}
+2026-05-16 02:25:18 [error]: ReferenceError: AlertSeverity is not defined
+    at getPublicStats (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\dashboard\controllers\dashboardController.ts:18:70)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-16 02:25:18 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 8.210 ms {"service":"donorlink-api"}
+2026-05-16 02:25:19 [error]: ReferenceError: AlertSeverity is not defined
+    at getPublicStats (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\dashboard\controllers\dashboardController.ts:18:70)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-16 02:25:19 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 4.774 ms {"service":"donorlink-api"}
+2026-05-16 02:25:20 [error]: ReferenceError: AlertSeverity is not defined
+    at getPublicStats (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\dashboard\controllers\dashboardController.ts:18:70)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-16 02:25:20 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 14.589 ms {"service":"donorlink-api"}
+2026-05-16 02:25:21 [error]: ReferenceError: AlertSeverity is not defined
+    at getPublicStats (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\dashboard\controllers\dashboardController.ts:18:70)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-16 02:25:21 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 2.456 ms {"service":"donorlink-api"}
