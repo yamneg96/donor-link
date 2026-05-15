@@ -41,7 +41,7 @@ export const onboardDonorSchema = z.object({
     subcity: z.string().optional(),
     woreda: z.string().optional(),
   }),
-  availableForEmergency: z.boolean().default(true),
+  availableForEmergency: z.boolean(),
 });
 
 export type OnboardDonorInput = z.infer<typeof onboardDonorSchema>;

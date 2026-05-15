@@ -1,6 +1,6 @@
-import { MaterialIcon } from "../../components/shared/MaterialIcon";
-import { LoadingSkeleton, EmptyState } from "../../components/shared/EmptyState";
+import { LoadingSkeleton } from "../../components/shared/EmptyState";
 import { useAlerts, useAcknowledgeAlert, useResolveAlert } from "../../hooks/useApi";
+import { EmptyState } from "../../components/shared/EmptyState";
 
 export default function AlertCenterPage() {
   const { data: alerts, isLoading } = useAlerts();

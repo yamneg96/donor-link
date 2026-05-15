@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { MaterialIcon } from "../../components/shared/MaterialIcon";
-import { LoadingSkeleton, EmptyState } from "../../components/shared/EmptyState";
+import { LoadingSkeleton } from "../../components/shared/EmptyState";
 import { useStockLevels, useInventoryAll } from "../../hooks/useApi";
 import { BloodTypeCard } from "../../components/shared/BloodTypeCard";
 import { DataTable } from "../../components/shared/DataTable";
-import { BloodType } from "../../types";
 import { cn } from "../../lib/utils";
 
 export default function InventoryPage() {

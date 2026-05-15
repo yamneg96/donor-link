@@ -3,7 +3,6 @@ import {
   createRootRoute,
   createRoute,
   redirect,
-  Outlet,
 } from "@tanstack/react-router";
 import { authStore } from "../store/authStore";
 import { RootLayout } from "../components/layout/RootLayout";

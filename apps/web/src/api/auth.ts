@@ -25,4 +25,5 @@ export const authApi = {
   sendOtp: (email: string) =>
     api.post("/auth/send-otp", { email }),
   me: () => api.get("/auth/me"),
+  onboard: (data: any) => api.post("/auth/onboard", data),
 };

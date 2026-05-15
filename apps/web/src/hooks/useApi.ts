@@ -153,6 +153,16 @@ export function useResetPassword() {
   });
 }
 
+export function useOnboardDonor() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: any) => authApi.onboard(data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: QK.me });
+    },
+  });
+}
+
 // ─── Inventory Hooks ──────────────────────────────────────────────────────────
 
 export function useInventoryAll(params?: Record<string, unknown>) {
