@@ -684,3 +684,43 @@ SIGINT received. Starting graceful shutdown... {"service":"donorlink-api"}
     at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
     at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
 2026-05-16 02:25:21 [info]: ::1 GET /api/v1/dashboard/stats 500 121 - 2.456 ms {"service":"donorlink-api"}
+2026-05-16 02:27:20 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-16 02:27:20 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-16 02:27:25 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-16 02:27:25 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-16 02:27:25 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-16 02:27:25 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-16 02:27:25 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-16 02:27:25 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-16 02:27:25 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-16 02:27:25 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-16 02:27:25 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-16 02:27:25 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-16 02:27:25 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-16 02:27:25 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-16 02:27:25 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-16 02:27:25 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-16 02:27:25 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-16 02:27:25 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-05-16 02:29:31 [debug]: Event emitted: user_login {"service":"donorlink-api","payload":"{\"userId\":\"6a07712590143f78499ded23\"}"}
+2026-05-16 02:29:31 [info]: ::1 POST /api/v1/auth/login 200 791 - 1197.807 ms {"service":"donorlink-api"}
+2026-05-16 02:29:48 [debug]: Event emitted: user_login {"service":"donorlink-api","payload":"{\"userId\":\"6a07712590143f78499ded23\"}"}
+2026-05-16 02:29:48 [info]: ::1 POST /api/v1/auth/login 200 791 - 1069.132 ms {"service":"donorlink-api"}
+2026-05-16 02:31:47 [info]: 🚀 Starting DonorLink API Server... {"service":"donorlink-api"}
+2026-05-16 02:31:47 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-05-16 02:31:50 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-05-16 02:31:50 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-05-16 02:31:50 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-05-16 02:31:50 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-05-16 02:31:50 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-05-16 02:31:50 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-05-16 02:31:50 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-05-16 02:31:50 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-05-16 02:31:50 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-05-16 02:31:50 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-05-16 02:31:50 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-05-16 02:31:50 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-05-16 02:31:50 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-05-16 02:31:50 [info]: ✅ DonorLink API running on port 5000 {"service":"donorlink-api"}
+2026-05-16 02:31:50 [info]: 📡 Environment: development {"service":"donorlink-api"}
+2026-05-16 02:31:50 [info]: 🔗 Health: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
