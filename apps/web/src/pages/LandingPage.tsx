@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { MaterialIcon } from "../components/shared/MaterialIcon";
 import { usePublicStats } from "../hooks/useApi";
+import { useTheme } from "../components/theme-provider";
 
 const LIFECYCLE = [
   { icon: "favorite", label: "Donor", desc: "Generous individuals give life.", color: "bg-m3-primary-fixed text-m3-primary" },
@@ -11,6 +12,7 @@ const LIFECYCLE = [
 ];
 
 export default function LandingPage() {
+  const { theme, setTheme } = useTheme();
   const { data: stats } = usePublicStats();
 
   const STATS = [
@@ -38,20 +40,27 @@ export default function LandingPage() {
     },
   ];
   return (
-    <div className="min-h-screen bg-m3-surface flex flex-col">
+    <div className="min-h-screen bg-m3-surface flex flex-col transition-colors duration-300">
       {/* TopNavBar */}
       <header className="bg-m3-surface-container-highest border-b border-m3-outline-variant sticky top-0 z-50 flex justify-between items-center h-16 px-6">
-        <span className="text-display-lg text-m3-primary text-2xl">DonorLink</span>
+        <span className="text-display-lg text-m3-primary text-2xl font-bold">DonorLink</span>
         <nav className="hidden md:flex gap-6 items-center">
-          <a href="#mission" className="text-body-main text-m3-primary font-bold border-b-2 border-m3-primary py-2">Mission</a>
-          <a href="#stats" className="text-body-main text-m3-on-surface-variant hover:bg-m3-surface-variant transition-colors py-2 px-2 rounded">Stats</a>
-          <a href="#flow" className="text-body-main text-m3-on-surface-variant hover:bg-m3-surface-variant transition-colors py-2 px-2 rounded">Flow</a>
-          <a href="#partners" className="text-body-main text-m3-on-surface-variant hover:bg-m3-surface-variant transition-colors py-2 px-2 rounded">Partners</a>
+          <a href="#mission" className="text-body-main text-m3-primary font-bold border-b-2 border-m3-primary py-2 transition-all">Mission</a>
+          <a href="#stats" className="text-body-main text-m3-on-surface-variant hover:bg-m3-surface-variant transition-colors py-2 px-3 rounded-lg">Stats</a>
+          <a href="#flow" className="text-body-main text-m3-on-surface-variant hover:bg-m3-surface-variant transition-colors py-2 px-3 rounded-lg">Flow</a>
+          <a href="#partners" className="text-body-main text-m3-on-surface-variant hover:bg-m3-surface-variant transition-colors py-2 px-3 rounded-lg">Partners</a>
         </nav>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="p-2 text-m3-on-surface-variant hover:bg-m3-surface-variant rounded-full transition-colors"
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            <MaterialIcon icon={theme === "dark" ? "light_mode" : "dark_mode"} size={22} />
+          </button>
           <Link
             to="/login"
-            className="bg-m3-primary text-m3-on-primary text-title-sm px-5 py-2 rounded-lg hover:opacity-90 transition-opacity text-sm font-semibold"
+            className="bg-m3-primary text-m3-on-primary text-title-sm px-5 py-2 rounded-lg hover:opacity-90 transition-opacity text-sm font-semibold shadow-sm"
           >
             Staff Portal
           </Link>
