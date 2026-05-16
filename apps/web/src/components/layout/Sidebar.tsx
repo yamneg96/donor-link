@@ -8,6 +8,7 @@ import { UserRole, ADMIN_ROLES } from "../../types";
 import { useTheme } from "../theme-provider";
 import { useModal } from "../../hooks/useModal";
 import { DeclareEmergencyModal } from "../modals/DeclareEmergencyModal";
+import { ConfirmDialog } from "../modals/ConfirmDialog";
 
 interface NavItem {
   label: string;
@@ -52,6 +53,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
   const location = useLocation();
   const logout = useLogout();
   const emergencyModal = useModal();
+  const logoutModal = useModal();
 
   const visibleItems = NAV_ITEMS.filter(
     (item) => !item.roles || (user && authStore.hasRole(...item.roles))
@@ -80,21 +82,22 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         )}
       >
         {/* Brand Header */}
-        <div className="flex items-center justify-between mb-6 px-3">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-m3-primary-container flex items-center justify-center shrink-0">
-              <MaterialIcon icon="admin_panel_settings" className="text-m3-on-primary-container" filled />
+        <div className="flex items-center justify-between mb-8 px-3 py-2">
+          <div className="flex items-center gap-3 overflow-hidden">
+            <div className="w-11 h-11 rounded-2xl bg-m3-primary text-m3-on-primary flex items-center justify-center shrink-0 shadow-lg shadow-m3-primary/20 rotate-3">
+              <MaterialIcon icon="admin_panel_settings" size={24} filled />
             </div>
             <div className="min-w-0">
-              <h1 className="text-headline-md font-bold text-m3-primary truncate text-lg leading-tight">National Portal</h1>
-              <p className="text-body-compact text-m3-on-surface-variant truncate text-[11px]">Ethiopia Blood Services</p>
+              <h1 className="text-headline-sm font-black text-m3-on-surface truncate leading-none tracking-tight">DonorLink</h1>
+              <p className="text-[10px] font-bold text-m3-primary uppercase tracking-widest mt-1 opacity-80">National Network</p>
             </div>
           </div>
           <button 
             onClick={onClose}
-            className="p-1.5 text-m3-on-surface-variant hover:bg-m3-surface-variant rounded-full md:hidden"
+            className="p-2 text-m3-on-surface-variant hover:bg-m3-error-container/20 hover:text-m3-error rounded-xl md:hidden transition-all active:scale-90"
+            title="Close Menu"
           >
-            <MaterialIcon icon="close" size={20} />
+            <MaterialIcon icon="close" size={22} />
           </button>
         </div>
 
@@ -175,7 +178,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           )}
 
           <button
-            onClick={handleLogout}
+            onClick={() => logoutModal.open()}
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-m3-on-surface-variant hover:bg-m3-error-container/30 hover:text-m3-on-error-container transition-colors mt-1"
           >
             <MaterialIcon icon="logout" size={20} />
@@ -184,6 +187,16 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         </div>
       </aside>
       <DeclareEmergencyModal open={emergencyModal.isOpen} onClose={emergencyModal.close} />
+      <ConfirmDialog
+        open={logoutModal.isOpen}
+        onClose={logoutModal.close}
+        onConfirm={handleLogout}
+        title="Sign Out"
+        message="Are you sure you want to sign out?"
+        confirmLabel="Sign Out"
+        variant="danger"
+        isLoading={logout.isPending}
+      />
     </>
   );
 }

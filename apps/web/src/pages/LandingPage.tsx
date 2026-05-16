@@ -2,13 +2,14 @@ import { Link } from "@tanstack/react-router";
 import { MaterialIcon } from "../components/shared/MaterialIcon";
 import { usePublicStats } from "../hooks/useApi";
 import { useTheme } from "../components/theme-provider";
+import { cn } from "../lib/utils";
 
 const LIFECYCLE = [
-  { icon: "favorite", label: "Donor", desc: "Generous individuals give life.", color: "bg-m3-primary-fixed text-m3-primary" },
-  { icon: "bloodtype", label: "Blood Bank", desc: "Processing and secure storage.", color: "bg-m3-secondary-fixed text-m3-secondary" },
-  { icon: "inventory_2", label: "Inventory", desc: "National real-time tracking.", color: "bg-m3-tertiary-fixed text-m3-tertiary" },
-  { icon: "local_hospital", label: "Hospital", desc: "Strategic redistribution.", color: "bg-m3-secondary-fixed text-m3-secondary" },
-  { icon: "personal_injury", label: "Patient", desc: "Life-saving transfusion.", color: "bg-m3-primary-fixed text-m3-primary" },
+  { icon: "favorite", label: "Donor", desc: "Generous individuals give life.", color: "bg-m3-primary-container text-m3-on-primary-container" },
+  { icon: "bloodtype", label: "Blood Bank", desc: "Processing and secure storage.", color: "bg-m3-secondary-container text-m3-on-secondary-container" },
+  { icon: "inventory_2", label: "Inventory", desc: "National real-time tracking.", color: "bg-m3-tertiary-container text-m3-on-tertiary-container" },
+  { icon: "local_hospital", label: "Hospital", desc: "Strategic redistribution.", color: "bg-m3-secondary-container text-m3-on-secondary-container" },
+  { icon: "personal_injury", label: "Patient", desc: "Life-saving transfusion.", color: "bg-m3-primary-container text-m3-on-primary-container" },
 ];
 
 export default function LandingPage() {
@@ -137,12 +138,12 @@ export default function LandingPage() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 relative">
             <div className="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-[2px] bg-m3-outline-variant -translate-y-1/2 z-0" />
             {LIFECYCLE.map((step) => (
-              <div key={step.label} className="bg-m3-surface-container-lowest border border-m3-outline-variant rounded-xl p-4 shadow-sm z-10 w-full md:w-1/5 text-center flex flex-col items-center gap-3">
-                <div className={`w-16 h-16 rounded-full flex items-center justify-center ${step.color.split(" ")[0]}`}>
-                  <MaterialIcon icon={step.icon} className={step.color.split(" ")[1]} size={28} />
+              <div key={step.label} className="bg-m3-surface-container-lowest border border-m3-outline-variant rounded-xl p-5 shadow-ambient-sm z-10 w-full md:w-1/5 text-center flex flex-col items-center gap-3 transition-transform hover:scale-105">
+                <div className={cn("w-16 h-16 rounded-full flex items-center justify-center shadow-sm", step.color.split(" ")[0])}>
+                  <MaterialIcon icon={step.icon} className={step.color.split(" ")[1]} size={32} />
                 </div>
-                <h3 className="text-title-sm text-m3-on-surface">{step.label}</h3>
-                <p className="text-body-compact text-m3-on-surface-variant">{step.desc}</p>
+                <h3 className="text-title-sm text-m3-on-surface font-bold">{step.label}</h3>
+                <p className="text-body-compact text-m3-on-surface-variant text-sm">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -183,10 +184,11 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="bg-m3-surface-dim border-t border-m3-outline-variant flex flex-col items-center py-6 px-8 gap-4 mt-auto">
         <div className="text-title-sm text-m3-on-surface">DonorLink</div>
-        <div className="flex flex-wrap justify-center gap-4">
-          {["Privacy Policy", "Operational Standards", "Contact Command Center", "Regional Directories"].map((link) => (
-            <a key={link} href="#" className="text-label-caps text-m3-on-surface-variant hover:text-m3-primary transition-opacity">{link}</a>
-          ))}
+        <div className="flex flex-wrap justify-center gap-6">
+          <Link to="/support" className="text-label-caps text-m3-on-surface-variant hover:text-m3-primary transition-colors">Operational Standards</Link>
+          <Link to="/support" className="text-label-caps text-m3-on-surface-variant hover:text-m3-primary transition-colors">Regional Directories</Link>
+          <Link to="/contact" className="text-label-caps text-m3-on-surface-variant hover:text-m3-primary transition-colors font-bold">Contact Command Center</Link>
+          <a href="#" className="text-label-caps text-m3-on-surface-variant hover:text-m3-primary transition-colors">Privacy Policy</a>
         </div>
         <p className="text-label-caps text-m3-secondary text-center max-w-2xl">
           © 2024 DonorLink Ethiopia National Blood Infrastructure. In partnership with WHO & Ethiopia Red Cross.

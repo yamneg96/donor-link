@@ -59,14 +59,14 @@ export function FormModal({
   return (
     <dialog
       ref={dialogRef}
-      className="fixed inset-0 z-50 m-0 flex items-center justify-center bg-transparent p-0 backdrop:bg-black/40 backdrop:backdrop-blur-sm"
+      className="fixed inset-0 z-50 m-0 flex items-center justify-center bg-transparent p-0 backdrop:bg-black/40 backdrop:backdrop-blur-sm w-screen h-screen"
       onClick={(e) => {
         if (e.target === dialogRef.current) onClose();
       }}
     >
       <div
         ref={contentRef}
-        className={`${width} w-full mx-4 bg-m3-surface-container-lowest border border-m3-outline-variant rounded-2xl shadow-ambient-lg animate-in fade-in zoom-in-95 duration-200`}
+        className={`${width} w-full mx-4 bg-m3-surface-container-lowest border border-m3-outline-variant rounded-2xl shadow-ambient-lg animate-in fade-in zoom-in-95 duration-200 flex flex-col max-h-[90vh] overflow-hidden`}
       >
         {/* Header */}
         <div className="flex items-start justify-between p-6 pb-4 border-b border-m3-outline-variant">
@@ -88,7 +88,7 @@ export function FormModal({
         </div>
 
         {/* Body */}
-        <div className="p-6">{children}</div>
+        <div className="p-6 overflow-y-auto flex-1 custom-scrollbar">{children}</div>
       </div>
     </dialog>
   );

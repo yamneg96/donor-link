@@ -4,6 +4,8 @@ import { MaterialIcon } from "../shared/MaterialIcon";
 import { useTheme } from "../theme-provider";
 import { DeclareEmergencyModal } from "../modals/DeclareEmergencyModal";
 import { useModal } from "../../hooks/useModal";
+import { ConfirmDialog } from "../modals/ConfirmDialog";
+import { useLogout } from "../../hooks/useApi";
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -13,7 +15,14 @@ export function Header({ onMenuClick }: HeaderProps) {
   const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
   const emergencyModal = useModal();
+  const logoutModal = useModal();
+  const logout = useLogout();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+
+  const handleLogout = async () => {
+    await logout.mutateAsync();
+    window.location.href = "/login";
+  };
 
   return (
     <>
@@ -21,7 +30,7 @@ export function Header({ onMenuClick }: HeaderProps) {
         <div className="flex items-center gap-2">
           <button
             onClick={onMenuClick}
-            className="p-2 text-m3-on-surface-variant hover:bg-m3-surface-variant rounded-full transition-colors"
+            className="p-2 text-m3-on-surface-variant hover:bg-m3-surface-variant rounded-full transition-colors md:hidden"
           >
             <MaterialIcon icon="menu" size={24} />
           </button>
@@ -71,6 +80,10 @@ export function Header({ onMenuClick }: HeaderProps) {
                   <button onClick={() => { navigate({ to: "/support" }); setShowProfileMenu(false); }} className="w-full flex items-center gap-2 px-4 py-2.5 text-body-compact text-m3-on-surface hover:bg-m3-surface-variant transition-colors">
                     <MaterialIcon icon="help" size={18} /> Support
                   </button>
+                  <hr className="border-m3-outline-variant my-1" />
+                  <button onClick={() => { logoutModal.open(); setShowProfileMenu(false); }} className="w-full flex items-center gap-2 px-4 py-2.5 text-body-compact text-m3-error hover:bg-m3-error-container/30 transition-colors">
+                    <MaterialIcon icon="logout" size={18} /> Sign Out
+                  </button>
                 </div>
               </>
             )}
@@ -78,6 +91,16 @@ export function Header({ onMenuClick }: HeaderProps) {
         </div>
       </header>
       <DeclareEmergencyModal open={emergencyModal.isOpen} onClose={emergencyModal.close} />
+      <ConfirmDialog
+        open={logoutModal.isOpen}
+        onClose={logoutModal.close}
+        onConfirm={handleLogout}
+        title="Sign Out"
+        message="Are you sure you want to sign out of the DonorLink platform?"
+        confirmLabel="Sign Out"
+        variant="danger"
+        isLoading={logout.isPending}
+      />
     </>
   );
 }
