@@ -69,11 +69,15 @@ export default function LandingPage() {
 
       <main className="flex-grow">
         {/* Hero */}
-        <section id="mission" className="relative w-full overflow-hidden bg-m3-surface-container-low min-h-[500px] flex items-center justify-center py-8 px-4">
-          <div className="absolute inset-0 z-0 opacity-5 pointer-events-none" style={{
-            backgroundImage: "linear-gradient(#e2e8f0 1px, transparent 1px), linear-gradient(90deg, #e2e8f0 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }} />
+        <section id="mission" className="relative w-full overflow-hidden bg-m3-surface-container-low min-h-[600px] flex items-center justify-center py-8 px-4">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <img 
+              alt="National Blood Coordination Map" 
+              className="w-full h-full object-cover opacity-20 mix-blend-multiply" 
+              data-alt="A highly professional and clean top-down view of a modern logistics and medical coordination center map. The visual is abstract yet clearly operational, showing glowing red routing lines connecting various regional hubs across a stylized map of Ethiopia. The aesthetic is corporate modern, using a light, clinical palette of crisp whites and subtle grays, sharply contrasted by intense, deep blood red indicators and routing vectors. The mood conveys precision, authority, and life-saving urgency."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfybez_hLdsWE4zyLITF-DZyC-5XhbT6xaPG4kFDvalQl2gMJkqLiwosxup7vy0f-wdWyrvvCcm84kWtM_JrsdJJInQxdBnsJGYnPBUnRmJ7YFppg7nmq29iIaUEmvUUpZ3cCEYs7MF1Q7I5LcWso52zcjrKfrfPjLYDDL1O-8TvWHN2RDqbBBhMc4iXM8lvSYEdq6NfnikFUXslDz_-2fz66DnIymdGdjuBxFkcV0_kK3EMhufFJ8PSqcvc9Z1CRK8mQ2Z85EAPA"
+            />
+          </div>
           <div className="relative z-10 max-w-4xl mx-auto text-center space-y-6">
             <h1 className="text-display-lg text-m3-on-surface">Intelligent Blood Infrastructure for Ethiopia</h1>
             <p className="text-headline-md text-m3-on-surface-variant max-w-2xl mx-auto text-xl">
