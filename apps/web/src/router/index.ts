@@ -32,9 +32,16 @@ const RolesPage = lazy(() => import("../pages/settings/RolesPage"));
 const NotificationsPage = lazy(() => import("../pages/notifications/NotificationsPage"));
 const AuditLogPage = lazy(() => import("../pages/audit/AuditLogPage"));
 
+import { UserRole, ADMIN_ROLES, STAFF_ROLES } from "../types";
+
 // ─── Guard helpers ────────────────────────────────────────────────────────────
 function requireAuth() {
   if (!authStore.isAuthenticated()) throw redirect({ to: "/login" });
+}
+
+function requireRoles(...roles: UserRole[]) {
+  requireAuth();
+  if (!authStore.hasRole(...roles)) throw redirect({ to: "/unauthorized" });
 }
 
 function requireGuest() {
@@ -92,98 +99,98 @@ const unauthorizedRoute = createRoute({
 const dashboardRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/dashboard",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...STAFF_ROLES),
   component: CommandCenterPage,
 });
 
 const inventoryRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/inventory",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...STAFF_ROLES),
   component: InventoryPage,
 });
 
 const unitTrackingRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/inventory/tracking",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.HOSPITAL_ADMIN, UserRole.LAB_STAFF),
   component: UnitTrackingPage,
 });
 
 const expiryRiskRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/inventory/expiry",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.HOSPITAL_ADMIN, UserRole.LAB_STAFF),
   component: ExpiryRiskPage,
 });
 
 const marketplaceRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/transfers/marketplace",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.REGIONAL_ADMIN, UserRole.HOSPITAL_ADMIN),
   component: MarketplacePage,
 });
 
 const operationsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/transfers/operations",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.REGIONAL_ADMIN, UserRole.HOSPITAL_ADMIN, UserRole.DISPATCHER),
   component: OperationsPage,
 });
 
 const donorManagementRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/donors",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.NATIONAL_ANALYST, UserRole.DONOR_COORDINATOR),
   component: DonorManagementPage,
 });
 
 const campaignsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/campaigns",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.REGIONAL_ADMIN, UserRole.DONOR_COORDINATOR),
   component: CampaignsPage,
 });
 
 const emergencyRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/emergency",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.REGIONAL_ADMIN, UserRole.HOSPITAL_ADMIN),
   component: EmergencyPage,
 });
 
 const alertsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/alerts",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.REGIONAL_ADMIN, UserRole.HOSPITAL_ADMIN),
   component: AlertCenterPage,
 });
 
 const analyticsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/analytics",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.NATIONAL_ANALYST),
   component: AnalyticsPage,
 });
 
 const organizationsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/organizations",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES),
   component: OrganizationsPage,
 });
 
 const usersRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/users",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES),
   component: UsersPage,
 });
 
 const rolesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/settings/roles",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(UserRole.SUPER_ADMIN),
   component: RolesPage,
 });
 
@@ -197,7 +204,7 @@ const notificationsRoute = createRoute({
 const auditRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/audit",
-  beforeLoad: requireAuth,
+  beforeLoad: () => requireRoles(...ADMIN_ROLES),
   component: AuditLogPage,
 });
 

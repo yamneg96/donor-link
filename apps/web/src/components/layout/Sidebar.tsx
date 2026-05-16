@@ -5,6 +5,7 @@ import { MaterialIcon } from "../shared/MaterialIcon";
 import { authStore } from "../../store/authStore";
 import { useLogout } from "../../hooks/useApi";
 import { UserRole, ADMIN_ROLES } from "../../types";
+import { useTheme } from "../theme-provider";
 
 interface NavItem {
   label: string;
@@ -43,6 +44,7 @@ interface SidebarProps {
 }
 
 export function Sidebar({ open, onClose }: SidebarProps) {
+  const { theme, setTheme } = useTheme();
   const state = useSyncExternalStore(authStore.subscribe, authStore.getState);
   const user = state.user;
   const location = useLocation();
@@ -75,24 +77,32 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         )}
       >
         {/* Brand Header */}
-        <div className="flex items-center gap-3 mb-6 px-3">
-          <div className="w-10 h-10 rounded-full bg-m3-primary-container flex items-center justify-center shrink-0">
-            <MaterialIcon icon="admin_panel_settings" className="text-m3-on-primary-container" filled />
+        <div className="flex items-center justify-between mb-6 px-3">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-m3-primary-container flex items-center justify-center shrink-0">
+              <MaterialIcon icon="admin_panel_settings" className="text-m3-on-primary-container" filled />
+            </div>
+            <div className="min-w-0">
+              <h1 className="text-headline-md font-bold text-m3-primary truncate text-lg leading-tight">National Portal</h1>
+              <p className="text-body-compact text-m3-on-surface-variant truncate text-[11px]">Ethiopia Blood Services</p>
+            </div>
           </div>
-          <div className="min-w-0">
-            <h1 className="text-headline-md font-bold text-m3-primary truncate text-lg">National Portal</h1>
-            <p className="text-body-compact text-m3-on-surface-variant truncate">Ethiopia Blood Services</p>
-          </div>
+          <button 
+            onClick={onClose}
+            className="p-1.5 text-m3-on-surface-variant hover:bg-m3-surface-variant rounded-full md:hidden"
+          >
+            <MaterialIcon icon="close" size={20} />
+          </button>
         </div>
 
         {/* Emergency CTA */}
         <button className="w-full bg-m3-primary text-m3-on-primary text-title-sm rounded-lg py-3 px-4 flex items-center justify-center gap-2 mb-4 shadow-sm hover:opacity-90 transition-opacity">
           <MaterialIcon icon="add_alert" size={20} />
-          <span>New Emergency Alert</span>
+          <span className="truncate">New Emergency Alert</span>
         </button>
 
         {/* Navigation */}
-        <nav className="flex-1 overflow-y-auto space-y-0.5">
+        <nav className="flex-1 overflow-y-auto space-y-0.5 custom-scrollbar">
           {visibleItems.map((item) => {
             const isActive = location.pathname === item.path;
             return (
@@ -124,6 +134,14 @@ export function Sidebar({ open, onClose }: SidebarProps) {
 
         {/* Bottom Section */}
         <div className="mt-auto pt-4 border-t border-m3-outline-variant space-y-0.5">
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-m3-on-surface-variant hover:bg-m3-surface-container-high transition-colors"
+          >
+            <MaterialIcon icon={theme === "dark" ? "light_mode" : "dark_mode"} size={20} />
+            <span className="text-body-compact">Switch to {theme === "dark" ? "Light" : "Dark"} Mode</span>
+          </button>
+
           {BOTTOM_NAV.map((item) => (
             <Link
               key={item.path}
@@ -138,15 +156,15 @@ export function Sidebar({ open, onClose }: SidebarProps) {
 
           {/* User Profile */}
           {user && (
-            <div className="flex items-center gap-3 px-3 py-3 mt-2">
-              <div className="w-9 h-9 rounded-full bg-m3-primary-container text-m3-on-primary-container flex items-center justify-center text-sm font-bold shrink-0">
+            <div className="flex items-center gap-3 px-3 py-3 mt-2 bg-m3-surface-container-high rounded-xl border border-m3-outline-variant/50">
+              <div className="w-9 h-9 rounded-full bg-m3-primary text-m3-on-primary flex items-center justify-center text-sm font-bold shrink-0 shadow-sm">
                 {user.firstName?.[0]}{user.lastName?.[0]}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-body-compact font-semibold text-m3-on-surface truncate">
+                <p className="text-body-compact font-semibold text-m3-on-surface truncate leading-tight">
                   {user.firstName} {user.lastName}
                 </p>
-                <p className="text-data-mono text-m3-on-surface-variant truncate">
+                <p className="text-[10px] text-data-mono text-m3-primary uppercase tracking-wider truncate">
                   {user.role?.replace(/_/g, " ")}
                 </p>
               </div>
@@ -155,7 +173,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
 
           <button
             onClick={handleLogout}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-m3-on-surface-variant hover:bg-m3-error-container/30 hover:text-m3-on-error-container transition-colors"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-m3-on-surface-variant hover:bg-m3-error-container/30 hover:text-m3-on-error-container transition-colors mt-1"
           >
             <MaterialIcon icon="logout" size={20} />
             <span className="text-body-compact">Sign Out</span>
