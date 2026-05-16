@@ -1,5 +1,6 @@
-import { Router, Request, Response } from 'express';
-import { sendSuccess, sendError, AppError } from '../../core/utils';
+import { Router, Request, Response, NextFunction } from 'express';
+import { sendSuccess } from '../../../core/utils';
+import { AppError } from '../../../core/errors';
 
 const router = Router();
 
@@ -10,7 +11,7 @@ const contactRequests: any[] = [];
  * POST /api/v1/contact
  * Accept a contact form submission
  */
-router.post('/', async (req: Request, res: Response) => {
+router.post('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { name, email, subject, message, category } = req.body;
 
@@ -34,11 +35,7 @@ router.post('/', async (req: Request, res: Response) => {
 
     sendSuccess(res, contact, 'Contact request received successfully', 201);
   } catch (error) {
-    if (error instanceof AppError) {
-      sendError(res, error);
-    } else {
-      sendError(res, new AppError('Failed to process contact request', 500, 'INTERNAL_ERROR'));
-    }
+    next(error);
   }
 });
 
@@ -46,11 +43,11 @@ router.post('/', async (req: Request, res: Response) => {
  * GET /api/v1/contact
  * List all contact requests (admin only)
  */
-router.get('/', async (_req: Request, res: Response) => {
+router.get('/', async (_req: Request, res: Response, next: NextFunction) => {
   try {
     sendSuccess(res, contactRequests, 'Contact requests retrieved');
   } catch (error) {
-    sendError(res, new AppError('Failed to retrieve contacts', 500, 'INTERNAL_ERROR'));
+    next(error);
   }
 });
 
