@@ -31,6 +31,9 @@ const UsersPage = lazy(() => import("../pages/users/UsersPage"));
 const RolesPage = lazy(() => import("../pages/settings/RolesPage"));
 const NotificationsPage = lazy(() => import("../pages/notifications/NotificationsPage"));
 const AuditLogPage = lazy(() => import("../pages/audit/AuditLogPage"));
+const SettingsPage = lazy(() => import("../pages/settings/SettingsPage"));
+const SupportPage = lazy(() => import("../pages/support/SupportPage"));
+const ContactPage = lazy(() => import("../pages/contact/ContactPage"));
 
 import { UserRole, ADMIN_ROLES, STAFF_ROLES } from "../types";
 
@@ -208,6 +211,26 @@ const auditRoute = createRoute({
   component: AuditLogPage,
 });
 
+const settingsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/settings",
+  beforeLoad: requireAuth,
+  component: SettingsPage,
+});
+
+const supportRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/support",
+  beforeLoad: requireAuth,
+  component: SupportPage,
+});
+
+const contactRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/contact",
+  component: ContactPage,
+});
+
 // ─── Route Tree ───────────────────────────────────────────────────────────────
 const routeTree = rootRoute.addChildren([
   landingRoute,
@@ -232,6 +255,9 @@ const routeTree = rootRoute.addChildren([
   rolesRoute,
   notificationsRoute,
   auditRoute,
+  settingsRoute,
+  supportRoute,
+  contactRoute,
 ]);
 
 // ─── Router Instance ──────────────────────────────────────────────────────────

@@ -9,7 +9,7 @@ import {
   GoogleMapMaster,
   type MapMarkerData,
   type DispatchRoute,
-} from "@/components/shared/GoogleMapMaster";
+} from "@/components/shared/map";
 
 import {
   useNationalDashboard,

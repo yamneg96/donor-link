@@ -1,12 +1,32 @@
 import { MaterialIcon } from "../../components/shared/MaterialIcon";
 import { LoadingSkeleton, EmptyState } from "../../components/shared/EmptyState";
-import { useTransfers } from "../../hooks/useApi";
+import { useTransfers, useApproveTransfer, useRejectTransfer } from "../../hooks/useApi";
+import { useModal } from "../../hooks/useModal";
+import { CreateTransferModal } from "../../components/modals/CreateTransferModal";
+import { ConfirmDialog } from "../../components/modals/ConfirmDialog";
+import { toast } from "sonner";
 
 export default function MarketplacePage() {
   const { data: transfers, isLoading } = useTransfers();
+  const approve = useApproveTransfer();
+  const reject = useRejectTransfer();
+  const createModal = useModal();
+  const approveModal = useModal<string>();
+  const rejectModal = useModal<string>();
   const items = Array.isArray(transfers?.items || transfers) ? (transfers?.items || transfers) : [];
 
   if (isLoading) return <div className="p-6"><LoadingSkeleton rows={6} /></div>;
+
+  const handleApprove = async () => {
+    if (!approveModal.data) return;
+    try { await approve.mutateAsync(approveModal.data); toast.success("Transfer approved"); approveModal.close(); }
+    catch { toast.error("Failed to approve"); }
+  };
+  const handleReject = async () => {
+    if (!rejectModal.data) return;
+    try { await reject.mutateAsync({ id: rejectModal.data }); toast.success("Transfer rejected"); rejectModal.close(); }
+    catch { toast.error("Failed to reject"); }
+  };
 
   return (
     <div className="space-y-6">
@@ -15,11 +35,10 @@ export default function MarketplacePage() {
           <h2 className="text-display-lg text-m3-on-surface">Transfer Marketplace</h2>
           <p className="text-body-main text-m3-on-surface-variant mt-2">Surplus-deficit matching and redistribution hub.</p>
         </div>
-        <button className="bg-m3-primary text-m3-on-primary text-title-sm py-2.5 px-5 rounded flex items-center gap-2 hover:opacity-90 transition-opacity text-sm">
+        <button onClick={() => createModal.open()} className="bg-m3-primary text-m3-on-primary text-title-sm py-2.5 px-5 rounded flex items-center gap-2 hover:opacity-90 transition-opacity text-sm">
           <MaterialIcon icon="add" size={18} /> New Transfer Request
         </button>
       </div>
-
       {items.length > 0 ? (
         <div className="grid gap-4">
           {items.map((t: any) => (
@@ -34,15 +53,13 @@ export default function MarketplacePage() {
                     <p className="text-body-compact text-m3-on-surface-variant">{t.urgency} priority</p>
                   </div>
                 </div>
-                <span className={`text-label-caps px-3 py-1 rounded-full ${
-                  t.status === "pending" ? "bg-yellow-100 text-yellow-800" : t.status === "approved" ? "bg-green-100 text-green-800" : t.status === "dispatched" ? "bg-blue-100 text-blue-800" : "bg-m3-surface-variant text-m3-on-surface-variant"
-                }`}>{t.status}</span>
+                <span className={`text-label-caps px-3 py-1 rounded-full ${t.status === "pending" ? "bg-yellow-100 text-yellow-800" : t.status === "approved" ? "bg-green-100 text-green-800" : t.status === "dispatched" ? "bg-blue-100 text-blue-800" : "bg-m3-surface-variant text-m3-on-surface-variant"}`}>{t.status}</span>
               </div>
               <div className="flex gap-2 mt-3">
                 {t.status === "pending" && (
                   <>
-                    <button className="px-4 py-2 bg-m3-primary text-m3-on-primary rounded text-label-caps hover:opacity-90 transition-opacity">Approve</button>
-                    <button className="px-4 py-2 border border-m3-outline-variant text-m3-on-surface rounded text-label-caps hover:bg-m3-surface-variant transition-colors">Reject</button>
+                    <button onClick={() => approveModal.open(t._id)} className="px-4 py-2 bg-m3-primary text-m3-on-primary rounded text-label-caps hover:opacity-90 transition-opacity">Approve</button>
+                    <button onClick={() => rejectModal.open(t._id)} className="px-4 py-2 border border-m3-outline-variant text-m3-on-surface rounded text-label-caps hover:bg-m3-surface-variant transition-colors">Reject</button>
                   </>
                 )}
               </div>
@@ -52,6 +69,9 @@ export default function MarketplacePage() {
       ) : (
         <EmptyState icon="swap_horiz" title="No transfer requests" description="Transfer marketplace entries will appear here." />
       )}
+      <CreateTransferModal open={createModal.isOpen} onClose={createModal.close} />
+      <ConfirmDialog open={approveModal.isOpen} onClose={approveModal.close} onConfirm={handleApprove} title="Approve Transfer" message="This will authorize the transfer for dispatch." confirmLabel="Approve" variant="default" isLoading={approve.isPending} />
+      <ConfirmDialog open={rejectModal.isOpen} onClose={rejectModal.close} onConfirm={handleReject} title="Reject Transfer" message="This will reject the transfer request." confirmLabel="Reject" variant="danger" isLoading={reject.isPending} />
     </div>
   );
 }

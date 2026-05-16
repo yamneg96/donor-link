@@ -118,6 +118,10 @@ interface GoogleMapMasterProps {
 /* ROUTE RENDERER */
 /* ========================================================== */
 
+/* ========================================================== */
+/* ROUTES */
+/* ========================================================== */
+
 interface DirectionRoutesProps {
   routes: DispatchRoute[];
 }
@@ -127,22 +131,21 @@ function DirectionRoutes({
 }: DirectionRoutesProps) {
   const map = useMap();
 
-  const routesLibrary =
-    useMapsLibrary("routes");
-
   const renderersRef = useRef<
     google.maps.DirectionsRenderer[]
   >([]);
 
   useEffect(() => {
-    if (!map || !routesLibrary) return;
+    if (!map || !window.google) return;
 
     let mounted = true;
 
     const directionsService =
-      new routesLibrary.DirectionsService();
+      new google.maps.DirectionsService();
 
-    /* CLEAR OLD ROUTES */
+    /**
+     * CLEAR OLD ROUTES
+     */
 
     renderersRef.current.forEach(
       (renderer) => {
@@ -158,8 +161,12 @@ function DirectionRoutes({
     const renderRoutes = async () => {
       for (const route of routes) {
         try {
+          /**
+           * CREATE RENDERER
+           */
+
           const renderer =
-            new routesLibrary.DirectionsRenderer(
+            new google.maps.DirectionsRenderer(
               {
                 map,
 
@@ -183,6 +190,10 @@ function DirectionRoutes({
               },
             );
 
+          /**
+           * FETCH ROUTE
+           */
+
           const response =
             await directionsService.route({
               origin: route.origin,
@@ -198,6 +209,10 @@ function DirectionRoutes({
 
           if (!mounted) return;
 
+          /**
+           * APPLY ROUTE
+           */
+
           renderer.setDirections(
             response,
           );
@@ -205,6 +220,10 @@ function DirectionRoutes({
           renderersRef.current.push(
             renderer,
           );
+
+          /**
+           * EXTEND BOUNDS
+           */
 
           const leg =
             response.routes?.[0]?.legs?.[0];
@@ -226,8 +245,15 @@ function DirectionRoutes({
         }
       }
 
-      if (!bounds.isEmpty()) {
-        map.fitBounds(bounds, 120);
+      /**
+       * FIT MAP TO ROUTES
+       */
+
+      if (
+        routes.length > 0 &&
+        !bounds.isEmpty()
+      ) {
+        map.fitBounds(bounds, 100);
       }
     };
 
@@ -244,7 +270,7 @@ function DirectionRoutes({
 
       renderersRef.current = [];
     };
-  }, [map, routesLibrary, routes]);
+  }, [map, routes]);
 
   return null;
 }
@@ -510,17 +536,14 @@ export function GoogleMapMaster({
         apiKey={apiKey}
         libraries={["routes"]}
       >
-        <Map
-          defaultCenter={
-            calculatedCenter
-          }
-          defaultZoom={defaultZoom}
-          mapId={mapId}
-          gestureHandling="greedy"
-          disableDefaultUI={
-            !showControls
-          }
-        >
+          <Map
+            key={mapId}
+            defaultCenter={calculatedCenter}
+            defaultZoom={defaultZoom}
+            mapId={mapId}
+            gestureHandling="greedy"
+            disableDefaultUI={!showControls}
+          >
           {/* ROUTES */}
 
           {enableDirections &&

@@ -1,16 +1,16 @@
-import { useState } from "react";
 import { MaterialIcon } from "../../components/shared/MaterialIcon";
 import { LoadingSkeleton } from "../../components/shared/EmptyState";
 import { useStockLevels, useInventoryAll } from "../../hooks/useApi";
 import { BloodTypeCard } from "../../components/shared/BloodTypeCard";
 import { DataTable } from "../../components/shared/DataTable";
 import { cn } from "../../lib/utils";
+import { useModal } from "../../hooks/useModal";
+import { ManualEntryModal } from "../../components/modals/ManualEntryModal";
 
 export default function InventoryPage() {
   const { data: stockLevels, isLoading: stockLoading } = useStockLevels();
-  const [search, setSearch] = useState("");
-  const [page, setPage] = useState(1);
-  const { data: units, isLoading: unitsLoading } = useInventoryAll({ page, limit: 10, search: search || undefined });
+  const { data: units, isLoading: unitsLoading } = useInventoryAll();
+  const entryModal = useModal();
 
   if (stockLoading) return <div className="p-6"><LoadingSkeleton rows={6} /></div>;
 
@@ -29,8 +29,8 @@ export default function InventoryPage() {
           <p className="text-body-main text-m3-on-surface-variant mt-1">Real-time inventory management and local orchestration.</p>
         </div>
         <div className="flex gap-3">
-          <button className="border border-m3-outline text-m3-secondary text-title-sm py-2.5 px-5 rounded hover:bg-m3-surface-container transition-colors text-sm">Scan Unit In</button>
-          <button className="bg-m3-primary text-m3-on-primary text-title-sm py-2.5 px-5 rounded flex items-center gap-1 hover:opacity-90 transition-opacity text-sm">
+          <button onClick={() => entryModal.open()} className="border border-m3-outline text-m3-secondary text-title-sm py-2.5 px-5 rounded hover:bg-m3-surface-container transition-colors text-sm">Scan Unit In</button>
+          <button onClick={() => entryModal.open()} className="bg-m3-primary text-m3-on-primary text-title-sm py-2.5 px-5 rounded flex items-center gap-1 hover:opacity-90 transition-opacity text-sm">
             <MaterialIcon icon="add" filled size={18} /> Manual Entry
           </button>
         </div>
@@ -61,67 +61,32 @@ export default function InventoryPage() {
 
           {/* Unit Register Table */}
           <div className="bg-m3-surface-container-lowest border border-m3-outline-variant rounded-xl overflow-hidden mt-6 shadow-ambient-md">
-            <div className="p-4 bg-m3-surface border-b border-m3-outline-variant flex justify-between items-center">
-              <h4 className="text-title-sm">Unit Register</h4>
-              <div className="relative">
-                <MaterialIcon icon="search" size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-m3-on-surface-variant" />
-                <input
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="pl-8 pr-3 py-1.5 border border-m3-outline-variant rounded bg-m3-surface-container-lowest text-body-compact focus:outline-none focus:border-m3-primary focus:ring-1 focus:ring-m3-primary w-64"
-                  placeholder="Search Unit ID..."
-                />
-              </div>
-            </div>
             
             <DataTable
               isLoading={unitsLoading}
               data={Array.isArray(units?.items || units) ? (units?.items || units) : []}
+              searchable
+              searchPlaceholder="Search units..."
               columns={[
-                { header: "Unit ID", accessor: (u: any) => `#${u.barcode || u._id?.slice(-6)}` },
-                { 
-                  header: "Type", 
-                  accessor: (u: any) => (
-                    <span className="bg-m3-surface-variant px-2 py-1 rounded font-bold">{u.bloodType}</span>
-                  ) 
-                },
-                { header: "Component", accessor: (u: any) => u.componentType?.replace(/_/g, " ") },
-                { header: "Collection", accessor: (u: any) => u.collectionDate ? new Date(u.collectionDate).toLocaleDateString() : "—" },
-                { 
-                  header: "Days to Expiry", 
-                  align: "right",
-                  accessor: (u: any) => {
+                { header: "Unit ID", accessorFn: (u: any) => u.barcode || u._id?.slice(-6), cell: (info: any) => `#${info.getValue()}` },
+                { header: "Type", accessorFn: (u: any) => u.bloodType, cell: (info: any) => <span className="bg-m3-surface-variant px-2 py-1 rounded font-bold">{info.getValue()}</span> },
+                { header: "Component", accessorFn: (u: any) => u.componentType?.replace(/_/g, " ") },
+                { header: "Collection", accessorFn: (u: any) => u.collectionDate ? new Date(u.collectionDate).toLocaleDateString() : "—" },
+                { header: "Days to Expiry", accessorFn: (u: any) => {
                     const days = u.expiryDate ? Math.ceil((new Date(u.expiryDate).getTime() - Date.now()) / (1000 * 60 * 60 * 24)) : null;
-                    return (
-                      <span className={cn(days !== null && days < 5 ? "text-m3-error font-bold" : days !== null && days < 10 ? "text-yellow-600 font-bold" : "")}>
-                        {days !== null ? `${days} Days` : "—"}
-                      </span>
-                    );
+                    return days;
+                  }, cell: (info: any) => {
+                    const days = info.getValue();
+                    return <span className={cn(days !== null && days < 5 ? "text-m3-error font-bold" : days !== null && days < 10 ? "text-yellow-600 font-bold" : "")}>{days !== null ? `${days} Days` : "—"}</span>;
                   }
                 },
-                { 
-                  header: "Status", 
-                  align: "center",
-                  accessor: (u: any) => (
-                    <span className={cn("inline-block w-2 h-2 rounded-full", 
-                      u.status === "available" ? "bg-green-500" : u.status === "reserved" ? "bg-yellow-500" : u.status === "expired" ? "bg-m3-error" : "bg-m3-secondary"
-                    )} />
-                  ) 
+                { header: "Status", accessorFn: (u: any) => u.status, cell: (info: any) => {
+                    const s = info.getValue();
+                    return <span className={cn("inline-block w-2 h-2 rounded-full", s === "available" ? "bg-green-500" : s === "reserved" ? "bg-yellow-500" : s === "expired" ? "bg-m3-error" : "bg-m3-secondary")} />;
+                  }
                 },
               ]}
             />
-
-            <div className="p-3 bg-m3-surface flex justify-between items-center border-t border-m3-outline-variant text-body-compact text-m3-secondary">
-              <span>Page {page}</span>
-              <div className="flex gap-1">
-                <button onClick={() => setPage((p) => Math.max(1, p - 1))} className="p-1 border border-m3-outline-variant rounded hover:bg-m3-surface-container">
-                  <MaterialIcon icon="chevron_left" size={18} />
-                </button>
-                <button onClick={() => setPage((p) => p + 1)} className="p-1 border border-m3-outline-variant rounded hover:bg-m3-surface-container">
-                  <MaterialIcon icon="chevron_right" size={18} />
-                </button>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -172,6 +137,7 @@ export default function InventoryPage() {
           </div>
         </div>
       </div>
+      <ManualEntryModal open={entryModal.isOpen} onClose={entryModal.close} />
     </div>
   );
 }

@@ -26,6 +26,7 @@ import { recommendationRoutes } from './modules/recommendations';
 import { notificationRoutes } from './modules/notifications';
 import { auditRoutes } from './modules/audit';
 import { dashboardRoutes } from './modules/dashboard';
+import { contactRoutes } from './modules/contact';
 
 const app = express();
 
@@ -120,6 +121,7 @@ app.use(`${API_PREFIX}/recommendations`, recommendationRoutes);
 app.use(`${API_PREFIX}/notifications`, notificationRoutes);
 app.use(`${API_PREFIX}/audit`, auditRoutes);
 app.use(`${API_PREFIX}/dashboard`, dashboardRoutes);
+app.use(`${API_PREFIX}/contact`, contactRoutes);
 
 // ==================================================
 // 404 Handler

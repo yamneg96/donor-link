@@ -6,6 +6,8 @@ import { authStore } from "../../store/authStore";
 import { useLogout } from "../../hooks/useApi";
 import { UserRole, ADMIN_ROLES } from "../../types";
 import { useTheme } from "../theme-provider";
+import { useModal } from "../../hooks/useModal";
+import { DeclareEmergencyModal } from "../modals/DeclareEmergencyModal";
 
 interface NavItem {
   label: string;
@@ -49,6 +51,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
   const user = state.user;
   const location = useLocation();
   const logout = useLogout();
+  const emergencyModal = useModal();
 
   const visibleItems = NAV_ITEMS.filter(
     (item) => !item.roles || (user && authStore.hasRole(...item.roles))
@@ -96,7 +99,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
         </div>
 
         {/* Emergency CTA */}
-        <button className="w-full bg-m3-primary text-m3-on-primary text-title-sm rounded-lg py-3 px-4 flex items-center justify-center gap-2 mb-4 shadow-sm hover:opacity-90 transition-opacity">
+        <button onClick={() => emergencyModal.open()} className="w-full bg-m3-primary text-m3-on-primary text-title-sm rounded-lg py-3 px-4 flex items-center justify-center gap-2 mb-4 shadow-sm hover:opacity-90 transition-opacity">
           <MaterialIcon icon="add_alert" size={20} />
           <span className="truncate">New Emergency Alert</span>
         </button>
@@ -180,6 +183,7 @@ export function Sidebar({ open, onClose }: SidebarProps) {
           </button>
         </div>
       </aside>
+      <DeclareEmergencyModal open={emergencyModal.isOpen} onClose={emergencyModal.close} />
     </>
   );
 }
