@@ -17,7 +17,11 @@ import {
   useRecommendations,
 } from "../../hooks/useApi";
 
+import { useTheme } from "@/components/theme-provider";
+
 export default function CommandCenterPage() {
+  const { theme } = useTheme();
+
   const { data: dashboard, isLoading } =
     useNationalDashboard();
 
@@ -434,8 +438,8 @@ export default function CommandCenterPage() {
                   .VITE_GOOGLE_MAPS_API_KEY
               }
               mapId={
-                import.meta.env
-                  .VITE_GOOGLE_MAPS_MAP_ID
+                theme === 'light' ? import.meta.env
+                  .VITE_GOOGLE_LIGHT_MAPS_MAP_ID : import.meta.env.VITE_GOOGLE_DARK_MAPS_MAP_ID
               }
               markers={logisticsNodes}
               defaultZoom={12}
