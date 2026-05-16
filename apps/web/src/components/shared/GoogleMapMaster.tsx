@@ -1,12 +1,30 @@
-import { useMemo, useState } from "react";
+import {
+  useMemo,
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+} from "react";
+
 import {
   APIProvider,
   Map,
   AdvancedMarker,
   InfoWindow,
+  useMap,
+  useMapsLibrary,
 } from "@vis.gl/react-google-maps";
 
+import {
+  MarkerClusterer,
+  type Marker,
+} from "@googlemaps/markerclusterer";
+
 import { MaterialIcon } from "../shared/MaterialIcon";
+
+/* ========================================================== */
+/* TYPES */
+/* ========================================================== */
 
 type MarkerSeverity =
   | "normal"
@@ -17,26 +35,54 @@ type MarkerSeverity =
 
 export interface MapMarkerData {
   id: string | number;
+
   name: string;
 
   lat: number;
   lng: number;
 
   type?: string;
+
   status?: string;
+
   severity?: MarkerSeverity;
 
   inventory?: number;
+
   metadata?: Record<string, any>;
+}
+
+export interface DispatchRoute {
+  id?: string | number;
+
+  origin: {
+    lat: number;
+    lng: number;
+  };
+
+  destination: {
+    lat: number;
+    lng: number;
+  };
+
+  travelMode?: google.maps.TravelMode;
+
+  color?: string;
+
+  sourceName?: string;
+
+  destinationName?: string;
 }
 
 interface GoogleMapMasterProps {
   apiKey: string;
+
   mapId?: string;
 
   markers: MapMarkerData[];
 
   height?: string;
+
   defaultZoom?: number;
 
   center?: {
@@ -45,11 +91,20 @@ interface GoogleMapMasterProps {
   };
 
   showControls?: boolean;
+
   enableInfoWindow?: boolean;
+
+  enableClustering?: boolean;
+
+  enableDirections?: boolean;
 
   className?: string;
 
-  onMarkerClick?: (marker: MapMarkerData) => void;
+  dispatchRoutes?: DispatchRoute[];
+
+  onMarkerClick?: (
+    marker: MapMarkerData,
+  ) => void;
 
   renderInfoWindow?: (
     marker: MapMarkerData,
@@ -59,35 +114,302 @@ interface GoogleMapMasterProps {
   loadingOverlay?: React.ReactNode;
 }
 
+/* ========================================================== */
+/* ROUTE RENDERER */
+/* ========================================================== */
+
+interface DirectionRoutesProps {
+  routes: DispatchRoute[];
+}
+
+function DirectionRoutes({
+  routes,
+}: DirectionRoutesProps) {
+  const map = useMap();
+
+  const routesLibrary =
+    useMapsLibrary("routes");
+
+  const renderersRef = useRef<
+    google.maps.DirectionsRenderer[]
+  >([]);
+
+  useEffect(() => {
+    if (!map || !routesLibrary) return;
+
+    let mounted = true;
+
+    const directionsService =
+      new routesLibrary.DirectionsService();
+
+    /* CLEAR OLD ROUTES */
+
+    renderersRef.current.forEach(
+      (renderer) => {
+        renderer.setMap(null);
+      },
+    );
+
+    renderersRef.current = [];
+
+    const bounds =
+      new google.maps.LatLngBounds();
+
+    const renderRoutes = async () => {
+      for (const route of routes) {
+        try {
+          const renderer =
+            new routesLibrary.DirectionsRenderer(
+              {
+                map,
+
+                suppressMarkers: false,
+
+                preserveViewport: true,
+
+                polylineOptions: {
+                  strokeColor:
+                    route.color ||
+                    "#DC2626",
+
+                  strokeOpacity: 0.95,
+
+                  strokeWeight: 6,
+                },
+
+                markerOptions: {
+                  zIndex: 999,
+                },
+              },
+            );
+
+          const response =
+            await directionsService.route({
+              origin: route.origin,
+
+              destination:
+                route.destination,
+
+              travelMode:
+                route.travelMode ||
+                google.maps.TravelMode
+                  .DRIVING,
+            });
+
+          if (!mounted) return;
+
+          renderer.setDirections(
+            response,
+          );
+
+          renderersRef.current.push(
+            renderer,
+          );
+
+          const leg =
+            response.routes?.[0]?.legs?.[0];
+
+          if (leg) {
+            bounds.extend(
+              leg.start_location,
+            );
+
+            bounds.extend(
+              leg.end_location,
+            );
+          }
+        } catch (error) {
+          console.error(
+            "Directions error:",
+            error,
+          );
+        }
+      }
+
+      if (!bounds.isEmpty()) {
+        map.fitBounds(bounds, 120);
+      }
+    };
+
+    renderRoutes();
+
+    return () => {
+      mounted = false;
+
+      renderersRef.current.forEach(
+        (renderer) => {
+          renderer.setMap(null);
+        },
+      );
+
+      renderersRef.current = [];
+    };
+  }, [map, routesLibrary, routes]);
+
+  return null;
+}
+
+/* ========================================================== */
+/* CLUSTER MARKERS */
+/* ========================================================== */
+
+interface ClusterMarkersProps {
+  markers: MapMarkerData[];
+
+  getSeverityStyles: (
+    severity?: MarkerSeverity,
+  ) => {
+    bg: string;
+    text: string;
+    ring: string;
+    icon: string;
+  };
+
+  onSelectMarker: (
+    marker: MapMarkerData,
+  ) => void;
+}
+
+function ClusterMarkers({
+  markers,
+  getSeverityStyles,
+  onSelectMarker,
+}: ClusterMarkersProps) {
+  const map = useMap();
+
+  const clusterer = useRef<MarkerClusterer | null>(
+    null,
+  );
+
+  const markersRef = useRef<
+    Record<string, Marker>
+  >({});
+
+  useEffect(() => {
+    if (!map) return;
+
+    if (!clusterer.current) {
+      clusterer.current =
+        new MarkerClusterer({
+          map,
+        });
+    }
+  }, [map]);
+
+  const updateClusterer =
+    useCallback(() => {
+      if (!clusterer.current) return;
+
+      clusterer.current.clearMarkers();
+
+      clusterer.current.addMarkers(
+        Object.values(markersRef.current),
+      );
+    }, []);
+
+  const createMarkerRef = useCallback(
+    (id: string) => {
+      return (marker: Marker | null) => {
+        if (marker) {
+          markersRef.current[id] =
+            marker;
+        } else {
+          delete markersRef.current[id];
+        }
+
+        updateClusterer();
+      };
+    },
+    [updateClusterer],
+  );
+
+  useEffect(() => {
+    updateClusterer();
+  }, [markers, updateClusterer]);
+
+  return (
+    <>
+      {markers.map((marker) => {
+        const severityStyles =
+          getSeverityStyles(
+            marker.severity,
+          );
+
+        return (
+          <AdvancedMarker
+            key={marker.id}
+            position={{
+              lat: marker.lat,
+              lng: marker.lng,
+            }}
+            ref={createMarkerRef(
+              String(marker.id),
+            )}
+            onClick={() =>
+              onSelectMarker(marker)
+            }
+          >
+            <div
+              className={`
+                relative
+                flex items-center justify-center
+                w-12 h-12
+                rounded-full
+                border-4 border-white
+                shadow-2xl
+                ring-4
+                transition-all duration-300
+                hover:scale-110
+                cursor-pointer
+                ${severityStyles.bg}
+                ${severityStyles.ring}
+              `}
+            >
+              <MaterialIcon
+                icon="water_drop"
+                size={22}
+                filled
+                className={severityStyles.text}
+              />
+
+              {marker.severity ===
+                "critical" && (
+                <span className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-40" />
+              )}
+            </div>
+          </AdvancedMarker>
+        );
+      })}
+    </>
+  );
+}
+
+/* ========================================================== */
+/* MAIN COMPONENT */
+/* ========================================================== */
+
 export function GoogleMapMaster({
   apiKey,
   mapId,
-
   markers,
-
-  height = "500px",
+  height = "1000px",
   defaultZoom = 7,
-
   center,
-
   showControls = true,
   enableInfoWindow = true,
-
+  enableClustering = true,
+  enableDirections = true,
+  dispatchRoutes = [],
   className = "",
-
   onMarkerClick,
   renderInfoWindow,
-
   loadingOverlay,
 }: GoogleMapMasterProps) {
   const [selectedMarker, setSelectedMarker] =
-    useState<MapMarkerData | null>(null);
+    useState<MapMarkerData | null>(
+      null,
+    );
 
-  /**
-   * ==================================================
-   * AUTO CENTER CALCULATION
-   * ==================================================
-   */
   const calculatedCenter = useMemo(() => {
     if (center) return center;
 
@@ -99,22 +421,28 @@ export function GoogleMapMaster({
     }
 
     const lat =
-      markers.reduce((sum, marker) => sum + marker.lat, 0) /
-      markers.length;
+      markers.reduce(
+        (sum, marker) =>
+          sum + marker.lat,
+        0,
+      ) / markers.length;
 
     const lng =
-      markers.reduce((sum, marker) => sum + marker.lng, 0) /
-      markers.length;
+      markers.reduce(
+        (sum, marker) =>
+          sum + marker.lng,
+        0,
+      ) / markers.length;
 
-    return { lat, lng };
+    return {
+      lat,
+      lng,
+    };
   }, [center, markers]);
 
-  /**
-   * ==================================================
-   * SEVERITY COLOR SYSTEM
-   * ==================================================
-   */
-  const getSeverityStyles = (severity?: MarkerSeverity) => {
+  const getSeverityStyles = (
+    severity?: MarkerSeverity,
+  ) => {
     switch (severity) {
       case "critical":
         return {
@@ -158,185 +486,148 @@ export function GoogleMapMaster({
     }
   };
 
-  /**
-   * ==================================================
-   * DEFAULT INFOWINDOW UI
-   * ==================================================
-   */
-  const DefaultInfoWindow = ({
-    marker,
-  }: {
-    marker: MapMarkerData;
-  }) => {
-    const severityStyles = getSeverityStyles(marker.severity);
+  const handleMarkerClick = (
+    marker: MapMarkerData,
+  ) => {
+    setSelectedMarker(marker);
 
-    return (
-      <div className="min-w-[260px] text-black">
-        {/* Header */}
-        <div className="flex items-start justify-between gap-3 mb-3">
-          <div>
-            <h4 className="font-semibold text-sm leading-tight">
-              {marker.name}
-            </h4>
-
-            {marker.type && (
-              <p className="text-[11px] text-slate-500 mt-1">
-                {marker.type}
-              </p>
-            )}
-          </div>
-
-          {marker.severity && (
-            <span
-              className={`px-2 py-1 rounded-full text-[10px] font-bold uppercase ${severityStyles.bg} ${severityStyles.text}`}
-            >
-              {marker.severity}
-            </span>
-          )}
-        </div>
-
-        {/* Core Stats */}
-        <div className="space-y-2 text-xs">
-          {marker.status && (
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-slate-500">Status</span>
-
-              <span className="font-medium text-right">
-                {marker.status}
-              </span>
-            </div>
-          )}
-
-          {typeof marker.inventory === "number" && (
-            <div className="flex items-center justify-between gap-4">
-              <span className="text-slate-500">Inventory</span>
-
-              <span className="font-semibold">
-                {marker.inventory} Units
-              </span>
-            </div>
-          )}
-
-          {/* Dynamic Metadata */}
-          {marker.metadata &&
-            Object.entries(marker.metadata).map(([key, value]) => (
-              <div
-                key={key}
-                className="flex items-center justify-between gap-4"
-              >
-                <span className="text-slate-500 capitalize">
-                  {key.replace(/([A-Z])/g, " $1")}
-                </span>
-
-                <span className="font-medium text-right">
-                  {String(value)}
-                </span>
-              </div>
-            ))}
-        </div>
-
-        {/* Footer CTA */}
-        <button className="w-full mt-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white text-xs font-semibold transition-colors">
-          View Operations
-        </button>
-      </div>
-    );
+    onMarkerClick?.(marker);
   };
 
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-800 ${className}`}
+      className={`
+        relative
+        overflow-hidden
+        rounded-2xl
+        border border-slate-200
+        dark:border-slate-800
+        ${className}
+      `}
       style={{ height }}
     >
-      <APIProvider apiKey={apiKey}>
+      <APIProvider
+        apiKey={apiKey}
+        libraries={["routes"]}
+      >
         <Map
-          defaultCenter={calculatedCenter}
+          defaultCenter={
+            calculatedCenter
+          }
           defaultZoom={defaultZoom}
           mapId={mapId}
           gestureHandling="greedy"
-          disableDefaultUI={!showControls}
+          disableDefaultUI={
+            !showControls
+          }
         >
-          {/* ================================================== */}
+          {/* ROUTES */}
+
+          {enableDirections &&
+            dispatchRoutes.length >
+              0 && (
+              <DirectionRoutes
+                routes={
+                  dispatchRoutes
+                }
+              />
+            )}
+
           {/* MARKERS */}
-          {/* ================================================== */}
-          {markers.map((marker) => {
-            const severityStyles = getSeverityStyles(
-              marker.severity,
-            );
 
-            return (
-              <AdvancedMarker
-                key={marker.id}
-                position={{
-                  lat: marker.lat,
-                  lng: marker.lng,
-                }}
-                onClick={() => {
-                  setSelectedMarker(marker);
+          {enableClustering ? (
+            <ClusterMarkers
+              markers={markers}
+              getSeverityStyles={
+                getSeverityStyles
+              }
+              onSelectMarker={
+                handleMarkerClick
+              }
+            />
+          ) : (
+            markers.map((marker) => {
+              const severityStyles =
+                getSeverityStyles(
+                  marker.severity,
+                );
 
-                  if (onMarkerClick) {
-                    onMarkerClick(marker);
+              return (
+                <AdvancedMarker
+                  key={marker.id}
+                  position={{
+                    lat: marker.lat,
+                    lng: marker.lng,
+                  }}
+                  onClick={() =>
+                    handleMarkerClick(
+                      marker,
+                    )
                   }
-                }}
-              >
-                {/* ================================================== */}
-                {/* CUSTOM BLOOD DROP PIN */}
-                {/* ================================================== */}
-                <div
-                  className={`
-                    relative flex items-center justify-center
-                    w-12 h-12 rounded-full
-                    shadow-2xl
-                    border-4 border-white
-                    ring-4 ${severityStyles.ring}
-                    ${severityStyles.bg}
-                    cursor-pointer
-                    transition-all duration-300
-                    hover:scale-110
-                  `}
                 >
-                  <MaterialIcon
-                    icon="water_drop"
-                    className={`${severityStyles.text} ${severityStyles.icon}`}
-                    size={22}
-                    filled
-                  />
+                  <div
+                    className={`
+                      relative
+                      flex items-center justify-center
+                      w-12 h-12
+                      rounded-full
+                      border-4 border-white
+                      shadow-2xl
+                      ring-4
+                      transition-all duration-300
+                      hover:scale-110
+                      cursor-pointer
+                      ${severityStyles.bg}
+                      ${severityStyles.ring}
+                    `}
+                  >
+                    <MaterialIcon
+                      icon="water_drop"
+                      size={22}
+                      filled
+                      className={`
+                        ${severityStyles.text}
+                        ${severityStyles.icon}
+                      `}
+                    />
 
-                  {/* Pulse */}
-                  {marker.severity === "critical" && (
-                    <span className="absolute inset-0 rounded-full animate-ping bg-red-500 opacity-40" />
-                  )}
-                </div>
-              </AdvancedMarker>
-            );
-          })}
-
-          {/* ================================================== */}
-          {/* INFOWINDOW */}
-          {/* ================================================== */}
-          {enableInfoWindow && selectedMarker && (
-            <InfoWindow
-              position={{
-                lat: selectedMarker.lat,
-                lng: selectedMarker.lng,
-              }}
-              onCloseClick={() => setSelectedMarker(null)}
-            >
-              {renderInfoWindow ? (
-                renderInfoWindow(selectedMarker, () =>
-                  setSelectedMarker(null),
-                )
-              ) : (
-                <DefaultInfoWindow marker={selectedMarker} />
-              )}
-            </InfoWindow>
+                    {marker.severity ===
+                      "critical" && (
+                      <span className="absolute inset-0 rounded-full bg-red-500 animate-ping opacity-40" />
+                    )}
+                  </div>
+                </AdvancedMarker>
+              );
+            })
           )}
+
+          {/* INFO WINDOW */}
+
+          {enableInfoWindow &&
+            selectedMarker && (
+              <InfoWindow
+                position={{
+                  lat: selectedMarker.lat,
+                  lng: selectedMarker.lng,
+                }}
+                onCloseClick={() =>
+                  setSelectedMarker(
+                    null,
+                  )
+                }
+              >
+                {renderInfoWindow?.(
+                  selectedMarker,
+                  () =>
+                    setSelectedMarker(
+                      null,
+                    ),
+                )}
+              </InfoWindow>
+            )}
         </Map>
       </APIProvider>
 
-      {/* ================================================== */}
-      {/* OPTIONAL OVERLAY */}
-      {/* ================================================== */}
       {loadingOverlay && (
         <div className="absolute inset-0 z-20">
           {loadingOverlay}
