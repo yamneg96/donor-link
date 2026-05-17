@@ -43,27 +43,29 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-m3-surface flex flex-col transition-colors duration-300">
       {/* TopNavBar */}
-      <header className="bg-m3-surface-container-highest border-b border-m3-outline-variant sticky top-0 z-50 flex justify-between items-center h-16 px-6">
-        <span className="text-display-lg text-m3-primary text-2xl font-bold">DonorLink</span>
+      <header className="bg-m3-surface-container-highest border-b border-m3-outline-variant sticky top-0 z-50 flex justify-between items-center h-16 px-4 md:px-6">
+        <span className="font-heading text-xl md:text-2xl font-bold text-m3-primary tracking-tight">DonorLink</span>
         <nav className="hidden md:flex gap-6 items-center">
           <a href="#mission" className="text-body-main text-m3-primary font-bold border-b-2 border-m3-primary py-2 transition-all">Mission</a>
           <a href="#stats" className="text-body-main text-m3-on-surface-variant hover:bg-m3-surface-variant transition-colors py-2 px-3 rounded-lg">Stats</a>
           <a href="#flow" className="text-body-main text-m3-on-surface-variant hover:bg-m3-surface-variant transition-colors py-2 px-3 rounded-lg">Flow</a>
           <a href="#partners" className="text-body-main text-m3-on-surface-variant hover:bg-m3-surface-variant transition-colors py-2 px-3 rounded-lg">Partners</a>
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
           <button 
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 text-m3-on-surface-variant hover:bg-m3-surface-variant rounded-full transition-colors"
+            className="p-2 text-m3-on-surface-variant hover:bg-m3-surface-variant rounded-full transition-colors flex items-center justify-center"
             title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
             <MaterialIcon icon={theme === "dark" ? "light_mode" : "dark_mode"} size={22} />
           </button>
           <Link
             to="/login"
-            className="bg-m3-primary text-m3-on-primary text-title-sm px-5 py-2 rounded-lg hover:opacity-90 transition-opacity text-sm font-semibold shadow-sm"
+            className="bg-m3-primary text-m3-on-primary rounded-lg hover:opacity-90 transition-opacity text-xs md:text-sm font-semibold shadow-sm px-3 py-2 md:px-4 md:py-2 flex items-center gap-1.5 whitespace-nowrap"
           >
-            Staff Portal
+            <MaterialIcon icon="login" size={16} />
+            <span className="hidden sm:inline">Staff Portal</span>
+            <span className="inline sm:hidden">Staff</span>
           </Link>
         </div>
       </header>
