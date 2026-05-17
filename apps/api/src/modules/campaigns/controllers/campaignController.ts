@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { sendSuccess, sendCreated, sendPaginated, parsePagination } from '../../../core/utils';
 import { Campaign } from '../models/Campaign';
+import { Organization } from '../../organizations/models/Organization';
+import { OrganizationType } from '../../../core/constants';
 
 export class CampaignController {
   static async getAll(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -17,7 +19,23 @@ export class CampaignController {
     } catch (e) { next(e); }
   }
   static async getById(req: Request, res: Response, next: NextFunction): Promise<void> { try { sendSuccess(res, await Campaign.findById(req.params.id).populate('organizationId', 'name code')); } catch (e) { next(e); } }
-  static async create(req: Request, res: Response, next: NextFunction): Promise<void> { try { sendCreated(res, await Campaign.create({ ...req.body, createdBy: req.user!.id })); } catch (e) { next(e); } }
+  static async create(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      let organizationId = req.body.organizationId || req.user!.organizationId;
+      if (!organizationId) {
+        const org = await Organization.findOne({ type: OrganizationType.NATIONAL_BLOOD_BANK }) || await Organization.findOne();
+        if (org) organizationId = org._id;
+      }
+      const goal = req.body.goal || req.body.goalUnits || 100;
+      const campaign = await Campaign.create({
+        ...req.body,
+        organizationId,
+        goal,
+        createdBy: req.user!.id,
+      });
+      sendCreated(res, campaign);
+    } catch (e) { next(e); }
+  }
   static async update(req: Request, res: Response, next: NextFunction): Promise<void> { try { sendSuccess(res, await Campaign.findByIdAndUpdate(req.params.id, req.body, { new: true }), 'Campaign updated'); } catch (e) { next(e); } }
   static async delete(req: Request, res: Response, next: NextFunction): Promise<void> { try { await Campaign.findByIdAndUpdate(req.params.id, { isDeleted: true }); sendSuccess(res, { message: 'Campaign deleted' }); } catch (e) { next(e); } }
   static async updateProgress(req: Request, res: Response, next: NextFunction): Promise<void> { try { sendSuccess(res, await Campaign.findByIdAndUpdate(req.params.id, { currentProgress: req.body.progress }, { new: true }), 'Progress updated'); } catch (e) { next(e); } }

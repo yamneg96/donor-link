@@ -1,7 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { sendSuccess, sendCreated, sendPaginated, parsePagination } from '../../../core/utils';
 import { EmergencyEvent } from '../models/EmergencyEvent';
-import { EmergencyStatus } from '../../../core/constants';
+import { EmergencyStatus, OrganizationType } from '../../../core/constants';
+import { Organization } from '../../organizations/models/Organization';
 import { eventBus, EventType } from '../../../core/events';
 
 export class EmergencyController {
@@ -21,7 +22,14 @@ export class EmergencyController {
   static async getById(req: Request, res: Response, next: NextFunction): Promise<void> { try { sendSuccess(res, await EmergencyEvent.findById(req.params.id).populate('organizationId declaredBy')); } catch (e) { next(e); } }
   static async declare(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const event = await EmergencyEvent.create({ ...req.body, declaredBy: req.user!.id });
+      let organizationId = req.body.organizationId || req.user!.organizationId;
+      if (!organizationId) {
+        const org = await Organization.findOne({ type: OrganizationType.NATIONAL_BLOOD_BANK }) || await Organization.findOne();
+        if (org) {
+          organizationId = org._id;
+        }
+      }
+      const event = await EmergencyEvent.create({ ...req.body, organizationId, declaredBy: req.user!.id });
       eventBus.emitEvent(EventType.EMERGENCY_DECLARED, { emergencyId: event._id.toString(), severity: event.severity, bloodTypes: event.bloodTypesNeeded });
       sendCreated(res, event, 'Emergency declared');
     } catch (e) { next(e); }

@@ -14,7 +14,7 @@ const schema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Valid email required"),
-  password: z.string().min(6, "Min 6 characters"),
+  password: z.string().min(8, "Min 8 characters"),
   phone: z.string().optional(),
   role: z.nativeEnum(UserRole),
   organizationId: z.string().optional(),
@@ -90,7 +90,7 @@ export function CreateUserModal({ open, onClose }: Props) {
 
         <div>
           <label className={labelClass}>Password</label>
-          <input {...register("password")} type="password" className={inputClass} placeholder="Min 6 characters" />
+          <input {...register("password")} type="password" className={inputClass} placeholder="Min 8 characters" />
           {errors.password && <p className={errorClass}>{errors.password.message}</p>}
         </div>
 

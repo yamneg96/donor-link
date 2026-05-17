@@ -71,6 +71,7 @@ export function MapDirections({ routes }: MapDirectionsProps) {
             destination: route.destination,
             travelMode:
               route.travelMode || google.maps.TravelMode.DRIVING,
+              provideRouteAlternatives: true
           });
 
           if (!mounted) {

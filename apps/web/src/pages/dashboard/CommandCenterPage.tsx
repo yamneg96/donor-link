@@ -438,12 +438,13 @@ export default function CommandCenterPage() {
                   .VITE_GOOGLE_MAPS_API_KEY
               }
               mapId={
-                theme === 'light' ? import.meta.env
-                  .VITE_GOOGLE_LIGHT_MAPS_MAP_ID : import.meta.env.VITE_GOOGLE_DARK_MAPS_MAP_ID
+                theme === 'light' ? (
+                  import.meta.env.VITE_GOOGLE_LIGHT_MAPS_MAP_ID
+                ) : (import.meta.env.VITE_GOOGLE_DARK_MAPS_MAP_ID)
               }
               markers={logisticsNodes}
               defaultZoom={12}
-              height="100%"
+              height="calc(100vh - 64px)"
               className="rounded-none border-none"
               enableClustering
               enableDirections

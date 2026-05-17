@@ -24,6 +24,10 @@ export class UserService {
     const existing = await this.userRepo.findByEmail(data.email as string);
     if (existing) throw new ConflictError('User with this email already exists');
 
+    if (data.organizationId === '') {
+      data.organizationId = null;
+    }
+
     if (data.password) {
       data.password = await hashPassword(data.password as string);
     }
@@ -33,6 +37,10 @@ export class UserService {
   async updateUser(id: string, data: Record<string, unknown>) {
     const user = await this.userRepo.findById(id);
     if (!user) throw new NotFoundError('User');
+
+    if (data.organizationId === '') {
+      data.organizationId = null;
+    }
 
     if (data.password) {
       data.password = await hashPassword(data.password as string);

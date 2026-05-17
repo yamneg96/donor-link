@@ -4,3 +4,6 @@ node_modules/
 .env
 apps/web/dist/
 apps/api/dist/
+.turbo/
+*.log
+apps/api/logs/

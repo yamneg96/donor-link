@@ -2,6 +2,8 @@ import mongoose, { Schema, Document } from 'mongoose';
 import { EmergencyStatus, EmergencySeverity } from '../../../core/constants';
 
 export interface IEmergencyEvent extends Document {
+  title: string;
+  affectedRegions: string[];
   type: string; severity: EmergencySeverity; description: string;
   organizationId: mongoose.Types.ObjectId; bloodTypesNeeded: string[];
   status: EmergencyStatus; declaredBy: mongoose.Types.ObjectId;
@@ -12,6 +14,8 @@ export interface IEmergencyEvent extends Document {
 
 const emergencyEventSchema = new Schema<IEmergencyEvent>(
   {
+    title: { type: String, required: true },
+    affectedRegions: [{ type: String }],
     type: { type: String, required: true, default: 'blood_shortage' },
     severity: { type: String, enum: Object.values(EmergencySeverity), required: true },
     description: { type: String, required: true },

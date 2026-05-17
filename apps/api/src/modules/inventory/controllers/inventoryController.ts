@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { InventoryService } from '../services/inventoryService';
-import { sendSuccess, sendPaginated, parsePagination } from '../../../core/utils';
+import { sendSuccess, sendCreated, sendPaginated, parsePagination } from '../../../core/utils';
 
 export class InventoryController {
   private static service = new InventoryService();
@@ -143,6 +143,15 @@ export class InventoryController {
       const { reason } = req.body;
       const unit = await InventoryController.service.discardUnit(req.params.id, reason, req.user!.id.toString());
       sendSuccess(res, { unit }, 'Unit discarded', 200);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  static createUnit = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const unit = await InventoryController.service.createUnit(req.body, req.user!.id.toString(), req.user!.organizationId?.toString());
+      sendCreated(res, unit, 'Blood unit created successfully');
     } catch (error) {
       next(error);
     }

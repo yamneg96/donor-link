@@ -112,6 +112,11 @@ export class InventoryRepository {
     );
   }
 
+  // === Creation ===
+  async createUnit(data: Partial<IBloodUnit>): Promise<IBloodUnit> {
+    return BloodUnit.create(data);
+  }
+
   // === Stats ===
   async countByStatus(organizationId?: string) {
     const match: Record<string, unknown> = { isDeleted: false };

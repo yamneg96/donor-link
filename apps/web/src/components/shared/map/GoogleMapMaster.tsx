@@ -52,10 +52,11 @@ export function GoogleMapMaster({
     >
       <APIProvider apiKey={apiKey} libraries={MAPS_LIBRARIES}>
         <Map
+          key={mapId}
           defaultCenter={calculatedCenter}
           defaultZoom={defaultZoom}
           mapId={mapId}
-          gestureHandling="greedy"
+          gestureHandling="cooperative"
           disableDefaultUI={!showControls}
         >
           {/* ── DIRECTIONS ── */}
