@@ -1,131 +1,726 @@
 # DonorLink 🩸
-### National Blood Infrastructure & Redistribution Intelligence Platform
 
-DonorLink is a production-grade, centralized healthcare logistics, blood inventory orchestration, and emergency coordination platform designed for the Ethiopian National Blood Bank. 
+## National Blood Intelligence & Emergency Healthcare Ecosystem
 
-Unlike conventional, simple blood-matching applications, DonorLink acts as an operational control tower. It bridges the gap between blood banks, hospitals, logistics networks, and regional health bureaus across Ethiopia to automate life-saving supply chains and mitigate critical shortages through intelligent data distribution.
+DonorLink is a production-grade national blood logistics, emergency coordination, donor mobilization, and healthcare intelligence ecosystem designed for the Ethiopian National Blood Bank.
 
----
+This is NOT a simple donor-matching or CRUD-based blood bank application.
 
-## 🏛️ Core Architectural Vision
+DonorLink operates as:
 
-The platform is engineered around the clinical and logistical realities of national health infrastructure, ensuring high availability, zero-flicker dashboard management, and strict audit compliance.
+* a national blood operations command center
+* a hospital blood coordination network
+* a donor mobilization platform
+* a realtime emergency response system
+* a blood traceability infrastructure
+* an AI-assisted healthcare logistics platform
+* a redistribution intelligence ecosystem
 
-*   **Centralized Logistics Control Tower:** Real-time visibility across national, regional, and hospital-level blood reserves.
-*   **Inventory Orchestration:** Automated tracking of blood components (Whole Blood, PRBCs, Platelets, FFP) with automated shelf-life and spoilage alerts.
-*   **Redistribution Intelligence:** Predictive routing and cross-facility stock rebalancing to move surplus units to high-demand emergency zones before degradation.
-*   **Emergency Coordination Engine:** Rapid multi-channel alerting and dispatch mechanics for critical, zero-negative mass casualty events.
+The platform is designed to coordinate:
 
----
+* blood banks
+* hospitals
+* laboratories
+* regional health bureaus
+* emergency operations teams
+* logistics networks
+* donor communities
 
-## 🎨 Visual Identity & Operational Design
-
-Inspired by modern emergency response rooms, WHO/Red Cross clarity layouts, and aviation control dashboards.
-
-*   **Primary Palette:** 
-    *   `Deep Blood Red (#B91C1C)` / `Emergency Crimson` (Critical indicators & branding)
-    *   `Hospital Slate (#0F172A / #1E293B)` (Dark ops-center baseline environment)
-    *   `Alert Amber` / `Success Green` / `Critical Purple` (Triaged status tags)
-*   **Typography:** High-readability modern sans-serif scale (`Manrope` & `Inter`) paired with clean native alignment via `Noto Sans Ethiopic` for local operations localization.
-
----
-
-## 🚀 Technical Stack
-
-DonorLink is built using a highly scalable, decoupled monorepo architecture engineered for fast edge-rendering and fault-tolerant serverless deployment.
-
-### Frontend Command Center
-*   **Core:** React 18+ (TypeScript) via Vite
-*   **Styling:** Tailwind CSS (Fluid grid systems, custom operations center aesthetic)
-*   **Animations:** GSAP (High-performance, GPU-accelerated interactive data visualization cards)
-
-### Backend Operations API
-*   **Runtime Environment:** Node.js (TypeScript) & Express
-*   **Database:** MongoDB (MERN Stack structural persistence)
-*   **Serverless Optimization:** Custom decoupled Winston logging layers designed natively to navigate read-only cloud container barriers (e.g., Vercel Engine constraints).
+across Ethiopia through realtime operational intelligence and intelligent supply coordination.
 
 ---
 
-## 📁 Project Structure
+# 🏛️ Core Ecosystem Vision
+
+The platform is engineered around the operational realities of national healthcare infrastructure, emergency response coordination, blood traceability, and inventory intelligence.
+
+DonorLink is built to support:
+
+* operational resilience
+* realtime visibility
+* intelligent redistribution
+* audit-safe workflows
+* AI-assisted logistics
+* emergency mobilization
+* healthcare-grade accountability
+
+---
+
+# 🌍 Ecosystem Architecture
+
+DonorLink is now evolving into a:
+
+# Multi-Frontend Unified Healthcare Ecosystem
+
+```text
+DonorLink Ecosystem
+│
+├── National Operations Platform
+├── Hospital & Organization Portal
+├── Public Donor Platform
+├── Shared Backend API
+├── ML Intelligence Service
+├── Realtime Gateway
+├── Shared Database
+├── Shared Event Infrastructure
+├── Shared Audit Infrastructure
+├── Shared Design System
+└── Shared Domain Packages
+```
+
+---
+
+# 🧠 Intelligence & Operational Coordination
+
+The platform includes operational intelligence systems for:
+
+* shortage prediction
+* emergency prioritization
+* blood redistribution
+* expiry risk detection
+* donor mobilization
+* inventory forecasting
+* anomaly detection
+* regional coordination
+* operational recommendations
+
+The architecture supports:
+
+* realtime operational intelligence
+* mathematical scoring systems
+* rule-based recommendation engines
+* future machine learning pipelines
+* AI-assisted logistics optimization
+
+---
+
+# 🏥 Platform Applications
+
+## 1. National Operations Platform
+
+Operational command center for:
+
+* Ethiopian National Blood Bank
+* regional coordinators
+* emergency operations teams
+
+Features:
+
+* national inventory visibility
+* redistribution coordination
+* emergency escalation
+* realtime transfer monitoring
+* operational analytics
+* AI forecasting
+* shortage heatmaps
+* emergency dispatch intelligence
+
+---
+
+## 2. Hospital & Organization Portal
+
+Enterprise healthcare operations portal for:
+
+* hospitals
+* laboratories
+* clinics
+* blood banks
+* healthcare organizations
+
+Features:
+
+* inventory management
+* QR scan workflows
+* transfusion tracking
+* blood request coordination
+* hemovigilance reporting
+* staff accountability
+* audit systems
+* operational analytics
+
+---
+
+## 3. Public Donor Platform
+
+Public-facing donor engagement ecosystem for:
+
+* donors
+* volunteers
+* emergency responders
+* community campaigns
+
+Features:
+
+* donor onboarding
+* eligibility screening
+* appointment scheduling
+* emergency mobilization
+* campaign participation
+* donation education
+* donor impact tracking
+* notification systems
+
+---
+
+# 🎨 Visual Identity & Operational Design
+
+The visual direction is inspired by:
+
+* emergency response centers
+* healthcare logistics systems
+* aviation operations dashboards
+* enterprise operational intelligence platforms
+* WHO / Red Cross coordination systems
+
+---
+
+## 🎨 Design Language
+
+### Core Palette
+
+| Role                    | Color                                |
+| ----------------------- | ------------------------------------ |
+| Emergency Critical      | `Deep Blood Red (#B91C1C)`           |
+| Operations Background   | `Hospital Slate (#0F172A / #1E293B)` |
+| Alerting                | `Emergency Amber`                    |
+| Success State           | `Operational Green`                  |
+| Intelligence Indicators | `Critical Purple`                    |
+| Healthcare Neutral      | `Medical Gray`                       |
+
+---
+
+## ✍️ Typography
+
+Primary Fonts:
+
+* `Inter`
+* `Manrope`
+
+Localization Support:
+
+* `Noto Sans Ethiopic`
+
+The UI prioritizes:
+
+* operational readability
+* realtime clarity
+* low cognitive overload
+* accessibility
+* multilingual readiness
+
+---
+
+# 🚀 Technical Stack
+
+DonorLink uses a modular enterprise monorepo architecture designed for:
+
+* scalability
+* service separation
+* fault tolerance
+* realtime coordination
+* future AI expansion
+
+---
+
+# 🖥️ Frontend Applications
+
+## Core Stack
+
+* React 18+
+* TypeScript
+* Vite
+* Tailwind CSS
+* Material 3 token system
+* TanStack Query
+* Zustand
+* GSAP
+* Socket.IO Client
+
+---
+
+## Frontend Ecosystem
+
+### National Operations Platform
+
+Operational command-center interface.
+
+### Hospital & Organization Portal
+
+Healthcare workflow operations system.
+
+### Public Donor Platform
+
+Community donor engagement platform.
+
+---
+
+# ⚙️ Backend Infrastructure
+
+## Core Backend API
+
+* Node.js
+* Express
+* TypeScript
+* MongoDB
+* JWT Authentication
+* RBAC
+* Socket.IO
+* Redis-ready architecture
+
+Responsibilities:
+
+* business workflows
+* authentication
+* audit systems
+* transactional operations
+* orchestration
+* realtime coordination
+
+---
+
+# 🤖 ML Intelligence Service
+
+The intelligence layer is implemented as an independent Python microservice.
+
+## Stack
+
+* Python
+* FastAPI
+* scikit-learn
+* pandas
+* numpy
+* joblib
+* pydantic
+
+Responsibilities:
+
+* forecasting
+* recommendation systems
+* scoring engines
+* anomaly detection
+* operational intelligence
+* prediction services
+
+This service integrates with the Express backend through internal API communication.
+
+---
+
+# 🧠 Intelligence Architecture
+
+The platform uses a phased intelligence strategy.
+
+---
+
+## Phase 1 — Mathematical & Rule-Based Intelligence
+
+Currently implemented:
+
+* weighted scoring systems
+* z-score normalization
+* statistical forecasting
+* anomaly detection foundations
+* expiry risk calculations
+* redistribution heuristics
+* operational recommendations
+
+This allows intelligent behavior BEFORE large national datasets exist.
+
+---
+
+## Phase 2 — Predictive ML Models
+
+Planned after acquiring real datasets from:
+
+* Ethiopian National Blood Bank
+* hospitals
+* donation centers
+
+Future models:
+
+* Random Forest
+* XGBoost
+* LightGBM
+* Logistic Regression
+* clustering systems
+
+---
+
+## Phase 3 — Advanced AI Systems
+
+Long-term roadmap:
+
+* LSTM forecasting
+* geospatial intelligence
+* graph neural networks
+* reinforcement optimization
+* realtime ML streaming
+
+---
+
+# 📁 Monorepo Project Structure
 
 ```text
 donorlink/
+│
 ├── apps/
-│   ├── web/                     # React + Vite Dashboard Shell
-│   │   ├── src/
-│   │   │   ├── components/      # UI Cards, Timeline Visualizations, Heatmaps
-│   │   │   ├── modules/         # Domain-driven layout interfaces (Inventory, Analytics)
-│   │   │   └── main.tsx         # App Mounting Root
-│   │   └── index.html           # SEO-optimized, preloaded resource header entry
-│   └── api/                     # Express Node Engine
-│       ├── src/
-│       │   ├── config/          # Logger.ts setups, Environment validation pipelines
-│       │   ├── core/            # Middleware blocks (Rate limiters, Global Exception filters)
-│       │   ├── modules/         # Domain Sub-Systems (Auth, Blood Transfers, Forecasting)
-│       │   ├── app.ts           # Global route mapping & serverless cold-start verification
-│       │   └── server.ts        # Standalone bootstrap runtime runner
-
+│   ├── national-ops-web/          # National command center frontend
+│   ├── hospital-portal-web/       # Hospital operations frontend
+│   ├── donor-platform-web/        # Public donor frontend
+│   ├── api/                       # Express backend API
+│   ├── ml/                        # FastAPI ML microservice
+│   └── realtime-gateway/          # Socket.IO / event infrastructure
+│
+├── packages/
+│   ├── ui/                        # Shared enterprise UI system
+│   ├── design-tokens/             # Shared design tokens
+│   ├── sdk/                       # Shared API SDKs
+│   ├── auth/                      # Shared auth utilities
+│   ├── validators/                # Shared validators
+│   ├── types/                     # Shared TypeScript types
+│   ├── utilities/                 # Shared utility functions
+│   ├── forecasting-engine/        # Forecasting utilities
+│   ├── recommendation-engine/     # Recommendation logic
+│   ├── shortage-engine/           # Shortage scoring systems
+│   └── expiry-engine/             # Expiry intelligence systems
+│
+├── infrastructure/
+│   ├── docker/
+│   ├── nginx/
+│   ├── monitoring/
+│   ├── deployment/
+│   └── scripts/
+│
+├── docs/
+├── docker-compose.yml
+├── turbo.json
+├── pnpm-workspace.yaml
+└── README.md
 ```
 
 ---
 
-## 🔧 Installation & Local Setup
+# 🔐 Enterprise Security & Compliance
 
-### Prerequisites
+DonorLink is designed with healthcare-grade operational accountability.
 
-* Node.js (v18.x or higher)
-* pnpm (Recommended package tool manager)
-* MongoDB Instance (Local running daemon or Atlas cloud string)
+---
 
-### Step 1: Clone and Install Dependencies
+## Security Features
 
-```bash
-git clone [https://github.com/your-organization/donorlink.git](https://github.com/your-organization/donorlink.git)
-cd donorlink
-pnpm install
+* JWT authentication
+* refresh tokens
+* enterprise RBAC
+* organization scoping
+* audit logging
+* rate limiting
+* Helmet security
+* strict CORS
+* request validation
+* tamper-aware audit trails
 
+---
+
+## RBAC Hierarchy
+
+```text
+National Super Admin
+Regional Director
+City Coordinator
+Hospital Admin
+Lab Technician
+Inventory Officer
+Transfusion Officer
+Emergency Coordinator
+Donor
 ```
 
-### Step 2: Configure Environment Variables
+---
 
-Create a `.env` file within the `apps/api/src` directory:
+# 🔄 Blood Unit Lifecycle Tracking
+
+The system supports full traceability for blood units.
+
+```text
+Collected
+→ Tested
+→ Approved
+→ Stored
+→ Reserved
+→ Dispatched
+→ In Transit
+→ Received
+→ Crossmatched
+→ Administered
+→ Expired
+→ Discarded
+→ Quarantined
+```
+
+All lifecycle events are audit-tracked and immutable.
+
+---
+
+# 📡 Realtime Infrastructure
+
+Realtime systems support:
+
+* emergency alerts
+* inventory updates
+* transfer tracking
+* dispatch coordination
+* donor mobilization
+* recommendation updates
+* operational notifications
+
+Technologies:
+
+* Socket.IO
+* Redis Pub/Sub
+* event-driven architecture
+
+---
+
+# 🗺️ Logistics & Maps Infrastructure
+
+The platform includes enterprise logistics mapping systems supporting:
+
+* transfer routing
+* hospital coordination
+* inventory heatmaps
+* emergency response visibility
+* live operations monitoring
+
+Google Maps integration includes:
+
+* Maps JavaScript API
+* Directions API
+* Places API
+* realtime routing
+* future AI overlays
+
+---
+
+# 📦 Installation & Local Development
+
+## Prerequisites
+
+* Node.js v18+
+* pnpm
+* Python 3.11+
+* MongoDB
+* Redis (optional for realtime scaling)
+
+---
+
+# Step 1 — Clone Repository
+
+```bash
+git clone https://github.com/your-organization/donorlink.git
+
+cd donorlink
+```
+
+---
+
+# Step 2 — Install Dependencies
+
+```bash
+pnpm install
+```
+
+---
+
+# Step 3 — Setup Backend Environment
+
+Create:
+
+```text
+apps/api/.env
+```
 
 ```env
 NODE_ENV=development
 PORT=8080
-LOG_LEVEL=info
-LOG_FILE=./logs/app.log
+
 MONGO_URI=mongodb://localhost:27017/donorlink
 
+JWT_SECRET=your_secret
+
+LOG_LEVEL=info
+
+ML_SERVICE_URL=http://localhost:8001
 ```
 
-### Step 3: Run the Application Localy
+---
 
-To execute both the API engine and UI development servers concurrently:
+# Step 4 — Setup ML Environment
+
+Create:
+
+```text
+apps/ml/.env
+```
+
+```env
+ML_PORT=8001
+MODEL_PATH=./app/models/trained
+```
+
+---
+
+# Step 5 — Start Express Backend
 
 ```bash
-# Start backend API (typically maps onto http://localhost:8080)
 cd apps/api
-pnpm run dev
 
-# Start frontend UI dashboard (typically maps onto http://localhost:5173)
-cd ../web
 pnpm run dev
+```
 
+Default:
+
+* [http://localhost:8080](http://localhost:8080)
+
+---
+
+# Step 6 — Start ML Service
+
+```bash
+cd apps/ml
+
+pip install -r requirements.txt
+
+uvicorn app.main:app --reload --port 8001
+```
+
+Default:
+
+* [http://localhost:8001](http://localhost:8001)
+
+---
+
+# Step 7 — Start Frontend Applications
+
+## National Operations Platform
+
+```bash
+cd apps/national-ops-web
+
+pnpm run dev
 ```
 
 ---
 
-## ☁️ Deployment Architecture (Serverless Caveats)
+## Hospital Portal
 
-When executing production builds targeting serverless engines like **Vercel**, DonorLink intelligently flags runtime environments to adapt core components:
+```bash
+cd apps/hospital-portal-web
 
-1. **Read-Only File System Handling:** The system automatically bypasses local file system writes (`fs.mkdirSync`). Winston transports dynamically drop local disk append streams (`logs/*.log`) and map errors cleanly to cloud-native `stdout` streams using optimized JSON formatters.
-2. **Cold-Start Database Safe Verification:** An initialization middleware catches incoming API requests, guaranteeing live MongoDB state links are established on edge instance awakenings prior to route execution.
+pnpm run dev
+```
 
 ---
 
-## 🛡️ Enterprise Security & Accessibility Compliance
+## Donor Platform
 
-* **API Protection:** Wrapped with `helmet` security configurations, contextual strict multi-tenant CORS definitions, and automated rate-limiting protections.
-* **A11y Standards:** Root frameworks incorporate dynamic keyboard skip-links allowing field technicians to bypass secondary navigation layout structures directly into live critical alert data zones.
+```bash
+cd apps/donor-platform-web
+
+pnpm run dev
+```
+
+---
+
+# ☁️ Deployment Architecture
+
+## Frontend Applications
+
+Deploy on:
+
+* [Vercel](https://vercel.com?utm_source=chatgpt.com)
+
+---
+
+## Backend API
+
+Deploy on:
+
+* [Render](https://render.com?utm_source=chatgpt.com)
+* Railway
+* VPS infrastructure
+
+---
+
+## ML Service
+
+Deploy on:
+
+* [Render](https://render.com?utm_source=chatgpt.com)
+
+Optional fallback:
+
+* Vercel Python serverless
+* Railway
+
+---
+
+## Database
+
+Use:
+
+* [MongoDB Atlas](https://www.mongodb.com/atlas?utm_source=chatgpt.com)
+
+---
+
+# 🧪 Future Roadmap
+
+## Planned Expansions
+
+* offline-first hospital workflows
+* QR scan synchronization
+* advanced dispatch intelligence
+* predictive donor targeting
+* emergency optimization
+* geospatial AI overlays
+* SMS integration
+* push notification systems
+* national analytics infrastructure
+* compliance reporting exports
+* ML model training pipelines
+
+---
+
+# 🛡️ Accessibility & Operational UX
+
+The platform is engineered for:
+
+* keyboard-first workflows
+* emergency usability
+* low-connectivity resilience
+* operational clarity
+* multilingual support
+* responsive mobile access
+* healthcare workflow efficiency
+
+---
+
+# 🎯 Overall Goal
+
+DonorLink aims to become:
+
+* Ethiopia’s national blood intelligence ecosystem
+* a healthcare logistics coordination infrastructure
+* a realtime emergency response platform
+* a donor mobilization network
+* a blood traceability system
+* an operational healthcare intelligence platform
+
+The system is designed to remain:
+
+* realistic
+* scalable
+* operationally usable
+* modular
+* maintainable
+* presentation-ready
+* production-grade
+* future-ready.
