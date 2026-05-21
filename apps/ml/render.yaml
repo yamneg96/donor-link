@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: donorlink-ml
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: ML_API_KEY
+        generateValue: true
+      - key: ALLOWED_ORIGINS
+        value: https://donorlink.et,https://donor-link-v1.vercel.app
+      - key: LOG_LEVEL
+        value: INFO
