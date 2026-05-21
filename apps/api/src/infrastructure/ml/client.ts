@@ -77,7 +77,7 @@ export async function mlRequest<T>(
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), ML_TIMEOUT_MS);
 
-      const response = await fetch(url, {
+      const response: any = await fetch(url, {
         method,
         headers: {
           'Content-Type': 'application/json',
@@ -86,6 +86,7 @@ export async function mlRequest<T>(
         body: body ? JSON.stringify(body) : undefined,
         signal: controller.signal,
       });
+
 
       clearTimeout(timeout);
 
