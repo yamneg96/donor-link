@@ -34,6 +34,9 @@ const AuditLogPage = lazy(() => import("../pages/audit/AuditLogPage"));
 const SettingsPage = lazy(() => import("../pages/settings/SettingsPage"));
 const SupportPage = lazy(() => import("../pages/support/SupportPage"));
 const ContactPage = lazy(() => import("../pages/contact/ContactPage"));
+const NationalForecastPage = lazy(() => import("../pages/intelligence/NationalForecastPage"));
+const RedistributionAIPage = lazy(() => import("../pages/intelligence/RedistributionAIPage"));
+
 
 import { UserRole, ADMIN_ROLES, STAFF_ROLES } from "../types";
 
@@ -231,6 +234,21 @@ const contactRoute = createRoute({
   component: ContactPage,
 });
 
+const nationalForecastRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/intelligence/forecast",
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.NATIONAL_ANALYST),
+  component: NationalForecastPage,
+});
+
+const redistributionAIRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/intelligence/redistribution",
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.NATIONAL_ANALYST, UserRole.REGIONAL_ADMIN),
+  component: RedistributionAIPage,
+});
+
+
 // ─── Route Tree ───────────────────────────────────────────────────────────────
 const routeTree = rootRoute.addChildren([
   landingRoute,
@@ -258,6 +276,8 @@ const routeTree = rootRoute.addChildren([
   settingsRoute,
   supportRoute,
   contactRoute,
+  nationalForecastRoute,
+  redistributionAIRoute,
 ]);
 
 // ─── Router Instance ──────────────────────────────────────────────────────────

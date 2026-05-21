@@ -12,15 +12,19 @@ interface StatCardProps {
   progress?: { value: number; color?: string };
   borderColor?: string;
   className?: string;
+  onClick?: () => void;
 }
 
 export function StatCard({
   title, value, subtitle, icon, iconColor = "text-m3-secondary",
-  trend, badge, progress, borderColor, className,
+  trend, badge, progress, borderColor, className, onClick,
 }: StatCardProps) {
   return (
-    <div className={cn(
+    <div 
+      onClick={onClick}
+      className={cn(
       "bg-m3-surface-container-lowest border rounded-lg p-4 flex flex-col justify-between h-32 relative overflow-hidden group hover:border-m3-secondary transition-colors",
+      onClick && "cursor-pointer",
       borderColor || "border-m3-outline-variant",
       className,
     )}>

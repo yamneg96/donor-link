@@ -21,7 +21,8 @@ interface Props { open: boolean; onClose: () => void; }
 export function CreateTransferModal({ open, onClose }: Props) {
   const create = useCreateTransfer();
   const { data: orgs } = useOrganizations();
-  const orgItems = Array.isArray(orgs?.items || orgs) ? (orgs?.items || orgs) : [];
+  const orgItems = Array.isArray(orgs) ? orgs : [];
+
 
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormValues>({
     resolver: zodResolver(schema) as any,
@@ -45,8 +46,9 @@ export function CreateTransferModal({ open, onClose }: Props) {
   return (
     <FormModal open={open} onClose={onClose} title="New Transfer Request" description="Create a blood unit transfer between organizations.">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div><label className={lc}>From Organization</label><select {...register("fromOrgId")} className={ic}><option value="">Select source…</option>{(orgItems as { _id: string; name: string }[]).map((o) => <option key={o._id} value={o._id}>{o.name}</option>)}</select>{errors.fromOrgId && <p className={ec}>{errors.fromOrgId.message}</p>}</div>
-        <div><label className={lc}>To Organization</label><select {...register("toOrgId")} className={ic}><option value="">Select destination…</option>{(orgItems as { _id: string; name: string }[]).map((o) => <option key={o._id} value={o._id}>{o.name}</option>)}</select>{errors.toOrgId && <p className={ec}>{errors.toOrgId.message}</p>}</div>
+        <div><label className={lc}>From Organization</label><select {...register("fromOrgId")} className={ic}><option value="">Select source…</option>{(orgItems as any[]).map((o) => <option key={o._id} value={o._id}>{o.name}</option>)}</select>{errors.fromOrgId && <p className={ec}>{errors.fromOrgId.message}</p>}</div>
+        <div><label className={lc}>To Organization</label><select {...register("toOrgId")} className={ic}><option value="">Select destination…</option>{(orgItems as any[]).map((o) => <option key={o._id} value={o._id}>{o.name}</option>)}</select>{errors.toOrgId && <p className={ec}>{errors.toOrgId.message}</p>}</div>
+
         <div className="grid grid-cols-3 gap-4">
           <div><label className={lc}>Blood Type</label><select {...register("bloodType")} className={ic}>{Object.values(BloodType).map((b) => <option key={b} value={b}>{b}</option>)}</select></div>
           <div><label className={lc}>Component</label><select {...register("componentType")} className={ic}>{Object.values(ComponentType).map((c) => <option key={c} value={c}>{c.replace(/_/g, " ")}</option>)}</select></div>

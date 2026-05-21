@@ -1,18 +1,37 @@
 import { MaterialIcon } from "../../components/shared/MaterialIcon";
 import { LoadingSkeleton } from "../../components/shared/EmptyState";
-import { useStockLevels, useInventoryAll } from "../../hooks/useApi";
+import { useStockLevels, useInventoryAll, useHospitals } from "../../hooks/useApi";
 import { BloodTypeCard } from "../../components/shared/BloodTypeCard";
 import { DataTable } from "../../components/shared/DataTable";
 import { cn } from "../../lib/utils";
 import { useModal } from "../../hooks/useModal";
 import { ManualEntryModal } from "../../components/modals/ManualEntryModal";
+import { AIInventoryInsights } from "../../components/intelligence/AIInventoryInsights";
+import { authStore } from "../../store/authStore";
+import { useState, useSyncExternalStore } from "react";
+import { UserRole, type IHospital } from "../../types";
+
 
 export default function InventoryPage() {
-  const { data: stockLevels, isLoading: stockLoading } = useStockLevels();
-  const { data: units, isLoading: unitsLoading } = useInventoryAll();
+  const state = useSyncExternalStore(authStore.subscribe, authStore.getState);
+  const user = state.user;
+
+  const [selectedHospital, setSelectedHospital] = useState(user?.organizationId || '');
+
+  const { data: stockLevels, isLoading: stockLoading } = useStockLevels({ organizationId: selectedHospital });
+  const { data: units, isLoading: unitsLoading } = useInventoryAll({ organizationId: selectedHospital });
   const entryModal = useModal();
 
+  
+  const { data: hospitals } = useHospitals();
+  
+  const isNationalUser = user?.role === UserRole.SUPER_ADMIN || 
+                         user?.role === UserRole.NATIONAL_ADMIN || 
+                         user?.role === UserRole.NATIONAL_ANALYST;
+
+
   if (stockLoading) return <div className="p-6"><LoadingSkeleton rows={6} /></div>;
+
 
   const stockData = Array.isArray(stockLevels) ? stockLevels : [];
 
@@ -26,6 +45,23 @@ export default function InventoryPage() {
             <span className="text-label-caps text-m3-secondary">LIVE SYNC: ACTIVE</span>
           </div>
           <h2 className="text-display-lg text-m3-on-surface">Hospital Inventory</h2>
+          
+          {isNationalUser && (
+            <div className="mt-4 flex items-center gap-2 px-3 py-1.5 bg-m3-surface-container-low border border-m3-outline-variant rounded-full">
+              <MaterialIcon icon="filter_alt" size={18} className="text-m3-secondary" />
+              <select 
+                className="bg-transparent text-xs font-bold text-m3-on-surface outline-none cursor-pointer pr-4"
+                value={selectedHospital}
+                onChange={(e) => setSelectedHospital(e.target.value)}
+              >
+                <option value="">National Context (Aggregate)</option>
+                {hospitals?.map((h: IHospital) => (
+                  <option key={h._id} value={h._id}>{h.name}</option>
+                ))}
+              </select>
+            </div>
+          )}
+
           <p className="text-body-main text-m3-on-surface-variant mt-1">Real-time inventory management and local orchestration.</p>
         </div>
         <div className="flex gap-3">
@@ -40,7 +76,7 @@ export default function InventoryPage() {
         {/* Main: Stock Levels + Table */}
         <div className="lg:col-span-8 space-y-4">
           <h3 className="text-headline-md text-m3-on-surface flex items-center gap-2">
-            <MaterialIcon icon="bloodtype" />Current Stock Levels
+            <MaterialIcon icon="bloodtype" /> {selectedHospital ? 'Facility' : 'National'} Stock Levels
           </h3>
 
           {/* Blood Type Cards */}
@@ -96,23 +132,20 @@ export default function InventoryPage() {
           <div className="bg-background border-l-4 border-m3-tertiary rounded-r-lg p-4 shadow-sm">
             <div className="flex items-start gap-2 mb-3">
               <MaterialIcon icon="smart_toy" filled className="text-m3-tertiary" />
-              <h4 className="text-title-sm text-m3-on-surface">System Insights</h4>
+              <h4 className="text-title-sm text-m3-on-surface">System AI Insights</h4>
             </div>
-            <div className="space-y-3">
-              <div className="bg-m3-surface-container-lowest p-3 rounded border border-m3-tertiary-fixed">
-                <p className="text-body-compact text-m3-on-surface">
-                  <strong className="text-m3-tertiary">Surplus Detected:</strong> B+ inventory above target. Consider redistributing units.
-                </p>
-                <button className="mt-1 text-m3-tertiary text-label-caps hover:underline">Initiate Transfer →</button>
-              </div>
-              <div className="bg-m3-error-container p-3 rounded border border-m3-error">
-                <p className="text-body-compact text-m3-on-error-container">
-                  <strong className="text-m3-error">Critical Low:</strong> O- stock is critically low. Forecasted usage exceeds supply within 48 hours.
-                </p>
-                <button className="mt-1 text-m3-error text-label-caps hover:underline">Request Emergency Stock →</button>
-              </div>
-            </div>
+            
+            {selectedHospital ? (
+              <AIInventoryInsights 
+                hospitalId={selectedHospital} 
+                bloodTypes={stockData.map((s: any) => s.bloodType)} 
+              />
+            ) : (
+              <p className="text-xs text-on-surface-variant italic">Select a facility to see real-time AI analysis & risk assessment.</p>
+            )}
           </div>
+
+
 
           {/* Active Transfers */}
           <div className="bg-m3-surface-container-lowest border border-m3-outline-variant rounded-xl p-4 shadow-ambient-md">

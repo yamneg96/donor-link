@@ -17,8 +17,24 @@ import { forecastingApi } from "../api/forecasting";
 import { recommendationApi } from "../api/recommendations";
 import { requestApi } from "../api/requests";
 import { donationApi } from "../api/donations";
+import { intelligenceApi } from "../api/intelligence";
 import { authStore } from "../store/authStore";
-import type { ApiResponse, IUser, LoginResponse } from "../types";
+import type { 
+  ApiResponse, 
+  IUser, 
+  LoginResponse,
+  IStockLevel,
+  IMLForecastResponse,
+  IMLShortageRiskResponse,
+  IMLRedistributionResponse,
+  IMLAnomalyDetection,
+  IMLExpiryRisk,
+  IMLHealth,
+  IHospital,
+  IOrganization
+} from "../types";
+
+
 
 // ─── Query Keys ───────────────────────────────────────────────────────────────
 
@@ -81,6 +97,13 @@ export const QK = {
   // Requests
   requests: (p?: unknown) => ["requests", p] as const,
   request: (id: string) => ["requests", id] as const,
+  // Intelligence (ML)
+  intelligenceForecast: (p?: unknown) => ["intelligence", "forecast", p] as const,
+  intelligenceShortage: (p?: unknown) => ["intelligence", "shortage", p] as const,
+  intelligenceRedistribution: (p?: unknown) => ["intelligence", "redistribution", p] as const,
+  intelligenceAnomaly: (p?: unknown) => ["intelligence", "anomaly", p] as const,
+  intelligenceExpiry: (p?: unknown) => ["intelligence", "expiry", p] as const,
+  intelligenceHealth: ["intelligence", "health"] as const,
 };
 
 // ─── Auth Hooks ───────────────────────────────────────────────────────────────
@@ -173,13 +196,19 @@ export function useInventoryAll(params?: Record<string, unknown>) {
   });
 }
 
+
 export function useStockLevels(params?: Record<string, unknown>) {
-  return useQuery({
+  const query = useQuery({
     queryKey: QK.stockLevels(params),
-    queryFn: () => inventoryApi.getStockLevels(params).then((r) => r.data.data),
+    queryFn: () => inventoryApi.getStockLevels(params).then((r: { data: ApiResponse<IStockLevel[]> }) => r.data.data),
     refetchInterval: 60_000,
   });
+  
+  return { ...query, levels: query.data };
 }
+
+
+
 
 export function useStockByOrg() {
   return useQuery({
@@ -454,9 +483,10 @@ export function useHospitalDashboard(orgId?: string) {
 export function useOrganizations(params?: Record<string, unknown>) {
   return useQuery({
     queryKey: QK.organizations(params),
-    queryFn: () => organizationApi.getAll(params).then((r) => r.data.data),
+    queryFn: () => organizationApi.getAll(params).then((r: { data: ApiResponse<IOrganization[]> }) => r.data.data),
   });
 }
+
 
 export function useOrganization(id: string) {
   return useQuery({
@@ -554,9 +584,10 @@ export function useDonors(params?: Record<string, unknown>) {
 export function useHospitals(params?: Record<string, unknown>) {
   return useQuery({
     queryKey: QK.hospitals(params),
-    queryFn: () => hospitalApi.getAll(params).then((r) => r.data.data),
+    queryFn: () => hospitalApi.getAll(params).then((r: { data: ApiResponse<IHospital[]> }) => r.data.data),
   });
 }
+
 
 // ─── Notification Hooks ───────────────────────────────────────────────────────
 
@@ -644,5 +675,64 @@ export function useScheduleDonation() {
   return useMutation({
     mutationFn: (data: Record<string, unknown>) => donationApi.schedule(data),
     onSuccess: () => qc.invalidateQueries({ queryKey: ["donations"] }),
+  });
+}
+
+// ─── Intelligence (ML) Hooks ─────────────────────────────────────────────────
+
+export function useMLForecast(params: any) {
+  return useQuery({
+    queryKey: QK.intelligenceForecast(params),
+    queryFn: () => intelligenceApi.getForecast(params).then((r: { data: ApiResponse<IMLForecastResponse> }) => r.data.data),
+    enabled: !!params?.hospitalId && !!params?.bloodType,
+  });
+}
+
+export function useMLShortageRisk(params: any) {
+  return useQuery({
+    queryKey: QK.intelligenceShortage(params),
+    queryFn: () => intelligenceApi.getShortageRisk(params).then((r: { data: ApiResponse<IMLShortageRiskResponse> }) => r.data.data),
+    enabled: !!params?.hospitalId && !!params?.bloodType,
+    staleTime: 5 * 60_000,
+  });
+}
+
+
+export function useMLRedistribution() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: any) => 
+      intelligenceApi.getRedistribution(data).then((r: { data: ApiResponse<IMLRedistributionResponse> }) => r.data.data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["transfers"] });
+      qc.invalidateQueries({ queryKey: ["inventory"] });
+    },
+  });
+}
+
+
+export function useMLAnomalyDetection(params: any) {
+  return useQuery({
+    queryKey: QK.intelligenceAnomaly(params),
+    queryFn: () => intelligenceApi.detectAnomalies(params).then((r: { data: ApiResponse<IMLAnomalyDetection> }) => r.data.data),
+    enabled: !!params?.values?.length,
+  });
+}
+
+export function useMLExpiryRisk(params: any) {
+  return useQuery({
+    queryKey: QK.intelligenceExpiry(params),
+    queryFn: () => intelligenceApi.getExpiryRisk(params).then((r: { data: ApiResponse<IMLExpiryRisk[]> }) => r.data.data),
+    enabled: !!params?.hospital_id && !!params?.units?.length,
+  });
+}
+
+
+
+export function useMLHealth() {
+  return useQuery({
+    queryKey: QK.intelligenceHealth,
+    queryFn: () => intelligenceApi.checkHealth().then((r: { data: ApiResponse<IMLHealth> }) => r.data.data),
+    refetchInterval: 60_000,
   });
 }

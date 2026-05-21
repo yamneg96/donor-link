@@ -12,7 +12,8 @@ export default function OrganizationsPage() {
   const createModal = useModal();
   const deleteModal = useModal<string>();
 
-  const items = Array.isArray(orgs?.items || orgs) ? (orgs?.items || orgs) : [];
+  const items = Array.isArray(orgs) ? orgs : [];
+
   if (isLoading) return <div className="p-6"><LoadingSkeleton rows={6} /></div>;
 
   const handleDelete = async () => {

@@ -544,3 +544,80 @@ export interface IStockLevel {
   total: number;
   target?: number;
 }
+
+// ─── Intelligence (ML) Types ─────────────────────────────────────────────────
+
+export interface IMLForecastPoint {
+  day: number;
+  predicted_demand: number;
+  lower_bound: number;
+  upper_bound: number;
+}
+
+export interface IMLForecastResponse {
+  forecast: IMLForecastPoint[];
+  generatedAt: string;
+}
+
+export interface IMLShortageRisk {
+  hospital_id: string;
+  blood_type: string;
+  risk_score: number;
+  risk_level: 'low' | 'medium' | 'high' | 'critical';
+  days_of_supply: number;
+  projected_deficit: number;
+  recommendation: string;
+}
+
+
+export interface IMLShortageRiskResponse {
+  risk: IMLShortageRisk;
+  display: {
+    label: string;
+    color: string;
+  };
+  generatedAt: string;
+}
+
+export interface IMLRedistributionRecommendation {
+  source_hospital_id: string;
+  units_to_transfer: number;
+  logistics_score: number;
+  expiry_score: number;
+  combined_score: number;
+  estimated_delivery_hours: number;
+}
+
+export interface IMLRedistributionResponse {
+  redistribution: {
+    target_hospital_id: string;
+    blood_type: string;
+    units_needed: number;
+    urgency: string;
+    recommendations: IMLRedistributionRecommendation[];
+    ml_explanation: string;
+  };
+  generatedAt: string;
+}
+
+export interface IMLAnomalyDetection {
+  is_anomaly: boolean;
+  severity: number;
+  metric_name: string;
+  detected_at: string;
+  context?: Record<string, unknown>;
+}
+
+export interface IMLExpiryRisk {
+  unit_id: string;
+  expiry_risk_score: number;
+  remaining_days: number;
+  recommendation: 'MONITOR' | 'REDISTRIBUTE' | 'PRIORITIZE_USE';
+}
+
+export interface IMLHealth {
+  status: string;
+  version: string;
+  engines: string[];
+}
+

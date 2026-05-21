@@ -32,7 +32,8 @@ const STAFF_ROLES = Object.values(UserRole).filter((r) => r !== UserRole.DONOR);
 export function CreateUserModal({ open, onClose }: Props) {
   const create = useCreateUser();
   const { data: orgs } = useOrganizations();
-  const orgItems = Array.isArray(orgs?.items || orgs) ? (orgs?.items || orgs) : [];
+  const orgItems = Array.isArray(orgs) ? orgs : [];
+
 
   const {
     register,
@@ -112,9 +113,10 @@ export function CreateUserModal({ open, onClose }: Props) {
             <label className={labelClass}>Organization</label>
             <select {...register("organizationId")} className={inputClass}>
               <option value="">Select…</option>
-              {(orgItems as { _id: string; name: string }[]).map((o) => (
+              {(orgItems as any[]).map((o) => (
                 <option key={o._id} value={o._id}>{o.name}</option>
               ))}
+
             </select>
           </div>
         </div>

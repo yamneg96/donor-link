@@ -350,6 +350,19 @@ export default function CommandCenterPage() {
           subtitle="Units"
           icon="hourglass_empty"
         />
+
+        <StatCard
+          title="AI Strategic Insight"
+          value="Shortage Risk"
+          subtitle="Tier: Critical"
+          icon="psychology"
+          badge={{
+            text: "ML ACTIVE",
+            variant: "info",
+          }}
+          className="cursor-pointer hover:border-primary/50 transition-colors"
+          onClick={() => window.location.href = '/intelligence/redistribution'}
+        />
       </div>
 
       {/* MAIN */}
@@ -707,6 +720,15 @@ export default function CommandCenterPage() {
               <h3 className="text-title-sm text-m3-on-surface">
                 AI Logistics Intel
               </h3>
+              
+              <div className="flex-1" />
+              
+              <button 
+                onClick={() => window.location.href = '/intelligence/forecast'}
+                className="text-[10px] font-bold text-m3-tertiary uppercase hover:underline"
+              >
+                Full Forecast
+              </button>
             </div>
 
             <div className="space-y-3 flex-1 overflow-y-auto">

@@ -34,6 +34,9 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Users", path: "/users", icon: "manage_accounts", roles: ADMIN_ROLES },
   { label: "Roles", path: "/settings/roles", icon: "admin_panel_settings", roles: [UserRole.SUPER_ADMIN] },
   { label: "Audit Log", path: "/audit", icon: "history", roles: ADMIN_ROLES },
+  // Intelligence Section
+  { label: "Demand Forecast", path: "/intelligence/forecast", icon: "auto_graph", roles: [...ADMIN_ROLES, UserRole.NATIONAL_ANALYST] },
+  { label: "AI Redistribution", path: "/intelligence/redistribution", icon: "psychology", roles: [...ADMIN_ROLES, UserRole.NATIONAL_ANALYST, UserRole.REGIONAL_ADMIN] },
 ];
 
 const BOTTOM_NAV: NavItem[] = [
