@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Donor Management - DonorLink</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=IBM+Plex+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#271816",
+                        "on-primary-fixed": "#410002",
+                        "secondary-fixed": "#d5e3fd",
+                        "primary-container": "#b91c1c",
+                        "surface-container-high": "#ffe2de",
+                        "on-surface": "#271816",
+                        "on-tertiary-fixed": "#25005a",
+                        "inverse-surface": "#3e2c2a",
+                        "inverse-primary": "#ffb4ab",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "surface": "#fff8f7",
+                        "on-secondary-container": "#57657b",
+                        "outline": "#8f6f6c",
+                        "surface-container-low": "#fff0ee",
+                        "on-error": "#ffffff",
+                        "on-tertiary-container": "#e2d1ff",
+                        "surface-container-highest": "#f9dcd8",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "secondary": "#515f74",
+                        "on-primary": "#ffffff",
+                        "background": "#fff8f7",
+                        "surface-tint": "#b91c1c",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-dim": "#f1d3d0",
+                        "primary": "#93000b",
+                        "tertiary-fixed": "#eaddff",
+                        "inverse-on-surface": "#ffedea",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "surface-container": "#ffe9e6",
+                        "on-primary-fixed-variant": "#93000b",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "primary-fixed": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-container": "#732ee4",
+                        "surface-bright": "#fff8f7",
+                        "tertiary": "#5a00c5",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#f9dcd8",
+                        "secondary-container": "#d5e3fd",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "outline-variant": "#e4beb9",
+                        "on-surface-variant": "#5b403d",
+                        "on-primary-container": "#ffcdc7",
+                        "primary-fixed-dim": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid_columns": "12",
+                        "base": "4px",
+                        "sidebar_width": "260px",
+                        "xxs": "4px",
+                        "gutter": "16px",
+                        "sm": "12px",
+                        "lg": "24px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "xs": "8px"
+                    },
+                    "fontFamily": {
+                        "data-mono": ["JetBrains Mono"],
+                        "body-main": ["Inter"],
+                        "display-lg": ["IBM Plex Sans"],
+                        "headline-md": ["IBM Plex Sans"],
+                        "title-sm": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-compact": ["Inter"]
+                    },
+                    "fontSize": {
+                        "data-mono": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "body-main": ["15px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "title-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "label-caps": ["11px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-compact": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-[#F8FAFC] text-on-background min-h-screen flex flex-col font-body-main">
+<!-- TopNavBar -->
+<header class="bg-surface-container-highest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline full-width top-0 z-50 flex justify-between items-center h-16 px-lg w-full sticky">
+<div class="flex items-center gap-4">
+<span class="font-display-lg text-display-lg text-primary dark:text-primary-fixed">DonorLink</span>
+<div class="relative hidden md:flex items-center ml-8">
+<span class="material-symbols-outlined absolute left-3 text-on-surface-variant">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-lowest border border-outline-variant rounded focus:outline-none focus:border-primary w-96 text-sm" placeholder="Search donors, regions, blood types..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4 text-primary dark:text-primary-fixed">
+<button class="hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors p-2 rounded-full flex items-center justify-center relative">
+<span class="material-symbols-outlined" data-weight="fill">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+</button>
+<button class="hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-weight="fill">emergency_home</span>
+</button>
+<button class="hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined" data-weight="fill">account_circle</span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col bg-surface-container dark:bg-inverse-surface border-r border-outline-variant fixed left-0 top-16 h-[calc(100vh-64px)] w-[260px] py-md px-sm overflow-y-auto z-40">
+<div class="mb-6 px-4">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded bg-primary-container flex items-center justify-center text-on-primary font-bold">
+                        NA
+                    </div>
+<div>
+<h2 class="font-title-sm text-title-sm text-on-surface">National Portal</h2>
+<p class="font-body-compact text-body-compact text-on-surface-variant">Ethiopia Blood Services</p>
+</div>
+</div>
+<button class="w-full mt-4 bg-[#991B1B] hover:bg-primary-fixed-variant text-white py-2 px-4 rounded flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-sm">add_alert</span>
+<span class="font-title-sm text-title-sm">New Emergency Alert</span>
+</button>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-compact text-body-compact">Command Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-body-compact text-body-compact">Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+<span class="font-body-compact text-body-compact">Unit Tracking</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-body-compact text-body-compact">Marketplace</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-body-compact text-body-compact">Operations</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">warning</span>
+<span class="font-body-compact text-body-compact">Expiry Risk</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary font-bold transition-all duration-200 ease-in-out opacity-80" href="#">
+<span class="material-symbols-outlined" data-weight="fill">group</span>
+<span class="font-body-compact text-body-compact">Donor Management</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">emergency</span>
+<span class="font-body-compact text-body-compact">Emergency</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-compact text-body-compact">Analytics</span>
+</a>
+</div>
+<div class="mt-auto pt-4 border-t border-outline-variant">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-compact text-body-compact">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-compact text-body-compact">Support</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-[260px] p-6 lg:p-8 overflow-y-auto">
+<div class="max-w-[1440px] mx-auto">
+<!-- Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-background mb-1">Donor Management</h1>
+<p class="font-body-main text-body-main text-on-surface-variant">National Voluntary Network Control &amp; Analytics</p>
+</div>
+<div class="mt-4 md:mt-0 flex gap-3">
+<button class="bg-white border border-[#E2E8F0] hover:border-[#515f74] text-secondary px-4 py-2 rounded flex items-center gap-2 font-title-sm text-title-sm shadow-sm transition-all">
+<span class="material-symbols-outlined text-sm">download</span>
+                            Export Roster
+                        </button>
+<button class="bg-[#B91C1C] hover:bg-[#93000b] text-white px-4 py-2 rounded flex items-center gap-2 font-title-sm text-title-sm shadow-sm transition-all">
+<span class="material-symbols-outlined text-sm">campaign</span>
+                            Mobilize Donors
+                        </button>
+</div>
+</div>
+<!-- KPI Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+<div class="bg-white border border-[#E2E8F0] rounded p-4 flex flex-col justify-between h-32 hover:border-[#515f74] hover:shadow-[0px_4px_12px_rgba(15,23,42,0.05)] transition-all">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Total Active Donors</span>
+<span class="material-symbols-outlined text-secondary">groups</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-background">42,891</div>
+<div class="flex items-center gap-1 text-sm mt-1 text-green-700">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span class="font-data-mono text-data-mono">+2.4% this month</span>
+</div>
+</div>
+</div>
+<div class="bg-white border border-[#E2E8F0] rounded p-4 flex flex-col justify-between h-32 hover:border-[#515f74] hover:shadow-[0px_4px_12px_rgba(15,23,42,0.05)] transition-all">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Eligible Today</span>
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-background">18,204</div>
+<div class="flex items-center gap-1 text-sm mt-1 text-on-surface-variant">
+<span class="font-data-mono text-data-mono">42% of total roster</span>
+</div>
+</div>
+</div>
+<div class="bg-white border border-[#E2E8F0] rounded p-4 flex flex-col justify-between h-32 hover:border-[#515f74] hover:shadow-[0px_4px_12px_rgba(15,23,42,0.05)] transition-all">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Emergency Response Rate</span>
+<span class="material-symbols-outlined text-secondary">bolt</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-background">68%</div>
+<div class="flex items-center gap-1 text-sm mt-1 text-green-700">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span class="font-data-mono text-data-mono">Avg time: 4.2 hrs</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-highest border border-primary-container rounded p-4 flex flex-col justify-between h-32">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-primary uppercase tracking-wider">Critical Shortage Alert</span>
+<span class="material-symbols-outlined text-primary">warning</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-primary">O-</div>
+<div class="flex items-center gap-1 text-sm mt-1 text-primary">
+<span class="font-data-mono text-data-mono">Addis Ababa Region · 48hr Supply</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+<!-- Main List Panel -->
+<div class="lg:col-span-2 bg-white border border-[#E2E8F0] rounded flex flex-col">
+<div class="p-4 border-b border-[#E2E8F0] flex justify-between items-center bg-[#F8FAFC]">
+<h3 class="font-title-sm text-title-sm text-on-background">Donor Directory</h3>
+<div class="flex gap-2">
+<div class="relative">
+<select class="appearance-none bg-white border border-[#E2E8F0] text-sm py-1 pl-3 pr-8 rounded focus:outline-none focus:border-[#515f74] font-body-compact">
+<option>All Blood Types</option>
+<option>O-</option>
+<option>O+</option>
+<option>A-</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-sm pointer-events-none text-secondary">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-white border border-[#E2E8F0] text-sm py-1 pl-3 pr-8 rounded focus:outline-none focus:border-[#515f74] font-body-compact">
+<option>All Regions</option>
+<option>Addis Ababa</option>
+<option>Oromia</option>
+<option>Amhara</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-sm pointer-events-none text-secondary">expand_more</span>
+</div>
+</div>
+</div>
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F8FAFC] border-b border-[#E2E8F0]">
+<th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Donor ID / Name</th>
+<th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Blood Type</th>
+<th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Last Donation</th>
+<th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Region</th>
+<th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase">Status</th>
+<th class="py-2 px-4 font-label-caps text-label-caps text-on-surface-variant uppercase text-right">Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr class="border-b border-[#E2E8F0] hover:bg-surface-lowest transition-colors">
+<td class="py-3 px-4">
+<div class="font-title-sm text-title-sm text-on-background">Abebe Kebede</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-0.5">ID: D-99421</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center justify-center bg-surface-container text-on-background font-data-mono text-data-mono h-6 px-2 rounded border border-outline-variant">O-</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-body-compact text-body-compact">12 Oct 2023</div>
+<div class="font-data-mono text-[10px] text-on-surface-variant">112 days ago</div>
+</td>
+<td class="py-3 px-4 font-body-compact text-body-compact text-on-surface-variant">Addis Ababa</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-200">
+<span class="material-symbols-outlined text-[12px]">check_circle</span>
+<span class="font-label-caps text-[10px] uppercase">Eligible</span>
+</span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-[#E2E8F0] hover:bg-surface-lowest transition-colors">
+<td class="py-3 px-4">
+<div class="font-title-sm text-title-sm text-on-background">Tirhas Tesfaye</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-0.5">ID: D-88210</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center justify-center bg-surface-container text-on-background font-data-mono text-data-mono h-6 px-2 rounded border border-outline-variant">A+</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-body-compact text-body-compact">05 Jan 2024</div>
+<div class="font-data-mono text-[10px] text-on-surface-variant">27 days ago</div>
+</td>
+<td class="py-3 px-4 font-body-compact text-body-compact text-on-surface-variant">Oromia</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-amber-700 bg-amber-50 px-2 py-0.5 rounded border border-amber-200">
+<span class="material-symbols-outlined text-[12px]">schedule</span>
+<span class="font-label-caps text-[10px] uppercase">Deferred (29d)</span>
+</span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-[#E2E8F0] hover:bg-surface-lowest transition-colors">
+<td class="py-3 px-4">
+<div class="font-title-sm text-title-sm text-on-background">Yosef Tadesse</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-0.5">ID: D-77192</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center justify-center bg-surface-container text-on-background font-data-mono text-data-mono h-6 px-2 rounded border border-outline-variant">B-</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-body-compact text-body-compact">18 Nov 2023</div>
+<div class="font-data-mono text-[10px] text-on-surface-variant">75 days ago</div>
+</td>
+<td class="py-3 px-4 font-body-compact text-body-compact text-on-surface-variant">Amhara</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-200">
+<span class="material-symbols-outlined text-[12px]">check_circle</span>
+<span class="font-label-caps text-[10px] uppercase">Eligible</span>
+</span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="border-b border-[#E2E8F0] hover:bg-surface-lowest transition-colors bg-surface-container-highest">
+<td class="py-3 px-4">
+<div class="font-title-sm text-title-sm text-on-background">Helen Alemu</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-0.5">ID: D-66034</div>
+</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center justify-center bg-[#B91C1C] text-white font-data-mono text-data-mono h-6 px-2 rounded border border-[#93000b]">O-</span>
+</td>
+<td class="py-3 px-4">
+<div class="font-body-compact text-body-compact">02 Sep 2023</div>
+<div class="font-data-mono text-[10px] text-on-surface-variant">153 days ago</div>
+</td>
+<td class="py-3 px-4 font-body-compact text-body-compact text-on-surface-variant">Addis Ababa</td>
+<td class="py-3 px-4">
+<span class="inline-flex items-center gap-1 text-green-700 bg-green-50 px-2 py-0.5 rounded border border-green-200">
+<span class="material-symbols-outlined text-[12px]">check_circle</span>
+<span class="font-label-caps text-[10px] uppercase">Eligible</span>
+</span>
+</td>
+<td class="py-3 px-4 text-right">
+<button class="bg-[#B91C1C] text-white px-2 py-1 rounded text-xs font-bold uppercase tracking-wider">Ping</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-3 border-t border-[#E2E8F0] flex justify-between items-center bg-[#F8FAFC]">
+<span class="font-body-compact text-body-compact text-on-surface-variant">Showing 1-4 of 42,891</span>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center border border-[#E2E8F0] rounded bg-white text-secondary opacity-50 cursor-not-allowed">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center border border-[#E2E8F0] rounded bg-white text-secondary hover:border-[#515f74]">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Right Column: AI & Geography -->
+<div class="flex flex-col gap-6">
+<!-- AI Intelligence Panel -->
+<div class="bg-[#F5F3FF] border-l-4 border-[#5A00C5] rounded-r border-t border-r border-b border-[#E2E8F0] p-5 shadow-sm">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-[#5A00C5]">auto_awesome</span>
+<h3 class="font-title-sm text-title-sm text-on-background">System Recommendation</h3>
+</div>
+<p class="font-body-compact text-body-compact text-on-surface-variant mb-4">
+                                Detected an impending <span class="font-bold text-[#B91C1C]">O- shortage</span> in Addis Ababa within 48 hours. 
+                            </p>
+<div class="bg-white rounded border border-[#E2E8F0] p-3 mb-4">
+<div class="font-label-caps text-label-caps text-on-surface-variant uppercase mb-2">Suggested Mobilization</div>
+<div class="flex justify-between items-center mb-1">
+<span class="font-body-compact text-body-compact">Target High-Response O- Donors</span>
+<span class="font-data-mono text-data-mono font-bold text-on-background">412 eligible</span>
+</div>
+<div class="w-full bg-surface-container-high h-1.5 rounded-full mt-2">
+<div class="bg-[#5A00C5] h-1.5 rounded-full" style="width: 75%"></div>
+</div>
+<div class="text-right mt-1 font-data-mono text-[10px] text-on-surface-variant">Est. yield: 180 units</div>
+</div>
+<button class="w-full bg-[#5A00C5] hover:bg-[#4a00a5] text-white py-2 rounded font-title-sm text-title-sm transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">send</span>
+                                Execute SMS Campaign
+                            </button>
+</div>
+<!-- Geographic Clustering -->
+<div class="bg-white border border-[#E2E8F0] rounded flex flex-col flex-1">
+<div class="p-4 border-b border-[#E2E8F0] flex justify-between items-center bg-[#F8FAFC]">
+<h3 class="font-title-sm text-title-sm text-on-background">Geographic Clustering</h3>
+<span class="material-symbols-outlined text-secondary text-[18px]">map</span>
+</div>
+<div class="p-4 flex-1 flex flex-col justify-center items-center relative overflow-hidden bg-slate-50">
+<!-- Abstract Map Representation -->
+<div class="w-full h-40 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJncmlkIiB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0gMjAgMCBMIDAgMCAwIDIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNlMmU4ZjAiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-50 absolute inset-0"></div>
+<div class="relative w-full h-full">
+<!-- Clusters -->
+<div class="absolute top-[30%] left-[40%] flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-[#B91C1C] opacity-80 animate-pulse"></div>
+<div class="absolute w-8 h-8 rounded-full border-2 border-[#B91C1C] animate-ping opacity-50"></div>
+<span class="mt-1 font-label-caps text-[10px] font-bold bg-white px-1 border border-outline-variant rounded relative z-10">ADDIS (High)</span>
+</div>
+<div class="absolute top-[60%] left-[20%] flex flex-col items-center">
+<div class="w-4 h-4 rounded-full bg-[#515f74] opacity-80"></div>
+<span class="mt-1 font-label-caps text-[10px] bg-white px-1 border border-outline-variant rounded relative z-10">OROMIA</span>
+</div>
+<div class="absolute top-[20%] left-[70%] flex flex-col items-center">
+<div class="w-6 h-6 rounded-full bg-[#515f74] opacity-80"></div>
+<span class="mt-1 font-label-caps text-[10px] bg-white px-1 border border-outline-variant rounded relative z-10">AMHARA</span>
+</div>
+</div>
+</div>
+<div class="p-3 border-t border-[#E2E8F0] bg-surface-lowest">
+<div class="flex justify-between items-center text-sm">
+<span class="font-body-compact text-on-surface-variant">Highest Density:</span>
+<span class="font-data-mono font-bold text-on-background">Addis Ababa (12.4/sq km)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-dim dark:bg-inverse-surface border-t border-outline-variant full-width bottom-0 z-40 relative md:ml-[260px]">
+<div class="flex flex-col items-center py-lg px-xl space-y-md">
+<div class="flex flex-wrap justify-center gap-4 mb-2">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Operational Standards</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Contact Command Center</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Regional Directories</a>
+</div>
+<div class="font-title-sm text-title-sm text-on-surface mb-2">DonorLink</div>
+<div class="text-xs text-center text-on-surface-variant dark:text-on-secondary-fixed-variant max-w-2xl font-body-compact">
+                © 2024 DonorLink Ethiopia National Blood Infrastructure. In partnership with WHO &amp; Ethiopia Red Cross.
+            </div>
+</div>
+</footer>
+</body></html>

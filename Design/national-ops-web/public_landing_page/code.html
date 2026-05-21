@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DonorLink - Ethiopia National Blood Infrastructure</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=IBM+Plex+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#fff8f7",
+                      "primary-fixed": "#ffdad6",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed": "#d5e3fd",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed": "#eaddff",
+                      "inverse-surface": "#3e2c2a",
+                      "on-surface-variant": "#5b403d",
+                      "secondary-fixed-dim": "#b9c7e0",
+                      "on-secondary-fixed": "#0d1c2f",
+                      "surface-tint": "#b91c1c",
+                      "surface-variant": "#f9dcd8",
+                      "error-container": "#ffdad6",
+                      "inverse-on-surface": "#ffedea",
+                      "on-tertiary-fixed": "#25005a",
+                      "surface-bright": "#fff8f7",
+                      "on-tertiary-fixed-variant": "#5a00c6",
+                      "surface-container-highest": "#f9dcd8",
+                      "inverse-primary": "#ffb4ab",
+                      "primary-container": "#b91c1c",
+                      "on-secondary-container": "#57657b",
+                      "surface-container": "#ffe9e6",
+                      "on-primary-fixed": "#410002",
+                      "on-primary-fixed-variant": "#93000b",
+                      "primary": "#93000b",
+                      "on-surface": "#271816",
+                      "tertiary-fixed-dim": "#d2bbff",
+                      "outline": "#8f6f6c",
+                      "tertiary": "#5a00c5",
+                      "tertiary-container": "#732ee4",
+                      "on-primary": "#ffffff",
+                      "on-primary-container": "#ffcdc7",
+                      "on-tertiary-container": "#e2d1ff",
+                      "surface-container-low": "#fff0ee",
+                      "surface-dim": "#f1d3d0",
+                      "on-tertiary": "#ffffff",
+                      "on-error": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed-variant": "#3a485c",
+                      "on-background": "#271816",
+                      "secondary": "#515f74",
+                      "surface-container-high": "#ffe2de",
+                      "secondary-container": "#d5e3fd",
+                      "outline-variant": "#e4beb9",
+                      "on-error-container": "#93000a",
+                      "background": "#fff8f7",
+                      "primary-fixed-dim": "#ffb4ab"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "grid_columns": "12",
+                      "sm": "12px",
+                      "lg": "24px",
+                      "sidebar_width": "260px",
+                      "gutter": "16px",
+                      "xs": "8px",
+                      "md": "16px",
+                      "xl": "32px",
+                      "base": "4px",
+                      "xxs": "4px"
+              },
+              "fontFamily": {
+                      "title-sm": [
+                              "Inter"
+                      ],
+                      "body-main": [
+                              "Inter"
+                      ],
+                      "data-mono": [
+                              "JetBrains Mono"
+                      ],
+                      "body-compact": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "IBM Plex Sans"
+                      ],
+                      "display-lg": [
+                              "IBM Plex Sans"
+                      ],
+                      "label-caps": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "title-sm": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-main": [
+                              "15px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "data-mono": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-compact": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "36px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-main min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface-container-highest dark:bg-inverse-surface text-primary dark:text-primary-fixed border-b border-outline-variant dark:border-outline flat no shadows flex justify-between items-center h-16 px-lg w-full sticky top-0 z-50">
+<div class="flex items-center gap-md">
+<span class="font-display-lg text-display-lg text-primary dark:text-primary-fixed">DonorLink</span>
+</div>
+<nav class="hidden md:flex gap-lg items-center">
+<a class="font-body-main text-body-main text-primary dark:text-primary-fixed font-bold border-b-2 border-primary py-sm" href="#">Mission</a>
+<a class="font-body-main text-body-main text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors py-sm px-xs rounded" href="#">Stats</a>
+<a class="font-body-main text-body-main text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors py-sm px-xs rounded" href="#">Flow</a>
+<a class="font-body-main text-body-main text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors py-sm px-xs rounded" href="#">Partners</a>
+</nav>
+<div class="flex items-center gap-sm">
+<button class="p-xs rounded hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs rounded hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined">emergency_home</span>
+</button>
+<button class="p-xs rounded hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative w-full overflow-hidden bg-surface-container-low min-h-[600px] flex items-center justify-center py-xl px-gutter">
+<div class="absolute inset-0 z-0">
+<img alt="National Blood Coordination Map" class="w-full h-full object-cover opacity-20 mix-blend-multiply" data-alt="A highly professional and clean top-down view of a modern logistics and medical coordination center map. The visual is abstract yet clearly operational, showing glowing red routing lines connecting various regional hubs across a stylized map of Ethiopia. The aesthetic is corporate modern, using a light, clinical palette of crisp whites and subtle grays, sharply contrasted by intense, deep blood red indicators and routing vectors. The mood conveys precision, authority, and life-saving urgency." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfybez_hLdsWE4zyLITF-DZyC-5XhbT6xaPG4kFDvalQl2gMJkqLiwosxup7vy0f-wdWyrvvCcm84kWtM_JrsdJJInQxdBnsJGYnPBUnRmJ7YFppg7nmq29iIaUEmvUUpZ3cCEYs7MF1Q7I5LcWso52zcjrKfrfPjLYDDL1O-8TvWHN2RDqbBBhMc4iXM8lvSYEdq6NfnikFUXslDz_-2fz66DnIymdGdjuBxFkcV0_kK3EMhufFJ8PSqcvc9Z1CRK8mQ2Z85EAPA"/>
+</div>
+<div class="relative z-10 max-w-4xl mx-auto text-center space-y-lg">
+<h1 class="font-display-lg text-display-lg text-on-surface">Intelligent Blood Infrastructure for Ethiopia</h1>
+<p class="font-headline-md text-headline-md text-on-surface-variant max-w-2xl mx-auto">
+                    Coordinating supply, anticipating shortages, and directing life-saving resources where they are needed most.
+                </p>
+<div class="pt-md flex justify-center gap-md">
+<button class="bg-primary text-on-primary font-title-sm text-title-sm px-xl py-sm rounded-lg hover:opacity-90 transition-opacity">
+                        Join the Mission
+                    </button>
+<button class="bg-transparent border-2 border-secondary text-secondary font-title-sm text-title-sm px-xl py-sm rounded-lg hover:bg-surface-variant transition-colors">
+                        Explore Network
+                    </button>
+</div>
+</div>
+</section>
+<!-- Stats Section (Bento Grid) -->
+<section class="py-xl px-gutter max-w-[1440px] mx-auto bg-background">
+<div class="mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">National Real-Time Status</h2>
+<p class="font-body-main text-body-main text-on-surface-variant">Live operational metrics from the national blood supply chain.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Stat Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-[0_4px_12px_rgba(15,23,42,0.02)] flex flex-col justify-between h-[180px]">
+<div class="flex justify-between items-start">
+<span class="font-title-sm text-title-sm text-on-surface-variant">National Blood Units</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">water_drop</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface">14,285</div>
+<div class="font-label-caps text-label-caps text-secondary mt-xxs flex items-center gap-xxs">
+<span class="w-2 h-2 rounded-full bg-[#10B981]"></span>
+                            STABLE INVENTORY
+                        </div>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-lg shadow-[0_4px_12px_rgba(15,23,42,0.02)] flex flex-col justify-between h-[180px]">
+<div class="flex justify-between items-start">
+<span class="font-title-sm text-title-sm text-on-surface-variant">Active Transfers</span>
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-surface">112</div>
+<div class="font-label-caps text-label-caps text-secondary mt-xxs flex items-center gap-xxs">
+<span class="w-2 h-2 rounded-full bg-[#3B82F6] animate-pulse"></span>
+                            EN ROUTE
+                        </div>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-primary-container border border-primary rounded-xl p-lg shadow-[0_4px_12px_rgba(15,23,42,0.05)] flex flex-col justify-between h-[180px]">
+<div class="flex justify-between items-start">
+<span class="font-title-sm text-title-sm text-on-primary-container">Critical Shortages</span>
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-on-primary-container">3</div>
+<div class="font-label-caps text-label-caps text-on-primary-container mt-xxs flex items-center gap-xxs">
+<span class="w-2 h-2 rounded-full bg-on-primary-container"></span>
+                            ACTION REQUIRED
+                        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- Lifecycle Section -->
+<section class="py-xl px-gutter max-w-[1440px] mx-auto bg-surface">
+<div class="mb-lg text-center">
+<h2 class="font-headline-md text-headline-md text-on-surface">The Lifeblood Lifecycle</h2>
+<p class="font-body-main text-body-main text-on-surface-variant max-w-2xl mx-auto">From the moment of donation to the critical point of care, we track and optimize every step of the journey.</p>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-between gap-lg relative">
+<div class="hidden md:block absolute top-1/2 left-[10%] right-[10%] h-[2px] bg-outline-variant -translate-y-1/2 z-0"></div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm z-10 w-full md:w-1/5 text-center flex flex-col items-center gap-sm">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl">favorite</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Donor</h3>
+<p class="font-body-compact text-body-compact text-on-surface-variant">Generous individuals give life.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm z-10 w-full md:w-1/5 text-center flex flex-col items-center gap-sm">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-2xl">bloodtype</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Blood Bank</h3>
+<p class="font-body-compact text-body-compact text-on-surface-variant">Processing and secure storage.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm z-10 w-full md:w-1/5 text-center flex flex-col items-center gap-sm">
+<div class="w-16 h-16 rounded-full bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-2xl">inventory_2</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Inventory</h3>
+<p class="font-body-compact text-body-compact text-on-surface-variant">National real-time tracking.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm z-10 w-full md:w-1/5 text-center flex flex-col items-center gap-sm">
+<div class="w-16 h-16 rounded-full bg-secondary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-2xl">local_hospital</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Hospital</h3>
+<p class="font-body-compact text-body-compact text-on-surface-variant">Strategic redistribution.</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm z-10 w-full md:w-1/5 text-center flex flex-col items-center gap-sm">
+<div class="w-16 h-16 rounded-full bg-primary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl">personal_injury</span>
+</div>
+<h3 class="font-title-sm text-title-sm text-on-surface">Patient</h3>
+<p class="font-body-compact text-body-compact text-on-surface-variant">Life-saving transfusion.</p>
+</div>
+</div>
+</section>
+<!-- Operations Section -->
+<section class="py-xl px-gutter max-w-[1440px] mx-auto bg-surface-container-low">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+<div class="space-y-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Intelligent Operations &amp; Coordination</h2>
+<p class="font-body-main text-body-main text-on-surface-variant">Our platform enables seamless communication between national blood banks and regional hospitals, ensuring optimal distribution and rapid emergency response.</p>
+<ul class="space-y-sm mt-md">
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary">swap_horiz</span>
+<div>
+<h4 class="font-title-sm text-title-sm text-on-surface">Dynamic Redistribution</h4>
+<p class="font-body-compact text-body-compact text-on-surface-variant">Algorithms anticipate shortages and route supplies efficiently.</p>
+</div>
+</li>
+<li class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-error">emergency</span>
+<div>
+<h4 class="font-title-sm text-title-sm text-on-surface">Emergency Response</h4>
+<p class="font-body-compact text-body-compact text-on-surface-variant">Immediate alert systems for critical situations.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="bg-surface-container-highest rounded-xl p-lg flex items-center justify-center min-h-[300px]">
+<span class="material-symbols-outlined text-display-lg text-primary opacity-50 text-[120px]">hub</span>
+</div>
+</div>
+</section>
+<!-- Donor CTA Section -->
+<section class="py-xl px-gutter max-w-[1440px] mx-auto bg-primary-container text-center rounded-xl my-xl shadow-md">
+<h2 class="font-headline-md text-headline-md text-on-primary-container mb-sm">Your Donation Saves Lives</h2>
+<p class="font-body-main text-body-main text-on-primary-container opacity-90 max-w-2xl mx-auto mb-lg">Join the thousands of heroes across Ethiopia who are making a difference every day.</p>
+<button class="bg-on-primary-container text-primary-container font-title-sm text-title-sm px-xl py-sm rounded-lg hover:opacity-90 transition-opacity">
+        Become a Donor Today
+    </button>
+</section>
+<!-- Trust & Impact Section -->
+<section class="py-xl px-gutter max-w-[1440px] mx-auto bg-background text-center">
+<div class="mb-lg">
+<h2 class="font-headline-md text-headline-md text-on-surface">Trusted by National Partners</h2>
+<p class="font-body-main text-body-main text-on-surface-variant">A collaborative effort to strengthen healthcare infrastructure.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-xl opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+<div class="flex items-center gap-xs font-title-sm text-on-surface"><span class="material-symbols-outlined">account_balance</span> Ministry of Health</div>
+<div class="flex items-center gap-xs font-title-sm text-on-surface"><span class="material-symbols-outlined">health_and_safety</span> WHO</div>
+<div class="flex items-center gap-xs font-title-sm text-on-surface"><span class="material-symbols-outlined">medication</span> Ethiopian Red Cross</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-dim dark:bg-inverse-surface border-t border-outline-variant flat no shadows flex flex-col items-center py-lg px-xl space-y-md full-width bottom-0 mt-auto">
+<div class="font-title-sm text-title-sm text-on-surface mb-sm">DonorLink</div>
+<div class="flex flex-wrap justify-center gap-md mb-sm">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Privacy Policy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Operational Standards</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Contact Command Center</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Regional Directories</a>
+</div>
+<p class="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed text-center max-w-2xl">
+            © 2024 DonorLink Ethiopia National Blood Infrastructure. In partnership with WHO &amp; Ethiopia Red Cross.
+        </p>
+</footer>
+</body></html>

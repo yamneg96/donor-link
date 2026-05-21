@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Transfer Operations Center - DonorLink</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=IBM+Plex+Sans:wght@600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#d5e3fd",
+                        "tertiary-fixed": "#eaddff",
+                        "surface-container-high": "#ffe2de",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "background": "#fff8f7",
+                        "surface-bright": "#fff8f7",
+                        "outline-variant": "#e4beb9",
+                        "on-secondary-container": "#57657b",
+                        "primary": "#93000b",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "inverse-on-surface": "#ffedea",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-tint": "#b91c1c",
+                        "surface-container-highest": "#f9dcd8",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#5a00c5",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#271816",
+                        "on-primary-fixed": "#410002",
+                        "on-primary-container": "#ffcdc7",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fff8f7",
+                        "surface-container": "#ffe9e6",
+                        "on-tertiary-fixed": "#25005a",
+                        "surface-variant": "#f9dcd8",
+                        "on-tertiary-container": "#e2d1ff",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-background": "#271816",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#5b403d",
+                        "inverse-surface": "#3e2c2a",
+                        "outline": "#8f6f6c",
+                        "tertiary-container": "#732ee4",
+                        "primary-fixed": "#ffdad6",
+                        "surface-dim": "#f1d3d0",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "error": "#ba1a1a",
+                        "secondary": "#515f74",
+                        "secondary-fixed": "#d5e3fd",
+                        "on-primary-fixed-variant": "#93000b",
+                        "primary-container": "#b91c1c",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#fff0ee",
+                        "on-secondary-fixed-variant": "#3a485c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xxs": "4px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "sm": "12px",
+                        "sidebar_width": "260px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "grid_columns": "12"
+                    },
+                    "fontFamily": {
+                        "body-main": ["Inter"],
+                        "body-compact": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "data-mono": ["JetBrains Mono"],
+                        "display-lg": ["IBM Plex Sans"],
+                        "title-sm": ["Inter"],
+                        "headline-md": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "body-main": ["15px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-compact": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "data-mono": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "display-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-main flex flex-col min-h-screen">
+<!-- TopNavBar (Mobile only) -->
+<nav class="md:hidden bg-surface-container-highest dark:bg-inverse-surface text-primary dark:text-primary-fixed flex justify-between items-center h-16 px-lg w-full full-width top-0 z-50 border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-xs">
+<span class="font-display-lg text-display-lg text-primary dark:text-primary-fixed">DonorLink</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors cursor-pointer rounded-full p-xs">notifications</span>
+<span class="material-symbols-outlined hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors cursor-pointer rounded-full p-xs">emergency_home</span>
+<span class="material-symbols-outlined hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors cursor-pointer rounded-full p-xs">account_circle</span>
+</div>
+</nav>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar (Desktop) -->
+<aside class="hidden md:flex bg-surface-container dark:bg-inverse-surface text-primary dark:text-primary-fixed fixed left-0 top-0 h-full w-[260px] border-r border-outline-variant flex-col py-md px-sm z-40">
+<div class="mb-xl px-sm">
+<div class="flex items-center gap-sm mb-xs">
+<img alt="National Admin Avatar" class="w-10 h-10 rounded-full border border-outline-variant object-cover" data-alt="A professional headshot of a female medical administrator in her 40s wearing a crisp white coat over a dark blue blouse. She is standing in a modern, brightly lit clinical office with subtle out-of-focus medical equipment in the background. The lighting is soft and even, suggesting a clean, highly organized medical environment. The mood is confident, calm, and authoritative, fitting the high-stakes, operational focus of a control tower setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAROAiUNOYH2y6kGyW8K3b8cksWoDL76LfVhKVEXT8tVs-eFit6z0nQANrohGjkIoe4INXszV-Tu85bd0Vly8eF_hqUFslRvPvNUhK2Cg4JQdDv7PkTgcWe1SgXlM9mhaeGo5xo-E5s3_XSkdrdmh8Irn-k7OPXQmUTs1CXiweDuCPrg8H3337psLnrDnhu_ck8BGKnjArILjAnYUFJ4CkcTEHc_OVbRZoKXiuYgEqO8fk_qocbg_DOxOyGqwprunXzwO-dR-YiVc"/>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">National Portal</h1>
+<p class="font-body-compact text-body-compact text-on-surface-variant">Ethiopia Blood Services</p>
+</div>
+</div>
+<button class="w-full bg-primary-container text-on-primary-container font-label-caps text-label-caps py-sm px-md rounded-DEFAULT hover:bg-surface-tint hover:text-on-primary transition-colors flex items-center justify-center gap-xs mt-md border border-outline-variant">
+<span class="material-symbols-outlined">add_alert</span>
+                    New Emergency Alert
+                </button>
+</div>
+<nav class="flex-1 overflow-y-auto space-y-base">
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Command Center
+                </a>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                    Inventory
+                </a>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+                    Unit Tracking
+                </a>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+                    Marketplace
+                </a>
+<a class="flex items-center gap-sm py-sm px-md bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary rounded-lg font-bold transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined filled">local_shipping</span>
+                    Operations
+                </a>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">warning</span>
+                    Expiry Risk
+                </a>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">group</span>
+                    Donor Management
+                </a>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">emergency</span>
+                    Emergency
+                </a>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                    Analytics
+                </a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-md space-y-base">
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-sm py-sm px-md rounded-DEFAULT text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">help</span>
+                    Support
+                </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-sidebar_width bg-background min-h-screen p-md md:p-lg overflow-y-auto">
+<header class="flex justify-between items-center mb-xl">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-background">Transfer Operations Center</h2>
+<p class="font-body-compact text-body-compact text-on-surface-variant mt-xs">Active logistics tracking and fleet status.</p>
+</div>
+<div class="flex gap-sm">
+<button class="bg-surface-container-lowest border border-outline-variant text-on-surface font-label-caps text-label-caps py-sm px-md rounded-DEFAULT flex items-center gap-xs hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+                        FILTER
+                    </button>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps py-sm px-md rounded-DEFAULT flex items-center gap-xs hover:bg-primary-container hover:text-on-primary-container transition-colors shadow-sm">
+<span class="material-symbols-outlined">add</span>
+                        NEW TRANSFER
+                    </button>
+</div>
+</header>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Active Transfers List (Left Panel) -->
+<div class="col-span-12 lg:col-span-7 flex flex-col gap-md">
+<div class="flex items-center justify-between">
+<h3 class="font-title-sm text-title-sm text-on-background flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+                            Active Transfers
+                        </h3>
+<span class="font-label-caps text-label-caps text-on-surface-variant bg-surface-container-high px-sm py-xxs rounded-full">3 IN PROGRESS</span>
+</div>
+<!-- Transfer Card 1 (Selected) -->
+<div class="bg-surface-container-lowest border border-primary rounded-lg p-md shadow-[0px_4px_12px_rgba(15,23,42,0.05)] cursor-pointer relative overflow-hidden">
+<div class="absolute left-0 top-0 bottom-0 w-[4px] bg-primary"></div>
+<div class="flex justify-between items-start mb-sm">
+<div>
+<span class="font-data-mono text-data-mono text-on-surface-variant">TRX-8820-A</span>
+<h4 class="font-title-sm text-title-sm text-on-background mt-xxs">Addis Ababa -&gt; Jimma Hosp</h4>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-data-mono text-data-mono text-primary font-bold">ETA 45m</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant mt-xxs">ON SCHEDULE</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="flex items-center gap-xs mt-md mb-xs">
+<div class="flex-1 h-[8px] bg-primary rounded-full relative">
+<div class="absolute inset-0 bg-primary opacity-20 rounded-full"></div>
+</div>
+<div class="flex-1 h-[8px] bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-1/2"></div>
+</div>
+<div class="flex-1 h-[8px] bg-surface-container-highest rounded-full"></div>
+</div>
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant px-xxs">
+<span>DISPATCH</span>
+<span class="text-primary font-bold">TRANSIT</span>
+<span>DELIVERY</span>
+</div>
+<div class="flex gap-xs mt-md">
+<span class="inline-flex items-center gap-xxs px-sm py-xxs rounded-full border border-secondary bg-surface-bright text-secondary font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px]">ac_unit</span> Cold Chain Verified
+                            </span>
+<span class="inline-flex items-center gap-xxs px-sm py-xxs rounded-full border border-primary-fixed bg-surface-bright text-primary font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px]">route</span> In Transit
+                            </span>
+</div>
+</div>
+<!-- Transfer Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md hover:border-secondary transition-colors cursor-pointer">
+<div class="flex justify-between items-start mb-sm">
+<div>
+<span class="font-data-mono text-data-mono text-on-surface-variant">TRX-8821-B</span>
+<h4 class="font-title-sm text-title-sm text-on-background mt-xxs">Dire Dawa -&gt; Harar Central</h4>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-data-mono text-data-mono text-error font-bold">ETA 2h 15m</span>
+<span class="font-label-caps text-label-caps text-error mt-xxs">DELAYED</span>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="flex items-center gap-xs mt-md mb-xs">
+<div class="flex-1 h-[8px] bg-primary rounded-full"></div>
+<div class="flex-1 h-[8px] bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-error w-1/4"></div>
+</div>
+<div class="flex-1 h-[8px] bg-surface-container-highest rounded-full"></div>
+</div>
+<div class="flex justify-between font-label-caps text-label-caps text-on-surface-variant px-xxs">
+<span>DISPATCH</span>
+<span class="text-error font-bold">TRANSIT</span>
+<span>DELIVERY</span>
+</div>
+<div class="flex gap-xs mt-md">
+<span class="inline-flex items-center gap-xxs px-sm py-xxs rounded-full bg-error-container text-on-error-container font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[14px]">warning</span> Delay Detected
+                            </span>
+</div>
+</div>
+</div>
+<!-- Transfer Detail & Map (Right Panel) -->
+<div class="col-span-12 lg:col-span-5 flex flex-col gap-md">
+<!-- Map Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg overflow-hidden flex flex-col">
+<div class="h-[240px] bg-surface-container-high relative">
+<!-- Placeholder for map visualization -->
+<div class="absolute inset-0 flex items-center justify-center opacity-50 pointer-events-none">
+<span class="material-symbols-outlined text-[64px] text-on-surface-variant">map</span>
+</div>
+<!-- Map Route SVG Overlay (Conceptual) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" viewbox="0 0 400 240">
+<path d="M 100 120 Q 200 80 300 150" fill="none" stroke="#93000b" stroke-dasharray="6,6" stroke-width="3"></path>
+<circle cx="100" cy="120" fill="#271816" r="6"></circle>
+<circle cx="300" cy="150" fill="#93000b" r="6"></circle>
+</svg>
+</div>
+<div class="p-md border-t border-outline-variant bg-surface-bright">
+<h4 class="font-title-sm text-title-sm text-on-background mb-xs">Route Visualization</h4>
+<p class="font-body-compact text-body-compact text-on-surface-variant">Live GPS tracking active for vehicle <span class="font-data-mono">ET-A492</span>.</p>
+</div>
+</div>
+<!-- Details Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-md">
+<h3 class="font-title-sm text-title-sm text-on-background border-b border-outline-variant pb-xs mb-md">Transfer Detail: TRX-8820-A</h3>
+<div class="grid grid-cols-2 gap-sm mb-md">
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-xxs">VEHICLE ID</span>
+<span class="font-data-mono text-data-mono text-on-background bg-surface-container px-sm py-xxs rounded-DEFAULT">ET-A492 / Van</span>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-xxs">DRIVER</span>
+<span class="font-body-compact text-body-compact text-on-background">Abebe B.</span>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-xxs">PAYLOAD</span>
+<span class="font-body-compact text-body-compact text-on-background">40 Units (O+, A-)</span>
+</div>
+<div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-xxs">TEMP STATUS</span>
+<span class="font-data-mono text-data-mono text-secondary flex items-center gap-xxs"><span class="material-symbols-outlined text-[16px]">thermostat</span> 4.2°C</span>
+</div>
+</div>
+<div class="bg-[#F5F3FF] border-l-[4px] border-tertiary p-sm rounded-r-DEFAULT mb-md">
+<span class="font-label-caps text-label-caps text-tertiary flex items-center gap-xs mb-xxs">
+<span class="material-symbols-outlined text-[14px]">smart_toy</span> AI DISPATCHER NOTE
+                            </span>
+<p class="font-body-compact text-body-compact text-on-background">Traffic clear on Route 4. Temperature holding steady. No interventions required at this time.</p>
+</div>
+<button class="w-full bg-surface-container-lowest border border-outline-variant text-on-surface font-label-caps text-label-caps py-sm px-md rounded-DEFAULT flex items-center justify-center gap-xs hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">call</span>
+                            CONTACT DRIVER
+                        </button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-xl pt-lg border-t border-outline-variant bg-surface-dim dark:bg-inverse-surface text-secondary dark:text-secondary-fixed flex flex-col items-center py-lg px-xl space-y-md font-label-caps text-label-caps w-full">
+<span class="font-title-sm text-title-sm text-on-surface">DonorLink</span>
+<p class="text-center">© 2024 DonorLink Ethiopia National Blood Infrastructure. In partnership with WHO &amp; Ethiopia Red Cross.</p>
+<div class="flex gap-md flex-wrap justify-center">
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Operational Standards</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Contact Command Center</a>
+<a class="text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Regional Directories</a>
+</div>
+</footer>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DonorLink - Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@600;700&amp;family=Inter:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#d5e3fd",
+                        "tertiary-fixed": "#eaddff",
+                        "surface-container-high": "#ffe2de",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "background": "#fff8f7",
+                        "surface-bright": "#fff8f7",
+                        "outline-variant": "#e4beb9",
+                        "on-secondary-container": "#57657b",
+                        "primary": "#93000b",
+                        "primary-fixed-dim": "#ffb4ab",
+                        "inverse-on-surface": "#ffedea",
+                        "inverse-primary": "#ffb4ab",
+                        "surface-tint": "#b91c1c",
+                        "surface-container-highest": "#f9dcd8",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#5a00c5",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#271816",
+                        "on-primary-fixed": "#410002",
+                        "on-primary-container": "#ffcdc7",
+                        "tertiary-fixed-dim": "#d2bbff",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#fff8f7",
+                        "surface-container": "#ffe9e6",
+                        "on-tertiary-fixed": "#25005a",
+                        "surface-variant": "#f9dcd8",
+                        "on-tertiary-container": "#e2d1ff",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5a00c6",
+                        "on-background": "#271816",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#5b403d",
+                        "inverse-surface": "#3e2c2a",
+                        "outline": "#8f6f6c",
+                        "tertiary-container": "#732ee4",
+                        "primary-fixed": "#ffdad6",
+                        "surface-dim": "#f1d3d0",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "error": "#ba1a1a",
+                        "secondary": "#515f74",
+                        "secondary-fixed": "#d5e3fd",
+                        "on-primary-fixed-variant": "#93000b",
+                        "primary-container": "#b91c1c",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#fff0ee",
+                        "on-secondary-fixed-variant": "#3a485c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xxs": "4px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "sm": "12px",
+                        "sidebar_width": "260px",
+                        "xs": "8px",
+                        "base": "4px",
+                        "grid_columns": "12"
+                    },
+                    "fontFamily": {
+                        "body-main": ["Inter"],
+                        "body-compact": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "data-mono": ["JetBrains Mono"],
+                        "display-lg": ["IBM Plex Sans"],
+                        "title-sm": ["Inter"],
+                        "headline-md": ["IBM Plex Sans"]
+                    },
+                    "fontSize": {
+                        "body-main": ["15px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-compact": ["13px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "label-caps": ["11px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "data-mono": ["12px", { "lineHeight": "1", "fontWeight": "500" }],
+                        "display-lg": ["36px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "title-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.3", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-main flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="bg-surface-container-highest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline docked full-width top-0 z-50 flex justify-between items-center h-16 px-lg w-full">
+<div class="flex items-center gap-md">
+<span class="font-display-lg text-display-lg text-primary dark:text-primary-fixed font-bold tracking-tight">DonorLink</span>
+</div>
+<div class="flex-1 max-w-md mx-lg hidden md:block">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface rounded-full py-xs pl-xl pr-sm text-body-compact border border-outline-variant focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Search marketplace..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-xs rounded-full hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-xs rounded-full hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined">emergency_home</span>
+</button>
+<button class="p-xs rounded-full hover:bg-surface-variant dark:hover:bg-on-surface-variant transition-colors text-on-surface-variant dark:text-on-secondary-fixed-variant">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden relative">
+<!-- SideNavBar (Desktop only) -->
+<aside class="hidden md:flex flex-col h-full py-md px-sm bg-surface-container dark:bg-inverse-surface border-r border-outline-variant w-sidebar_width shrink-0">
+<div class="mb-lg px-sm">
+<div class="flex items-center gap-sm mb-xs">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold font-title-sm">NA</div>
+<div>
+<div class="font-headline-md text-title-sm font-bold text-primary">National Portal</div>
+<div class="font-body-compact text-body-compact text-on-surface-variant">Ethiopia Blood Services</div>
+</div>
+</div>
+</div>
+<button class="w-full bg-error text-on-error py-sm px-md rounded-lg font-title-sm text-body-compact flex items-center justify-center gap-xs mb-lg hover:bg-on-error-container transition-colors shadow-[0px_4px_12px_rgba(15,23,42,0.05)]">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">emergency</span>
+                New Emergency Alert
+            </button>
+<nav class="flex-1 overflow-y-auto space-y-xxs">
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Command Center
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                    Inventory
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">qr_code_scanner</span>
+                    Unit Tracking
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary font-bold transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+                    Marketplace
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+                    Operations
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">warning</span>
+                    Expiry Risk
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">group</span>
+                    Donor Management
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">emergency</span>
+                    Emergency
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                    Analytics
+                </a>
+</nav>
+<div class="mt-auto border-t border-outline-variant pt-sm space-y-xxs">
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-on-surface-variant dark:text-on-secondary-fixed-variant hover:bg-surface-container-high dark:hover:bg-surface-variant transition-all duration-200 ease-in-out font-body-compact text-body-compact" href="#">
+<span class="material-symbols-outlined">help</span>
+                    Support
+                </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto bg-background p-md md:p-lg">
+<div class="max-w-[1440px] mx-auto space-y-lg">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md border-b border-outline-variant pb-sm">
+<div>
+<h1 class="font-display-lg text-display-lg text-on-surface">Transfer Marketplace</h1>
+<p class="font-body-main text-body-main text-on-surface-variant mt-xxs">Hospital redistribution exchange and logistics management.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm border border-outline text-on-surface rounded-lg font-title-sm text-body-compact hover:bg-surface-variant transition-colors bg-surface-container-lowest">
+                            Filter
+                        </button>
+<button class="px-md py-sm bg-primary text-on-primary rounded-lg font-title-sm text-body-compact hover:bg-on-primary-fixed transition-colors">
+                            Post Offer/Request
+                        </button>
+</div>
+</div>
+<!-- AI Smart Match Section -->
+<section class="bg-surface-container-lowest border border-tertiary-fixed rounded-xl p-md shadow-sm relative overflow-hidden flex flex-col md:flex-row gap-lg">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-tertiary"></div>
+<div class="absolute inset-0 bg-[#F5F3FF] opacity-50 pointer-events-none"></div>
+<div class="relative z-10 flex-1">
+<div class="flex items-center gap-xs mb-sm text-tertiary">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<h2 class="font-title-sm text-title-sm font-bold">AI Smart Match Recommendations</h2>
+</div>
+<p class="font-body-compact text-body-compact text-on-surface-variant mb-md">Optimized transfers based on distance, expiry risk, and historical demand patterns.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Match Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-sm hover:border-tertiary transition-colors hover:shadow-[0px_4px_12px_rgba(15,23,42,0.05)] cursor-pointer">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-xs text-error font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[16px]">priority_high</span>
+                                        CRITICAL MATCH
+                                    </div>
+<span class="font-data-mono text-data-mono text-on-surface-variant">Est. 45 min</span>
+</div>
+<div class="flex items-center justify-between mb-sm">
+<div class="flex-1">
+<div class="font-body-compact text-body-compact text-on-surface-variant">From</div>
+<div class="font-title-sm text-title-sm text-on-surface truncate">Black Lion</div>
+<div class="font-data-mono text-data-mono text-primary mt-xxs">12x AB- (Exp. 48h)</div>
+</div>
+<div class="px-sm text-tertiary flex flex-col items-center">
+<span class="font-data-mono text-data-mono mb-xxs">14km</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+<div class="flex-1 text-right">
+<div class="font-body-compact text-body-compact text-on-surface-variant">To</div>
+<div class="font-title-sm text-title-sm text-on-surface truncate">Yekatit 12</div>
+<div class="font-data-mono text-data-mono text-error mt-xxs">Needs 5x AB- ASAP</div>
+</div>
+</div>
+<button class="w-full py-xs bg-tertiary-container text-on-tertiary-container rounded font-title-sm text-body-compact hover:bg-tertiary hover:text-on-tertiary transition-colors">
+                                    Execute Transfer
+                                </button>
+</div>
+<!-- Match Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-sm hover:border-tertiary transition-colors hover:shadow-[0px_4px_12px_rgba(15,23,42,0.05)] cursor-pointer">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-xs text-primary font-label-caps text-label-caps">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                                        HIGH EFFICIENCY
+                                    </div>
+<span class="font-data-mono text-data-mono text-on-surface-variant">Est. 1.2 hrs</span>
+</div>
+<div class="flex items-center justify-between mb-sm">
+<div class="flex-1">
+<div class="font-body-compact text-body-compact text-on-surface-variant">From</div>
+<div class="font-title-sm text-title-sm text-on-surface truncate">St. Paul's</div>
+<div class="font-data-mono text-data-mono text-primary mt-xxs">20x O+ (Surplus)</div>
+</div>
+<div class="px-sm text-tertiary flex flex-col items-center">
+<span class="font-data-mono text-data-mono mb-xxs">32km</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+<div class="flex-1 text-right">
+<div class="font-body-compact text-body-compact text-on-surface-variant">To</div>
+<div class="font-title-sm text-title-sm text-on-surface truncate">Zewditu</div>
+<div class="font-data-mono text-data-mono text-on-surface-variant mt-xxs">Low Stock Warning</div>
+</div>
+</div>
+<button class="w-full py-xs bg-tertiary-container text-on-tertiary-container rounded font-title-sm text-body-compact hover:bg-tertiary hover:text-on-tertiary transition-colors">
+                                    Execute Transfer
+                                </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Marketplace Grid -->
+<div class="grid grid-cols-1 xl:grid-cols-2 gap-lg">
+<!-- Urgent Requests -->
+<section class="space-y-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-xs">
+<h3 class="font-headline-md text-title-sm font-bold text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-error">campaign</span>
+                                Urgent Requests
+                            </h3>
+<span class="bg-error-container text-on-error-container font-data-mono text-data-mono px-xs py-base rounded">12 Active</span>
+</div>
+<div class="space-y-sm">
+<!-- Request Card -->
+<div class="bg-surface-container-lowest border border-error rounded-lg p-sm shadow-[0px_4px_12px_rgba(15,23,42,0.05)] relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-error text-on-error font-label-caps text-label-caps px-xs py-base rounded-bl-lg">CRITICAL</div>
+<div class="flex items-start gap-md">
+<div class="w-12 h-12 bg-error-container text-on-error-container rounded flex flex-col items-center justify-center shrink-0">
+<span class="font-display-lg text-title-sm leading-none">O+</span>
+<span class="font-label-caps text-[9px]">5 UNITS</span>
+</div>
+<div class="flex-1">
+<div class="font-title-sm text-title-sm text-on-surface">Yekatit 12 Hospital</div>
+<div class="font-body-compact text-body-compact text-on-surface-variant mt-xxs">Immediate need for trauma surgery.</div>
+<div class="flex items-center gap-sm mt-xs text-on-surface-variant font-data-mono text-data-mono">
+<span class="flex items-center gap-xxs"><span class="material-symbols-outlined text-[14px]">schedule</span> 10 min ago</span>
+<span class="flex items-center gap-xxs"><span class="material-symbols-outlined text-[14px]">location_on</span> 14km away</span>
+</div>
+</div>
+<button class="px-sm py-xs bg-surface-container border border-outline text-on-surface rounded font-title-sm text-body-compact hover:bg-surface-variant transition-colors shrink-0">
+                                        Fulfill
+                                    </button>
+</div>
+</div>
+<!-- Request Card -->
+<div class="bg-surface-container-lowest border border-outline-variant hover:border-primary transition-colors rounded-lg p-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary-container text-on-primary-container font-label-caps text-label-caps px-xs py-base rounded-bl-lg">HIGH</div>
+<div class="flex items-start gap-md">
+<div class="w-12 h-12 bg-surface-container text-on-surface rounded flex flex-col items-center justify-center shrink-0 border border-outline-variant">
+<span class="font-display-lg text-title-sm leading-none">A-</span>
+<span class="font-label-caps text-[9px]">2 UNITS</span>
+</div>
+<div class="flex-1">
+<div class="font-title-sm text-title-sm text-on-surface">Menelik II Hospital</div>
+<div class="font-body-compact text-body-compact text-on-surface-variant mt-xxs">Scheduled procedures tomorrow.</div>
+<div class="flex items-center gap-sm mt-xs text-on-surface-variant font-data-mono text-data-mono">
+<span class="flex items-center gap-xxs"><span class="material-symbols-outlined text-[14px]">schedule</span> 2 hrs ago</span>
+<span class="flex items-center gap-xxs"><span class="material-symbols-outlined text-[14px]">location_on</span> 8km away</span>
+</div>
+</div>
+<button class="px-sm py-xs bg-surface-container border border-outline text-on-surface rounded font-title-sm text-body-compact hover:bg-surface-variant transition-colors shrink-0">
+                                        Fulfill
+                                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Surplus Offers -->
+<section class="space-y-sm">
+<div class="flex items-center justify-between border-b border-outline-variant pb-xs">
+<h3 class="font-headline-md text-title-sm font-bold text-on-surface flex items-center gap-xs">
+<span class="material-symbols-outlined text-secondary">inventory_2</span>
+                                Surplus Offers
+                            </h3>
+<span class="bg-secondary-container text-on-secondary-container font-data-mono text-data-mono px-xs py-base rounded">34 Active</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-sm">
+<!-- Offer Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-sm hover:shadow-[0px_4px_12px_rgba(15,23,42,0.05)] transition-shadow">
+<div class="flex justify-between items-start mb-sm">
+<div class="w-10 h-10 bg-primary-fixed-dim text-on-primary-fixed rounded flex flex-col items-center justify-center border border-outline-variant">
+<span class="font-display-lg text-title-sm leading-none">AB-</span>
+</div>
+<div class="text-right">
+<div class="font-title-sm text-title-sm text-on-surface">12 Units</div>
+<div class="font-label-caps text-label-caps text-error mt-xxs">EXP. 48 HRS</div>
+</div>
+</div>
+<div class="font-title-sm text-body-compact text-on-surface">Black Lion Hospital</div>
+<div class="flex items-center justify-between mt-xs">
+<span class="font-data-mono text-data-mono text-on-surface-variant flex items-center gap-xxs"><span class="material-symbols-outlined text-[14px]">location_on</span> 14km away</span>
+<button class="text-primary font-title-sm text-body-compact hover:underline">Claim</button>
+</div>
+</div>
+<!-- Offer Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-sm hover:shadow-[0px_4px_12px_rgba(15,23,42,0.05)] transition-shadow">
+<div class="flex justify-between items-start mb-sm">
+<div class="w-10 h-10 bg-surface-container text-on-surface rounded flex flex-col items-center justify-center border border-outline-variant">
+<span class="font-display-lg text-title-sm leading-none">O+</span>
+</div>
+<div class="text-right">
+<div class="font-title-sm text-title-sm text-on-surface">20 Units</div>
+<div class="font-label-caps text-label-caps text-secondary mt-xxs">EXP. 14 DAYS</div>
+</div>
+</div>
+<div class="font-title-sm text-body-compact text-on-surface">St. Paul's Hospital</div>
+<div class="flex items-center justify-between mt-xs">
+<span class="font-data-mono text-data-mono text-on-surface-variant flex items-center gap-xxs"><span class="material-symbols-outlined text-[14px]">location_on</span> 32km away</span>
+<button class="text-primary font-title-sm text-body-compact hover:underline">Claim</button>
+</div>
+</div>
+<!-- Offer Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-sm hover:shadow-[0px_4px_12px_rgba(15,23,42,0.05)] transition-shadow">
+<div class="flex justify-between items-start mb-sm">
+<div class="w-10 h-10 bg-surface-container text-on-surface rounded flex flex-col items-center justify-center border border-outline-variant">
+<span class="font-display-lg text-title-sm leading-none">B+</span>
+</div>
+<div class="text-right">
+<div class="font-title-sm text-title-sm text-on-surface">8 Units</div>
+<div class="font-label-caps text-label-caps text-secondary mt-xxs">EXP. 7 DAYS</div>
+</div>
+</div>
+<div class="font-title-sm text-body-compact text-on-surface">Zewditu Hospital</div>
+<div class="flex items-center justify-between mt-xs">
+<span class="font-data-mono text-data-mono text-on-surface-variant flex items-center gap-xxs"><span class="material-symbols-outlined text-[14px]">location_on</span> 5km away</span>
+<button class="text-primary font-title-sm text-body-compact hover:underline">Claim</button>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-dim dark:bg-inverse-surface border-t border-outline-variant full-width bottom-0 flex flex-col items-center py-lg px-xl space-y-md shrink-0">
+<div class="font-title-sm text-title-sm text-on-surface">DonorLink Ethiopia</div>
+<div class="flex flex-wrap justify-center gap-md font-label-caps text-label-caps text-on-surface-variant dark:text-on-secondary-fixed-variant">
+<a class="hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Privacy Policy</a>
+<a class="hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Operational Standards</a>
+<a class="hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Contact Command Center</a>
+<a class="hover:text-primary dark:hover:text-primary-fixed transition-opacity duration-150" href="#">Regional Directories</a>
+</div>
+<div class="text-secondary dark:text-secondary-fixed font-label-caps text-label-caps text-center">
+            © 2024 DonorLink Ethiopia National Blood Infrastructure. In partnership with WHO &amp; Ethiopia Red Cross.
+        </div>
+</footer>
+</body></html>
