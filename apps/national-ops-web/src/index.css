@@ -1,0 +1,368 @@
+/* ─── Fonts ────────────────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@600;700&family=JetBrains+Mono:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Theme Tokens (Tailwind v4 @theme) ────────────────────────────────────── */
+@theme inline {
+  /* Font families */
+  --font-sans: "Inter", sans-serif;
+  --font-heading: "IBM Plex Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* shadcn color bindings */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Material 3 Design System Colors */
+  --color-m3-surface: var(--m3-surface);
+  --color-m3-surface-dim: var(--m3-surface-dim);
+  --color-m3-surface-bright: var(--m3-surface-bright);
+  --color-m3-surface-container-lowest: var(--m3-surface-container-lowest);
+  --color-m3-surface-container-low: var(--m3-surface-container-low);
+  --color-m3-surface-container: var(--m3-surface-container);
+  --color-m3-surface-container-high: var(--m3-surface-container-high);
+  --color-m3-surface-container-highest: var(--m3-surface-container-highest);
+  --color-m3-surface-variant: var(--m3-surface-variant);
+  --color-m3-on-surface: var(--m3-on-surface);
+  --color-m3-on-surface-variant: var(--m3-on-surface-variant);
+  --color-m3-primary: var(--m3-primary);
+  --color-m3-primary-container: var(--m3-primary-container);
+  --color-m3-on-primary: var(--m3-on-primary);
+  --color-m3-on-primary-container: var(--m3-on-primary-container);
+  --color-m3-primary-fixed: var(--m3-primary-fixed);
+  --color-m3-primary-fixed-dim: var(--m3-primary-fixed-dim);
+  --color-m3-secondary: var(--m3-secondary);
+  --color-m3-secondary-container: var(--m3-secondary-container);
+  --color-m3-on-secondary: var(--m3-on-secondary);
+  --color-m3-on-secondary-container: var(--m3-on-secondary-container);
+  --color-m3-secondary-fixed: var(--m3-secondary-fixed);
+  --color-m3-tertiary: var(--m3-tertiary);
+  --color-m3-tertiary-container: var(--m3-tertiary-container);
+  --color-m3-on-tertiary: var(--m3-on-tertiary);
+  --color-m3-on-tertiary-container: var(--m3-on-tertiary-container);
+  --color-m3-tertiary-fixed: var(--m3-tertiary-fixed);
+  --color-m3-error: var(--m3-error);
+  --color-m3-error-container: var(--m3-error-container);
+  --color-m3-on-error: var(--m3-on-error);
+  --color-m3-on-error-container: var(--m3-on-error-container);
+  --color-m3-outline: var(--m3-outline);
+  --color-m3-outline-variant: var(--m3-outline-variant);
+  --color-m3-inverse-surface: var(--m3-inverse-surface);
+  --color-m3-inverse-on-surface: var(--m3-inverse-on-surface);
+  --color-m3-inverse-primary: var(--m3-inverse-primary);
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Design System Spacing */
+  --spacing-sidebar-width: 260px;
+  --spacing-gutter: 16px;
+}
+
+/* ─── Light Theme Variables ────────────────────────────────────────────────── */
+:root {
+  /* shadcn vars */
+  --background: #fff8f7;
+  --foreground: #271816;
+  --card: #ffffff;
+  --card-foreground: #271816;
+  --popover: #ffffff;
+  --popover-foreground: #271816;
+  --primary: #93000b;
+  --primary-foreground: #ffffff;
+  --secondary: #515f74;
+  --secondary-foreground: #ffffff;
+  --muted: #ffe9e6;
+  --muted-foreground: #5b403d;
+  --accent: #ffe9e6;
+  --accent-foreground: #271816;
+  --destructive: #ba1a1a;
+  --destructive-foreground: #ffffff;
+  --border: #e4beb9;
+  --input: #e4beb9;
+  --ring: #93000b40;
+  --chart-1: #93000b;
+  --chart-2: #515f74;
+  --chart-3: #5a00c5;
+  --chart-4: #b91c1c;
+  --chart-5: #732ee4;
+  --radius: 0.5rem;
+  --sidebar: #ffe9e6;
+  --sidebar-foreground: #271816;
+  --sidebar-primary: #93000b;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffe2de;
+  --sidebar-accent-foreground: #93000b;
+  --sidebar-border: #e4beb9;
+  --sidebar-ring: #93000b30;
+
+  /* Material 3 Palette */
+  --m3-surface: #fff8f7;
+  --m3-surface-dim: #f1d3d0;
+  --m3-surface-bright: #fff8f7;
+  --m3-surface-container-lowest: #ffffff;
+  --m3-surface-container-low: #fff0ee;
+  --m3-surface-container: #ffe9e6;
+  --m3-surface-container-high: #ffe2de;
+  --m3-surface-container-highest: #f9dcd8;
+  --m3-surface-variant: #f9dcd8;
+  --m3-on-surface: #271816;
+  --m3-on-surface-variant: #5b403d;
+  --m3-primary: #93000b;
+  --m3-primary-container: #b91c1c;
+  --m3-on-primary: #ffffff;
+  --m3-on-primary-container: #ffcdc7;
+  --m3-primary-fixed: #ffdad6;
+  --m3-primary-fixed-dim: #ffb4ab;
+  --m3-secondary: #515f74;
+  --m3-secondary-container: #d5e3fd;
+  --m3-on-secondary: #ffffff;
+  --m3-on-secondary-container: #57657b;
+  --m3-secondary-fixed: #d5e3fd;
+  --m3-tertiary: #5a00c5;
+  --m3-tertiary-container: #732ee4;
+  --m3-on-tertiary: #ffffff;
+  --m3-on-tertiary-container: #e2d1ff;
+  --m3-tertiary-fixed: #eaddff;
+  --m3-error: #ba1a1a;
+  --m3-error-container: #ffdad6;
+  --m3-on-error: #ffffff;
+  --m3-on-error-container: #93000a;
+  --m3-outline: #8f6f6c;
+  --m3-outline-variant: #e4beb9;
+  --m3-inverse-surface: #3e2c2a;
+  --m3-inverse-on-surface: #ffedea;
+  --m3-inverse-primary: #ffb4ab;
+  --m3-surface-tint: #b91c1c;
+}
+
+/* ─── Dark Theme Variables ─────────────────────────────────────────────────── */
+.dark {
+  --background: #0b1326;
+  --foreground: #dae2fd;
+  --card: #171f33;
+  --card-foreground: #dae2fd;
+  --popover: #171f33;
+  --popover-foreground: #dae2fd;
+  --primary: #ffb4ab;
+  --primary-foreground: #690005;
+  --secondary: #7bd0ff;
+  --secondary-foreground: #00354a;
+  --muted: #2d3449;
+  --muted-foreground: #e4beb9;
+  --accent: #2d3449;
+  --accent-foreground: #dae2fd;
+  --destructive: #ffb4ab;
+  --destructive-foreground: #690005;
+  --border: #5b403d;
+  --input: #5b403d;
+  --ring: #ffb4ab40;
+  --sidebar: #131b2e;
+  --sidebar-foreground: #dae2fd;
+  --sidebar-primary: #ffb4ab;
+  --sidebar-primary-foreground: #690005;
+  --sidebar-accent: #222a3d;
+  --sidebar-accent-foreground: #ffb4ab;
+  --sidebar-border: #5b403d;
+  --sidebar-ring: #ffb4ab30;
+
+  /* M3 Dark */
+  --m3-surface: #0b1326;
+  --m3-surface-dim: #0b1326;
+  --m3-surface-bright: #31394d;
+  --m3-surface-container-lowest: #060e20;
+  --m3-surface-container-low: #131b2e;
+  --m3-surface-container: #171f33;
+  --m3-surface-container-high: #222a3d;
+  --m3-surface-container-highest: #2d3449;
+  --m3-surface-variant: #2d3449;
+  --m3-on-surface: #dae2fd;
+  --m3-on-surface-variant: #e4beb9;
+  --m3-primary: #ffb4ab;
+  --m3-primary-container: #b91c1c;
+  --m3-on-primary: #690005;
+  --m3-on-primary-container: #ffcdc7;
+  --m3-primary-fixed: #ffdad6;
+  --m3-primary-fixed-dim: #ffb4ab;
+  --m3-secondary: #7bd0ff;
+  --m3-secondary-container: #00a6e0;
+  --m3-on-secondary: #00354a;
+  --m3-on-secondary-container: #00374d;
+  --m3-secondary-fixed: #c4e7ff;
+  --m3-tertiary: #4edea3;
+  --m3-tertiary-container: #006c49;
+  --m3-on-tertiary: #003824;
+  --m3-on-tertiary-container: #63f1b4;
+  --m3-tertiary-fixed: #6ffbbe;
+  --m3-error: #ffb4ab;
+  --m3-error-container: #93000a;
+  --m3-on-error: #690005;
+  --m3-on-error-container: #ffdad6;
+  --m3-outline: #ab8985;
+  --m3-outline-variant: #5b403d;
+  --m3-inverse-surface: #dae2fd;
+  --m3-inverse-on-surface: #283044;
+  --m3-inverse-primary: #b91c1c;
+  --m3-surface-tint: #ffb4ab;
+}
+
+/* ─── Base Styles ──────────────────────────────────────────────────────────── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Inter", sans-serif;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+
+  /* Material Symbols icon font */
+  .material-symbols-outlined {
+    font-family: "Material Symbols Outlined";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: "liga";
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ─── Design System Utilities ──────────────────────────────────────────────── */
+@layer utilities {
+  /* Typography Presets from design system */
+  .text-display-lg {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+  .text-headline-md {
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 24px;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  .text-title-sm {
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+  .text-body-main {
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  .text-body-compact {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  .text-data-mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 500;
+  }
+  .text-label-caps {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    display: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Gradients */
+  .primary-gradient {
+    background: linear-gradient(135deg, #93000b, #b91c1c);
+  }
+  .clinical-gradient {
+    background: linear-gradient(135deg, #93000b, #c62828);
+  }
+
+  /* Shadows */
+  .shadow-ambient-sm {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.04),
+      0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+  .shadow-ambient-md {
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+  }
+  .shadow-ambient-lg {
+    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.1);
+  }
+  .dark .shadow-ambient-lg {
+    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Glass effect */
+  .glass-card {
+    @apply border border-border/50 bg-card/60 backdrop-blur-xl;
+  }
+}
