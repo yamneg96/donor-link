@@ -1,0 +1,432 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Donor Registration &amp; Eligibility Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#e4beba",
+                    "inverse-primary": "#ffb3ac",
+                    "outline": "#8f6f6c",
+                    "surface-container-high": "#e8e8e8",
+                    "inverse-surface": "#2f3131",
+                    "surface": "#f9f9f9",
+                    "primary": "#af101a",
+                    "on-surface": "#1a1c1c",
+                    "surface-bright": "#f9f9f9",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9f9",
+                    "on-background": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "secondary": "#556158",
+                    "on-tertiary-container": "#e9f7ff",
+                    "tertiary-container": "#5e737d",
+                    "on-secondary-fixed": "#131e17",
+                    "surface-variant": "#e2e2e2",
+                    "on-primary-container": "#fff2f0",
+                    "on-primary-fixed": "#410003",
+                    "secondary-fixed-dim": "#bdcabe",
+                    "surface-container-low": "#f3f3f3",
+                    "primary-fixed": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#b4cad6",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#d32f2f",
+                    "on-primary-fixed-variant": "#930010",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#5b403d",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#d9e6da",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#ffb3ac",
+                    "on-tertiary-fixed": "#071e27",
+                    "surface-dim": "#dadada",
+                    "tertiary-fixed": "#cfe6f2",
+                    "secondary-container": "#d9e6da",
+                    "surface-container-highest": "#e2e2e2",
+                    "inverse-on-surface": "#f1f1f1",
+                    "tertiary": "#455b65",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#eeeeee",
+                    "surface-tint": "#ba1a20",
+                    "on-tertiary-fixed-variant": "#354a53",
+                    "on-secondary-container": "#5b675e",
+                    "on-secondary-fixed-variant": "#3e4a41"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter-desktop": "24px",
+                    "container-max": "1200px",
+                    "base": "8px",
+                    "gutter-mobile": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Montserrat"
+                    ],
+                    "headline-md": [
+                            "Montserrat"
+                    ],
+                    "headline-lg-mobile": [
+                            "Montserrat"
+                    ],
+                    "display-lg-mobile": [
+                            "Montserrat"
+                    ],
+                    "display-lg": [
+                            "Montserrat"
+                    ]
+            },
+            "fontSize": {
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1;
+        }
+        /* Custom tooltip logic for pure CSS tooltips where simple */
+        .group:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .shadow-soft {
+            box-shadow: 0 4px 16px rgba(69, 91, 101, 0.08); /* Level 2 - Tertiary Slate tint */
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar Small: Emergency Alert -->
+<div class="bg-primary-container text-on-primary-container font-label-sm text-label-sm docked full-width top-0 z-[60] flat no shadows flex items-center justify-center w-full px-4 py-2 text-center" role="alert">
+<span class="font-label-md text-label-md font-bold uppercase tracking-wider underline">URGENT: Emergency Blood Type Shortage - O Negative &amp; A Positive Needed</span>
+<button aria-label="Close alert" class="ml-4 opacity-90 hover:opacity-100 transition-opacity flex items-center">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- TopNavBar Large -->
+<header class="bg-surface text-primary font-headline-md text-headline-md docked full-width top-0 border-b border-outline-variant/10 bg-surface/95 backdrop-blur-md shadow-sm flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20 sticky z-50">
+<div class="flex items-center gap-8">
+<a class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2" href="#">
+<span class="material-symbols-outlined icon-fill text-[32px] text-primary">water_drop</span>
+                National Blood Bank
+            </a>
+</div>
+<div class="flex items-center gap-4">
+<button aria-label="Search" class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-[24px]">search</span>
+</button>
+<button aria-label="Notifications" class="text-on-surface-variant hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+<a class="font-label-md text-label-md text-on-surface-variant font-medium hover:text-primary transition-colors duration-200 hidden md:inline-block" href="#">Login</a>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col px-gutter-mobile md:px-margin-desktop w-full max-w-container-max mx-auto py-12">
+<!-- Onboarding Header & Progress -->
+<div class="text-center mb-12">
+<h1 class="font-display-lg-mobile md:font-display-lg text-primary mb-4">Join the Lifeline</h1>
+<p class="font-body-lg text-tertiary-container max-w-2xl mx-auto">Complete your registration to become a vital part of our community. Your vitality saves lives.</p>
+</div>
+<div class="mb-12 max-w-3xl mx-auto w-full">
+<!-- Progress Tracker -->
+<div class="relative flex justify-between items-center">
+<!-- Track Line -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-full h-2 bg-secondary-container rounded-full z-0">
+<!-- Progress Fill (approx 66% for Step 3) -->
+<div class="h-full bg-primary rounded-full" style="width: 66%;"></div>
+</div>
+<!-- Steps -->
+<!-- Step 1: Completed -->
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-soft">
+<span class="material-symbols-outlined text-[20px] icon-fill">check</span>
+</div>
+<span class="absolute top-12 font-label-sm text-label-sm text-primary whitespace-nowrap">Details</span>
+</div>
+<!-- Step 2: Completed -->
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-soft">
+<span class="material-symbols-outlined text-[20px] icon-fill">check</span>
+</div>
+<span class="absolute top-12 font-label-sm text-label-sm text-primary whitespace-nowrap">Type &amp; Location</span>
+</div>
+<!-- Step 3: Active -->
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-10 h-10 rounded-full bg-surface text-primary border-2 border-primary flex items-center justify-center shadow-soft">
+<span class="material-symbols-outlined text-[20px]">medical_services</span>
+</div>
+<span class="absolute top-12 font-label-sm text-label-sm text-on-surface whitespace-nowrap font-bold">Health</span>
+</div>
+<!-- Step 4: Pending -->
+<div class="relative z-10 flex flex-col items-center group">
+<div class="w-10 h-10 rounded-full bg-surface-container-high text-tertiary-container border border-outline-variant/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<span class="absolute top-12 font-label-sm text-label-sm text-tertiary-container whitespace-nowrap">Verification</span>
+</div>
+</div>
+</div>
+<!-- Registration Content Layout - Asymmetric / Bento Style -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-5xl mx-auto w-full">
+<!-- Left Column: Form / Active Step (8 cols) -->
+<div class="lg:col-span-8 space-y-6">
+<!-- Health Questionnaire Card -->
+<div class="bg-surface-container-lowest rounded-lg border border-outline-variant/20 shadow-soft p-8 relative overflow-hidden">
+<!-- Subtle background decoration -->
+<div class="absolute -right-16 -top-16 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[200px]">vital_signs</span>
+</div>
+<div class="mb-8 border-b border-outline-variant/20 pb-4">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Health Questionnaire</h2>
+<p class="font-body-md text-tertiary-container">To ensure the safety of both donors and recipients, please answer a few simple health questions honestly.</p>
+</div>
+<form class="space-y-8">
+<!-- Question 1 -->
+<div class="bg-secondary-fixed/30 rounded-lg p-6 border border-outline-variant/10">
+<div class="flex items-start gap-4">
+<div class="bg-surface rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 text-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]">calendar_month</span>
+</div>
+<div class="flex-grow">
+<div class="flex items-center gap-2 mb-2">
+<p class="font-body-md font-medium text-on-surface">Have you donated blood in the last 56 days?</p>
+<!-- Tooltip -->
+<div class="relative flex items-center group cursor-help">
+<span class="material-symbols-outlined text-tertiary-container text-[18px]">info</span>
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-20 text-center shadow-lg pointer-events-none">
+                                                Why wait 56 days? It takes your body about 8 weeks to fully replenish its red blood cell count after a standard donation. Resting protects your vitality.
+                                                <!-- Triangle -->
+<div class="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-inverse-surface"></div>
+</div>
+</div>
+</div>
+<div class="flex gap-4 mt-4">
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="q1" type="radio" value="yes">
+<div class="px-4 py-3 rounded-lg border border-outline-variant/30 text-center font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors peer-checked:bg-primary-container/20 peer-checked:border-primary peer-checked:text-primary peer-checked:font-bold">
+                                                Yes
+                                            </div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input checked="" class="peer sr-only" name="q1" type="radio" value="no">
+<div class="px-4 py-3 rounded-lg border border-outline-variant/30 text-center font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors peer-checked:bg-primary-container/20 peer-checked:border-primary peer-checked:text-primary peer-checked:font-bold">
+                                                No
+                                            </div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Question 2 -->
+<div class="bg-secondary-fixed/30 rounded-lg p-6 border border-outline-variant/10">
+<div class="flex items-start gap-4">
+<div class="bg-surface rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 text-primary shadow-sm">
+<span class="material-symbols-outlined text-[20px]">pill</span>
+</div>
+<div class="flex-grow">
+<p class="font-body-md font-medium text-on-surface mb-4">Are you currently taking any antibiotics for an active infection?</p>
+<div class="flex gap-4">
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="q2" type="radio" value="yes">
+<div class="px-4 py-3 rounded-lg border border-outline-variant/30 text-center font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors peer-checked:bg-primary-container/20 peer-checked:border-primary peer-checked:text-primary peer-checked:font-bold">
+                                                Yes
+                                            </div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input checked="" class="peer sr-only" name="q2" type="radio" value="no">
+<div class="px-4 py-3 rounded-lg border border-outline-variant/30 text-center font-label-md text-label-md text-on-surface-variant hover:bg-surface-container transition-colors peer-checked:bg-primary-container/20 peer-checked:border-primary peer-checked:text-primary peer-checked:font-bold">
+                                                No
+                                            </div>
+</label>
+</div>
+</div>
+</div>
+</div>
+<!-- Additional Info (Text Area) -->
+<div>
+<label class="block font-label-md text-label-md text-on-surface mb-2" for="health-notes">Additional Health Notes (Optional)</label>
+<textarea class="w-full bg-surface border border-outline-variant/40 rounded-lg px-4 py-3 font-body-md text-on-surface focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none" id="health-notes" placeholder="E.g., Recent travel, minor cold..." rows="3"></textarea>
+</div>
+<!-- Actions -->
+<div class="flex items-center justify-between pt-6 border-t border-outline-variant/20 mt-8">
+<button class="px-6 py-3 rounded-lg font-label-md text-label-md font-semibold text-tertiary hover:bg-surface-container-high transition-colors" type="button">
+                                Back
+                            </button>
+<button class="px-8 py-3 rounded-lg font-label-md text-label-md font-bold bg-primary text-on-primary hover:bg-surface-tint shadow-soft hover:shadow-md transition-all flex items-center gap-2" type="button">
+                                Continue to Verification
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<!-- Right Column: Educational / Status Sidebar (4 cols) -->
+<div class="lg:col-span-4 space-y-6">
+<!-- Trust & Safety Card -->
+<div class="bg-secondary-fixed rounded-lg p-6 border border-secondary-fixed-dim/50">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-secondary text-[24px]">shield</span>
+<h3 class="font-headline-md text-headline-md text-on-secondary-fixed text-lg">Your Data is Safe</h3>
+</div>
+<p class="font-body-sm text-body-md text-on-secondary-fixed-variant leading-relaxed mb-4">
+                        We prioritize your privacy. Medical information is encrypted and only used to determine eligibility according to National Health Standards.
+                    </p>
+<a class="font-label-sm text-label-sm text-secondary hover:underline flex items-center gap-1" href="#">
+                        Read Privacy Policy
+                        <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+<!-- Eligibility Mini-Guide (Bento Item) -->
+<div class="bg-surface-container-lowest rounded-lg p-6 border border-outline-variant/20 shadow-sm">
+<h3 class="font-label-md text-label-md font-bold text-on-surface mb-4 uppercase tracking-wider text-xs">Eligibility Quick Facts</h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">monitor_weight</span>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface">Weight Requirement</h4>
+<p class="font-body-sm text-[13px] text-on-surface-variant">Must weigh at least 50kg (110 lbs).</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">cake</span>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface">Age Requirement</h4>
+<p class="font-body-sm text-[13px] text-on-surface-variant">Typically between 18 and 65 years old.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[20px] mt-0.5">restaurant</span>
+<div>
+<h4 class="font-label-sm text-label-sm text-on-surface">Preparation</h4>
+<p class="font-body-sm text-[13px] text-on-surface-variant">Eat a healthy meal and hydrate well before donating.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest text-on-surface font-body-md text-body-md full-width py-12 border-t border-outline-variant/20 relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:opacity-5 before:bg-[url('tibeb-pattern-alt')] flat no shadows mt-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-margin-desktop max-w-container-max mx-auto relative z-10">
+<!-- Brand Column -->
+<div class="flex flex-col gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary">National Blood Bank</span>
+<p class="font-label-md text-label-md text-on-surface-variant">© 2024 Ethiopian National Blood Bank Service. Human-Centered Vitality for Every Citizen.</p>
+</div>
+<!-- Links Column -->
+<div class="flex flex-col gap-3">
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary underline transition-all" href="#">Partnership Info</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary underline transition-all" href="#">National Health Standards</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary underline transition-all" href="#">Social Impact Reports</a>
+</div>
+<!-- Links Column 2 -->
+<div class="flex flex-col gap-3">
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary underline transition-all" href="#">Donor Support</a>
+<a class="text-on-surface-variant font-label-md text-label-md hover:text-primary underline transition-all" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+</body></html>

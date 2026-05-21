@@ -7,3 +7,11 @@ apps/api/dist/
 .turbo/
 *.log
 apps/api/logs/
+
+# Python ML service
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pkl
+*.joblib

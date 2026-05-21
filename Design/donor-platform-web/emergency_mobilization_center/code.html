@@ -1,0 +1,362 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Emergency Mobilization Center - National Blood Bank</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#e4beba",
+                    "inverse-primary": "#ffb3ac",
+                    "outline": "#8f6f6c",
+                    "surface-container-high": "#e8e8e8",
+                    "inverse-surface": "#2f3131",
+                    "surface": "#f9f9f9",
+                    "primary": "#af101a",
+                    "on-surface": "#1a1c1c",
+                    "surface-bright": "#f9f9f9",
+                    "on-primary": "#ffffff",
+                    "background": "#f9f9f9",
+                    "on-background": "#1a1c1c",
+                    "error": "#ba1a1a",
+                    "secondary": "#556158",
+                    "on-tertiary-container": "#e9f7ff",
+                    "tertiary-container": "#5e737d",
+                    "on-secondary-fixed": "#131e17",
+                    "surface-variant": "#e2e2e2",
+                    "on-primary-container": "#fff2f0",
+                    "on-primary-fixed": "#410003",
+                    "secondary-fixed-dim": "#bdcabe",
+                    "surface-container-low": "#f3f3f3",
+                    "primary-fixed": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#b4cad6",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#d32f2f",
+                    "on-primary-fixed-variant": "#930010",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#5b403d",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed": "#d9e6da",
+                    "on-error-container": "#93000a",
+                    "primary-fixed-dim": "#ffb3ac",
+                    "on-tertiary-fixed": "#071e27",
+                    "surface-dim": "#dadada",
+                    "tertiary-fixed": "#cfe6f2",
+                    "secondary-container": "#d9e6da",
+                    "surface-container-highest": "#e2e2e2",
+                    "inverse-on-surface": "#f1f1f1",
+                    "tertiary": "#455b65",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#eeeeee",
+                    "surface-tint": "#ba1a20",
+                    "on-tertiary-fixed-variant": "#354a53",
+                    "on-secondary-container": "#5b675e",
+                    "on-secondary-fixed-variant": "#3e4a41"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter-desktop": "24px",
+                    "container-max": "1200px",
+                    "base": "8px",
+                    "gutter-mobile": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "64px"
+            },
+            "fontFamily": {
+                    "label-sm": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "body-md": [
+                            "Inter"
+                    ],
+                    "label-md": [
+                            "Inter"
+                    ],
+                    "headline-lg": [
+                            "Montserrat"
+                    ],
+                    "headline-md": [
+                            "Montserrat"
+                    ],
+                    "headline-lg-mobile": [
+                            "Montserrat"
+                    ],
+                    "display-lg-mobile": [
+                            "Montserrat"
+                    ],
+                    "display-lg": [
+                            "Montserrat"
+                    ]
+            },
+            "fontSize": {
+                    "label-sm": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "label-md": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "letterSpacing": "0.01em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg-mobile": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .tibeb-pattern {
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(175, 16, 26, 0.03) 10px, rgba(175, 16, 26, 0.03) 20px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar (Small) - Emergency Banner -->
+<div class="docked full-width top-0 z-[60] bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary font-label-sm text-label-sm flex items-center justify-center w-full px-4 py-2 text-center">
+<span class="font-label-md text-label-md font-bold uppercase tracking-wider underline font-bold opacity-90 hover:opacity-100 transition-opacity active:brightness-95">URGENT: Emergency Blood Type Shortage - O Negative &amp; A Positive Needed</span>
+<button class="ml-4 hover:opacity-100 opacity-90 transition-opacity">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- TopNavBar (Large) -->
+<nav class="docked full-width top-0 border-b border-outline-variant/10 bg-surface/95 backdrop-blur-md shadow-sm dark:shadow-none bg-surface dark:bg-on-background text-primary dark:text-inverse-primary font-headline-md text-headline-md font-label-md text-label-md z-50 sticky top-[36px]">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary">National Blood Bank</span>
+<div class="hidden md:flex gap-6">
+<a class="text-primary dark:text-inverse-primary border-b-2 border-primary font-bold pb-1 hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 active:scale-95 active:opacity-80 transition-all duration-150" href="#">Campaigns</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 active:scale-95 active:opacity-80 transition-all duration-150" href="#">Find a Center</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 active:scale-95 active:opacity-80 transition-all duration-150" href="#">Impact</a>
+<a class="text-on-surface-variant dark:text-surface-variant font-medium hover:text-primary dark:hover:text-inverse-primary transition-colors duration-200 active:scale-95 active:opacity-80 transition-all duration-150" href="#">Eligibility</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="hidden md:flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<a class="hidden md:block font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">Login</a>
+<button class="bg-primary text-on-primary font-label-md text-label-md font-bold px-6 py-2 rounded-lg hover:brightness-110 transition-all shadow-sm">Donate Now</button>
+</div>
+</div>
+</nav>
+<main class="flex-grow pb-24">
+<!-- Hero Section -->
+<section class="relative pt-12 pb-24 px-gutter-mobile md:px-gutter-desktop overflow-hidden">
+<div class="absolute inset-0 tibeb-pattern opacity-50 pointer-events-none"></div>
+<div class="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+<div class="lg:col-span-6 space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-error-container text-on-error-container rounded-full font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] animate-pulse">emergency</span>
+                         Critical Mobilization Active
+                     </div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-on-surface">Emergency Response Center</h1>
+<p class="font-body-lg text-on-surface-variant max-w-xl">
+                         Hospitals in the Addis Ababa region are experiencing a severe shortage of O-Negative and A-Positive blood types due to recent high-trauma events. Your immediate action can save lives today.
+                     </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="bg-primary text-on-primary font-headline-md text-label-md font-semibold px-8 py-4 rounded-lg shadow-md hover:shadow-lg hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                             Confirm I'm Coming
+                         </button>
+<button class="bg-surface-container-high text-on-surface font-headline-md text-label-md font-semibold px-8 py-4 rounded-lg shadow-sm hover:bg-surface-variant transition-all">
+                             View Response Routes
+                         </button>
+</div>
+</div>
+<div class="lg:col-span-6 relative">
+<div class="bg-surface rounded-xl shadow-lg border border-outline-variant/20 p-6 relative z-10">
+<div class="flex items-center justify-between mb-4 border-b border-surface-variant pb-4">
+<h3 class="font-headline-md text-headline-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">live_tv</span>
+                                 Live Emergency Feed
+                             </h3>
+<span class="text-xs text-on-surface-variant bg-surface-variant px-2 py-1 rounded">Updated 2m ago</span>
+</div>
+<div class="space-y-4 max-h-[300px] overflow-y-auto pr-2">
+<!-- Feed Item 1 -->
+<div class="bg-error-container/20 border-l-4 border-error p-3 rounded-r-lg">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Black Lion Hospital</span>
+<span class="text-error font-bold text-sm">URGENT</span>
+</div>
+<p class="text-sm text-on-surface-variant">Critically low on O-. Need 15 units within the next 4 hours.</p>
+</div>
+<!-- Feed Item 2 -->
+<div class="bg-surface-container-low border-l-4 border-primary p-3 rounded-r-lg">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md font-semibold text-on-surface">St. Paul's Hospital</span>
+<span class="text-primary font-bold text-sm">HIGH</span>
+</div>
+<p class="text-sm text-on-surface-variant">A+ inventory dropping. Requesting 20 units by end of day.</p>
+</div>
+<!-- Feed Item 3 -->
+<div class="bg-surface-container-low border-l-4 border-tertiary-container p-3 rounded-r-lg">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Yekatit 12 Hospital</span>
+<span class="text-tertiary font-bold text-sm">MODERATE</span>
+</div>
+<p class="text-sm text-on-surface-variant">General shortage across all types. Routine procedures delayed.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Compatibility Chart & Map Bento Section -->
+<section class="max-w-container-max mx-auto px-gutter-mobile md:px-gutter-desktop mt-12 mb-24">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Compatibility Card -->
+<div class="md:col-span-1 bg-[#E8F5E9] rounded-xl shadow-[0_4px_16px_rgba(69,91,101,0.08)] p-6 border border-[#455A64]/10 hover:shadow-[0_8px_24px_rgba(69,91,101,0.12)] transition-shadow">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6">Compatibility</h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold text-xl shadow-inner">O-</div>
+<div class="flex-grow border-t-2 border-dashed border-primary/30 mx-4 relative">
+<span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#E8F5E9] px-2 text-xs text-on-surface-variant font-medium">Universal Donor</span>
+</div>
+<div class="w-12 h-12 bg-surface-variant text-on-surface-variant rounded-full flex items-center justify-center font-bold text-sm">All</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold text-xl shadow-inner">O+</div>
+<div class="flex-grow border-t-2 border-dashed border-primary/30 mx-4 relative">
+<span class="material-symbols-outlined absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#E8F5E9] text-primary/50 text-[18px]">arrow_forward</span>
+</div>
+<div class="w-12 h-12 bg-surface-variant text-on-surface-variant rounded-full flex items-center justify-center font-bold text-xs flex-col leading-tight pt-1">O+ A+<br>B+ AB+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center font-bold text-xl shadow-inner">A+</div>
+<div class="flex-grow border-t-2 border-dashed border-primary/30 mx-4 relative">
+<span class="material-symbols-outlined absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#E8F5E9] text-primary/50 text-[18px]">arrow_forward</span>
+</div>
+<div class="w-12 h-12 bg-surface-variant text-on-surface-variant rounded-full flex items-center justify-center font-bold text-sm">A+ AB+</div>
+</div>
+</div>
+<p class="mt-6 text-sm text-secondary text-center italic">If you are O- or A+, your donation is critical right now.</p>
+</div>
+<!-- Tactical Map Card -->
+<div class="md:col-span-2 bg-surface rounded-xl shadow-[0_4px_16px_rgba(69,91,101,0.08)] border border-[#455A64]/10 overflow-hidden flex flex-col hover:shadow-[0_8px_24px_rgba(69,91,101,0.12)] transition-shadow">
+<div class="p-6 border-b border-surface-variant flex justify-between items-center bg-white">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Response Routes</h3>
+<p class="text-sm text-on-surface-variant mt-1">Live traffic &amp; center capacity</p>
+</div>
+<button class="bg-surface-container-high hover:bg-surface-variant text-on-surface px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">my_location</span>
+                             Near Me
+                         </button>
+</div>
+<div class="flex-grow relative min-h-[300px] bg-surface-container-low">
+<!-- Map Placeholder with styling -->
+<div class="absolute inset-0 flex items-center justify-center text-tertiary/40 font-medium">
+                             Interactive Map Loading...
+                         </div>
+<!-- Overlay elements for UI realism -->
+<div class="absolute top-4 right-4 flex flex-col gap-2">
+<div class="bg-white p-2 rounded shadow-sm flex items-center gap-2 border border-surface-variant">
+<div class="w-3 h-3 bg-error rounded-full animate-pulse"></div>
+<span class="text-xs font-semibold">High Need Center</span>
+</div>
+<div class="bg-white p-2 rounded shadow-sm flex items-center gap-2 border border-surface-variant">
+<div class="w-3 h-3 bg-secondary rounded-full"></div>
+<span class="text-xs font-semibold">Standard Need Center</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="full-width py-12 border-t border-outline-variant/20 bg-surface-container-highest dark:bg-inverse-surface relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:opacity-5 before:bg-[url('tibeb-pattern-alt')] text-on-surface dark:text-inverse-on-surface font-body-md text-body-md font-label-md text-label-md flat no shadows grid grid-cols-1 md:grid-cols-3 gap-8 px-margin-desktop max-w-container-max mx-auto mt-auto">
+<div class="flex flex-col gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">National Blood Bank</span>
+<p class="text-sm text-on-surface-variant dark:text-surface-variant max-w-xs">
+                © 2024 Ethiopian National Blood Bank Service. Human-Centered Vitality for Every Citizen.
+            </p>
+</div>
+<div class="flex flex-col gap-2">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Partnership Info</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">National Health Standards</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Social Impact Reports</a>
+</div>
+<div class="flex flex-col gap-2">
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Donor Support</a>
+<a class="text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-inverse-primary underline transition-all" href="#">Contact Us</a>
+</div>
+</footer>
+</body></html>

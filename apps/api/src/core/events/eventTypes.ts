@@ -37,6 +37,16 @@ export enum EventType {
   // User Events
   USER_CREATED = 'user_created',
   USER_LOGIN = 'user_login',
+
+  // Intelligence Events (ML)
+  SHORTAGE_PREDICTED = 'shortage_predicted',
+  EMERGENCY_ESCALATED = 'emergency_escalated',
+  DONOR_MATCH_FOUND = 'donor_match_found',
+  EXPIRY_RISK_HIGH = 'expiry_risk_high',
+  REDISTRIBUTION_RECOMMENDED = 'redistribution_recommended',
+  INVENTORY_COLLAPSE_RISK = 'inventory_collapse_risk',
+  FORECAST_GENERATED = 'forecast_generated',
+  ANOMALY_DETECTED = 'anomaly_detected',
 }
 
 export interface DomainEvent {
