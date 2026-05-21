@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { BloodUnit, IBloodUnit } from '../models/BloodUnit';
 import { InventoryLedger, IInventoryLedger } from '../models/InventoryLedger';
 import { PaginationParams } from '../../../core/types';
@@ -5,6 +6,15 @@ import { buildSortObject, getSkip } from '../../../core/utils';
 import { BloodUnitStatus, InventoryAction } from '../../../core/constants';
 
 export class InventoryRepository {
+  private toObjectId(id: any): mongoose.Types.ObjectId | null {
+    if (!id || typeof id !== 'string' || id.length !== 24) return null;
+    try {
+      return new mongoose.Types.ObjectId(id);
+    } catch {
+      return null;
+    }
+  }
+
   // === Blood Unit Queries ===
   async findUnitById(id: string): Promise<IBloodUnit | null> {
     return BloodUnit.findOne({ _id: id, isDeleted: false }).populate('organizationId', 'name code').populate('currentHospitalId', 'name code');
@@ -15,13 +25,29 @@ export class InventoryRepository {
   }
 
   async findUnits(filters: Record<string, unknown>, pagination: PaginationParams) {
-    const query = { isDeleted: false, ...filters };
+    const query: Record<string, any> = { isDeleted: false };
+    
+    // Explicitly handle fields that must be ObjectIds if present
+    const oidFields = ['organizationId', 'currentHospitalId', 'donationId', 'donorId', 'reservedFor'];
+    
+    for (const [key, value] of Object.entries(filters)) {
+      if (value === '' || value === null || value === undefined) continue;
+      
+      if (oidFields.includes(key)) {
+        const oid = this.toObjectId(value);
+        if (oid) query[key] = oid;
+      } else {
+        query[key] = value;
+      }
+    }
+
     const [units, total] = await Promise.all([
       BloodUnit.find(query).populate('organizationId', 'name code').populate('currentHospitalId', 'name code').sort(buildSortObject(pagination)).skip(getSkip(pagination)).limit(pagination.limit),
       BloodUnit.countDocuments(query),
     ]);
     return { units, total };
   }
+
 
   async updateUnit(id: string, data: Partial<IBloodUnit>): Promise<IBloodUnit | null> {
     return BloodUnit.findByIdAndUpdate(id, data, { new: true });
@@ -33,12 +59,14 @@ export class InventoryRepository {
 
   // === Stock Level Queries ===
   async getStockLevels(organizationId: string) {
+    const orgId = this.toObjectId(organizationId);
     return BloodUnit.aggregate([
-      { $match: { currentHospitalId: { $eq: organizationId ? require('mongoose').Types.ObjectId.createFromHexString(organizationId) : null }, status: BloodUnitStatus.AVAILABLE, isDeleted: false } },
+      { $match: { currentHospitalId: orgId, status: BloodUnitStatus.AVAILABLE, isDeleted: false } },
       { $group: { _id: { bloodType: '$bloodType', componentType: '$componentType' }, count: { $sum: 1 }, totalVolume: { $sum: '$volume' } } },
       { $sort: { '_id.bloodType': 1 } },
     ]);
   }
+
 
   async getNationalStockLevels() {
     return BloodUnit.aggregate([
@@ -120,10 +148,13 @@ export class InventoryRepository {
   // === Stats ===
   async countByStatus(organizationId?: string) {
     const match: Record<string, unknown> = { isDeleted: false };
-    if (organizationId) match.currentHospitalId = require('mongoose').Types.ObjectId.createFromHexString(organizationId);
+    const orgId = this.toObjectId(organizationId);
+    if (orgId) match.currentHospitalId = orgId;
+    
     return BloodUnit.aggregate([
       { $match: match },
       { $group: { _id: '$status', count: { $sum: 1 } } },
     ]);
   }
+
 }

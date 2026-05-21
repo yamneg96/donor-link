@@ -33,6 +33,16 @@ router.get(
   IntelligenceController.getForecast
 );
 
+router.post(
+  '/forecast',
+  authorize(
+    Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST,
+    Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN
+  ),
+  IntelligenceController.getForecast
+);
+
+
 router.get(
   '/shortage-risk',
   authorize(

@@ -70,7 +70,8 @@ export class IntelligenceController {
         days
       );
 
-      sendSuccess(res, { forecast: result, generatedAt: new Date().toISOString() });
+      sendSuccess(res, result);
+
     } catch (error) {
       next(error);
     }

@@ -258,3 +258,771 @@
     at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:280:10)
     at Function.handle (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:175:3)
     at router (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\index.js:47:12) {"service":"donorlink-api"}
+2026-05-21 23:46:27 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-21 23:46:27 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-21 23:46:27 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-21 23:46:27 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-21 23:46:31 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-21 23:46:31 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-21 23:46:31 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-21 23:46:31 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:01:56 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:01:56 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:01:56 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:01:56 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:01:57 [error]: MLServiceError: ML service circuit breaker is open — service temporarily unavailable
+    at mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:66:11)
+    at scoreShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\endpoints.ts:43:19)
+    at IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:45)
+    at getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:59)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\core\middleware\authorize.ts:19:5
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3) {"service":"donorlink-api","statusCode":503,"name":"MLServiceError"}
+2026-05-22 00:01:57 [error]: MLServiceError: ML service circuit breaker is open — service temporarily unavailable
+    at mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:66:11)
+    at scoreShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\endpoints.ts:43:19)
+    at IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:45)
+    at getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:59)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\core\middleware\authorize.ts:19:5
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3) {"service":"donorlink-api","statusCode":503,"name":"MLServiceError"}
+2026-05-22 00:01:57 [error]: MLServiceError: ML service circuit breaker is open — service temporarily unavailable
+    at mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:66:11)
+    at scoreShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\endpoints.ts:43:19)
+    at IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:45)
+    at getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:59)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\core\middleware\authorize.ts:19:5
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3) {"service":"donorlink-api","statusCode":503,"name":"MLServiceError"}
+2026-05-22 00:01:57 [error]: MLServiceError: ML service circuit breaker is open — service temporarily unavailable
+    at mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:66:11)
+    at scoreShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\endpoints.ts:43:19)
+    at IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:45)
+    at getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:59)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\core\middleware\authorize.ts:19:5
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3) {"service":"donorlink-api","statusCode":503,"name":"MLServiceError"}
+2026-05-22 00:26:13 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:26:13 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:26:13 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:26:13 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:26:17 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:26:17 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:26:17 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:26:17 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:31:41 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:31:42 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:32:05 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:32:06 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:33:11 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:33:11 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:33:15 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:33:15 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:33:22 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:33:22 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:33:27 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:33:27 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:33:41 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:33:42 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:34:10 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:34:10 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:34:10 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:75:22)
+    at async detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:163:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:34:10 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:75:22)
+    at async detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:163:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:34:10 [error]: MLServiceError: ML service circuit breaker is open — service temporarily unavailable
+    at mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:66:11)
+    at scoreShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\endpoints.ts:43:19)
+    at IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:45)
+    at getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:59)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\core\middleware\authorize.ts:19:5
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3) {"service":"donorlink-api","statusCode":503,"name":"MLServiceError"}
+2026-05-22 00:34:10 [error]: MLServiceError: ML service circuit breaker is open — service temporarily unavailable
+    at mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:66:11)
+    at scoreShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\endpoints.ts:43:19)
+    at IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:45)
+    at getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:59)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\core\middleware\authorize.ts:19:5
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3) {"service":"donorlink-api","statusCode":503,"name":"MLServiceError"}
+2026-05-22 00:34:11 [error]: MLServiceError: ML service circuit breaker is open — service temporarily unavailable
+    at mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:66:11)
+    at detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\endpoints.ts:35:19)
+    at IntelligenceService.detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:75:43)
+    at detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:163:59)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\core\middleware\authorize.ts:19:5
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3) {"service":"donorlink-api","statusCode":503,"name":"MLServiceError"}
+2026-05-22 00:34:11 [error]: MLServiceError: ML service circuit breaker is open — service temporarily unavailable
+    at mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:66:11)
+    at detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\endpoints.ts:35:19)
+    at IntelligenceService.detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:75:43)
+    at detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:163:59)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\core\middleware\authorize.ts:19:5
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3) {"service":"donorlink-api","statusCode":503,"name":"MLServiceError"}
+2026-05-22 00:34:11 [error]: MLServiceError: ML service circuit breaker is open — service temporarily unavailable
+    at mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:66:11)
+    at scoreShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\endpoints.ts:43:19)
+    at IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:45)
+    at getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:59)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\core\middleware\authorize.ts:19:5
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3) {"service":"donorlink-api","statusCode":503,"name":"MLServiceError"}
+2026-05-22 00:34:11 [error]: MLServiceError: ML service circuit breaker is open — service temporarily unavailable
+    at mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:66:11)
+    at scoreShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\endpoints.ts:43:19)
+    at IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:45)
+    at getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:59)
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\core\middleware\authorize.ts:19:5
+    at Layer.handle [as handle_request] (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:149:13)
+    at Route.dispatch (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\express@4.22.1\node_modules\express\lib\router\route.js:119:3) {"service":"donorlink-api","statusCode":503,"name":"MLServiceError"}
+2026-05-22 00:34:20 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:34:21 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:34:56 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:34:56 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:35:00 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:35:00 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:37:22 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:23 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:42 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:43 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:43 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:45 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:46 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:47 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:48 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:49 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:50 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:51 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:51 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:37:52 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:38:43 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:38:44 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:39:23 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:39:24 [error]: CastError: Cast to ObjectId failed for value "" (type string) at path "organizationId" for model "BloodUnit"
+    at SchemaObjectId.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schema\objectId.js:253:11)
+    at SchemaObjectId.SchemaType.applySetters (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1288:12)
+    at SchemaObjectId.SchemaType.castForQuery (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\schemaType.js:1724:17)
+    at cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\cast.js:390:32)
+    at model.Query.Query.cast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:5060:12)
+    at model.Query.Query._castConditions (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2374:10)
+    at model.Query._find (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:2401:8)
+    at model.Query.exec (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\node_modules\.pnpm\mongoose@8.23.0\node_modules\mongoose\lib\query.js:4627:80)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async Promise.all (index 0) {"service":"donorlink-api","stringValue":"\"\"","kind":"ObjectId","value":"","path":"organizationId","reason":{},"valueType":"string"}
+2026-05-22 00:41:44 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:75:22)
+    at async detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:163:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:41:44 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:75:22)
+    at async detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:163:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:41:44 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:41:44 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:41:47 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:41:47 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:41:48 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:75:22)
+    at async detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:163:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:41:48 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:75:22)
+    at async detectAnomalies (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:163:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:41:51 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:41:51 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:42:38 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:42:38 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:42:42 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:42:42 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:42:59 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:42:59 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:42:59 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:42:59 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:43:03 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:43:03 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:43:03 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:43:03 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:114:22)
+    at async getShortageRisk (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:96:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:45:33 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:45:33 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:45:37 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
+2026-05-22 00:45:37 [error]: TypeError: fetch failed
+    at node:internal/deps/undici/undici:13510:13
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async mlRequest (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\infrastructure\ml\client.ts:80:24)
+    at async IntelligenceService.getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\services\intelligenceService.ts:51:22)
+    at async getForecast (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\modules\intelligence\controllers\intelligenceController.ts:66:22) {"service":"donorlink-api","cause":{"code":"ECONNREFUSED"}}
