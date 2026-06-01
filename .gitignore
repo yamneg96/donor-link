@@ -15,3 +15,11 @@ __pycache__/
 *.pyo
 *.pkl
 *.joblib
+
+# Designs
+Design/
+
+# environment variables
+.env
+apps/donor-platform-web/.env
+apps/hospital-portal-web/.env

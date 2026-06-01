@@ -139,6 +139,35 @@
   --border: #eeeeee;
   --input: #f3f3f3;
   --ring: rgba(175, 16, 26, 0.4);
+
+  /* HTML Dashboard Overrides */
+  --color-on-primary-fixed-variant: #003ea8;
+  --color-on-primary-container: #eeefff;
+  --color-secondary-fixed-dim: #6cd3f7;
+  --color-secondary-container: #76dcff;
+  --color-tertiary: #4d556b;
+  --color-surface-container-low: #f3f3fe;
+  --color-on-secondary-fixed: #001f28;
+  --color-on-primary-fixed: #00174b;
+  --color-tertiary-fixed-dim: #bec6e0;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-bright: #faf8ff;
+  --color-on-tertiary-fixed-variant: #3f465c;
+  --color-outline-variant: #c3c6d7;
+  --color-outline: #737686;
+  --color-primary-fixed-dim: #b4c5ff;
+  --color-inverse-on-surface: #f0f0fb;
+  --color-primary-fixed: #dbe1ff;
+  --color-surface-tint: #0053db;
+  --color-on-tertiary-container: #eef0ff;
+  --color-inverse-primary: #b4c5ff;
+  --color-tertiary-container: #656d84;
+  --color-surface-container-high: #e7e7f3;
+  --color-tertiary-fixed: #dae2fd;
+  --color-on-secondary-container: #006077;
+  --color-on-secondary-fixed-variant: #004e61;
+  --color-secondary-fixed: #b7eaff;
+  --color-on-tertiary-fixed: #131b2e;
 }
 
 /* Light-centric layout configuration fallback preserves dark styles dynamically safely if toggled */
@@ -184,6 +213,24 @@
   }
   html {
     @apply scroll-smooth;
+  }
+}
+
+@layer utilities {
+  /* Custom scrollbar for data tables */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f3f3fe; 
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #c3c6d7; 
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #737686; 
   }
 }
 

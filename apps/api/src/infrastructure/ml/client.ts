@@ -51,7 +51,7 @@ function recordFailure(): void {
 // ── Core Request Function ───────────────────────────
 
 interface MLRequestOptions {
-  method?: 'GET' | 'POST';
+  method?: 'GET' | 'POST' | 'PUT';
   body?: unknown;
   retries?: number;
 }

@@ -26,6 +26,7 @@ from app.api.routes.anomaly import router as anomaly_router
 from app.api.routes.scoring import router as scoring_router
 from app.api.routes.recommendations import router as recommendations_router
 from app.api.routes.expiry import router as expiry_router
+from app.api.routes.settings import router as settings_router
 
 
 @asynccontextmanager
@@ -75,6 +76,7 @@ def create_app() -> FastAPI:
     app.include_router(scoring_router)
     app.include_router(recommendations_router)
     app.include_router(expiry_router)
+    app.include_router(settings_router)
 
     return app
 

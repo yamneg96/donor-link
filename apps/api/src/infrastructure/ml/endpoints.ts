@@ -60,3 +60,15 @@ export async function calculateExpiryRisk(
 ): Promise<MLExpiryRiskResponse> {
   return mlRequest<MLExpiryRiskResponse>('/expiry/risk', { body: data });
 }
+
+// ── Settings ────────────────────────────────────────
+
+export async function getMLSettings(): Promise<Record<string, unknown>> {
+  return mlRequest<Record<string, unknown>>('/settings', { method: 'GET' });
+}
+
+export async function updateMLSettings(
+  data: Record<string, unknown>
+): Promise<Record<string, unknown>> {
+  return mlRequest<Record<string, unknown>>('/settings', { method: 'PUT', body: data });
+}

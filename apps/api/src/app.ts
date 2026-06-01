@@ -28,6 +28,12 @@ import { auditRoutes } from './modules/audit';
 import { dashboardRoutes } from './modules/dashboard';
 import { contactRoutes } from './modules/contact';
 import { intelligenceRoutes } from './modules/intelligence';
+import { appointmentRoutes } from './modules/appointments';
+import { eligibilityRoutes } from './modules/eligibility';
+import { geoRoutes } from './modules/geo';
+import { engagementRoutes } from './modules/donor-engagement';
+import { shipmentRoutes } from './modules/shipment-tracking';
+import { realtimeRoutes } from './modules/realtime';
 
 const app = express();
 
@@ -52,8 +58,8 @@ app.use(async (_req, _res, next) => {
 app.use(helmet());
 app.use(cors({
   origin: process.env.NODE_ENV === 'production'
-    ? ['https://donorlink.et', 'https://admin.donorlink.et', 'https://donor-link-v1.vercel.app', 'http://localhost:5173']
-    : ['http://localhost:5173', 'http://localhost:8081', 'https://donor-link-v1.vercel.app'],
+    ? ['https://donorlink.et', 'https://admin.donorlink.et', 'https://donor-link-v1.vercel.app', 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175']
+    : ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:8081', 'http://localhost:8000', 'https://donor-link-v1.vercel.app'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
@@ -124,6 +130,12 @@ app.use(`${API_PREFIX}/audit`, auditRoutes);
 app.use(`${API_PREFIX}/dashboard`, dashboardRoutes);
 app.use(`${API_PREFIX}/contact`, contactRoutes);
 app.use(`${API_PREFIX}/intelligence`, intelligenceRoutes);
+app.use(`${API_PREFIX}/appointments`, appointmentRoutes);
+app.use(`${API_PREFIX}/eligibility`, eligibilityRoutes);
+app.use(`${API_PREFIX}/geo`, geoRoutes);
+app.use(`${API_PREFIX}/engagement`, engagementRoutes);
+app.use(`${API_PREFIX}/shipments`, shipmentRoutes);
+app.use(`${API_PREFIX}/realtime`, realtimeRoutes);
 
 // ==================================================
 // 404 Handler

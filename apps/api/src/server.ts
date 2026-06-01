@@ -2,6 +2,8 @@ import app from './app';
 import { env, connectDatabase, logger, disconnectDatabase } from './config';
 import { registerEventHandlers } from './modules/events';
 import { initializeJobScheduler } from './jobs';
+import { Server as SocketIOServer } from 'socket.io';
+import { initializeSocketManager } from './modules/realtime';
 
 let isReady = false;
 
@@ -48,6 +50,16 @@ if (process.env.VERCEL !== '1') {
         logger.info(`📡 Target Operational Environment: ${env.NODE_ENV}`);
         logger.info(`🔗 Health Interface: http://localhost:${PORT}/api/v1/health`);
       });
+
+      const io = new SocketIOServer(server, {
+        cors: {
+          origin: process.env.NODE_ENV === 'production'
+            ? ['https://donorlink.et', 'https://admin.donorlink.et', 'https://donor-link-v1.vercel.app', 'http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175']
+            : ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:8081', 'https://donor-link-v1.vercel.app'],
+          credentials: true,
+        }
+      });
+      initializeSocketManager(io);
 
       // Standard infrastructure process termination watchers
       const shutdown = async (signal: string) => {
