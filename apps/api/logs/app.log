@@ -3559,3 +3559,310 @@ SIGINT intercepted. Graceful drainage executing... {"service":"donorlink-api"}
     at async connectDatabase (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\config\database.ts:13:7)
     at async initializeApplication (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\server.ts:18:5)
     at async bootstrap (C:\Users\yamla\Desktop\NYDev\nyProjects\DonorLink\apps\api\src\server.ts:45:7) {"service":"donorlink-api","errorLabelSet":{},"reason":{"type":"ReplicaSetNoPrimary","servers":{"ac-0byitmg-shard-00-00.hgzxxxv.mongodb.net:27017":{"address":"ac-0byitmg-shard-00-00.hgzxxxv.mongodb.net:27017","type":"Unknown","hosts":[],"passives":[],"arbiters":[],"tags":{},"minWireVersion":0,"maxWireVersion":0,"roundTripTime":-1,"minRoundTripTime":0,"lastUpdateTime":140313010,"lastWriteDate":0,"error":{"errorLabelSet":{},"beforeHandshake":false},"topologyVersion":null,"setName":null,"setVersion":null,"electionId":null,"logicalSessionTimeoutMinutes":null,"maxMessageSizeBytes":null,"maxWriteBatchSize":null,"maxBsonObjectSize":null,"primary":null,"me":null,"$clusterTime":null,"iscryptd":false},"ac-0byitmg-shard-00-01.hgzxxxv.mongodb.net:27017":{"address":"ac-0byitmg-shard-00-01.hgzxxxv.mongodb.net:27017","type":"Unknown","hosts":[],"passives":[],"arbiters":[],"tags":{},"minWireVersion":0,"maxWireVersion":0,"roundTripTime":-1,"minRoundTripTime":0,"lastUpdateTime":140312992,"lastWriteDate":0,"error":{"errorLabelSet":{},"beforeHandshake":false},"topologyVersion":null,"setName":null,"setVersion":null,"electionId":null,"logicalSessionTimeoutMinutes":null,"maxMessageSizeBytes":null,"maxWriteBatchSize":null,"maxBsonObjectSize":null,"primary":null,"me":null,"$clusterTime":null,"iscryptd":false},"ac-0byitmg-shard-00-02.hgzxxxv.mongodb.net:27017":{"address":"ac-0byitmg-shard-00-02.hgzxxxv.mongodb.net:27017","type":"Unknown","hosts":[],"passives":[],"arbiters":[],"tags":{},"minWireVersion":0,"maxWireVersion":0,"roundTripTime":-1,"minRoundTripTime":0,"lastUpdateTime":140312197,"lastWriteDate":0,"error":null,"topologyVersion":null,"setName":null,"setVersion":null,"electionId":null,"logicalSessionTimeoutMinutes":null,"maxMessageSizeBytes":null,"maxWriteBatchSize":null,"maxBsonObjectSize":null,"primary":null,"me":null,"$clusterTime":null,"iscryptd":false}},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-j72dek-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null},"cause":{"type":"ReplicaSetNoPrimary","servers":{"ac-0byitmg-shard-00-00.hgzxxxv.mongodb.net:27017":{"address":"ac-0byitmg-shard-00-00.hgzxxxv.mongodb.net:27017","type":"Unknown","hosts":[],"passives":[],"arbiters":[],"tags":{},"minWireVersion":0,"maxWireVersion":0,"roundTripTime":-1,"minRoundTripTime":0,"lastUpdateTime":140313010,"lastWriteDate":0,"error":{"errorLabelSet":{},"beforeHandshake":false},"topologyVersion":null,"setName":null,"setVersion":null,"electionId":null,"logicalSessionTimeoutMinutes":null,"maxMessageSizeBytes":null,"maxWriteBatchSize":null,"maxBsonObjectSize":null,"primary":null,"me":null,"$clusterTime":null,"iscryptd":false},"ac-0byitmg-shard-00-01.hgzxxxv.mongodb.net:27017":{"address":"ac-0byitmg-shard-00-01.hgzxxxv.mongodb.net:27017","type":"Unknown","hosts":[],"passives":[],"arbiters":[],"tags":{},"minWireVersion":0,"maxWireVersion":0,"roundTripTime":-1,"minRoundTripTime":0,"lastUpdateTime":140312992,"lastWriteDate":0,"error":{"errorLabelSet":{},"beforeHandshake":false},"topologyVersion":null,"setName":null,"setVersion":null,"electionId":null,"logicalSessionTimeoutMinutes":null,"maxMessageSizeBytes":null,"maxWriteBatchSize":null,"maxBsonObjectSize":null,"primary":null,"me":null,"$clusterTime":null,"iscryptd":false},"ac-0byitmg-shard-00-02.hgzxxxv.mongodb.net:27017":{"address":"ac-0byitmg-shard-00-02.hgzxxxv.mongodb.net:27017","type":"Unknown","hosts":[],"passives":[],"arbiters":[],"tags":{},"minWireVersion":0,"maxWireVersion":0,"roundTripTime":-1,"minRoundTripTime":0,"lastUpdateTime":140312197,"lastWriteDate":0,"error":null,"topologyVersion":null,"setName":null,"setVersion":null,"electionId":null,"logicalSessionTimeoutMinutes":null,"maxMessageSizeBytes":null,"maxWriteBatchSize":null,"maxBsonObjectSize":null,"primary":null,"me":null,"$clusterTime":null,"iscryptd":false}},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":"atlas-j72dek-shard-0","maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null}}
+2026-06-02 00:51:10 [info]: 🔄 Warmup: Initializing DonorLink Core Systems... {"service":"donorlink-api"}
+2026-06-02 00:51:10 [info]: 🗄️  Connecting to MongoDB (attempt 1/5)... {"service":"donorlink-api"}
+2026-06-02 00:51:13 [info]: ✅ MongoDB connected successfully {"service":"donorlink-api"}
+2026-06-02 00:51:13 [info]: ✅ MongoDB pipeline established successfully. {"service":"donorlink-api"}
+2026-06-02 00:51:13 [info]: 📡 Registering domain event handlers... {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: blood_unit_created {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: blood_unit_expired {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: blood_unit_used {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: transfer_requested {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: user_created {"service":"donorlink-api"}
+2026-06-02 00:51:13 [info]: ✅ Domain event handlers registered {"service":"donorlink-api"}
+2026-06-02 00:51:13 [info]: ⏰ Initializing job scheduler... {"service":"donorlink-api"}
+2026-06-02 00:51:13 [info]: ✅ Job scheduler initialized {"service":"donorlink-api"}
+2026-06-02 00:51:13 [info]: ⏰ Enterprise internal job scheduler initialized. {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: inventory_updated {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: inventory_critical {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: shortage_detected {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: blood_expiring {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: emergency_declared {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: emergency_resolved {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: emergency_escalated {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: transfer_dispatched {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: transfer_completed {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: shortage_predicted {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: forecast_generated {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: redistribution_recommended {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: anomaly_detected {"service":"donorlink-api"}
+2026-06-02 00:51:13 [debug]: Event handler registered for: donation_completed {"service":"donorlink-api"}
+2026-06-02 00:51:13 [info]: ✅ DonorLink API running locally on port 5000 {"service":"donorlink-api"}
+2026-06-02 00:51:13 [info]: 📡 Target Operational Environment: development {"service":"donorlink-api"}
+2026-06-02 00:51:13 [info]: 🔗 Health Interface: http://localhost:5000/api/v1/health {"service":"donorlink-api"}
+2026-06-02 00:52:09 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 00:52:09 [info]: ::1 GET /api/v1/dashboard/national 401 115 - 28.957 ms {"service":"donorlink-api"}
+2026-06-02 00:52:09 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 00:52:09 [info]: ::1 GET /api/v1/alerts?limit=5 401 115 - 7.745 ms {"service":"donorlink-api"}
+2026-06-02 00:52:09 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 00:52:09 [info]: ::1 GET /api/v1/recommendations?limit=3 401 115 - 4.654 ms {"service":"donorlink-api"}
+2026-06-02 00:52:10 [info]: ::1 POST /api/v1/auth/refresh 200 629 - 488.809 ms {"service":"donorlink-api"}
+2026-06-02 00:52:10 [info]: ::1 GET /api/v1/recommendations?limit=3 200 176 - 260.984 ms {"service":"donorlink-api"}
+2026-06-02 00:52:10 [info]: ::1 GET /api/v1/alerts?limit=5 200 - - 267.444 ms {"service":"donorlink-api"}
+2026-06-02 00:52:11 [info]: ::1 GET /api/v1/dashboard/national 200 933 - 1042.160 ms {"service":"donorlink-api"}
+2026-06-02 00:52:17 [info]: ::1 POST /api/v1/auth/logout 200 123 - 534.532 ms {"service":"donorlink-api"}
+2026-06-02 00:52:17 [info]: ::1 GET /api/v1/alerts?limit=5 - - - - ms {"service":"donorlink-api"}
+2026-06-02 00:52:17 [info]: ::1 GET /api/v1/dashboard/national - - - - ms {"service":"donorlink-api"}
+2026-06-02 00:52:17 [info]: ::1 GET /api/v1/recommendations?limit=3 - - - - ms {"service":"donorlink-api"}
+2026-06-02 00:52:58 [info]: ::1 GET /api/v1/dashboard/stats 200 157 - 365.809 ms {"service":"donorlink-api"}
+2026-06-02 01:08:19 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:08:19 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 10.374 ms {"service":"donorlink-api"}
+2026-06-02 01:08:20 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:08:20 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.914 ms {"service":"donorlink-api"}
+2026-06-02 01:08:55 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:08:55 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 7.687 ms {"service":"donorlink-api"}
+2026-06-02 01:08:55 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:08:55 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.729 ms {"service":"donorlink-api"}
+2026-06-02 01:08:57 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:08:57 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 4.735 ms {"service":"donorlink-api"}
+2026-06-02 01:08:57 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:08:57 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 3.798 ms {"service":"donorlink-api"}
+2026-06-02 01:12:13 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:13 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 3.615 ms {"service":"donorlink-api"}
+2026-06-02 01:12:13 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:13 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 3.024 ms {"service":"donorlink-api"}
+2026-06-02 01:12:14 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:14 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.398 ms {"service":"donorlink-api"}
+2026-06-02 01:12:14 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:14 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.717 ms {"service":"donorlink-api"}
+2026-06-02 01:12:19 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:19 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 3.924 ms {"service":"donorlink-api"}
+2026-06-02 01:12:19 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:19 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.136 ms {"service":"donorlink-api"}
+2026-06-02 01:12:20 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:20 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 2.079 ms {"service":"donorlink-api"}
+2026-06-02 01:12:20 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:20 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 3.158 ms {"service":"donorlink-api"}
+2026-06-02 01:12:54 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:54 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 3.579 ms {"service":"donorlink-api"}
+2026-06-02 01:12:54 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:54 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 3.113 ms {"service":"donorlink-api"}
+2026-06-02 01:12:55 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:55 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.534 ms {"service":"donorlink-api"}
+2026-06-02 01:12:55 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:55 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 3.281 ms {"service":"donorlink-api"}
+2026-06-02 01:12:57 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:57 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.020 ms {"service":"donorlink-api"}
+2026-06-02 01:12:58 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:12:58 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.919 ms {"service":"donorlink-api"}
+2026-06-02 01:15:02 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:02 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.392 ms {"service":"donorlink-api"}
+2026-06-02 01:15:03 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:03 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.033 ms {"service":"donorlink-api"}
+2026-06-02 01:15:14 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:14 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 2.554 ms {"service":"donorlink-api"}
+2026-06-02 01:15:14 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:14 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 4.678 ms {"service":"donorlink-api"}
+2026-06-02 01:15:15 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:15 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 2.216 ms {"service":"donorlink-api"}
+2026-06-02 01:15:15 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:15 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.521 ms {"service":"donorlink-api"}
+2026-06-02 01:15:51 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:51 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 3.316 ms {"service":"donorlink-api"}
+2026-06-02 01:15:52 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:52 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 4.370 ms {"service":"donorlink-api"}
+2026-06-02 01:15:54 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:54 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 2.310 ms {"service":"donorlink-api"}
+2026-06-02 01:15:54 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:54 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.213 ms {"service":"donorlink-api"}
+2026-06-02 01:15:55 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:55 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 0.941 ms {"service":"donorlink-api"}
+2026-06-02 01:15:55 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:15:55 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.086 ms {"service":"donorlink-api"}
+2026-06-02 01:18:54 [warn]: MongoDB disconnected {"service":"donorlink-api"}
+2026-06-02 01:19:05 [info]: MongoDB reconnected {"service":"donorlink-api"}
+2026-06-02 01:19:07 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:19:07 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 0.696 ms {"service":"donorlink-api"}
+2026-06-02 01:19:07 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:19:07 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.096 ms {"service":"donorlink-api"}
+2026-06-02 01:19:08 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:19:08 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.493 ms {"service":"donorlink-api"}
+2026-06-02 01:19:08 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:19:08 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 3.096 ms {"service":"donorlink-api"}
+2026-06-02 01:20:08 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:20:08 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 0.975 ms {"service":"donorlink-api"}
+2026-06-02 01:20:08 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:20:08 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.108 ms {"service":"donorlink-api"}
+2026-06-02 01:20:09 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:20:09 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.681 ms {"service":"donorlink-api"}
+2026-06-02 01:20:09 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:20:09 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.399 ms {"service":"donorlink-api"}
+2026-06-02 01:20:17 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:20:17 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.141 ms {"service":"donorlink-api"}
+2026-06-02 01:20:17 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:20:17 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.954 ms {"service":"donorlink-api"}
+2026-06-02 01:20:18 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:20:18 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.186 ms {"service":"donorlink-api"}
+2026-06-02 01:20:18 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:20:18 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.546 ms {"service":"donorlink-api"}
+2026-06-02 01:21:18 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:21:18 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 2.487 ms {"service":"donorlink-api"}
+2026-06-02 01:21:18 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:21:18 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 3.306 ms {"service":"donorlink-api"}
+2026-06-02 01:21:19 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:21:19 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.034 ms {"service":"donorlink-api"}
+2026-06-02 01:21:19 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:21:19 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.642 ms {"service":"donorlink-api"}
+2026-06-02 01:22:27 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:22:27 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 2.479 ms {"service":"donorlink-api"}
+2026-06-02 01:22:27 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:22:27 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.408 ms {"service":"donorlink-api"}
+2026-06-02 01:22:28 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:22:28 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 2.209 ms {"service":"donorlink-api"}
+2026-06-02 01:22:28 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:22:28 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.163 ms {"service":"donorlink-api"}
+2026-06-02 01:23:18 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:23:18 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.929 ms {"service":"donorlink-api"}
+2026-06-02 01:23:18 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:23:18 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.574 ms {"service":"donorlink-api"}
+2026-06-02 01:23:19 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:23:19 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.869 ms {"service":"donorlink-api"}
+2026-06-02 01:23:19 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:23:19 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.802 ms {"service":"donorlink-api"}
+2026-06-02 01:24:19 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:24:19 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.390 ms {"service":"donorlink-api"}
+2026-06-02 01:24:19 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:24:19 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.553 ms {"service":"donorlink-api"}
+2026-06-02 01:24:20 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:24:20 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 2.068 ms {"service":"donorlink-api"}
+2026-06-02 01:24:20 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:24:20 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.937 ms {"service":"donorlink-api"}
+2026-06-02 01:24:53 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:24:53 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.276 ms {"service":"donorlink-api"}
+2026-06-02 01:24:54 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:24:54 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.068 ms {"service":"donorlink-api"}
+2026-06-02 01:25:53 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:25:53 [info]: ::1 GET /api/v1/engagement/campaigns 401 115 - 1.374 ms {"service":"donorlink-api"}
+2026-06-02 01:30:11 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:30:11 [info]: ::1 GET /api/v1/engagement/campaigns 401 115 - 2.083 ms {"service":"donorlink-api"}
+2026-06-02 01:30:23 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:30:23 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.345 ms {"service":"donorlink-api"}
+2026-06-02 01:30:24 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:30:24 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.605 ms {"service":"donorlink-api"}
+2026-06-02 01:33:57 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:33:57 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.173 ms {"service":"donorlink-api"}
+2026-06-02 01:33:58 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:33:58 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.217 ms {"service":"donorlink-api"}
+2026-06-02 01:35:11 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:35:11 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.132 ms {"service":"donorlink-api"}
+2026-06-02 01:35:12 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:35:12 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.064 ms {"service":"donorlink-api"}
+2026-06-02 01:35:23 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:35:23 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.934 ms {"service":"donorlink-api"}
+2026-06-02 01:35:24 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:35:24 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.589 ms {"service":"donorlink-api"}
+2026-06-02 01:35:27 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:35:27 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.938 ms {"service":"donorlink-api"}
+2026-06-02 01:35:28 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:35:28 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.564 ms {"service":"donorlink-api"}
+2026-06-02 01:35:28 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:35:28 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.258 ms {"service":"donorlink-api"}
+2026-06-02 01:35:29 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:35:29 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.734 ms {"service":"donorlink-api"}
+2026-06-02 01:37:25 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:37:25 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 2.991 ms {"service":"donorlink-api"}
+2026-06-02 01:37:25 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:37:25 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 2.775 ms {"service":"donorlink-api"}
+2026-06-02 01:37:26 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:37:26 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.520 ms {"service":"donorlink-api"}
+2026-06-02 01:37:26 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:37:26 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.997 ms {"service":"donorlink-api"}
+2026-06-02 01:47:42 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:47:42 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.283 ms {"service":"donorlink-api"}
+2026-06-02 01:47:42 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:47:42 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.994 ms {"service":"donorlink-api"}
+2026-06-02 01:47:43 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:47:43 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 0.571 ms {"service":"donorlink-api"}
+2026-06-02 01:47:43 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:47:43 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.083 ms {"service":"donorlink-api"}
+2026-06-02 01:47:47 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:47:47 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 0.925 ms {"service":"donorlink-api"}
+2026-06-02 01:47:47 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:47:47 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.151 ms {"service":"donorlink-api"}
+2026-06-02 01:47:48 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:47:48 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.301 ms {"service":"donorlink-api"}
+2026-06-02 01:47:48 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:47:48 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.198 ms {"service":"donorlink-api"}
+2026-06-02 01:53:08 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 01:53:08 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.020 ms {"service":"donorlink-api"}
+2026-06-02 02:06:36 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:06:36 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.311 ms {"service":"donorlink-api"}
+2026-06-02 02:06:36 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:06:36 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.958 ms {"service":"donorlink-api"}
+2026-06-02 02:06:37 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:06:37 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.034 ms {"service":"donorlink-api"}
+2026-06-02 02:06:37 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:06:37 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.993 ms {"service":"donorlink-api"}
+2026-06-02 02:09:48 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:09:48 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.472 ms {"service":"donorlink-api"}
+2026-06-02 02:09:49 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:09:49 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.108 ms {"service":"donorlink-api"}
+2026-06-02 02:09:54 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:09:54 [info]: ::1 GET /api/v1/engagement/campaigns 401 115 - 1.399 ms {"service":"donorlink-api"}
+2026-06-02 02:10:43 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:10:43 [info]: ::1 GET /api/v1/engagement/campaigns 401 115 - 1.051 ms {"service":"donorlink-api"}
+2026-06-02 02:13:16 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:13:16 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.492 ms {"service":"donorlink-api"}
+2026-06-02 02:13:16 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:13:16 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.242 ms {"service":"donorlink-api"}
+2026-06-02 02:13:17 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:13:17 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.167 ms {"service":"donorlink-api"}
+2026-06-02 02:13:17 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:13:17 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.169 ms {"service":"donorlink-api"}
+2026-06-02 02:13:30 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:13:30 [info]: ::1 GET /api/v1/engagement/campaigns 401 115 - 1.189 ms {"service":"donorlink-api"}
+2026-06-02 02:13:33 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:13:33 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.791 ms {"service":"donorlink-api"}
+2026-06-02 02:13:34 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:13:34 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.977 ms {"service":"donorlink-api"}
+2026-06-02 02:18:00 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:18:00 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.258 ms {"service":"donorlink-api"}
+2026-06-02 02:18:00 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:18:00 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.118 ms {"service":"donorlink-api"}
+2026-06-02 02:18:01 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:18:01 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.122 ms {"service":"donorlink-api"}
+2026-06-02 02:18:01 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:18:01 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.324 ms {"service":"donorlink-api"}
+2026-06-02 02:21:29 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:21:29 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.400 ms {"service":"donorlink-api"}
+2026-06-02 02:21:29 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:21:29 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.939 ms {"service":"donorlink-api"}
+2026-06-02 02:21:30 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:21:30 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 0.584 ms {"service":"donorlink-api"}
+2026-06-02 02:21:31 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:21:31 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.584 ms {"service":"donorlink-api"}
+2026-06-02 02:21:51 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:21:51 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.212 ms {"service":"donorlink-api"}
+2026-06-02 02:21:51 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:21:51 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.122 ms {"service":"donorlink-api"}
+2026-06-02 02:21:52 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:21:52 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.172 ms {"service":"donorlink-api"}
+2026-06-02 02:21:52 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:21:52 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 0.907 ms {"service":"donorlink-api"}
+2026-06-02 02:23:35 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:23:35 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.594 ms {"service":"donorlink-api"}
+2026-06-02 02:23:35 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:23:35 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.238 ms {"service":"donorlink-api"}
+2026-06-02 02:23:36 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:23:36 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.596 ms {"service":"donorlink-api"}
+2026-06-02 02:23:36 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:23:36 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.509 ms {"service":"donorlink-api"}
+2026-06-02 02:23:54 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:23:54 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.097 ms {"service":"donorlink-api"}
+2026-06-02 02:23:54 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:23:54 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.799 ms {"service":"donorlink-api"}
+2026-06-02 02:23:55 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:23:55 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 0.932 ms {"service":"donorlink-api"}
+2026-06-02 02:23:55 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:23:55 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.610 ms {"service":"donorlink-api"}
+2026-06-02 02:24:17 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:24:17 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.334 ms {"service":"donorlink-api"}
+2026-06-02 02:24:17 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:24:17 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.101 ms {"service":"donorlink-api"}
+2026-06-02 02:24:18 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:24:18 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.378 ms {"service":"donorlink-api"}
+2026-06-02 02:24:18 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:24:18 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.165 ms {"service":"donorlink-api"}

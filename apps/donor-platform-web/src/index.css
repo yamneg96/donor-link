@@ -1,93 +1,102 @@
 /* ─── Fonts ────────────────────────────────────────────────────────────────── */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Sans:wght@600;700&family=JetBrains+Mono:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700&family=JetBrains+Mono:wght@500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
 
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
-@import "@fontsource/montserrat";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Typography Configuration */
-  --font-heading: "Montserrat", sans-serif;
+  /* Typography Configuration matches Design HTML explicitly */
+  --font-heading: "Manrope", sans-serif;
   --font-sans: "Inter Variable", "Inter", sans-serif;
+  --font-body-sm: "Inter", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
+  --font-headline-sm: "Manrope", sans-serif;
+  --font-headline-md: "Manrope", sans-serif;
+  --font-headline-lg: "Manrope", sans-serif;
+  --font-label-caps: "Inter", sans-serif;
+  --font-data-mono: "Inter", sans-serif;
 
-  /* Custom Spacing Rules */
-  --spacing-base: 8px;
-  --spacing-gutter-mobile: 16px;
-  --spacing-gutter-desktop: 24px;
-  --spacing-margin-mobile: 16px;
-  --spacing-margin-desktop: 64px;
-  --spacing-container-max: 1200px;
+  /* Direct Design HTML Spacing Rule Mapping */
+  --spacing-xs: 4px;
+  --spacing-base: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-gutter: 12px;
+  --spacing-lg: 16px;
+  --spacing-margin: 16px;
+  --spacing-xl: 24px;
+  --spacing-container-max: 1600px;
 
-  /* Border Radius / Shape Tokens */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-  --radius-full: 9999px;
-  --radius-default: 0.5rem;
-  --radius: 0.5rem; /* Standard alignment base */
+  /* Border Radius Tokens matching original HTML precisely */
+  --radius-sm: 0.125rem;
+  --radius-default: 0.125rem;
+  --radius-md: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+  --radius-full: 0.75rem;
 
   /* Direct Color Tokens Mapping */
-  --color-background: #f9f9f9;
-  --color-foreground: #1a1c1c;
+  --color-background: #faf8ff;
+  --color-foreground: #191b23;
 
-  --color-surface: #f9f9f9;
-  --color-surface-dim: #dadada;
-  --color-surface-bright: #f9f9f9;
-  --color-surface-variant: #e2e2e2;
+  --color-surface: #faf8ff;
+  --color-surface-dim: #d9d9e5;
+  --color-surface-bright: #faf8ff;
+  --color-surface-variant: #e1e2ed;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f3f3f3;
-  --color-surface-container: #eeeeee;
-  --color-surface-container-high: #e8e8e8;
-  --color-surface-container-highest: #e2e2e2;
+  --color-surface-container-low: #f3f3fe;
+  --color-surface-container: #ededf9;
+  --color-surface-container-high: #e7e7f3;
+  --color-surface-container-highest: #e1e2ed;
 
-  --color-on-surface: #1a1c1c;
-  --color-on-surface-variant: #5b403d;
-  --color-inverse-surface: #2f3131;
-  --color-inverse-on-surface: #f1f1f1;
+  --color-on-surface: #191b23;
+  --color-on-surface-variant: #434655;
+  --color-inverse-surface: #2e3039;
+  --color-inverse-on-surface: #f0f0fb;
 
-  --color-outline: #8f6f6c;
-  --color-outline-variant: #e4beba;
-  --color-surface-tint: #ba1a20;
+  --color-outline: #737686;
+  --color-outline-variant: #c3c6d7;
+  --color-surface-tint: #0053db;
 
-  /* Primary Palette (Vibrant Red Accent) */
-  --color-primary: #af101a;
+  /* Primary Palette */
+  --color-primary: #004ac6;
   --color-primary-foreground: #ffffff;
-  --color-primary-container: #d32f2f;
-  --color-on-primary-container: #fff2f0;
-  --color-inverse-primary: #ffb3ac;
+  --color-primary-container: #2563eb;
+  --color-on-primary-container: #eeefff;
+  --color-inverse-primary: #b4c5ff;
 
-  --color-primary-fixed: #ffdad6;
-  --color-primary-fixed-dim: #ffb3ac;
-  --color-on-primary-fixed: #410003;
-  --color-on-primary-fixed-variant: #930010;
+  --color-primary-fixed: #dbe1ff;
+  --color-primary-fixed-dim: #b4c5ff;
+  --color-on-primary-fixed: #00174b;
+  --color-on-primary-fixed-variant: #003ea8;
 
-  /* Secondary Palette (Wellness Green) */
-  --color-secondary: #556158;
+  /* Secondary Palette */
+  --color-secondary: #006780;
   --color-secondary-foreground: #ffffff;
-  --color-secondary-container: #d9e6da;
-  --color-on-secondary-container: #5b675e;
+  --color-secondary-container: #76dcff;
+  --color-on-secondary-container: #006077;
 
-  --color-secondary-fixed: #d9e6da;
-  --color-secondary-fixed-dim: #bdcabe;
-  --color-on-secondary-fixed: #131e17;
-  --color-on-secondary-fixed-variant: #3e4a41;
+  --color-secondary-fixed: #b7eaff;
+  --color-secondary-fixed-dim: #6cd3f7;
+  --color-on-secondary-fixed: #001f28;
+  --color-on-secondary-fixed-variant: #004e61;
 
-  /* Tertiary Palette (Slate Typography / Icons) */
-  --color-tertiary: #455b65;
+  /* Tertiary Palette */
+  --color-tertiary: #4d556b;
   --color-on-tertiary: #ffffff;
-  --color-tertiary-container: #5e737d;
-  --color-on-tertiary-container: #e9f7ff;
+  --color-tertiary-container: #656d84;
+  --color-on-tertiary-container: #eef0ff;
 
-  --color-tertiary-fixed: #cfe6f2;
-  --color-tertiary-fixed-dim: #b4cad6;
-  --color-on-tertiary-fixed: #071e27;
-  --color-on-tertiary-fixed-variant: #354a53;
+  --color-tertiary-fixed: #dae2fd;
+  --color-tertiary-fixed-dim: #bec6e0;
+  --color-on-tertiary-fixed: #131b2e;
+  --color-on-tertiary-fixed-variant: #3f465c;
 
   /* Error Feedback Indicators */
   --color-error: #ba1a1a;
@@ -97,99 +106,69 @@
 
   /* Mapping Primitives back to UI Layer Structure */
   --color-card: #ffffff;
-  --color-card-foreground: #455b65;
+  --color-card-foreground: #434655;
   --color-popover: #ffffff;
-  --color-popover-foreground: #1a1c1c;
-  --color-muted: #eeeeee;
-  --color-muted-foreground: #5b403d;
-  --color-accent: #d9e6da;
-  --color-accent-foreground: #455b65;
+  --color-popover-foreground: #191b23;
+  --color-muted: #ededf9;
+  --color-muted-foreground: #434655;
+  --color-accent: #76dcff;
+  --color-accent-foreground: #006077;
   --color-destructive: #ba1a1a;
-  --color-border: #eeeeee;
-  --color-input: #f3f3f3;
-  --color-ring: rgba(175, 16, 26, 0.4);
+  --color-border: #e1e2ed;
+  --color-input: #f3f3fe;
+  --color-ring: rgba(0, 74, 198, 0.4);
 
   /* Sidebar Core Mappings */
-  --color-sidebar: #f9f9f9;
-  --color-sidebar-foreground: #1a1c1c;
-  --color-sidebar-primary: #af101a;
+  --color-sidebar: #faf8ff;
+  --color-sidebar-foreground: #191b23;
+  --color-sidebar-primary: #004ac6;
   --color-sidebar-primary-foreground: #ffffff;
-  --color-sidebar-accent: #e8e8e8;
-  --color-sidebar-accent-foreground: #455b65;
-  --color-sidebar-border: #e2e2e2;
-  --color-sidebar-ring: rgba(175, 16, 26, 0.3);
+  --color-sidebar-accent: #e7e7f3;
+  --color-sidebar-accent-foreground: #4d556b;
+  --color-sidebar-border: #e1e2ed;
+  --color-sidebar-ring: rgba(0, 74, 198, 0.3);
 }
 
 :root {
-  --background: #f9f9f9;
-  --foreground: #1a1c1c;
+  --background: #faf8ff;
+  --foreground: #191b23;
   --card: #ffffff;
-  --card-foreground: #455b65;
+  --card-foreground: #434655;
   --popover: #ffffff;
-  --popover-foreground: #1a1c1c;
-  --primary: #af101a;
+  --popover-foreground: #191b23;
+  --primary: #004ac6;
   --primary-foreground: #ffffff;
-  --secondary: #556158;
+  --secondary: #006780;
   --secondary-foreground: #ffffff;
-  --muted: #eeeeee;
-  --muted-foreground: #5b403d;
-  --accent: #d9e6da;
-  --accent-foreground: #455b65;
+  --muted: #ededf9;
+  --muted-foreground: #434655;
+  --accent: #76dcff;
+  --accent-foreground: #006077;
   --destructive: #ba1a1a;
-  --border: #eeeeee;
-  --input: #f3f3f3;
-  --ring: rgba(175, 16, 26, 0.4);
-
-  /* HTML Dashboard Overrides */
-  --color-on-primary-fixed-variant: #003ea8;
-  --color-on-primary-container: #eeefff;
-  --color-secondary-fixed-dim: #6cd3f7;
-  --color-secondary-container: #76dcff;
-  --color-tertiary: #4d556b;
-  --color-surface-container-low: #f3f3fe;
-  --color-on-secondary-fixed: #001f28;
-  --color-on-primary-fixed: #00174b;
-  --color-tertiary-fixed-dim: #bec6e0;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-bright: #faf8ff;
-  --color-on-tertiary-fixed-variant: #3f465c;
-  --color-outline-variant: #c3c6d7;
-  --color-outline: #737686;
-  --color-primary-fixed-dim: #b4c5ff;
-  --color-inverse-on-surface: #f0f0fb;
-  --color-primary-fixed: #dbe1ff;
-  --color-surface-tint: #0053db;
-  --color-on-tertiary-container: #eef0ff;
-  --color-inverse-primary: #b4c5ff;
-  --color-tertiary-container: #656d84;
-  --color-surface-container-high: #e7e7f3;
-  --color-tertiary-fixed: #dae2fd;
-  --color-on-secondary-container: #006077;
-  --color-on-secondary-fixed-variant: #004e61;
-  --color-secondary-fixed: #b7eaff;
-  --color-on-tertiary-fixed: #131b2e;
+  --border: #e1e2ed;
+  --input: #f3f3fe;
+  --ring: rgba(0, 74, 198, 0.4);
 }
 
-/* Light-centric layout configuration fallback preserves dark styles dynamically safely if toggled */
 .dark {
-  --background: #1a1c1c;
-  --foreground: #f9f9f9;
-  --card: #2f3131;
-  --card-foreground: #f1f1f1;
-  --popover: #2f3131;
-  --popover-foreground: #f1f1f1;
-  --primary: #ffb3ac;
-  --primary-foreground: #410003;
-  --secondary: #bdcabe;
-  --secondary-foreground: #131e17;
-  --muted: #455b65;
-  --muted-foreground: #cfe6f2;
-  --accent: #3e4a41;
-  --accent-foreground: #d9e6da;
+  --background: #191b23;
+  --foreground: #faf8ff;
+  --card: #2e3039;
+  --card-foreground: #f0f0fb;
+  --popover: #2e3039;
+  --popover-foreground: #f0f0fb;
+  --primary: #b4c5ff;
+  --primary-foreground: #00174b;
+  --secondary: #6cd3f7;
+  --secondary-foreground: #001f28;
+  --muted: #4d556b;
+  --muted-foreground: #dae2fd;
+  --accent: #004e61;
+  --accent-foreground: #b7eaff;
   --destructive: #ffdad6;
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.15);
-  --ring: rgba(255, 179, 172, 0.5);
+  --ring: rgba(180, 197, 255, 0.5);
 }
 
 @layer base {
@@ -223,14 +202,14 @@
     height: 8px;
   }
   ::-webkit-scrollbar-track {
-    background: #f3f3fe; 
+    background: #f3f3fe;
   }
   ::-webkit-scrollbar-thumb {
-    background: #c3c6d7; 
+    background: #c3c6d7;
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #737686; 
+    background: #737686;
   }
 }
 
@@ -248,68 +227,57 @@
     opacity: 0.05;
   }
 
-  /* Custom Typography Utility Layout Classes */
-  .text-display-lg {
-    font-family: "Montserrat", sans-serif;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 56px;
-    letter-spacing: -0.02em;
-  }
-  @media (max-width: 768px) {
-    .text-display-lg {
-      font-size: 32px;
-      line-height: 40px;
-      letter-spacing: -0.01em;
-    }
-  }
-
-  .text-headline-lg {
-    font-family: "Montserrat", sans-serif;
-    font-size: 32px;
-    font-weight: 600;
-    line-height: 40px;
-  }
-  @media (max-width: 768px) {
-    .text-headline-lg {
-      font-size: 24px;
-      line-height: 32px;
-    }
-  }
-
-  .text-headline-md {
-    font-family: "Montserrat", sans-serif;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 32px;
-  }
-
-  .text-body-lg {
-    font-family: "Inter Variable", "Inter", sans-serif;
-    font-size: 18px;
+  /* Exact Font Configurations mapped out from design specifications */
+  .font-body-sm {
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
     font-weight: 400;
-    line-height: 28px;
+    line-height: 16px;
   }
-
-  .text-body-md {
-    font-family: "Inter Variable", "Inter", sans-serif;
+  .font-body-md {
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+  .font-body-lg {
+    font-family: "Inter", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
   }
-
-  .text-label-md {
-    font-family: "Inter Variable", "Inter", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    letter-spacing: 0.01em;
+  .font-headline-sm {
+    font-family: "Manrope", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
   }
-
-  .text-label-sm {
-    font-family: "Inter Variable", "Inter", sans-serif;
-    font-size: 12px;
+  .font-headline-md {
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    letter-spacing: -0.01em;
+  }
+  .font-headline-lg {
+    font-family: "Manrope", sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: -0.02em;
+  }
+  .font-label-caps {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
     font-weight: 600;
     line-height: 16px;
+    letter-spacing: 0.05em;
+  }
+  .font-data-mono {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: -0.01em;
   }
 }

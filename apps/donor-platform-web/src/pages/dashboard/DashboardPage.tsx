@@ -14,7 +14,7 @@ export default function DashboardPage() {
     refetchInterval: 60000,
   });
 
-  // Calculate days left, fallback to dummy
+  // Calculate days left, fallback to backend intent timeline
   const today = new Date();
   const nextEligible = stats?.nextEligibleDate ? new Date(stats.nextEligibleDate) : new Date(today.getTime() + 12 * 24 * 60 * 60 * 1000);
   const diffTime = Math.abs(nextEligible.getTime() - today.getTime());
@@ -22,137 +22,180 @@ export default function DashboardPage() {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   return (
-    <>
+    <div className="mx-auto w-full max-w-[1400px] space-y-6 p-4 md:p-6 lg:p-8">
+      
       {/* Emergency Alert Banner */}
-      <div className="w-full bg-error-container border border-error/20 rounded-lg p-md flex items-start sm:items-center gap-md">
-        <span className="material-symbols-outlined text-on-error-container mt-0.5 sm:mt-0" style={{ fontVariationSettings: "'FILL' 1" }}>warning</span>
-        <div className="flex-grow">
-          <h4 className="font-headline-sm text-headline-sm text-on-error-container mb-xs">Critical Shortage: O- Negative</h4>
-          <p className="font-body-sm text-body-sm text-on-error-container/80">Local trauma centers are critically low on universal donor supplies. Your donation is urgently needed today.</p>
+      <div className="group relative flex flex-col gap-4 overflow-hidden rounded-xl border border-error/20 bg-error-container p-5 transition-all duration-300 hover:shadow-md sm:flex-row sm:items-center sm:justify-between sm:p-6">
+        <div className="flex items-start gap-4">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-error/10 text-on-error-container">
+            <span className="material-symbols-outlined text-[24px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+              warning
+            </span>
+          </div>
+          <div className="space-y-1">
+            <h4 className="font-headline-sm text-lg font-bold tracking-tight text-on-error-container">
+              Critical Shortage: O- Negative
+            </h4>
+            <p className="font-body-sm max-w-2xl text-sm leading-relaxed text-on-error-container/80">
+              Local trauma centers are critically low on universal donor supplies. Your donation is urgently needed today.
+            </p>
+          </div>
         </div>
-        <button className="shrink-0 bg-on-error-container text-on-error px-md py-sm rounded border border-on-error-container font-label-caps text-label-caps hover:bg-error transition-colors">
+        <button className="w-full shrink-0 rounded-lg bg-on-error-container px-5 py-2.5 font-label-caps text-xs font-semibold tracking-wider text-on-error transition-all duration-200 hover:bg-error hover:shadow-sm sm:w-auto">
           Find Center
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-lg items-start">
+      {/* Main Grid Workspace */}
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 items-start">
+        
         {/* Left Column: Primary Metrics & History */}
-        <div className="md:col-span-8 flex flex-col gap-lg">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-md">
+        <div className="flex flex-col gap-6 lg:col-span-8">
+          
+          {/* Top Hero Row */}
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
             
             {/* Hero/Countdown Widget */}
-            <div className="sm:col-span-2 bg-primary-container border border-primary/10 rounded-xl p-lg relative overflow-hidden flex flex-col justify-between min-h-[160px]">
-              <div className="absolute -right-10 -top-10 text-primary opacity-10 pointer-events-none">
-                <span className="material-symbols-outlined text-[150px]" style={{ fontVariationSettings: "'FILL' 1" }}>water_drop</span>
+            <div className="relative flex min-h-[180px] flex-col justify-between overflow-hidden rounded-2xl border border-primary/10 bg-primary-container p-6 shadow-sm transition-all duration-300 hover:shadow-md sm:col-span-2">
+              <div className="absolute -right-6 -top-6 text-primary/10 pointer-events-none select-none transition-transform duration-500 group-hover:scale-110">
+                <span className="material-symbols-outlined text-[160px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                  water_drop
+                </span>
               </div>
-              <div className="z-10">
-                <span className="font-label-caps text-label-caps text-on-primary-container uppercase opacity-80 tracking-wider">Next Eligible Donation</span>
-                <div className="mt-xs flex items-baseline gap-xs text-on-primary-container">
-                  <span className="font-headline-lg text-headline-lg">{statsLoading ? '--' : diffDays}</span>
-                  <span className="font-body-md text-body-md">Days</span>
+              
+              <div className="relative z-10 space-y-1">
+                <span className="font-label-caps text-xs font-bold tracking-widest text-on-primary-container/80 uppercase">
+                  Next Eligible Donation
+                </span>
+                <div className="flex items-baseline gap-1.5 text-on-primary-container">
+                  <span className="font-headline-lg text-4xl font-black tracking-tight md:text-5xl">
+                    {statsLoading ? '--' : diffDays}
+                  </span>
+                  <span className="font-body-md text-base font-medium opacity-90">Days</span>
                 </div>
-                <p className="font-body-sm text-body-sm text-on-primary-container/80 mt-1">
+                <p className="font-body-sm text-xs text-on-primary-container/70">
                   Whole Blood · Eligible on {monthNames[nextEligible.getMonth()]} {nextEligible.getDate()}
                 </p>
               </div>
-              <div className="z-10 mt-md">
-                <button className="bg-primary text-on-primary font-label-caps text-label-caps px-lg py-sm rounded hover:bg-surface-tint transition-colors flex items-center gap-xs w-max">
-                  <span className="material-symbols-outlined text-[16px]">calendar_month</span>
+
+              <div className="relative z-10 mt-6">
+                <button className="flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 font-label-caps text-xs font-bold tracking-wider text-on-primary shadow-sm transition-all duration-200 hover:bg-surface-tint hover:shadow">
+                  <span className="material-symbols-outlined text-[18px]">calendar_month</span>
                   Schedule Now
                 </button>
               </div>
             </div>
 
             {/* Single Impact Metric Card */}
-            <div className="bg-surface border border-outline-variant rounded-xl p-lg flex flex-col justify-between min-h-[160px]">
+            <div className="flex min-h-[180px] flex-col justify-between rounded-2xl border border-outline-variant bg-surface p-6 shadow-sm transition-all duration-300 hover:shadow-md">
               <div className="flex items-center justify-between">
-                <span className="font-label-caps text-label-caps text-on-surface-variant uppercase">Total Impact</span>
-                <span className="material-symbols-outlined text-secondary text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>favorite</span>
+                <span className="font-label-caps text-xs font-bold tracking-widest text-on-surface-variant uppercase">
+                  Total Impact
+                </span>
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-secondary/10 text-secondary">
+                  <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                    favorite
+                  </span>
+                </div>
               </div>
-              <div>
-                <div className="flex items-baseline gap-xs">
-                  <span className="font-headline-lg text-headline-lg text-on-surface">
+              <div className="space-y-0.5">
+                <div className="flex items-baseline gap-1">
+                  <span className="font-headline-lg text-4xl font-black tracking-tight text-on-surface">
                     {statsLoading ? '--' : (stats?.totalLivesSaved || 42)}
                   </span>
                 </div>
-                <p className="font-body-sm text-body-sm text-on-surface-variant">Potential Lives Saved</p>
+                <p className="font-body-sm text-sm font-medium text-on-surface-variant/80">Potential Lives Saved</p>
               </div>
             </div>
           </div>
 
-          {/* Secondary Metrics Row */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-md">
-            <div className="bg-surface border border-outline-variant rounded-lg p-md flex flex-col gap-xs">
-              <span className="font-label-caps text-label-caps text-outline uppercase">Gallons</span>
-              <span className="font-data-mono text-data-mono text-on-surface text-[18px]">
-                {statsLoading ? '--' : (stats?.gallonsDonated || 1.5)}
-              </span>
-            </div>
-            <div className="bg-surface border border-outline-variant rounded-lg p-md flex flex-col gap-xs">
-              <span className="font-label-caps text-label-caps text-outline uppercase">Donations</span>
-              <span className="font-data-mono text-data-mono text-on-surface text-[18px]">
-                {statsLoading ? '--' : (stats?.totalDonations || 14)}
-              </span>
-            </div>
-            <div className="bg-surface border border-outline-variant rounded-lg p-md flex flex-col gap-xs">
-              <span className="font-label-caps text-label-caps text-outline uppercase">Current Streak</span>
-              <div className="flex items-center gap-xs">
-                <span className="font-data-mono text-data-mono text-on-surface text-[18px]">
-                  {statsLoading ? '--' : (stats?.currentStreak || 3)}
+          {/* Secondary Metrics Grid */}
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+            {[
+              { label: 'Gallons', value: statsLoading ? '--' : (stats?.gallonsDonated || 1.5), type: 'mono' },
+              { label: 'Donations', value: statsLoading ? '--' : (stats?.totalDonations || 14), type: 'mono' },
+              { 
+                label: 'Current Streak', 
+                value: statsLoading ? '--' : (stats?.currentStreak || 3), 
+                type: 'streak',
+                icon: 'local_fire_department' 
+              },
+              { label: 'Blood Type', value: statsLoading ? '--' : (stats?.bloodType || 'O-'), type: 'danger' }
+            ].map((metric, idx) => (
+              <div key={idx} className="group rounded-xl border border-outline-variant bg-surface p-4 shadow-sm transition-all duration-200 hover:border-outline hover:shadow-sm">
+                <span className="block font-label-caps text-[11px] font-bold tracking-widest text-outline uppercase mb-2">
+                  {metric.label}
                 </span>
-                <span className="material-symbols-outlined text-secondary text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>local_fire_department</span>
+                <div className="flex items-center gap-1.5">
+                  <span className={`text-xl font-bold tracking-tight ${
+                    metric.type === 'danger' ? 'text-error font-headline-sm text-2xl' : 'text-on-surface font-data-mono'
+                  }`}>
+                    {metric.value}
+                  </span>
+                  {metric.icon && (
+                    <span className="material-symbols-outlined text-secondary text-[18px] animate-pulse" style={{ fontVariationSettings: "'FILL' 1" }}>
+                      {metric.icon}
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
-            <div className="bg-surface border border-outline-variant rounded-lg p-md flex flex-col gap-xs">
-              <span className="font-label-caps text-label-caps text-outline uppercase">Blood Type</span>
-              <span className="font-headline-sm text-headline-sm text-error">
-                {statsLoading ? '--' : (stats?.bloodType || 'O-')}
-              </span>
-            </div>
+            ))}
           </div>
 
-          {/* Data Table: Recent History */}
-          <div className="bg-surface border border-outline-variant rounded-xl overflow-hidden mt-sm flex flex-col">
-            <div className="px-md py-md border-b border-outline-variant flex justify-between items-center bg-surface-bright">
-              <h3 className="font-headline-sm text-headline-sm text-on-surface">Recent Donations</h3>
-              <button className="font-label-caps text-label-caps text-primary hover:text-surface-tint transition-colors">View All</button>
+          {/* Data Table Container */}
+          <div className="rounded-2xl border border-outline-variant bg-surface shadow-sm overflow-hidden flex flex-col mt-2">
+            <div className="flex items-center justify-between border-b border-outline-variant bg-surface-bright px-6 py-4">
+              <h3 className="font-headline-sm text-base font-bold text-on-surface tracking-tight">Recent Donations</h3>
+              <button className="font-label-caps text-xs font-bold tracking-wider text-primary transition-colors hover:text-surface-tint">
+                View All
+              </button>
             </div>
+            
             <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead className="bg-surface-container-low font-label-caps text-label-caps text-on-surface-variant border-b border-outline-variant">
+              <table className="w-full text-left border-collapse min-w-[500px]">
+                <thead className="bg-surface-container-low border-b border-outline-variant font-label-caps text-[11px] font-bold tracking-wider text-on-surface-variant uppercase">
                   <tr>
-                    <th className="px-md py-sm font-medium">Date</th>
-                    <th className="px-md py-sm font-medium">Location</th>
-                    <th className="px-md py-sm font-medium">Type</th>
-                    <th className="px-md py-sm font-medium">Status</th>
+                    <th className="px-6 py-3.5">Date</th>
+                    <th className="px-6 py-3.5">Location</th>
+                    <th className="px-6 py-3.5">Type</th>
+                    <th className="px-6 py-3.5">Status</th>
                   </tr>
                 </thead>
-                <tbody className="font-data-mono text-data-mono text-on-surface divide-y divide-outline-variant/50">
+                <tbody className="font-data-mono text-sm text-on-surface divide-y divide-outline-variant/40">
                   {historyLoading ? (
                     <tr>
-                      <td colSpan={4} className="px-md py-xl text-center text-on-surface-variant">Loading donation history...</td>
+                      <td colSpan={4} className="px-6 py-12 text-center text-on-surface-variant">
+                        <div className="flex flex-col items-center justify-center gap-2">
+                          <div className="h-5 w-5 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+                          <span className="text-xs font-medium">Loading donation history...</span>
+                        </div>
+                      </td>
                     </tr>
                   ) : history && history.length > 0 ? (
                     history.map((record, i) => (
-                      <tr key={i} className="hover:bg-surface-container-low/50 transition-colors">
-                        <td className="px-md py-sm">{record.date}</td>
-                        <td className="px-md py-sm text-body-sm font-body-sm">{record.location}</td>
-                        <td className="px-md py-sm text-body-sm font-body-sm">{record.type}</td>
-                        <td className="px-md py-sm">
-                          <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-label-caps uppercase tracking-wider ${record.status === 'Completed' ? 'bg-secondary-container/30 text-secondary border border-secondary/20' : 'bg-surface-variant/30 text-surface-variant border border-surface-variant/20'}`}>
+                      <tr key={i} className="group hover:bg-surface-container-low/40 transition-colors">
+                        <td className="px-6 py-3.5 whitespace-nowrap font-medium text-on-surface/90">{record.date}</td>
+                        <td className="px-6 py-3.5 font-body-sm text-sm text-on-surface-variant">{record.location}</td>
+                        <td className="px-6 py-3.5 font-body-sm text-sm text-on-surface-variant">{record.type}</td>
+                        <td className="px-6 py-3.5 whitespace-nowrap">
+                          <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-widest uppercase border ${
+                            record.status === 'Completed' 
+                              ? 'bg-secondary-container/20 text-secondary border-secondary/20' 
+                              : 'bg-surface-variant/30 text-surface-variant border-surface-variant/20'
+                          }`}>
                             {record.status}
                           </span>
                         </td>
                       </tr>
                     ))
                   ) : (
-                    // Mock data fallback if history array is empty (for UI testing)
-                    <tr className="hover:bg-surface-container-low/50 transition-colors">
-                      <td className="px-md py-sm">2023-08-12</td>
-                      <td className="px-md py-sm text-body-sm font-body-sm">Metro General Hospital</td>
-                      <td className="px-md py-sm text-body-sm font-body-sm">Whole Blood</td>
-                      <td className="px-md py-sm">
-                        <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-secondary-container/30 text-secondary border border-secondary/20 text-[10px] font-label-caps uppercase tracking-wider">
+                    // Fallback block if table context lacks active rows
+                    <tr className="group hover:bg-surface-container-low/40 transition-colors">
+                      <td className="px-6 py-3.5 whitespace-nowrap font-medium text-on-surface/90">2023-08-12</td>
+                      <td className="px-6 py-3.5 font-body-sm text-sm text-on-surface-variant">Metro General Hospital</td>
+                      <td className="px-6 py-3.5 font-body-sm text-sm text-on-surface-variant">Whole Blood</td>
+                      <td className="px-6 py-3.5 whitespace-nowrap">
+                        <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold tracking-widest uppercase border bg-secondary-container/20 text-secondary border-secondary/20">
                           Completed
                         </span>
                       </td>
@@ -164,79 +207,88 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        {/* Right Column: Achievements & Context */}
-        <div className="md:col-span-4 flex flex-col gap-lg">
-          {/* Quick Info Card */}
-          <div className="bg-surface border border-outline-variant rounded-xl p-md">
-            <h3 className="font-headline-sm text-headline-sm text-on-surface mb-sm">Preparation Guide</h3>
-            <ul className="flex flex-col gap-sm">
-              <li className="flex items-start gap-sm">
-                <span className="material-symbols-outlined text-outline text-[18px] mt-0.5">water_drop</span>
-                <div>
-                  <span className="font-label-caps text-label-caps text-on-surface block">Hydrate</span>
-                  <span className="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Drink an extra 16 oz of water before your appointment.</span>
-                </div>
-              </li>
-              <li className="flex items-start gap-sm">
-                <span className="material-symbols-outlined text-outline text-[18px] mt-0.5">restaurant</span>
-                <div>
-                  <span className="font-label-caps text-label-caps text-on-surface block">Eat Well</span>
-                  <span className="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Have a healthy, low-fat meal within 2 hours of donating.</span>
-                </div>
-              </li>
-              <li className="flex items-start gap-sm">
-                <span className="material-symbols-outlined text-outline text-[18px] mt-0.5">badge</span>
-                <div>
-                  <span className="font-label-caps text-label-caps text-on-surface block">Bring ID</span>
-                  <span className="font-body-sm text-body-sm text-on-surface-variant block mt-0.5">Don't forget your donor card or government-issued ID.</span>
-                </div>
-              </li>
+        {/* Right Column: Achievements & Informational Sidebar */}
+        <div className="flex flex-col gap-6 lg:col-span-4 w-full">
+          
+          {/* Preparation Guide */}
+          <div className="rounded-2xl border border-outline-variant bg-surface p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+            <h3 className="font-headline-sm text-base font-bold text-on-surface tracking-tight mb-4">
+              Preparation Guide
+            </h3>
+            <ul className="flex flex-col gap-4">
+              {[
+                { icon: 'water_drop', title: 'Hydrate', desc: 'Drink an extra 16 oz of water before your appointment.' },
+                { icon: 'restaurant', title: 'Eat Well', desc: 'Have a healthy, low-fat meal within 2 hours of donating.' },
+                { icon: 'badge', title: 'Bring ID', desc: "Don't forget your donor card or government-issued ID." }
+              ].map((step, idx) => (
+                <li key={idx} className="flex items-start gap-3.5 group">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-surface-container border border-outline-variant/40 text-outline transition-colors group-hover:bg-primary/5 group-hover:text-primary">
+                    <span className="material-symbols-outlined text-[18px]">{step.icon}</span>
+                  </div>
+                  <div className="space-y-0.5">
+                    <span className="block font-label-caps text-xs font-bold tracking-wider text-on-surface">
+                      {step.title}
+                    </span>
+                    <span className="block font-body-sm text-xs leading-relaxed text-on-surface-variant">
+                      {step.desc}
+                    </span>
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Achievements */}
-          <div className="bg-surface border border-outline-variant rounded-xl p-md">
-            <div className="flex justify-between items-center mb-md border-b border-outline-variant pb-sm">
-              <h3 className="font-headline-sm text-headline-sm text-on-surface">Achievements</h3>
-              <span className="font-data-mono text-data-mono text-on-surface-variant bg-surface-container-highest px-2 py-0.5 rounded">4 Earned</span>
+          {/* Achievements Block */}
+          <div className="rounded-2xl border border-outline-variant bg-surface p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+            <div className="flex items-center justify-between border-b border-outline-variant pb-3 mb-4">
+              <h3 className="font-headline-sm text-base font-bold text-on-surface tracking-tight">Achievements</h3>
+              <span className="font-data-mono text-xs font-bold text-on-surface-variant bg-surface-container-highest px-2.5 py-0.5 rounded-md">
+                4 Earned
+              </span>
             </div>
             
-            <div className="grid grid-cols-2 gap-sm">
-              <div className="bg-surface-container-low border border-outline-variant/50 rounded-lg p-sm flex flex-col items-center text-center gap-xs hover:bg-surface-container transition-colors cursor-default">
-                <div className="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { title: 'First Drop', desc: 'Joined the cause', icon: 'star', bg: 'bg-primary-container text-on-primary-container' },
+                { title: '1 Gallon Club', desc: 'Major milestone', icon: 'workspace_premium', bg: 'bg-secondary-container text-secondary' },
+                { title: 'Hot Streak', desc: '3x in one year', icon: 'local_fire_department', bg: 'bg-tertiary-container text-on-tertiary-container' },
+              ].map((badge, idx) => (
+                <div key={idx} className="group/badge rounded-xl border border-outline-variant/60 bg-surface-container-low p-4 flex flex-col items-center text-center gap-2 transition-all duration-200 hover:bg-surface-container hover:scale-[1.02] cursor-default">
+                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover/badge:rotate-12 ${badge.bg}`}>
+                    <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>
+                      {badge.icon}
+                    </span>
+                  </div>
+                  <div className="space-y-0.5">
+                    <span className="block font-label-caps text-xs font-bold tracking-tight text-on-surface">
+                      {badge.title}
+                    </span>
+                    <span className="block font-body-sm text-[10px] text-on-surface-variant/80">
+                      {badge.desc}
+                    </span>
+                  </div>
                 </div>
-                <span className="font-label-caps text-label-caps text-on-surface">First Drop</span>
-                <span className="font-body-sm text-body-sm text-on-surface-variant text-[10px]">Joined the cause</span>
-              </div>
-              
-              <div className="bg-surface-container-low border border-outline-variant/50 rounded-lg p-sm flex flex-col items-center text-center gap-xs hover:bg-surface-container transition-colors cursor-default">
-                <div className="w-10 h-10 rounded-full bg-secondary-container text-secondary flex items-center justify-center">
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>workspace_premium</span>
+              ))}
+
+              {/* Locked Achievement Target */}
+              <div className="rounded-xl border border-dashed border-outline-variant bg-surface p-4 flex flex-col items-center text-center gap-2 opacity-60 transition-opacity duration-200 hover:opacity-80">
+                <div className="w-10 h-10 rounded-xl bg-surface-dim border border-outline-variant text-outline flex items-center justify-center">
+                  <span className="material-symbols-outlined text-[18px]">lock</span>
                 </div>
-                <span className="font-label-caps text-label-caps text-on-surface">1 Gallon Club</span>
-                <span className="font-body-sm text-body-sm text-on-surface-variant text-[10px]">Major milestone</span>
-              </div>
-              
-              <div className="bg-surface-container-low border border-outline-variant/50 rounded-lg p-sm flex flex-col items-center text-center gap-xs hover:bg-surface-container transition-colors cursor-default">
-                <div className="w-10 h-10 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
-                  <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>local_fire_department</span>
+                <div className="space-y-0.5">
+                  <span className="block font-label-caps text-xs font-semibold tracking-tight text-outline">
+                    5 Gallon Hero
+                  </span>
+                  <span className="block font-body-sm text-[10px] text-outline">
+                    In progress...
+                  </span>
                 </div>
-                <span className="font-label-caps text-label-caps text-on-surface">Hot Streak</span>
-                <span className="font-body-sm text-body-sm text-on-surface-variant text-[10px]">3x in one year</span>
-              </div>
-              
-              <div className="bg-surface border border-dashed border-outline-variant rounded-lg p-sm flex flex-col items-center text-center gap-xs opacity-60">
-                <div className="w-10 h-10 rounded-full bg-surface-dim text-outline flex items-center justify-center">
-                  <span className="material-symbols-outlined">lock</span>
-                </div>
-                <span className="font-label-caps text-label-caps text-outline">5 Gallon Hero</span>
-                <span className="font-body-sm text-body-sm text-outline text-[10px]">In progress...</span>
               </div>
             </div>
           </div>
         </div>
+
       </div>
-    </>
+    </div>
   );
 }
