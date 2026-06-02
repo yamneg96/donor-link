@@ -3866,3 +3866,23 @@ SIGINT intercepted. Graceful drainage executing... {"service":"donorlink-api"}
 2026-06-02 02:24:18 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.378 ms {"service":"donorlink-api"}
 2026-06-02 02:24:18 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
 2026-06-02 02:24:18 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.165 ms {"service":"donorlink-api"}
+2026-06-02 02:26:45 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:26:45 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 2.039 ms {"service":"donorlink-api"}
+2026-06-02 02:26:45 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:26:45 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.815 ms {"service":"donorlink-api"}
+2026-06-02 02:26:46 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:26:46 [info]: ::1 GET /api/v1/engagement/me/stats 401 115 - 1.530 ms {"service":"donorlink-api"}
+2026-06-02 02:26:46 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:26:46 [info]: ::1 GET /api/v1/appointments/me/history 401 115 - 1.034 ms {"service":"donorlink-api"}
+2026-06-02 02:27:55 [debug]: Event emitted: user_login {"service":"donorlink-api","payload":"{\"userId\":\"6a07712590143f78499ded27\"}"}
+2026-06-02 02:27:55 [info]: ::1 POST /api/v1/auth/login 200 830 - 1182.636 ms {"service":"donorlink-api"}
+2026-06-02 02:27:56 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:27:56 [info]: ::1 GET /api/v1/inventory/stats 401 115 - 1.644 ms {"service":"donorlink-api"}
+2026-06-02 02:27:56 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:27:56 [info]: ::1 GET /api/v1/requests/urgent 401 115 - 1.315 ms {"service":"donorlink-api"}
+2026-06-02 02:28:24 [debug]: Event emitted: user_login {"service":"donorlink-api","payload":"{\"userId\":\"6a07712590143f78499ded27\"}"}
+2026-06-02 02:28:24 [info]: ::1 POST /api/v1/auth/login 200 830 - 3492.252 ms {"service":"donorlink-api"}
+2026-06-02 02:28:24 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:28:24 [info]: ::1 GET /api/v1/inventory/stats 401 115 - 1.749 ms {"service":"donorlink-api"}
+2026-06-02 02:28:24 [warn]: Operational error: Invalid or expired token {"service":"donorlink-api","code":"UNAUTHORIZED","statusCode":401}
+2026-06-02 02:28:24 [info]: ::1 GET /api/v1/requests/urgent 401 115 - 1.183 ms {"service":"donorlink-api"}
