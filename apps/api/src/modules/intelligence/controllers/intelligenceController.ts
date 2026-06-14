@@ -204,4 +204,30 @@ export class IntelligenceController {
       next(error);
     }
   };
+
+  /**
+   * GET /intelligence/settings
+   * Retrieve current ML configuration
+   */
+  static getSettings = async (_req: Request, res: Response, next: NextFunction) => {
+    try {
+      const settings = await IntelligenceController.service.getSettings();
+      sendSuccess(res, { settings });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  /**
+   * PUT /intelligence/settings
+   * Update ML configuration
+   */
+  static updateSettings = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const settings = await IntelligenceController.service.updateSettings(req.body);
+      sendSuccess(res, { settings, message: 'ML configuration updated successfully' });
+    } catch (error) {
+      next(error);
+    }
+  };
 }

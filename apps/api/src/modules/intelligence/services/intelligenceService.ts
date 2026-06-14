@@ -178,4 +178,30 @@ export class IntelligenceService {
   async checkHealth(): Promise<{ status: string; available: boolean }> {
     return checkMLHealth();
   }
+
+  // ── Settings Management ───────────────────────────
+
+  async getSettings(): Promise<Record<string, unknown>> {
+    try {
+      return await getMLSettings();
+    } catch (error) {
+      logger.error('[Intelligence] Failed to fetch ML settings:', error);
+      throw error;
+    }
+  }
+
+  async updateSettings(data: Record<string, unknown>): Promise<Record<string, unknown>> {
+    try {
+      const result = await updateMLSettings(data);
+      
+      // Invalidate relevant caches if necessary
+      // Since thresholds changed, we should probably clear some caches
+      mlCache.clear(); 
+      
+      return result;
+    } catch (error) {
+      logger.error('[Intelligence] Failed to update ML settings:', error);
+      throw error;
+    }
+  }
 }

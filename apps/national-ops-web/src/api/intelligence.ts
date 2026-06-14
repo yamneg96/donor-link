@@ -94,4 +94,15 @@ export const intelligenceApi = {
    * Check ML service health via proxy
    */
   checkHealth: () => api.get("/intelligence/health"),
+
+  /**
+   * Get current ML configuration settings
+   */
+  getSettings: () => api.get("/intelligence/settings").then(r => r.data.data),
+
+  /**
+   * Update ML configuration settings
+   */
+  updateSettings: (data: Record<string, unknown>) => 
+    api.put("/intelligence/settings", data).then(r => r.data.data),
 };

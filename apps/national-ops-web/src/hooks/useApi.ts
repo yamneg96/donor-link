@@ -104,6 +104,7 @@ export const QK = {
   intelligenceAnomaly: (p?: unknown) => ["intelligence", "anomaly", p] as const,
   intelligenceExpiry: (p?: unknown) => ["intelligence", "expiry", p] as const,
   intelligenceHealth: ["intelligence", "health"] as const,
+  intelligenceSettings: ["intelligence", "settings"] as const,
 };
 
 // ─── Auth Hooks ───────────────────────────────────────────────────────────────
@@ -734,5 +735,22 @@ export function useMLHealth() {
     queryKey: QK.intelligenceHealth,
     queryFn: () => intelligenceApi.checkHealth().then((r: { data: ApiResponse<IMLHealth> }) => r.data.data),
     refetchInterval: 60_000,
+  });
+}
+
+export function useMLSettings() {
+  return useQuery({
+    queryKey: QK.intelligenceSettings,
+    queryFn: () => intelligenceApi.getSettings().then((r: any) => r.settings),
+  });
+}
+
+export function useUpdateMLSettings() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Record<string, unknown>) => intelligenceApi.updateSettings(data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: QK.intelligenceSettings });
+    },
   });
 }

@@ -1,3 +1,6 @@
 packages:
-  - 'apps/*'
+  - 'apps/api'
+  - 'apps/donor-platform-web'
+  - 'apps/hospital-portal-web'
+  - 'apps/national-ops-web'
   - 'packages/*'

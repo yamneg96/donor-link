@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 0 85% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 85% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 85% 10%;
+    --primary: 0 74% 42%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 90%;
+    --secondary-foreground: 210 20% 20%;
+    --muted: 210 20% 95%;
+    --muted-foreground: 210 10% 40%;
+    --accent: 0 74% 42%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 210 20% 85%;
+    --input: 210 20% 85%;
+    --ring: 0 74% 42%;
+    --radius: 0.75rem;
+    --chart-1: 0 74% 42%;
+    --chart-2: 210 40% 45%;
+    --chart-3: 142 70% 35%;
+    --chart-4: 38 90% 50%;
+    --chart-5: 280 65% 45%;
+    
+    /* Added from HTML Design Spec */
+    --primary-fixed-container: 0 74% 92%;
+    --alert-bg: 210 20% 92%;
+  }
+
+  .dark {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 74% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --accent: 0 74% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 63% 40%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 74% 50%;
+    --chart-1: 0 74% 50%;
+    --chart-2: 210 40% 55%;
+    --chart-3: 142 70% 45%;
+    --chart-4: 38 90% 60%;
+    --chart-5: 280 65% 55%;
+
+    /* Added from HTML Design Spec Dark Equivalents */
+    --primary-fixed-container: 0 74% 20%;
+    --alert-bg: 0 0% 12%;
+  }
+}
+
+@layer utilities {
+  .bg-dot-matrix {
+    background-image: radial-gradient(circle at 2px 2px, hsl(var(--muted-foreground) / 0.15) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+}

@@ -79,4 +79,18 @@ router.post(
   IntelligenceController.getExpiryRisk
 );
 
+// ── ML Settings ─────────────────────────────────────
+
+router.get(
+  '/settings',
+  authorize(Role.SUPER_ADMIN),
+  IntelligenceController.getSettings
+);
+
+router.put(
+  '/settings',
+  authorize(Role.SUPER_ADMIN),
+  IntelligenceController.updateSettings
+);
+
 export { router as intelligenceRoutes };
