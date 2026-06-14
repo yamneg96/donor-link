@@ -37,7 +37,7 @@ function getWifiIP() {
 }
 
 const localIP = getWifiIP();
-const BACKEND_PORT = '8000'; // Change to match your backend port
+const BACKEND_PORT = '5000'; // Change to match your backend port
 const targetKey = 'EXPO_PUBLIC_API_URL';
 const targetValue = `http://${localIP}:${BACKEND_PORT}/api/v1`;
 

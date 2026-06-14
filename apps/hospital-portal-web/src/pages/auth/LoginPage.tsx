@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../app/store/authStore';
-import { apiClient } from '../../api/client';
+import {authApi} from '@/api/auth'
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
@@ -19,10 +19,12 @@ export function LoginPage() {
     setError('');
 
     try {
-      const response = await apiClient.post('/auth/login', { email, password });
+      // const response = await apiClient.post('/auth/login', { email, password });
+      const response = await authApi.login({email, password})
+      console.log(response)
       if (response.data?.success) {
-        const { accessToken, user } = response.data.data;
-        login(accessToken, user || { id: 'mock', email, firstName: 'City', lastName: 'General', role: 'hospital' });
+        const { tokens, user } = response.data.data;
+        login(tokens.accessToken, user || { id: 'mock', email, firstName: 'City', lastName: 'General', role: 'hospital' });
         navigate('/app/dashboard');
       }
     } catch (err: any) {

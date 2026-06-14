@@ -34,7 +34,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-background flex flex-col md:flex-row relative overflow-hidden">
       {/* Left side graphics (hidden on mobile) */}
       <div className="hidden md:flex md:w-1/2 bg-surface-container-low flex-col items-center justify-center p-12 border-r border-outline-variant/30">
-          <div className="text-center max-w-md">
+          <div className="text-center">
              <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 text-primary">
                 <span className="material-symbols-outlined text-[40px]" style={{ fontVariationSettings: "'FILL' 1" }}>diversity_1</span>
              </div>
@@ -45,7 +45,7 @@ export default function LoginPage() {
 
       {/* Right side form */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-6 sm:p-12">
-        <div className="w-full max-w-md">
+        <div className="w-full">
           <button onClick={() => navigate('/')} className="mb-8 font-label-caps text-outline hover:text-primary transition-colors flex items-center gap-1">
              <span className="material-symbols-outlined text-[16px]">arrow_back</span> Back to home
           </button>
