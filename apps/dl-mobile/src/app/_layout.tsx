@@ -1,130 +1,98 @@
-import "@/global.css";
-import React, { useEffect, useState } from "react";
-import { Stack, useRouter, useSegments, useRootNavigationState } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "@/src/config/queryClient";
-import { useAuthStore, authStore } from "@/src/store/authStore";
-import { ThemeProvider } from "@react-navigation/native";
-import { NAV_THEME } from "@/src/lib/theme";
-import { useColorScheme } from "nativewind";
-import { PortalHost } from "@rn-primitives/portal";
-import { Sun, Moon } from "lucide-react-native";
-import { Pressable, View, Platform } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import * as NavigationBar from "expo-navigation-bar";
-import { BiometricLock } from "@/src/components/auth/BiometricLock";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Stack } from 'expo-router';
+import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import { useEffect, useState } from 'react';
+import { View } from 'react-native';
+import { PortalHost } from '@rn-primitives/portal';
+import { ThemeProvider } from '@react-navigation/native';
+import { useColorScheme } from '@/src/hooks/useColorScheme';
+import { NAV_THEME } from '@/lib/theme';
+import { useAuthStore } from '@/src/store/authStore';
+import { setupNotificationHandlers } from '@/src/notifications/notificationHandler';
+import { setupOfflineManager } from '@/src/offline/offlineManager';
+import { AnimatedSplash } from '@/src/components/shared/AnimatedSplash';
+import { FloatingThemeToggle } from '@/src/components/shared/FloatingThemeToggle';
+import '../../global.css';
 
-export { ErrorBoundary } from "expo-router";
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 2,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    },
+  },
+});
 
-function AuthHandler() {
-  const router = useRouter();
-  const segments = useSegments();
-  const navigationState = useRootNavigationState();
-  const { isAuthenticated, isInitialized } = useAuthStore();
-  const [isSplashTiming, setIsSplashTiming] = useState(true);
+SplashScreen.preventAutoHideAsync();
 
-  // Initialization Logic (Splash timing)
+export default function RootLayout() {
+  const { colorScheme } = useColorScheme();
+  const { hydrate, isLoading } = useAuthStore();
+  const [isReady, setIsReady] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
+
   useEffect(() => {
-    const initApp = async () => {
-      const timer = new Promise((resolve) => setTimeout(resolve, 3000));
-      const auth = authStore.init(); 
-      
-      await Promise.all([timer, auth]);
-      setIsSplashTiming(false);
+    let cleanupNotifications: (() => void) | undefined;
+    let cleanupOffline: (() => void) | undefined;
+
+    async function prepare() {
+      try {
+        await hydrate();
+        // Initialize services
+        cleanupNotifications = setupNotificationHandlers();
+        cleanupOffline = setupOfflineManager();
+        
+        setIsReady(true);
+      } catch (e) {
+        console.warn('Initialization error:', e);
+        setIsReady(true);
+      }
+    }
+
+    prepare();
+    
+    console.log('[RootLayout] Initial colorScheme:', colorScheme);
+
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+    }, 4000);
+
+    return () => {
+      cleanupNotifications?.();
+      cleanupOffline?.();
+      clearTimeout(timer);
     };
-    initApp();
   }, []);
 
   useEffect(() => {
-    // Wait for everything to be ready to avoid context errors
-    if (!navigationState?.key || !isInitialized || isSplashTiming) return;
+    console.log('[RootLayout] colorScheme changed to:', colorScheme);
+  }, [colorScheme]);
 
-    const performRouting = () => {
-      const currentSegment = segments[0] as string | undefined;
-
-      // Auth Boundaries
-      const inAuthGroup = currentSegment === "(auth)";
-      const isPublicRoot = !currentSegment || currentSegment === "index" || currentSegment === "";
-
-      if (!isAuthenticated() && !inAuthGroup && !isPublicRoot) {
-        router.replace("/(auth)/login");
-      } else if (isAuthenticated() && (inAuthGroup || (isPublicRoot && currentSegment !== ""))) {
-        // Redirect to role-based home if on index (but not during initial onboarding phase)
-        router.replace("/(donor)/home");
-      }
-    };
-
-    const routeTimeout = setTimeout(performRouting, 0);
-    return () => clearTimeout(routeTimeout);
-  }, [isAuthenticated, isInitialized, segments, isSplashTiming, navigationState?.key]);
-
-  return null;
-}
-
-function RootNavigation() {
-  const { colorScheme, toggleColorScheme } = useColorScheme();
-  const insets = useSafeAreaInsets();
-  const isDark = colorScheme === "dark";
-  const { isAuthenticated, isLocked } = useAuthStore();
-
-  // 1. Native Bar Syncing
   useEffect(() => {
-    async function syncNativeBars() {
-      if (Platform.OS === "android") {
-        const barColor = isDark ? "#191b23" : "#faf8ff";
-        const barStyle = isDark ? "light" : "dark";
-        const navBar = NavigationBar as any;
-        if (navBar && typeof navBar.setBackgroundColorAsync === 'function') {
-           await navBar.setBackgroundColorAsync(barColor);
-        }
-        if (navBar && typeof navBar.setButtonStyleAsync === 'function') {
-           await navBar.setButtonStyleAsync(barStyle);
-        }
-      }
+    if (isReady && !isLoading) {
+      SplashScreen.hideAsync().catch(() => {});
     }
-    syncNativeBars();
-  }, [isDark]);
+  }, [isReady, isLoading]);
 
-  return (
-    <ThemeProvider value={NAV_THEME[colorScheme ?? "light"]}>
-      <AuthHandler />
-      <StatusBar style={isDark ? "light" : "dark"} />
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="(auth)" />
-        <Stack.Screen name="(donor)" />
-        <Stack.Screen name="(hospital)" />
-      </Stack>
+  if (!isReady || isLoading) {
+    return null;
+  }
 
-      <View
-        pointerEvents="box-none"
-        style={{ top: insets.top > 0 ? insets.top + 8 : 16 }}
-        className="absolute right-4 top-4 z-50"
-      >
-        <Pressable
-          onPress={toggleColorScheme}
-          className="h-10 w-10 items-center justify-center rounded-2xl border border-white/20 bg-black/10 dark:bg-white/10 shadow-sm active:scale-90 transition-transform"
-        >
-          {isDark ? (
-            <Sun size={20} color="#ffb865" strokeWidth={2.5} />
-          ) : (
-            <Moon size={20} color="#434655" strokeWidth={2.5} />
-          )}
-        </Pressable>
-      </View>
-
-      <PortalHost />
-      {isAuthenticated() && isLocked && <BiometricLock />}
-    </ThemeProvider>
-  );
-}
-
-export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
-      <RootNavigation />
+      <ThemeProvider value={NAV_THEME[colorScheme as 'light' | 'dark']}>
+        <View className={`flex-1 ${colorScheme === 'dark' ? 'dark' : ''}`}>
+          {showSplash && <AnimatedSplash />}
+          {!showSplash && <FloatingThemeToggle />}
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="index" />
+            <Stack.Screen name="(auth)" options={{ animation: 'fade' }} />
+            <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
+          </Stack>
+          <PortalHost />
+        </View>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

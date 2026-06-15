@@ -7,6 +7,7 @@ import { initializeSocketManager } from './modules/realtime';
 
 let isReady = false;
 
+const HOST = '0.0.0.0';
 // Dedicated operational warmup block optimized for serverless executions
 export async function initializeApplication(): Promise<void> {
   if (isReady) return;
@@ -45,10 +46,10 @@ if (process.env.VERCEL !== '1') {
       await initializeApplication();
 
       const PORT = env.PORT || 8080;
-      const server = app.listen(PORT, () => {
-        logger.info(`✅ DonorLink API running locally on port ${PORT}`);
+      const server = app.listen(PORT, `${HOST}`, () => {
+        logger.info(`✅ DonorLink API running on all interfaces (0.0.0.0) at port ${PORT}`);
         logger.info(`📡 Target Operational Environment: ${env.NODE_ENV}`);
-        logger.info(`🔗 Health Interface: http://localhost:${PORT}/api/v1/health`);
+        logger.info(`🔗 Health Interface: http://${HOST}:${PORT}/api/v1/health`);
       });
 
       const io = new SocketIOServer(server, {

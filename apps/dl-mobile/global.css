@@ -4,72 +4,71 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 0 85% 10%;
+    /* Vital Core - Light Mode */
+    --background: 225 100% 99%;
+    /* #f8f9ff */
+    --foreground: 222 47% 11%;
+    /* #0f172a */
     --card: 0 0% 100%;
-    --card-foreground: 0 85% 10%;
+    /* #ffffff */
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 85% 10%;
+    --popover-foreground: 222 47% 11%;
+    /* Primary: Deep Blood Red (#B91C1C) */
     --primary: 0 74% 42%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 210 20% 90%;
-    --secondary-foreground: 210 20% 20%;
-    --muted: 210 20% 95%;
-    --muted-foreground: 210 10% 40%;
-    --accent: 0 74% 42%;
-    --accent-foreground: 0 0% 100%;
+    /* Secondary: Medical Blue (#2563EB) */
+    --secondary: 221 83% 53%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 225 60% 96%;
+    /* #eff4ff */
+    --muted-foreground: 215 16% 47%;
+    --accent: 225 60% 96%;
+    --accent-foreground: 222 47% 11%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 210 20% 85%;
-    --input: 210 20% 85%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
     --ring: 0 74% 42%;
     --radius: 0.75rem;
+    /* Impact Charts & Gauges */
     --chart-1: 0 74% 42%;
-    --chart-2: 210 40% 45%;
-    --chart-3: 142 70% 35%;
-    --chart-4: 38 90% 50%;
-    --chart-5: 280 65% 45%;
-    
-    /* Added from HTML Design Spec */
-    --primary-fixed-container: 0 74% 92%;
-    --alert-bg: 210 20% 92%;
+    /* Blood Red */
+    --chart-2: 221 83% 53%;
+    /* Medical Blue */
+    --chart-3: 142 71% 45%;
+    /* Success Green */
+    --chart-4: 38 92% 50%;
+    /* Warning Amber */
+    --chart-5: 215 16% 47%;
+    /* Slate Neutral */
   }
 
   .dark {
-    --background: 0 0% 5%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 8%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 8%;
-    --popover-foreground: 0 0% 98%;
+    /* Vital Core - Dark Mode */
+    --background: 222 47% 4%;
+    /* Deep Slate/Black */
+    --foreground: 210 40% 98%;
+    --card: 222 47% 6%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 6%;
+    --popover-foreground: 210 40% 98%;
     --primary: 0 74% 50%;
+    /* Slightly brighter red for dark mode */
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 0 74% 50%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 63% 40%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 63% 31%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
     --ring: 0 74% 50%;
     --chart-1: 0 74% 50%;
-    --chart-2: 210 40% 55%;
-    --chart-3: 142 70% 45%;
-    --chart-4: 38 90% 60%;
-    --chart-5: 280 65% 55%;
-
-    /* Added from HTML Design Spec Dark Equivalents */
-    --primary-fixed-container: 0 74% 20%;
-    --alert-bg: 0 0% 12%;
-  }
-}
-
-@layer utilities {
-  .bg-dot-matrix {
-    background-image: radial-gradient(circle at 2px 2px, hsl(var(--muted-foreground) / 0.15) 1px, transparent 0);
-    background-size: 24px 24px;
+    --chart-2: 217 91% 60%;
+    --chart-3: 142 71% 45%;
+    --chart-4: 38 92% 50%;
+    --chart-5: 215 20% 65%;
   }
 }

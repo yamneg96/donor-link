@@ -3,7 +3,12 @@ const { hairlineWidth } = require('nativewind/theme');
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
+  content: [
+    './src/app/**/*.{ts,tsx}',
+    './src/components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+  ],
   presets: [require('nativewind/preset')],
   theme: {
     extend: {
@@ -16,7 +21,6 @@ module.exports = {
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
-          container: 'hsl(var(--primary-fixed-container))',
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -42,7 +46,18 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
-        alert: 'hsl(var(--alert-bg))',
+        success: {
+          DEFAULT: 'hsl(142 71% 45%)',
+          foreground: 'hsl(0 0% 100%)',
+        },
+        warning: {
+          DEFAULT: 'hsl(38 92% 50%)',
+          foreground: 'hsl(0 0% 100%)',
+        },
+        info: {
+          DEFAULT: 'hsl(221 83% 53%)',
+          foreground: 'hsl(0 0% 100%)',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -52,25 +67,9 @@ module.exports = {
       borderWidth: {
         hairline: hairlineWidth(),
       },
-      spacing: {
-        'touch-target': '48px',
-        margin: '16px',
-        lg: '24px',
-        xl: '32px',
-      },
-      keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' },
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' },
-        },
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+        mono: ['SpaceMono', 'monospace'],
       },
     },
   },

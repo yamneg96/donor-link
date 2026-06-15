@@ -1,99 +1,72 @@
-import * as SecureStore from "expo-secure-store";
-import { IUser, UserRole } from "@/src/types/index";
-import { useState, useEffect } from "react";
+import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { User, AuthTokens } from '../types/auth';
+import { storage as storageService, StorageKeys } from '../services/storage';
 
 interface AuthState {
-  user: Omit<IUser, "passwordHash"> | null;
-  accessToken: string | null;
-  refreshToken: string | null;
-  isInitialized: boolean;
-  isLocked: boolean;
+  user: User | null;
+  tokens: AuthTokens | null;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  biometricEnabled: boolean;
+  setUser: (user: User | null) => void;
+  setTokens: (tokens: AuthTokens | null) => void;
+  setAuthenticated: (isAuthenticated: boolean) => void;
+  setBiometricEnabled: (enabled: boolean) => void;
+  logout: () => Promise<void>;
+  hydrate: () => Promise<void>;
 }
 
-let authState: AuthState = { 
-  user: null, 
-  accessToken: null, 
-  refreshToken: null, 
-  isInitialized: false,
-  isLocked: true // Default to locked for safety
-};
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set, get) => ({
+      user: null,
+      tokens: null,
+      isAuthenticated: false,
+      isLoading: true,
+      biometricEnabled: false,
 
-const listeners = new Set<() => void>();
+      setUser: (user) => set({ user }),
+      setTokens: (tokens) => set({ tokens, isAuthenticated: !!tokens }),
+      setAuthenticated: (isAuthenticated) => set({ isAuthenticated }),
+      setBiometricEnabled: (enabled) => set({ biometricEnabled: enabled }),
 
-export const authStore = {
-  getState: () => authState,
+      logout: async () => {
+        await storageService.removeItem(StorageKeys.ACCESS_TOKEN);
+        await storageService.removeItem(StorageKeys.REFRESH_TOKEN);
+        await storageService.removeItem(StorageKeys.USER);
+        set({ user: null, tokens: null, isAuthenticated: false });
+      },
 
-  async init() {
-    try {
-      const [user, at, rt] = await Promise.all([
-        SecureStore.getItemAsync("user"),
-        SecureStore.getItemAsync("accessToken"),
-        SecureStore.getItemAsync("refreshToken"),
-      ]);
-      authState = {
-        ...authState,
-        user: user ? JSON.parse(user) : null,
-        accessToken: at,
-        refreshToken: rt,
-        isInitialized: true,
-      };
-      listeners.forEach(l => l());
-    } catch {
-      authState = { ...authState, isInitialized: true };
-      listeners.forEach(l => l());
+      hydrate: async () => {
+        set({ isLoading: true });
+        try {
+          const accessToken = await storageService.getItem<string>(StorageKeys.ACCESS_TOKEN);
+          const refreshToken = await storageService.getItem<string>(StorageKeys.REFRESH_TOKEN);
+          const user = await storageService.getItem<User>(StorageKeys.USER);
+
+          if (accessToken && refreshToken && user) {
+            set({
+              tokens: { accessToken, refreshToken },
+              user,
+              isAuthenticated: true,
+            });
+          }
+        } catch (error) {
+          console.error('Failed to hydrate auth state', error);
+        } finally {
+          set({ isLoading: false });
+        }
+      },
+    }),
+    {
+      name: 'auth-storage',
+      storage: createJSONStorage(() => AsyncStorage),
+      partialize: (state) => ({
+        biometricEnabled: state.biometricEnabled,
+        user: state.user, // Persist user for quick access
+      }),
     }
-  },
-
-  setLocked(locked: boolean) {
-    authState = { ...authState, isLocked: locked };
-    listeners.forEach(l => l());
-  },
-
-  async setAuth(user: Omit<IUser, "passwordHash">, accessToken: string, refreshToken: string) {
-    authState = { ...authState, user, accessToken, refreshToken };
-    await Promise.all([
-      SecureStore.setItemAsync("user", JSON.stringify(user)),
-      SecureStore.setItemAsync("accessToken", accessToken),
-      SecureStore.setItemAsync("refreshToken", refreshToken),
-    ]);
-    listeners.forEach(l => l());
-  },
-
-  async clearAuth() {
-    authState = { ...authState, user: null, accessToken: null, refreshToken: null };
-    await Promise.all([
-      SecureStore.deleteItemAsync("user"),
-      SecureStore.deleteItemAsync("accessToken"),
-      SecureStore.deleteItemAsync("refreshToken"),
-    ]);
-    listeners.forEach(l => l());
-  },
-
-  subscribe(listener: () => void) {
-    listeners.add(listener);
-    return () => listeners.delete(listener);
-  },
-
-  isAuthenticated: () => !!authState.accessToken && !!authState.user,
-  hasRole: (...roles: UserRole[]) => authState.user ? roles.includes(authState.user.role as UserRole) : false,
-};
-
-// Hook-based access
-export function useAuthStore() {
-  const [state, setState] = useState(authStore.getState());
-
-  useEffect(() => {
-    const unsubscribe = authStore.subscribe(() => setState(authStore.getState()));
-    return () => { unsubscribe(); };
-  }, []);
-
-  return {
-    ...state,
-    init: authStore.init,
-    setAuth: authStore.setAuth,
-    clearAuth: authStore.clearAuth,
-    setLocked: authStore.setLocked,
-    isAuthenticated: authStore.isAuthenticated,
-    hasRole: authStore.hasRole,
-  };
-}
+  )
+);

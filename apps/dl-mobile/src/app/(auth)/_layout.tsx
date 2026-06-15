@@ -1,32 +1,12 @@
-import React from 'react';
-import { Tabs } from 'expo-router';
-import { NavTabItem } from '@/src/components/NavTabItem';
+import { Stack } from 'expo-router';
 
 export default function AuthLayout() {
   return (
-    <Tabs
-      screenOptions={{
-        headerShown: false,
-        tabBarShowLabel: false,
-      }}
-    >
-      <Tabs.Screen 
-        name="login" 
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <NavTabItem label="Login" iconName="login" focused={focused} />
-          ),
-        }} 
-      />
-
-      <Tabs.Screen 
-        name="register" 
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <NavTabItem label="Register" iconName="person-add" focused={focused} />
-          ),
-        }} 
-      />
-    </Tabs>
+    <Stack screenOptions={{ headerShown: false, animation: 'slide_from_right' }}>
+      <Stack.Screen name="onboarding" />
+      <Stack.Screen name="login" />
+      <Stack.Screen name="register" />
+      <Stack.Screen name="otp" />
+    </Stack>
   );
 }
