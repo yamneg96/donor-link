@@ -4,7 +4,7 @@ import { useReceiveDispatch, useHospitalDashboard } from "../../hooks/useApi";
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "../../api/client";
 import { toast } from "sonner";
-import { cn } from "../../lib/utils";
+
 
 export default function TransfersPage() {
   const { data: dashboard } = useHospitalDashboard();

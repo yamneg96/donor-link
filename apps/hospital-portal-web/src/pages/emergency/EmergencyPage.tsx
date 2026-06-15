@@ -1,7 +1,7 @@
 import { MaterialIcon } from "../../components/shared/MaterialIcon";
 import { useUrgentRequests } from "../../hooks/useApi";
 import { LoadingSkeleton } from "../../components/shared/EmptyState";
-import { cn } from "../../lib/utils";
+
 
 export default function EmergencyPage() {
   const { data: requests, isLoading } = useUrgentRequests();

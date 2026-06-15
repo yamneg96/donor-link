@@ -1,5 +1,5 @@
 import { MaterialIcon } from "../shared/MaterialIcon";
-import { useRecordTransfusion, useHospitalInventory } from "../../hooks/useApi";
+import { useRecordTransfusion } from "../../hooks/useApi";
 import { useState } from "react";
 import { toast } from "sonner";
 

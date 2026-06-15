@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 type StepStatus = 'CLEARED' | 'IN PROGRESS' | 'PENDING';
 

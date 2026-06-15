@@ -6,7 +6,7 @@ import { RecordTransfusionModal } from '../../components/modals/RecordTransfusio
 
 export default function DashboardPage() {
   const { data: dashboard, isLoading: statsLoading } = useHospitalDashboard();
-  const { data: requests, isLoading: requestsLoading } = useUrgentRequests();
+  const { data: requests } = useUrgentRequests();
   const [isTransfusionModalOpen, setIsTransfusionModalOpen] = useState(false);
 
   if (statsLoading) return <div className="p-6"><LoadingSkeleton rows={10} /></div>;
