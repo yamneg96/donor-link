@@ -253,8 +253,8 @@ export default function SettingsPage() {
                   </div>
                   <div className="mt-4 flex items-center justify-between bg-m3-surface px-3 py-2 rounded-lg border border-m3-outline-variant">
                     <span className="text-xs text-m3-on-surface-variant italic">Must sum to 1.0</span>
-                    <span className={`text-sm font-bold ${Math.abs(Object.values((localSettings as any).scoring_weights).reduce((a: any, b: any) => a + (b as number), 0) - 1.0) < 0.01 ? 'text-green-500' : 'text-red-500'}`}>
-                      Total: {(Object.values((localSettings as any).scoring_weights).reduce((a: any, b: any) => a + (b as number), 0) as number).toFixed(2)}
+                    <span className={`text-sm font-bold ${Math.abs((Object.values((localSettings as any).scoring_weights) as number[]).reduce((a: number, b: number) => a + b, 0) - 1.0) < 0.01 ? 'text-green-500' : 'text-red-500'}`}>
+                      Total: {(Object.values((localSettings as any).scoring_weights) as number[]).reduce((a: number, b: number) => a + b, 0).toFixed(2)}
                     </span>
                   </div>
                 </div>
@@ -299,8 +299,8 @@ export default function SettingsPage() {
                   </div>
                   <div className="mt-4 flex items-center justify-between bg-m3-surface px-3 py-2 rounded-lg border border-m3-outline-variant">
                     <span className="text-xs text-m3-on-surface-variant italic">Must sum to 1.0</span>
-                    <span className={`text-sm font-bold ${Math.abs(Object.values((localSettings as any).redistribution_weights).reduce((a: any, b: any) => a + (b as number), 0) - 1.0) < 0.01 ? 'text-green-500' : 'text-red-500'}`}>
-                      Total: {(Object.values((localSettings as any).redistribution_weights).reduce((a: any, b: any) => a + (b as number), 0) as number).toFixed(2)}
+                    <span className={`text-sm font-bold ${Math.abs((Object.values((localSettings as any).redistribution_weights) as number[]).reduce((a: number, b: number) => a + b, 0) - 1.0) < 0.01 ? 'text-green-500' : 'text-red-500'}`}>
+                      Total: {(Object.values((localSettings as any).redistribution_weights) as number[]).reduce((a: number, b: number) => a + b, 0).toFixed(2)}
                     </span>
                   </div>
                 </div>
