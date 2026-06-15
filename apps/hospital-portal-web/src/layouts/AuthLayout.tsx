@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, Link } from 'react-router-dom';
 
 export function AuthLayout() {
   return (
@@ -21,7 +21,7 @@ export function AuthLayout() {
           <div className="text-center space-y-2">
             <div className="flex justify-center mb-3">
               <div className="w-16 h-16 bg-primary-container rounded-xl flex items-center justify-center shadow-lg transform rotate-3">
-                <span className="material-symbols-outlined text-on-primary text-[40px]">clinical_notes</span>
+                <Link to='/' className="material-symbols-outlined text-on-primary text-[40px]">clinical_notes</Link>
               </div>
             </div>
             <h1 className="font-headline-lg text-2xl font-extrabold text-primary tracking-tight">DonorLink Hospital Portal</h1>

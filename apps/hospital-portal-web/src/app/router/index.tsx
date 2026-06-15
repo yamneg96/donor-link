@@ -11,6 +11,7 @@ import { LoginPage } from '@/pages/auth/LoginPage';
 import DashboardPage from '@/pages/dashboard/DashboardPage';
 import InventoryPage from '@/pages/inventory/InventoryPage';
 import EmergencyPage from '@/pages/emergency/EmergencyPage';
+import { TransfersPage } from '@/pages/transfers/TransfersPage';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -41,7 +42,7 @@ const router = createBrowserRouter([
       { path: 'dashboard', element: <DashboardPage /> },
       { path: 'inventory', element: <InventoryPage /> },
       { path: 'emergency', element: <EmergencyPage /> },
-      { path: 'transfers', element: <DashboardPage /> },
+      { path: 'transfers', element: <TransfersPage /> },
       { path: 'donors', element: <DashboardPage /> },
       { path: 'staff', element: <DashboardPage /> },
       { path: 'analytics', element: <DashboardPage /> },

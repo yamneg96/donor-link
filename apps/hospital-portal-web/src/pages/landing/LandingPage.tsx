@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'sonner';
 
 export default function LandingPage() {
   const navigate = useNavigate();
@@ -27,7 +28,9 @@ export default function LandingPage() {
             >
               Portal Login
             </button>
-            <button className="bg-primary hover:bg-secondary text-on-primary font-label-md text-sm px-6 py-2.5 rounded-lg transition-all duration-300 shadow-sm font-semibold active:scale-[0.98]">
+            <button 
+            onClick={() => toast.info('Demo arriving soon . . .', {duration: 2000})}
+            className="bg-primary hover:bg-secondary text-on-primary font-label-md text-sm px-6 py-2.5 rounded-lg transition-all duration-300 shadow-sm font-semibold active:scale-[0.98]">
               Request Demo
             </button>
           </div>

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { CommandMenu } from "../components/navigation/CommandMenu";
 import { useAuthStore } from "../app/store/authStore";
+import { toast } from "sonner";
 
 export default function AppLayout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -10,6 +11,7 @@ export default function AppLayout() {
 
   const handleLogout = () => {
     logout();
+    toast.success('Logged out Successfully.', {duration: 3000})
     navigate('/login');
   };
 

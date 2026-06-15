@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '../../app/store/authStore';
 import {authApi} from '@/api/auth'
+import { toast } from 'sonner';
 
 export function LoginPage() {
   const [email, setEmail] = useState('');
@@ -25,6 +26,7 @@ export function LoginPage() {
       if (response.data?.success) {
         const { tokens, user } = response.data.data;
         login(tokens.accessToken, user || { id: 'mock', email, firstName: 'City', lastName: 'General', role: 'hospital' });
+        toast.success('Login successful, Welcome', {duration : 3000})
         navigate('/app/dashboard');
       }
     } catch (err: any) {
