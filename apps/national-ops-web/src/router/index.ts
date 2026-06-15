@@ -16,17 +16,19 @@ const ForgotPasswordPage = lazy(() => import("../pages/auth/ForgotPasswordPage")
 const ResetPasswordPage = lazy(() => import("../pages/auth/ResetPasswordPage"));
 const UnauthorizedPage = lazy(() => import("../pages/unauthorizedPage"));
 const CommandCenterPage = lazy(() => import("../pages/dashboard/CommandCenterPage"));
-// const InventoryPage = lazy(() => import("../pages/inventory/InventoryPage"));
-// const UnitTrackingPage = lazy(() => import("../pages/inventory/UnitTrackingPage"));
-// const ExpiryRiskPage = lazy(() => import("../pages/inventory/ExpiryRiskPage"));
+const DispatchPage = lazy(() => import("../pages/dispatches/DispatchPage"));
+const InventoryPage = lazy(() => import("../pages/inventory/InventoryPage"));
+const UnitTrackingPage = lazy(() => import("../pages/inventory/UnitTrackingPage"));
+const ExpiryRiskPage = lazy(() => import("../pages/inventory/ExpiryRiskPage"));
 const MarketplacePage = lazy(() => import("../pages/transfers/MarketplacePage"));
 const OperationsPage = lazy(() => import("../pages/transfers/OperationsPage"));
-// const DonorManagementPage = lazy(() => import("../pages/donors/DonorManagementPage"));
-// const CampaignsPage = lazy(() => import("../pages/campaigns/CampaignsPage"));
+const DonorManagementPage = lazy(() => import("../pages/donors/DonorManagementPage"));
+const CampaignsPage = lazy(() => import("../pages/campaigns/CampaignsPage"));
 const EmergencyPage = lazy(() => import("../pages/emergency/EmergencyPage"));
 const AlertCenterPage = lazy(() => import("../pages/alerts/AlertCenterPage"));
 const AnalyticsPage = lazy(() => import("../pages/analytics/AnalyticsPage"));
 const OrganizationsPage = lazy(() => import("../pages/organizations/OrganizationsPage"));
+const HospitalDetailPage = lazy(() => import("../pages/organizations/HospitalDetailPage"));
 const UsersPage = lazy(() => import("../pages/users/UsersPage"));
 const RolesPage = lazy(() => import("../pages/settings/RolesPage"));
 const NotificationsPage = lazy(() => import("../pages/notifications/NotificationsPage"));
@@ -112,7 +114,13 @@ const dashboardRoute = createRoute({
   component: CommandCenterPage,
 });
 
-/*
+const dispatchRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/dispatches",
+  beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.REGIONAL_ADMIN),
+  component: DispatchPage,
+});
+
 const inventoryRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/inventory",
@@ -133,7 +141,6 @@ const expiryRiskRoute = createRoute({
   beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.HOSPITAL_ADMIN, UserRole.LAB_STAFF),
   component: ExpiryRiskPage,
 });
-*/
 
 const marketplaceRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -149,7 +156,6 @@ const operationsRoute = createRoute({
   component: OperationsPage,
 });
 
-/*
 const donorManagementRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/donors",
@@ -163,7 +169,6 @@ const campaignsRoute = createRoute({
   beforeLoad: () => requireRoles(...ADMIN_ROLES, UserRole.REGIONAL_ADMIN, UserRole.DONOR_COORDINATOR),
   component: CampaignsPage,
 });
-*/
 
 const emergencyRoute = createRoute({
   getParentRoute: () => rootRoute,
@@ -191,6 +196,13 @@ const organizationsRoute = createRoute({
   path: "/organizations",
   beforeLoad: () => requireRoles(...ADMIN_ROLES),
   component: OrganizationsPage,
+});
+
+const hospitalDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/organizations/$id",
+  beforeLoad: () => requireRoles(...ADMIN_ROLES),
+  component: HospitalDetailPage,
 });
 
 const usersRoute = createRoute({
@@ -265,17 +277,19 @@ const routeTree = rootRoute.addChildren([
   resetPasswordRoute,
   unauthorizedRoute,
   dashboardRoute,
-  // inventoryRoute,
-  // unitTrackingRoute,
-  // expiryRiskRoute,
+  dispatchRoute,
+  inventoryRoute,
+  unitTrackingRoute,
+  expiryRiskRoute,
   marketplaceRoute,
   operationsRoute,
-  // donorManagementRoute,
-  // campaignsRoute,
+  donorManagementRoute,
+  campaignsRoute,
   emergencyRoute,
   alertsRoute,
   analyticsRoute,
   organizationsRoute,
+  hospitalDetailRoute,
   usersRoute,
   rolesRoute,
   notificationsRoute,

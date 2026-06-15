@@ -1,33 +1,116 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Pressable, Switch } from 'react-native';
+import { View, ScrollView, Pressable, Switch, Alert } from 'react-native';
 import { Text } from '../../components/ui/text';
 import { Button } from '../../components/ui/button';
 import { useAuthStore } from '../../store/authStore';
 import { 
-  User, Mail, Phone, MapPin, Droplet, 
-  Settings, Shield, Bell, HelpCircle, 
+  User, MapPin, Droplet, 
+  Shield, Bell, HelpCircle, 
   LogOut, ChevronRight, Edit2, Camera
 } from 'lucide-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router } from 'expo-router';
 import { ConfirmModal } from '../../components/shared/ConfirmModal';
 import Constants from 'expo-constants';
+import * as Notifications from 'expo-notifications';
+import * as Linking from 'expo-linking';
+import { registerForPushNotificationsAsync } from '../../notifications/registerPush';
+import { notificationApi } from '../../api/notifications';
+import { useNotificationContent } from '../../providers/NotificationProvider';
 
 export default function Profile() {
   const { user, logout } = useAuthStore();
+  const { pushToken } = useNotificationContent();
   const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const [notifications, setNotifications] = useState(true);
+  const [notifications, setNotifications] = useState(false);
+  const [isCheckingPermissions, setIsCheckingPermissions] = useState(true);
+
+  React.useEffect(() => {
+    checkNotificationStatus();
+  }, []);
+
+  const checkNotificationStatus = async () => {
+    const { status } = await Notifications.getPermissionsAsync();
+    setNotifications(status === 'granted');
+    setIsCheckingPermissions(false);
+  };
 
   const handleLogout = async () => {
+    try {
+      if (pushToken) {
+        await notificationApi.removePushToken(pushToken);
+      }
+    } catch (e) {
+      console.warn('Failed to remove push token during logout', e);
+    }
     await logout();
     router.replace('/(auth)/login');
+  };
+
+  const toggleNotifications = async (value: boolean) => {
+    if (value) {
+      // Trying to enable
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+
+      if (existingStatus === 'denied') {
+        Alert.alert(
+          'Notifications Required',
+          'To receive emergency alerts and shortage predictions, please enable notifications in your device settings.',
+          [
+            { text: 'Cancel', style: 'cancel', onPress: () => setNotifications(false) },
+            { text: 'Open Settings', onPress: () => Linking.openSettings() }
+          ]
+        );
+        return;
+      }
+
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+
+      if (finalStatus === 'granted') {
+        const token = await registerForPushNotificationsAsync();
+        if (token) {
+          try {
+            await notificationApi.savePushToken(token);
+            setNotifications(true);
+          } catch (e) {
+            console.error('Failed to save push token:', e);
+            Alert.alert('Error', 'Failed to synchronize notification settings with the server.');
+            setNotifications(false);
+          }
+        }
+      } else {
+        setNotifications(false);
+      }
+    } else {
+      // Trying to disable
+      setNotifications(false);
+      if (pushToken) {
+        try {
+          await notificationApi.removePushToken(pushToken);
+        } catch (e) {
+          console.error('Error removing push token:', e);
+        }
+      }
+    }
   };
 
   const sections = [
     {
       title: 'Preferences',
       items: [
-        { id: 'notifications', label: 'Push Notifications', icon: Bell, type: 'switch', value: notifications, onValueChange: setNotifications },
+        { 
+          id: 'notifications', 
+          label: 'Push Notifications', 
+          icon: Bell, 
+          type: 'switch', 
+          value: notifications, 
+          onValueChange: toggleNotifications,
+          disabled: isCheckingPermissions 
+        },
         { id: 'privacy', label: 'Privacy Settings', icon: Shield, type: 'link' },
       ]
     },
@@ -106,6 +189,7 @@ export default function Profile() {
                       <Switch 
                         value={item.value} 
                         onValueChange={item.onValueChange} 
+                        disabled={(item as any).disabled}
                         trackColor={{ false: 'hsl(var(--muted))', true: 'hsl(var(--primary))' }}
                       />
                     ) : (

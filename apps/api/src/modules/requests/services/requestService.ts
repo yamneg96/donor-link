@@ -29,4 +29,25 @@ export class RequestService {
     return this.repo.findById(requestId);
   }
   async cancel(id: string) { return this.repo.update(id, { status: RequestStatus.CANCELLED } as any); }
+
+  async approve(id: string, approvedBy: string) {
+    return this.repo.update(id, {
+      status: RequestStatus.APPROVED,
+      approvedBy: new (require('mongoose').Types.ObjectId)(approvedBy),
+    } as any);
+  }
+
+  async reject(id: string, reason: string) {
+    return this.repo.update(id, {
+      status: RequestStatus.REJECTED,
+      notes: reason ? `Rejected: ${reason}` : 'Rejected',
+    } as any);
+  }
+
+  async assignRegional(id: string, regionalOrgId: string) {
+    return this.repo.update(id, {
+      status: RequestStatus.ASSIGNED,
+      assignedRegionalOrgId: new (require('mongoose').Types.ObjectId)(regionalOrgId),
+    } as any);
+  }
 }

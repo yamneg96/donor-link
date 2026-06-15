@@ -12,6 +12,8 @@ router.get('/stock-levels', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Rol
 router.get('/stock-by-org', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST), InventoryController.getStockByOrganization);
 router.get('/expiring', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.HOSPITAL_ADMIN, Role.LAB_STAFF), InventoryController.getExpiringUnits);
 router.get('/stats', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST, Role.HOSPITAL_ADMIN), InventoryController.getStats);
+router.get('/national-overview', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST), InventoryController.getNationalOverview);
+router.get('/hospital/:hospitalId', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN), InventoryController.getHospitalInventory);
 router.get('/barcode/:barcode', authenticate, InventoryController.getUnitByBarcode);
 router.get('/ledger/:orgId', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.HOSPITAL_ADMIN), InventoryController.getOrganizationLedger);
 router.get('/:id', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.NATIONAL_ANALYST, Role.HOSPITAL_ADMIN, Role.LAB_STAFF), InventoryController.getUnitById);

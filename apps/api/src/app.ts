@@ -14,6 +14,8 @@ import { hospitalRoutes } from './modules/hospitals';
 import { donorRoutes } from './modules/donors';
 import { donationRoutes } from './modules/donations';
 import { inventoryRoutes } from './modules/inventory';
+import { dispatchRoutes } from './modules/dispatches';
+
 import { requestRoutes } from './modules/requests';
 import { transferRoutes } from './modules/transfers';
 import { logisticsRoutes } from './modules/logistics';
@@ -35,7 +37,10 @@ import { engagementRoutes } from './modules/donor-engagement';
 import { shipmentRoutes } from './modules/shipment-tracking';
 import { realtimeRoutes } from './modules/realtime';
 
+import { transfusionRoutes } from './modules/transfusions';
+
 const app = express();
+
 
 // ==================================================
 // Serverless Cold-Start Infrastructure Verification 
@@ -116,6 +121,8 @@ app.use(`${API_PREFIX}/hospitals`, hospitalRoutes);
 app.use(`${API_PREFIX}/donors`, donorRoutes);
 app.use(`${API_PREFIX}/donations`, donationRoutes);
 app.use(`${API_PREFIX}/inventory`, inventoryRoutes);
+app.use(`${API_PREFIX}/dispatches`, dispatchRoutes);
+
 app.use(`${API_PREFIX}/requests`, requestRoutes);
 app.use(`${API_PREFIX}/transfers`, transferRoutes);
 app.use(`${API_PREFIX}/logistics`, logisticsRoutes);
@@ -135,7 +142,9 @@ app.use(`${API_PREFIX}/eligibility`, eligibilityRoutes);
 app.use(`${API_PREFIX}/geo`, geoRoutes);
 app.use(`${API_PREFIX}/engagement`, engagementRoutes);
 app.use(`${API_PREFIX}/shipments`, shipmentRoutes);
+app.use(`${API_PREFIX}/transfusions`, transfusionRoutes);
 app.use(`${API_PREFIX}/realtime`, realtimeRoutes);
+
 
 // ==================================================
 // 404 Handler

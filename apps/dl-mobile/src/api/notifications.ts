@@ -21,4 +21,14 @@ export const notificationApi = {
     const response = await apiClient.post<ApiResponse<any>>('/notifications/mark-all-read');
     return response.data;
   },
+  
+  savePushToken: async (token: string) => {
+    const response = await apiClient.post<ApiResponse<any>>('/users/push-token', { token });
+    return response.data;
+  },
+  
+  removePushToken: async (token: string) => {
+    const response = await apiClient.delete<ApiResponse<any>>(`/users/push-token/${token}`);
+    return response.data;
+  },
 };

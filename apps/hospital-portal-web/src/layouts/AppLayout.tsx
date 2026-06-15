@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { CommandMenu } from "../components/navigation/CommandMenu";
+import { Sidebar } from "../components/navigation/Sidebar";
 import { useAuthStore } from "../app/store/authStore";
 import { toast } from "sonner";
 
@@ -16,22 +17,22 @@ export default function AppLayout() {
   };
 
   return (
-    <div className="text-on-surface bg-background flex">
+    <div className="text-on-surface bg-background flex min-h-screen">
+      <Sidebar />
       <CommandMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
 
-      {/* Main Content Area (Full width now since sidebar is removed) */}
-      <div className="flex-1 flex flex-col min-h-screen">
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col min-h-screen overflow-x-hidden">
         {/* TopAppBar */}
-        <header className="flex justify-between items-center px-container-padding-desktop w-full z-40 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-sm h-16 sticky top-0">
+        <header className="flex justify-between items-center px-6 w-full z-40 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-sm h-16 sticky top-0 border-b border-outline-variant/30">
           <div className="flex items-center gap-4">
             <button 
               onClick={() => setIsMenuOpen(true)}
-              className="px-3 py-2 bg-primary-container/10 text-primary hover:bg-primary-container/20 rounded-md transition-colors flex items-center gap-2 font-label-md"
+              className="lg:hidden px-3 py-2 bg-primary-container/10 text-primary hover:bg-primary-container/20 rounded-md transition-colors flex items-center gap-2 font-label-md"
             >
               <span className="material-symbols-outlined">menu</span>
-              <span className="hidden sm:inline">Menu (Cmd+K)</span>
             </button>
-            <div className="font-headline-md text-headline-md font-extrabold text-primary ml-2">DonorLink Ops</div>
+            <div className="lg:hidden font-headline-md text-headline-md font-extrabold text-primary ml-2">DonorLink</div>
           </div>
 
           <div className="flex items-center gap-4">

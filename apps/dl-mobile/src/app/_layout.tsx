@@ -1,6 +1,5 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
-import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
@@ -9,10 +8,10 @@ import { ThemeProvider } from '@react-navigation/native';
 import { useColorScheme } from '@/src/hooks/useColorScheme';
 import { NAV_THEME } from '@/lib/theme';
 import { useAuthStore } from '@/src/store/authStore';
-import { setupNotificationHandlers } from '@/src/notifications/notificationHandler';
 import { setupOfflineManager } from '@/src/offline/offlineManager';
 import { AnimatedSplash } from '@/src/components/shared/AnimatedSplash';
 import { FloatingThemeToggle } from '@/src/components/shared/FloatingThemeToggle';
+import { NotificationProvider } from '@/src/providers/NotificationProvider';
 import '../../global.css';
 
 const queryClient = new QueryClient({
@@ -33,14 +32,12 @@ export default function RootLayout() {
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
-    let cleanupNotifications: (() => void) | undefined;
     let cleanupOffline: (() => void) | undefined;
 
     async function prepare() {
       try {
         await hydrate();
         // Initialize services
-        cleanupNotifications = setupNotificationHandlers();
         cleanupOffline = setupOfflineManager();
         
         setIsReady(true);
@@ -59,7 +56,6 @@ export default function RootLayout() {
     }, 4000);
 
     return () => {
-      cleanupNotifications?.();
       cleanupOffline?.();
       clearTimeout(timer);
     };
@@ -81,18 +77,20 @@ export default function RootLayout() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider value={NAV_THEME[colorScheme as 'light' | 'dark']}>
-        <View className={`flex-1 ${colorScheme === 'dark' ? 'dark' : ''}`}>
-          {showSplash && <AnimatedSplash />}
-          {!showSplash && <FloatingThemeToggle />}
-          <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="index" />
-            <Stack.Screen name="(auth)" options={{ animation: 'fade' }} />
-            <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
-          </Stack>
-          <PortalHost />
-        </View>
-      </ThemeProvider>
+      <NotificationProvider>
+        <ThemeProvider value={NAV_THEME[colorScheme as 'light' | 'dark']}>
+          <View className="flex-1 bg-background">
+            {showSplash && <AnimatedSplash />}
+            {!showSplash && <FloatingThemeToggle />}
+            <Stack screenOptions={{ headerShown: false }}>
+              <Stack.Screen name="index" />
+              <Stack.Screen name="(auth)" options={{ animation: 'fade' }} />
+              <Stack.Screen name="(tabs)" options={{ animation: 'fade' }} />
+            </Stack>
+            <PortalHost />
+          </View>
+        </ThemeProvider>
+      </NotificationProvider>
     </QueryClientProvider>
   );
 }

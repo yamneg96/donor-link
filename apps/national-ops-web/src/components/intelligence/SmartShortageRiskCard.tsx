@@ -46,21 +46,4 @@ export const SmartShortageRiskCard: React.FC<SmartShortageRiskCardProps> = ({
   const { risk, display } = riskData;
 
   // Only show cards that have at least 'medium' risk to focus national ops attention
-  if (risk.risk_level === 'low') {
-    return null;
-  }
-
-  return (
-    <ShortageRiskCard
-      hospitalName={hospitalName}
-      bloodType={bloodType}
-      riskScore={risk.risk_score}
-      riskLevel={risk.risk_level}
-      daysOfSupply={risk.days_of_supply}
-      projectedDeficit={risk.projected_deficit}
-      recommendation={risk.recommendation || `Initiate proactive redistribution for ${bloodType} to avoid shortage.`}
-
-      className={className}
-    />
-  );
 };

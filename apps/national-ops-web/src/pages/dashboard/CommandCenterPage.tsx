@@ -304,11 +304,9 @@ export default function CommandCenterPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
-          title="Total Inventory"
-          value={
-            dashboard?.totalInventory ?? "—"
-          }
-          subtitle="Units"
+          title="National Stock"
+          value={dashboard?.totalInventory ?? "—"}
+          subtitle="Total Units"
           icon="inventory_2"
           trend={{
             value: "+2.4% vs last week",
@@ -317,51 +315,31 @@ export default function CommandCenterPage() {
         />
 
         <StatCard
-          title="Active Shortages"
-          value={
-            dashboard?.activeShortages ?? "—"
-          }
-          subtitle="Hospitals"
-          icon="warning"
-          iconColor="text-m3-error"
-          borderColor="border-m3-error"
-          badge={{
-            text: "CRITICAL: O-",
-            variant: "error",
-          }}
-        />
-
-        <StatCard
-          title="Emergency Dispatches"
-          value={
-            activeDispatches.length ||
-            dashboard?.emergencyDispatches ||
-            "—"
-          }
-          subtitle="In Transit"
+          title="Total Dispatched"
+          value={dashboard?.totalDispatched || "0"}
+          subtitle="Units moved nationally"
           icon="local_shipping"
+          iconColor="text-m3-secondary"
         />
 
         <StatCard
-          title="7-Day Expiry Risk"
-          value={
-            dashboard?.expiryRisk ?? "—"
-          }
-          subtitle="Units"
-          icon="hourglass_empty"
+          title="Total Transfusions"
+          value={dashboard?.totalTransfused || "0"}
+          subtitle="Units used at hospitals"
+          icon="bloodtype"
+          iconColor="text-m3-tertiary"
         />
 
         <StatCard
-          title="AI Strategic Insight"
-          value="Shortage Risk"
-          subtitle="Tier: Critical"
-          icon="psychology"
+          title="Pending Requests"
+          value={dashboard?.pendingRequests || "0"}
+          subtitle="Awaiting fulfillment"
+          icon="pending_actions"
+          iconColor="text-orange-500"
           badge={{
-            text: "ML ACTIVE",
-            variant: "info",
+            text: dashboard?.pendingRequests > 0 ? "URGENT" : "STABLE",
+            variant: dashboard?.pendingRequests > 0 ? "error" : "info",
           }}
-          className="cursor-pointer hover:border-primary/50 transition-colors"
-          onClick={() => window.location.href = '/intelligence/redistribution'}
         />
       </div>
 

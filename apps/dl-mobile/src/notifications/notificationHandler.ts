@@ -5,7 +5,6 @@ export function setupNotificationHandlers() {
   // Handle notification when app is running in foreground
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
-      shouldShowAlert: true,
       shouldPlaySound: true,
       shouldSetBadge: true,
       shouldShowBanner: true,
@@ -23,13 +22,13 @@ export function setupNotificationHandlers() {
       switch (type) {
         case 'EMERGENCY':
         case 'REQUEST':
-          router.push(`/requests/${id}`);
+          router.push(`/request/${id}`);
           break;
         case 'CAMPAIGN':
-          router.push(`/campaigns/${id}`);
+          router.push(`/campaign/${id}`);
           break;
         case 'APPOINTMENT':
-          router.push(`/appointments/${id}`);
+          router.push('/notifications');
           break;
         default:
           router.push('/notifications');

@@ -7,4 +7,6 @@ export const donationApi = {
     api.patch(`/donations/${id}/cancel`),
   getHospitalDonations: (params?: Record<string, unknown>) =>
     api.get("/donations/hospital", { params }),
+  getHistory: (donorId?: string) =>
+    api.get(`/donations/history${donorId ? `/${donorId}` : ''}`),
 };

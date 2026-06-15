@@ -1,5 +1,6 @@
 import { MaterialIcon } from "../../components/shared/MaterialIcon";
 import { LoadingSkeleton, EmptyState } from "../../components/shared/EmptyState";
+import { Link } from "@tanstack/react-router";
 import { useOrganizations, useDeleteOrganization } from "../../hooks/useApi";
 import { useModal } from "../../hooks/useModal";
 import { CreateOrganizationModal } from "../../components/modals/CreateOrganizationModal";
@@ -49,7 +50,8 @@ export default function OrganizationsPage() {
                   <td className="p-3">{o.type?.replace(/_/g, " ")}</td>
                   <td className="p-3">{o.region}</td>
                   <td className="p-3"><span className={`text-label-caps px-2 py-0.5 rounded ${o.status === "active" ? "bg-green-100 text-green-800" : "bg-m3-surface-variant"}`}>{o.status}</span></td>
-                  <td className="p-3 text-center">
+                  <td className="p-3 text-center flex items-center justify-center gap-3">
+                    <Link to="/organizations/$id" params={{ id: o._id }} className="text-m3-primary hover:underline text-label-caps font-bold">Details</Link>
                     <button onClick={() => deleteModal.open(o._id)} className="text-m3-error hover:text-m3-on-error-container text-label-caps">Delete</button>
                   </td>
                 </tr>

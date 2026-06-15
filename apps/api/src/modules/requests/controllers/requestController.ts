@@ -21,4 +21,16 @@ export class RequestController {
   static async update(req: Request, res: Response, next: NextFunction): Promise<void> { try { sendSuccess(res, await svc.update(req.params.id, req.body)); } catch (e) { next(e); } }
   static async fulfill(req: Request, res: Response, next: NextFunction): Promise<void> { try { sendSuccess(res, await svc.fulfillUnit(req.params.id, req.body.unitId), 'Unit fulfilled'); } catch (e) { next(e); } }
   static async cancel(req: Request, res: Response, next: NextFunction): Promise<void> { try { sendSuccess(res, await svc.cancel(req.params.id), 'Request cancelled'); } catch (e) { next(e); } }
+
+  static async approve(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try { sendSuccess(res, await svc.approve(req.params.id, req.user!.id), 'Request approved'); } catch (e) { next(e); }
+  }
+
+  static async reject(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try { sendSuccess(res, await svc.reject(req.params.id, req.body.reason), 'Request rejected'); } catch (e) { next(e); }
+  }
+
+  static async assignRegional(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try { sendSuccess(res, await svc.assignRegional(req.params.id, req.body.regionalOrgId), 'Request assigned to regional center'); } catch (e) { next(e); }
+  }
 }

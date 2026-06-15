@@ -12,8 +12,9 @@ export class InventoryController {
       delete filters.page;
       delete filters.limit;
 
-      // Ensure users only see units in their scope unless they are NATIONAL_ADMIN
-      if (req.user?.organizationId) {
+      // Ensure users only see units in their scope unless they are NATIONAL_ADMIN or SUPER_ADMIN
+      const isGlobalAdmin = req.user?.role === 'SUPER_ADMIN' || req.user?.role === 'NATIONAL_ADMIN';
+      if (req.user?.organizationId && !isGlobalAdmin) {
         filters.currentHospitalId = req.user.organizationId;
       }
 
@@ -152,6 +153,30 @@ export class InventoryController {
     try {
       const unit = await InventoryController.service.createUnit(req.body, req.user!.id.toString(), req.user!.organizationId?.toString());
       sendCreated(res, unit, 'Blood unit created successfully');
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  static getNationalOverview = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const stock = await InventoryController.service.getStockByOrganization();
+      const levels = await InventoryController.service.getStockLevels();
+      sendSuccess(res, { stock, levels });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  static getHospitalInventory = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const pagination = parsePagination(req.query);
+      const filters: any = { ...req.query, currentHospitalId: req.params.hospitalId };
+      delete filters.page;
+      delete filters.limit;
+      
+      const result = await InventoryController.service.getAllUnits(filters, pagination);
+      sendPaginated(res, result.units, { ...pagination, total: result.total });
     } catch (error) {
       next(error);
     }

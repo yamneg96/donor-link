@@ -3,6 +3,7 @@ import { sendSuccess, sendCreated, sendPaginated, parsePagination } from '../../
 import { Campaign } from '../models/Campaign';
 import { Organization } from '../../organizations/models/Organization';
 import { OrganizationType } from '../../../core/constants';
+import { eventBus, EventType } from '../../../core/events';
 
 export class CampaignController {
   static async getAll(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -18,7 +19,13 @@ export class CampaignController {
       sendPaginated(res, campaigns, { page: pagination.page, limit: pagination.limit, total });
     } catch (e) { next(e); }
   }
-  static async getById(req: Request, res: Response, next: NextFunction): Promise<void> { try { sendSuccess(res, await Campaign.findById(req.params.id).populate('organizationId', 'name code')); } catch (e) { next(e); } }
+
+  static async getById(req: Request, res: Response, next: NextFunction): Promise<void> { 
+    try { 
+      sendSuccess(res, await Campaign.findById(req.params.id).populate('organizationId', 'name code')); 
+    } catch (e) { next(e); } 
+  }
+
   static async create(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       let organizationId = req.body.organizationId || req.user!.organizationId;
@@ -33,10 +40,34 @@ export class CampaignController {
         goal,
         createdBy: req.user!.id,
       });
+
+      // Emit event for subscribers (like NotificationSubscriber)
+      eventBus.emitEvent(EventType.CAMPAIGN_TRIGGERED, { 
+        campaignId: campaign._id.toString(), 
+        title: campaign.title,
+        location: campaign?.location 
+      });
+
       sendCreated(res, campaign);
     } catch (e) { next(e); }
   }
-  static async update(req: Request, res: Response, next: NextFunction): Promise<void> { try { sendSuccess(res, await Campaign.findByIdAndUpdate(req.params.id, req.body, { new: true }), 'Campaign updated'); } catch (e) { next(e); } }
-  static async delete(req: Request, res: Response, next: NextFunction): Promise<void> { try { await Campaign.findByIdAndUpdate(req.params.id, { isDeleted: true }); sendSuccess(res, { message: 'Campaign deleted' }); } catch (e) { next(e); } }
-  static async updateProgress(req: Request, res: Response, next: NextFunction): Promise<void> { try { sendSuccess(res, await Campaign.findByIdAndUpdate(req.params.id, { currentProgress: req.body.progress }, { new: true }), 'Progress updated'); } catch (e) { next(e); } }
+
+  static async update(req: Request, res: Response, next: NextFunction): Promise<void> { 
+    try { 
+      sendSuccess(res, await Campaign.findByIdAndUpdate(req.params.id, req.body, { new: true }), 'Campaign updated'); 
+    } catch (e) { next(e); } 
+  }
+
+  static async delete(req: Request, res: Response, next: NextFunction): Promise<void> { 
+    try { 
+      await Campaign.findByIdAndUpdate(req.params.id, { isDeleted: true }); 
+      sendSuccess(res, { message: 'Campaign deleted' }); 
+    } catch (e) { next(e); } 
+  }
+
+  static async updateProgress(req: Request, res: Response, next: NextFunction): Promise<void> { 
+    try { 
+      sendSuccess(res, await Campaign.findByIdAndUpdate(req.params.id, { currentProgress: req.body.progress }, { new: true }), 'Progress updated'); 
+    } catch (e) { next(e); } 
+  }
 }

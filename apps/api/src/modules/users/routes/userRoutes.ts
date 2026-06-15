@@ -14,4 +14,7 @@ router.post('/', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.HOSPITAL_
 router.put('/:id', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.HOSPITAL_ADMIN), validate({ body: updateUserSchema }), UserController.update);
 router.delete('/:id', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN), UserController.delete);
 
+router.post('/push-token', UserController.savePushToken);
+router.delete('/push-token/:token', UserController.removePushToken);
+
 export { router as userRoutes };

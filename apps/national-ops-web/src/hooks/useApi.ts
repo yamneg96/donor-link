@@ -18,6 +18,7 @@ import { recommendationApi } from "../api/recommendations";
 import { requestApi } from "../api/requests";
 import { donationApi } from "../api/donations";
 import { intelligenceApi } from "../api/intelligence";
+import { dispatchApi } from "../api/dispatches";
 import { authStore } from "../store/authStore";
 import type { 
   ApiResponse, 
@@ -33,8 +34,6 @@ import type {
   IHospital,
   IOrganization
 } from "../types";
-
-
 
 // ─── Query Keys ───────────────────────────────────────────────────────────────
 
@@ -105,6 +104,9 @@ export const QK = {
   intelligenceExpiry: (p?: unknown) => ["intelligence", "expiry", p] as const,
   intelligenceHealth: ["intelligence", "health"] as const,
   intelligenceSettings: ["intelligence", "settings"] as const,
+  // Dispatches
+  dispatches: (p?: unknown) => ["dispatches", p] as const,
+  dispatch: (id: string) => ["dispatches", id] as const,
 };
 
 // ─── Auth Hooks ───────────────────────────────────────────────────────────────
@@ -197,19 +199,15 @@ export function useInventoryAll(params?: Record<string, unknown>) {
   });
 }
 
-
 export function useStockLevels(params?: Record<string, unknown>) {
   const query = useQuery({
     queryKey: QK.stockLevels(params),
-    queryFn: () => inventoryApi.getStockLevels(params).then((r: { data: ApiResponse<IStockLevel[]> }) => r.data.data),
+    queryFn: () => inventoryApi.getStockLevels(params).then((r: { data: ApiResponse<{ levels: IStockLevel[] }> }) => r.data.data.levels),
     refetchInterval: 60_000,
   });
   
   return { ...query, levels: query.data };
 }
-
-
-
 
 export function useStockByOrg() {
   return useQuery({
@@ -229,6 +227,21 @@ export function useInventoryStats() {
   return useQuery({
     queryKey: QK.inventoryStats,
     queryFn: () => inventoryApi.getStats().then((r) => r.data.data),
+  });
+}
+
+export function useNationalOverview() {
+  return useQuery({
+    queryKey: ["inventory", "national-overview"],
+    queryFn: () => inventoryApi.getNationalOverview().then((r) => r.data.data),
+  });
+}
+
+export function useHospitalInventory(hospitalId: string, params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: ["inventory", "hospital", hospitalId, params],
+    queryFn: () => inventoryApi.getHospitalInventory(hospitalId, params).then((r) => r.data.data),
+    enabled: !!hospitalId,
   });
 }
 
@@ -488,7 +501,6 @@ export function useOrganizations(params?: Record<string, unknown>) {
   });
 }
 
-
 export function useOrganization(id: string) {
   return useQuery({
     queryKey: QK.organization(id),
@@ -589,7 +601,6 @@ export function useHospitals(params?: Record<string, unknown>) {
   });
 }
 
-
 // ─── Notification Hooks ───────────────────────────────────────────────────────
 
 export function useNotifications(params?: Record<string, unknown>) {
@@ -679,6 +690,13 @@ export function useScheduleDonation() {
   });
 }
 
+export function useDonationHistory(donorId?: string) {
+  return useQuery({
+    queryKey: ["donations", "history", donorId],
+    queryFn: () => donationApi.getHistory(donorId).then((r) => r.data.data),
+  });
+}
+
 // ─── Intelligence (ML) Hooks ─────────────────────────────────────────────────
 
 export function useMLForecast(params: any) {
@@ -698,7 +716,6 @@ export function useMLShortageRisk(params: any) {
   });
 }
 
-
 export function useMLRedistribution() {
   const qc = useQueryClient();
   return useMutation({
@@ -710,7 +727,6 @@ export function useMLRedistribution() {
     },
   });
 }
-
 
 export function useMLAnomalyDetection(params: any) {
   return useQuery({
@@ -727,8 +743,6 @@ export function useMLExpiryRisk(params: any) {
     enabled: !!params?.hospital_id && !!params?.units?.length,
   });
 }
-
-
 
 export function useMLHealth() {
   return useQuery({
@@ -751,6 +765,35 @@ export function useUpdateMLSettings() {
     mutationFn: (data: Record<string, unknown>) => intelligenceApi.updateSettings(data),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: QK.intelligenceSettings });
+    },
+  });
+}
+
+// ─── Dispatch Hooks ──────────────────────────────────────────────────────────
+
+export function useDispatches(params?: Record<string, unknown>) {
+  return useQuery({
+    queryKey: QK.dispatches(params),
+    queryFn: () => dispatchApi.getAll(params).then((r) => r.data.data),
+    refetchInterval: 60_000,
+  });
+}
+
+export function useDispatch(id: string) {
+  return useQuery({
+    queryKey: QK.dispatch(id),
+    queryFn: () => dispatchApi.getById(id).then((r) => r.data.data),
+    enabled: !!id,
+  });
+}
+
+export function useCreateDispatch() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Record<string, unknown>) => dispatchApi.create(data),
+    onSuccess: () => {
+      qc.invalidateQueries({ queryKey: ["dispatches"] });
+      qc.invalidateQueries({ queryKey: ["inventory"] });
     },
   });
 }

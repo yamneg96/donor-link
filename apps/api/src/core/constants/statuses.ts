@@ -23,6 +23,9 @@ export enum TransferStatus {
 
 export enum RequestStatus {
   PENDING = 'pending',
+  APPROVED = 'approved',
+  ASSIGNED = 'assigned',
+  REJECTED = 'rejected',
   PARTIALLY_FULFILLED = 'partially_fulfilled',
   FULFILLED = 'fulfilled',
   CANCELLED = 'cancelled',

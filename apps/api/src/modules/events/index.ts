@@ -1,9 +1,11 @@
-import { eventBus, EventType, DomainEvent } from '../../core/events';
-import { logger } from '../../config';
-import { Alert } from '../alerts/models/Alert';
-import { Notification } from '../notifications/models/Notification';
-import { AuditLog } from '../audit/models/AuditLog';
-import { AlertType, AlertSeverity, NotificationStatus, NotificationChannel } from '../../core/constants';
+import { AlertType, AlertSeverity, NotificationStatus, NotificationChannel, Role } from '../../core/constants';
+import { notificationService } from '../../infrastructure/services/notificationService';
+import { IntelligenceSubscriber } from '../../core/subscribers/IntelligenceSubscriber';
+import { eventBus } from '../../core/events/eventBus';
+import { DomainEvent, EventType } from '../../core/events/eventTypes';
+import { AuditLog } from '../../modules/audit/models/AuditLog';
+import { Alert } from '../../modules/alerts/models/Alert';
+import { logger } from '../../config/logger';
 
 /**
  * Register all domain event handlers.
@@ -11,6 +13,9 @@ import { AlertType, AlertSeverity, NotificationStatus, NotificationChannel } fro
  */
 export function registerEventHandlers(): void {
   logger.info('📡 Registering domain event handlers...');
+  
+  // Initialize AI/Intelligence integration hooks
+  IntelligenceSubscriber.initialize();
 
   // === Blood Unit Events ===
   eventBus.onEvent(EventType.BLOOD_UNIT_CREATED, async (event: DomainEvent) => {
@@ -40,11 +45,25 @@ export function registerEventHandlers(): void {
   // === Emergency Events ===
   eventBus.onEvent(EventType.EMERGENCY_DECLARED, async (event: DomainEvent) => {
     logger.error(`🚨 EMERGENCY DECLARED: ${event.payload.emergencyId}`);
+    
+    // Create Alert
     await Alert.create({
       type: AlertType.EMERGENCY, severity: AlertSeverity.CRITICAL,
       title: 'Emergency Declared', message: `Emergency event ${event.payload.emergencyId} declared. Blood types needed: ${(event.payload.bloodTypes as string[])?.join(', ')}`,
       metadata: event.payload,
     });
+
+    // Send Push Notification to all Donors
+    try {
+      await notificationService.broadcastNotification(
+        { role: Role.DONOR },
+        'Blood Emergency Declared! 🚨',
+        `Critical need for ${(event.payload.bloodTypes as string[])?.join(', ')} blood. Tap to help.`,
+        { type: 'EMERGENCY', id: event.payload.emergencyId }
+      );
+    } catch (error) {
+      logger.error('Failed to broadcast emergency notification', error);
+    }
   });
 
   // === Transfer Events ===

@@ -1,0 +1,12 @@
+﻿src/modules/appointments/controllers/appointmentController.ts(31,79): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/modules/appointments/controllers/appointmentController.ts(45,82): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/modules/appointments/controllers/appointmentController.ts(57,80): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/modules/appointments/controllers/appointmentController.ts(67,72): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/modules/appointments/controllers/appointmentController.ts(135,66): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/modules/intelligence/services/intelligenceService.ts(186,20): error TS2304: Cannot find name 'getMLSettings'.
+src/modules/intelligence/services/intelligenceService.ts(195,28): error TS2304: Cannot find name 'updateMLSettings'.

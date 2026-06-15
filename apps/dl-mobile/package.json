@@ -26,6 +26,7 @@
     "date-fns": "^4.4.0",
     "expo": "~55.0.19",
     "expo-blur": "~55.0.14",
+    "expo-build-properties": "~55.0.14",
     "expo-constants": "~55.0.15",
     "expo-dev-client": "~55.0.35",
     "expo-device": "~55.0.17",
@@ -63,6 +64,7 @@
     "babel-preset-expo": "~55.0.8",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
+    "tsx": "^4.22.4",
     "typescript": "~5.9.2"
   },
   "private": true

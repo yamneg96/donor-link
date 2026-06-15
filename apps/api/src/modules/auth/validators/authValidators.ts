@@ -16,6 +16,8 @@ export const registerSchema = z.object({
   phone: z.string().optional(),
   role: z.nativeEnum(Role).optional(),
   organizationId: z.string().optional(),
+  bloodType: z.string().optional(),
+  region: z.string().optional(),
 });
 
 export const refreshTokenSchema = z.object({

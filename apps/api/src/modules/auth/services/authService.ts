@@ -97,6 +97,8 @@ export class AuthService {
       role: data.role || Role.DONOR,
       status: UserStatus.ACTIVE,
       organizationId: data.organizationId as any,
+      bloodType: data.bloodType || null,
+      region: data.region || null,
     });
 
     eventBus.emitEvent(EventType.USER_CREATED, { userId: user._id.toString() }, user._id.toString());

@@ -51,4 +51,18 @@ export class UserController {
       sendSuccess(res, result);
     } catch (error) { next(error); }
   }
+
+  static async savePushToken(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const result = await userService.savePushToken(req.user!.id, req.body.token);
+      sendSuccess(res, result);
+    } catch (error) { next(error); }
+  }
+
+  static async removePushToken(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const result = await userService.removePushToken(req.user!.id, req.body.token);
+      sendSuccess(res, result);
+    } catch (error) { next(error); }
+  }
 }

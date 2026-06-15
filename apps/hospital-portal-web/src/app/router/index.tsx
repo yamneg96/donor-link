@@ -11,7 +11,10 @@ import { LoginPage } from '@/pages/auth/LoginPage';
 import DashboardPage from '@/pages/dashboard/DashboardPage';
 import InventoryPage from '@/pages/inventory/InventoryPage';
 import EmergencyPage from '@/pages/emergency/EmergencyPage';
-import { TransfersPage } from '@/pages/transfers/TransfersPage';
+import TransfersPage from '@/pages/transfers/TransfersPage';
+import RequestsPage from '@/pages/requests/RequestsPage';
+import { IntelligencePage } from '@/pages/intelligence/IntelligencePage';
+import ErrorPage from '@/pages/ErrorPage';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
@@ -26,12 +29,14 @@ const router = createBrowserRouter([
   },
   {
     element: <AuthLayout />,
+    errorElement: <ErrorPage />,
     children: [
       { path: '/login', element: <LoginPage /> },
     ],
   },
   {
     path: '/app',
+    errorElement: <ErrorPage />,
     element: (
       <ProtectedRoute>
         <AppLayout />
@@ -43,6 +48,8 @@ const router = createBrowserRouter([
       { path: 'inventory', element: <InventoryPage /> },
       { path: 'emergency', element: <EmergencyPage /> },
       { path: 'transfers', element: <TransfersPage /> },
+      { path: 'requests', element: <RequestsPage /> },
+      { path: 'intelligence', element: <IntelligencePage /> },
       { path: 'donors', element: <DashboardPage /> },
       { path: 'staff', element: <DashboardPage /> },
       { path: 'analytics', element: <DashboardPage /> },

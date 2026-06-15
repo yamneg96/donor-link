@@ -10,6 +10,9 @@ export interface IUser extends Document {
   role: Role;
   organizationId: mongoose.Types.ObjectId | null;
   status: UserStatus;
+  bloodType: string | null;
+  region: string | null;
+  pushTokens: string[];
   lastLogin: Date | null;
   passwordResetToken: string | null;
   passwordResetExpires: Date | null;
@@ -30,6 +33,9 @@ const userSchema = new Schema<IUser>(
     role: { type: String, enum: Object.values(Role), required: true, default: Role.DONOR },
     organizationId: { type: Schema.Types.ObjectId, ref: 'Organization', default: null },
     status: { type: String, enum: Object.values(UserStatus), default: UserStatus.ACTIVE },
+    bloodType: { type: String, default: null },
+    region: { type: String, default: null },
+    pushTokens: { type: [String], default: [] },
     lastLogin: { type: Date, default: null },
     passwordResetToken: { type: String, default: null, select: false },
     passwordResetExpires: { type: Date, default: null, select: false },

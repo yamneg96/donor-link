@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 interface CommandMenuProps {
   isOpen: boolean;
@@ -25,13 +26,15 @@ export function CommandMenu({ isOpen, onClose }: CommandMenuProps) {
   }, [isOpen, onClose]);
 
   const links = [
-    { name: 'Dashboard', icon: 'dashboard', path: '/dashboard' },
-    { name: 'Inventory', icon: 'bloodtype', path: '/inventory' },
-    { name: 'Transfusions', icon: 'emergency_share', path: '/transfers' },
-    { name: 'Emergency', icon: 'warning', path: '/emergency' },
-    { name: 'Donors', icon: 'group', path: '/donors' },
-    { name: 'Staff', icon: 'medical_services', path: '/staff' },
-    { name: 'Reports', icon: 'analytics', path: '/analytics' },
+    { name: 'Dashboard', icon: 'dashboard', path: '/app/dashboard' },
+    { name: 'Inventory', icon: 'bloodtype', path: '/app/inventory' },
+    { name: 'Requests', icon: 'reorder', path: '/app/requests' },
+    { name: 'Transfusions', icon: 'emergency_share', path: '/app/transfers' },
+    { name: 'Emergency', icon: 'warning', path: '/app/emergency' },
+    { name: 'AI Intelligence', icon: 'psychology', path: '/app/intelligence' },
+    { name: 'Donors', icon: 'group', path: '/app/donors' },
+    { name: 'Staff', icon: 'medical_services', path: '/app/staff' },
+    { name: 'Reports', icon: 'analytics', path: '/app/analytics' },
   ];
 
   const filteredLinks = links.filter(link => 
@@ -72,16 +75,17 @@ export function CommandMenu({ isOpen, onClose }: CommandMenuProps) {
               <div className="max-h-96 overflow-y-auto p-4 space-y-2">
                 <div className="font-label-caps text-outline mb-2 px-2 text-xs">Menu Navigation</div>
                 {filteredLinks.length > 0 ? (
-                  filteredLinks.map((link, i) => (
-                    <a
+                  filteredLinks.map((link) => (
+                    <Link
                       key={link.name}
-                      href={link.path}
+                      to={link.path}
+                      onClick={onClose}
                       className="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-primary-container/10 focus:bg-primary-container/10 text-on-surface hover:text-primary transition-colors group cursor-pointer"
                     >
                       <span className="material-symbols-outlined text-outline group-hover:text-primary">{link.icon}</span>
                       <span className="font-label-md">{link.name}</span>
                       <span className="ml-auto material-symbols-outlined text-outline opacity-0 group-hover:opacity-100 turn-right text-sm">chevron_right</span>
-                    </a>
+                    </Link>
                   ))
                 ) : (
                   <div className="text-center py-8 text-on-surface-variant font-body-md">

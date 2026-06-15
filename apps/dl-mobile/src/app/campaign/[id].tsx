@@ -1,13 +1,14 @@
 import React from 'react';
-import { View, ScrollView, Pressable, Image, Linking } from 'react-native';
+import { View, ScrollView, Pressable, Share, Platform } from 'react-native';
 import { useLocalSearchParams, router } from 'expo-router';
 import { Text } from '../../components/ui/text';
 import { Button } from '../../components/ui/button';
 import { useCampaignById } from '../../queries/campaignQueries';
 import { 
   ChevronLeft, Calendar, MapPin, 
-  Users, Share2, Info, ArrowRight,
-  Heart, Droplet
+  Users, Share2, ArrowRight,
+  Heart, Droplet, Clock,
+  ShieldCheck, Info
 } from 'lucide-react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { PageLoader } from '../../components/shared/PageLoader';
@@ -17,106 +18,167 @@ export default function CampaignDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { data: campaignResponse, isLoading } = useCampaignById(id);
 
-  if (isLoading && !campaignResponse) return <PageLoader message="Loading campaign details..." />;
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: `Join the blood donation campaign: ${campaign?.title}. Together we can save lives! at ${campaign?.location}`,
+      });
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+
+  if (isLoading && !campaignResponse) return <PageLoader message="Fetching campaign details..." />;
 
   const campaign = campaignResponse?.data;
 
   if (!campaign) {
     return (
-      <SafeAreaView className="flex-1 bg-background items-center justify-center">
-        <Text variant="h3">Campaign not found</Text>
-        <Button onPress={() => router.back()} className="mt-4">
-          <Text className="text-white">Go Back</Text>
+      <SafeAreaView className="flex-1 bg-background items-center justify-center px-8">
+        <View className="w-20 h-20 bg-muted/20 rounded-full items-center justify-center mb-6">
+          <Info size={40} className="text-muted-foreground" />
+        </View>
+        <Text variant="h3" className="font-bold text-center">Campaign Not Found</Text>
+        <Text className="text-muted-foreground text-center mt-2 mb-8">This event might have ended or been moved. Check the centers for active drives.</Text>
+        <Button onPress={() => router.back()} className="w-full h-14 rounded-2xl">
+          <Text className="text-white font-bold">Go Back</Text>
         </Button>
       </SafeAreaView>
     );
   }
 
+  const isExpired = new Date(campaign.endDate) < new Date();
+
   return (
     <SafeAreaView className="flex-1 bg-background" edges={['top']}>
-       <View className="px-6 py-4 flex-row justify-between items-center bg-white border-b border-border/50">
-        <Pressable onPress={() => router.back()} className="w-10 h-10 items-center justify-center">
+      {/* Header */}
+      <View className="px-6 py-4 flex-row justify-between items-center bg-background border-b border-border/10">
+        <Pressable 
+          onPress={() => router.back()} 
+          className="w-12 h-12 items-center justify-center rounded-2xl bg-muted/20"
+        >
           <ChevronLeft size={24} className="text-foreground" />
         </Pressable>
-        <Text variant="h3" className="font-bold">Campaign</Text>
-        <Pressable className="w-10 h-10 items-center justify-center">
+        <Text variant="h3" className="font-bold tracking-tight">Campaign Details</Text>
+        <Pressable 
+          onPress={onShare} 
+          className="w-12 h-12 items-center justify-center rounded-2xl bg-muted/20"
+        >
           <Share2 size={20} className="text-foreground" />
         </Pressable>
       </View>
 
       <ScrollView className="flex-1" showsVerticalScrollIndicator={false}>
-        {/* Placeholder Hero Image or Brand Area */}
-        <View className="h-64 bg-primary/10 relative">
-          <View className="absolute inset-0 items-center justify-center">
-            <Heart size={80} className="text-primary/10 fill-primary/5" />
-          </View>
-          <View className="absolute bottom-6 left-6 right-6">
-            <View className="bg-primary px-3 py-1.5 rounded-lg self-start mb-3">
-              <Text variant="small" className="text-white font-bold uppercase tracking-wider">Active Event</Text>
-            </View>
-            <Text variant="h1" className="text-foreground font-bold text-3xl shadow-sm">{campaign.title}</Text>
+        {/* Premium Hero Area */}
+        <View className="px-6 pt-8 pb-10">
+          <View className="bg-primary/5 rounded-[40px] p-8 border border-primary/10 relative overflow-hidden">
+             <View className="absolute -top-10 -right-10">
+               <Heart size={200} className="text-primary/5 fill-primary/5" />
+             </View>
+             
+             <View className="flex-row items-center gap-2 mb-4">
+               <View className="px-3 py-1 bg-primary rounded-full">
+                 <Text variant="small" className="text-white font-bold uppercase tracking-wider text-[10px]">
+                   {isExpired ? 'Completed' : 'Upcoming Event'}
+                 </Text>
+               </View>
+               <View className="px-3 py-1 bg-secondary/10 rounded-full">
+                 <Text variant="small" className="text-secondary font-bold uppercase tracking-wider text-[10px]">
+                   Trust Score: 100%
+                 </Text>
+               </View>
+             </View>
+
+             <Text className="text-4xl font-black text-foreground mb-4 leading-tight tracking-tighter">
+               {campaign.title}
+             </Text>
+             
+             <View className="flex-row items-center gap-4">
+                <View className="flex-row items-center gap-1.5">
+                  <Clock size={14} className="text-muted-foreground" />
+                  <Text variant="small" className="text-muted-foreground font-medium">Ends {format(new Date(campaign.endDate), 'MMM dd')}</Text>
+                </View>
+                <View className="w-1 h-1 rounded-full bg-muted-foreground/30" />
+                <View className="flex-row items-center gap-1.5">
+                  <ShieldCheck size={14} className="text-success" />
+                  <Text variant="small" className="text-success font-bold">Verified Center</Text>
+                </View>
+             </View>
           </View>
         </View>
 
-        <View className="px-6 py-8">
-          <View className="flex-row justify-between mb-8">
-            <View className="flex-row items-center gap-3">
-              <View className="w-12 h-12 bg-primary/10 rounded-2xl items-center justify-center">
-                <Calendar size={22} className="text-primary" />
-              </View>
-              <View>
-                <Text variant="small" className="text-muted-foreground">Date</Text>
-                <Text className="font-bold">{format(new Date(campaign.startDate), 'MMM dd, yyyy')}</Text>
-              </View>
+        {/* Stats Grid */}
+        <View className="px-6 flex-row gap-4 mb-8">
+          <View className="flex-1 bg-white p-5 rounded-3xl border border-border/40 shadow-sm justify-between">
+            <View className="w-10 h-10 bg-primary/10 rounded-xl items-center justify-center mb-3">
+              <Droplet size={20} className="text-primary" />
             </View>
-            <View className="flex-row items-center gap-3">
-              <View className="w-12 h-12 bg-secondary/10 rounded-2xl items-center justify-center">
-                <Users size={22} className="text-secondary" />
-              </View>
-              <View>
-                <Text variant="small" className="text-muted-foreground">Target</Text>
-                <Text className="font-bold">{campaign.targetUnits} Donors</Text>
-              </View>
+            <View>
+              <Text className="text-2xl font-black text-foreground">{campaign.targetUnits}</Text>
+              <Text variant="small" className="text-muted-foreground font-medium">Target Units</Text>
             </View>
           </View>
+          <View className="flex-1 bg-white p-5 rounded-3xl border border-border/40 shadow-sm justify-between">
+            <View className="w-10 h-10 bg-secondary/10 rounded-xl items-center justify-center mb-3">
+              <Users size={20} className="text-secondary" />
+            </View>
+            <View>
+              <Text className="text-2xl font-black text-foreground">{campaign.currentUnits || 0}</Text>
+              <Text variant="small" className="text-muted-foreground font-medium">Joined Already</Text>
+            </View>
+          </View>
+        </View>
 
-          <Text variant="h3" className="font-bold mb-4">About Campaign</Text>
-          <Text className="text-muted-foreground leading-relaxed mb-8">
-            {campaign.description || "Join us in this mission to ensure no patient goes without blood. This campaign aims to gather donors for emergency supplies in the regional hospital center. Your single contribution can save up to 3 lives."}
-          </Text>
-
-          <View className="bg-muted/20 rounded-3xl p-6 mb-8 border border-border/50">
-            <View className="flex-row items-start gap-4 mb-6">
-               <View className="w-10 h-10 bg-white rounded-xl items-center justify-center">
-                <MapPin size={20} className="text-foreground/70" />
+        {/* Content Tabs/Section */}
+        <View className="px-6 space-y-8">
+          <View>
+            <Text className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-4">Location & Logistics</Text>
+            <Pressable className="bg-muted/20 p-5 rounded-3xl border border-border/30 flex-row items-center gap-4 active:opacity-80">
+              <View className="w-12 h-12 bg-white rounded-2xl items-center justify-center shadow-sm">
+                <MapPin size={24} className="text-primary" />
               </View>
               <View className="flex-1">
-                <Text className="font-bold">Location</Text>
-                <Text className="text-muted-foreground">{campaign.location || "Central Hospital Park, Addis Ababa"}</Text>
-                <Text className="text-primary font-bold mt-1">Open in Maps</Text>
+                <Text className="font-bold text-lg leading-tight">{campaign.location || 'Central Blood Bank'}</Text>
+                <Text variant="small" className="text-muted-foreground mt-0.5">Click to view on Map</Text>
               </View>
-            </View>
-
-            <View className="flex-row items-center justify-between p-4 bg-white rounded-2xl">
-              <View className="flex-row items-center gap-3">
-                <View className="w-8 h-8 bg-success/10 rounded-full items-center justify-center">
-                  <Droplet size={16} className="text-success" />
-                </View>
-                <Text className="font-medium">{campaign.currentUnits || 0} Donors Joined</Text>
-              </View>
-              <ArrowRight size={18} className="text-muted-foreground" />
-            </View>
+              <ArrowRight size={20} className="text-muted-foreground" />
+            </Pressable>
           </View>
 
+          <View>
+            <Text className="text-sm font-bold text-muted-foreground uppercase tracking-widest mb-4">Event Description</Text>
+            <Text className="text-lg text-foreground/80 leading-7 font-medium">
+              {campaign.description || "Join our community-wide blood drive to support local hospitals. Your donation ensures a stable supply for emergencies and surgical procedures."}
+            </Text>
+          </View>
+
+          {/* Guidelines Mini-Card */}
+          <View className="bg-success/5 border border-success/10 p-6 rounded-3xl flex-row gap-4">
+             <View className="w-10 h-10 bg-success/10 rounded-full items-center justify-center">
+                <Info size={20} className="text-success" />
+             </View>
+             <View className="flex-1">
+               <Text className="font-bold text-success text-base mb-1">Donor Guidelines</Text>
+               <Text className="text-success/70 text-sm leading-5">Stay hydrated, eat a healthy meal before, and bring a valid ID.</Text>
+             </View>
+          </View>
+        </View>
+
+        <View className="h-32" />
+      </ScrollView>
+
+      {/* Persistent Action Bar */}
+      {!isExpired && (
+        <View className="px-6 py-6 border-t border-border/10 bg-white shadow-2xl absolute bottom-0 left-0 right-0">
           <Button 
-            className="h-16 rounded-2xl shadow-lg shadow-primary/20 mb-20"
-            onPress={() => router.push({ pathname: '/appointment/book', params: { centerId: campaign.centerId || campaign.id, centerName: campaign.title } })}
+            className="h-16 rounded-2xl shadow-xl shadow-primary/20"
+            onPress={() => router.push({ pathname: '/appointment/book', params: { centerId: campaign.id, centerName: campaign.title } })}
           >
             <Calendar size={20} className="text-white mr-2" />
-            <Text className="text-white font-bold text-lg">Join Campaign</Text>
+            <Text className="text-white font-bold text-lg uppercase tracking-wider">Join Campaign Now</Text>
           </Button>
         </View>
-      </ScrollView>
+      )}
     </SafeAreaView>
   );
 }

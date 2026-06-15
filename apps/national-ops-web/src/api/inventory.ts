@@ -11,6 +11,10 @@ export const inventoryApi = {
     api.get("/inventory/expiring", { params }),
   getStats: () =>
     api.get("/inventory/stats"),
+  getNationalOverview: () =>
+    api.get("/inventory/national-overview"),
+  getHospitalInventory: (hospitalId: string, params?: Record<string, unknown>) =>
+    api.get(`/inventory/hospital/${hospitalId}`, { params }),
   getById: (id: string) =>
     api.get(`/inventory/${id}`),
   getUnitLedger: (id: string) =>

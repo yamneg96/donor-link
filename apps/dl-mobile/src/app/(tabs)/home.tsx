@@ -72,7 +72,7 @@ export default function Home() {
                   <View key={request.id || `emergency-${index}`} className="mr-4 w-[300px]">
                     <EmergencyCard 
                       request={request}
-                      onPress={() => router.push({ pathname: '/request/[id]', params: { id: request.id } })}
+                      onPress={() => router.push(`/request/${request.id}`)}
                     />
                   </View>
                 ))}
@@ -120,7 +120,7 @@ export default function Home() {
               <CampaignCard 
                 key={campaign.id || `campaign-${index}`} 
                 campaign={campaign}
-                onPress={() => router.push({ pathname: '/campaign/[id]', params: { id: campaign.id } })}
+                onPress={() => router.push(`/campaign/${campaign.id}`)}
               />
             ))}
           </View>

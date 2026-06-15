@@ -13,6 +13,8 @@ export interface IBloodRequest extends Document {
   patientInfo: { name: string; age: number; condition: string };
   notes: string;
   fulfilledAt: Date | null;
+  approvedBy: mongoose.Types.ObjectId | null;
+  assignedRegionalOrgId: mongoose.Types.ObjectId | null;
   expiresAt: Date;
   isDeleted: boolean;
   createdAt: Date;
@@ -32,6 +34,8 @@ const bloodRequestSchema = new Schema<IBloodRequest>(
     patientInfo: { name: { type: String, default: '' }, age: { type: Number, default: 0 }, condition: { type: String, default: '' } },
     notes: { type: String, default: '' },
     fulfilledAt: { type: Date, default: null },
+    approvedBy: { type: Schema.Types.ObjectId, ref: 'User', default: null },
+    assignedRegionalOrgId: { type: Schema.Types.ObjectId, ref: 'Organization', default: null },
     expiresAt: { type: Date, required: true },
     isDeleted: { type: Boolean, default: false },
   },

@@ -11,4 +11,9 @@ router.get('/:id', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.HOSPITA
 router.post('/', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.REGIONAL_ADMIN, Role.HOSPITAL_ADMIN, Role.LAB_STAFF), validate({ body: createRequestSchema }), RequestController.create);
 router.post('/:id/fulfill', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.HOSPITAL_ADMIN, Role.LAB_STAFF), RequestController.fulfill);
 router.post('/:id/cancel', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN, Role.HOSPITAL_ADMIN), RequestController.cancel);
+
+router.patch('/:id/approve', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN), RequestController.approve);
+router.patch('/:id/reject', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN), RequestController.reject);
+router.patch('/:id/assign-regional', authorize(Role.SUPER_ADMIN, Role.NATIONAL_ADMIN), RequestController.assignRegional);
+
 export { router as requestRoutes };

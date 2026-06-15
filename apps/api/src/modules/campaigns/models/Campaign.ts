@@ -4,7 +4,7 @@ import { CampaignStatus, CampaignType } from '../../../core/constants';
 export interface ICampaign extends Document {
   title: string; description: string; targetBloodTypes: string[]; targetRegions: string[];
   organizationId: mongoose.Types.ObjectId; startDate: Date; endDate: Date; status: CampaignStatus;
-  type: CampaignType; goal: number; currentProgress: number; metadata: Record<string, unknown>;
+  type: CampaignType; goal: number; currentProgress: number; location: string; metadata: Record<string, unknown>;
   createdBy: mongoose.Types.ObjectId; isDeleted: boolean; createdAt: Date; updatedAt: Date;
 }
 
@@ -17,6 +17,7 @@ const campaignSchema = new Schema<ICampaign>(
     status: { type: String, enum: Object.values(CampaignStatus), default: CampaignStatus.DRAFT },
     type: { type: String, enum: Object.values(CampaignType), default: CampaignType.GENERAL },
     goal: { type: Number, default: 100 }, currentProgress: { type: Number, default: 0 },
+    location: { type: String, default: '' },
     metadata: { type: Schema.Types.Mixed, default: {} },
     createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     isDeleted: { type: Boolean, default: false },

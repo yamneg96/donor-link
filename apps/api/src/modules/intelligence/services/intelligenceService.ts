@@ -12,6 +12,8 @@ import {
   getRedistributionRecommendations,
   calculateExpiryRisk,
   checkMLHealth,
+  getMLSettings,
+  updateMLSettings,
   toForecastRequest,
   toShortageRiskRequest,
   toAnomalyRequest,
@@ -50,6 +52,15 @@ export class IntelligenceService {
     try {
       const result = await predictDemand(request);
       mlCache.set(cacheKey, result, CACHE_TTL.FORECAST);
+
+      // Emit forecast event for tracking
+      eventBus.emitEvent(EventType.FORECAST_GENERATED, {
+        hospitalId,
+        bloodType,
+        forecast: result.forecast,
+        confidence: result.avg_confidence
+      });
+
       return result;
     } catch (error) {
       logger.error(`[Intelligence] Forecast failed for ${hospitalId}/${bloodType}:`, error);
@@ -116,7 +127,7 @@ export class IntelligenceService {
 
       // Emit event for critical/high risk
       if (result.risk_level === 'critical' || result.risk_level === 'high') {
-        eventBus.emitEvent(EventType.SHORTAGE_DETECTED, {
+        eventBus.emitEvent(EventType.SHORTAGE_PREDICTED, {
           hospitalId: params.hospitalId,
           bloodType: params.bloodType,
           riskLevel: result.risk_level,
@@ -146,6 +157,15 @@ export class IntelligenceService {
     try {
       const result = await getRedistributionRecommendations(request);
       mlCache.set(cacheKey, result, CACHE_TTL.REDISTRIBUTION);
+
+      // Emit event for strategic redistribution
+      eventBus.emitEvent(EventType.REDISTRIBUTION_RECOMMENDED, {
+        target_hospital_id: request.target_hospital_id,
+        blood_type: request.blood_type,
+        units_needed: request.units_needed,
+        recommendation: result
+      });
+
       return result;
     } catch (error) {
       logger.error(`[Intelligence] Redistribution failed for ${request.target_hospital_id}:`, error);

@@ -1,14 +1,6 @@
 import React, { useRef, useState } from 'react';
-import { 
-  View, 
-  PanResponder, 
-  Animated, 
-  Pressable, 
-  StyleSheet, 
-  Dimensions, 
-  Platform 
-} from 'react-native';
-import { useColorScheme } from 'nativewind';
+import { View, PanResponder, Animated, StyleSheet, Dimensions, Platform } from 'react-native';
+import { useColorScheme } from '@/src/hooks/useColorScheme';
 import { Sun, Moon } from 'lucide-react-native';
 
 const { width, height } = Dimensions.get('window');
@@ -61,8 +53,8 @@ export const FloatingThemeToggle = () => {
         }).start();
         
         // If it was a tap (little movement), toggle theme
-        if (Math.abs(gestureState.dx) < 5 && Math.abs(gestureState.dy) < 5) {
-          console.log('[ThemeToggle] Calling toggleColorScheme. Current was:', colorScheme);
+        if (Math.abs(gestureState.dx) < 15 && Math.abs(gestureState.dy) < 15) {
+          console.log('[ThemeToggle] Tap detected. Toggling theme. Current:', colorScheme);
           toggleColorScheme();
         }
       },
@@ -83,8 +75,8 @@ export const FloatingThemeToggle = () => {
       ]}
       {...panResponder.panHandlers}
     >
-      <Pressable 
-        className="w-12 h-12 rounded-full items-center justify-center bg-primary shadow-lg"
+      <View 
+        className="w-12 h-12 rounded-full items-center justify-center bg-primary shadow-lg border border-white/20"
         style={{ elevation: 5 }}
       >
         {colorScheme === 'dark' ? (
@@ -92,7 +84,7 @@ export const FloatingThemeToggle = () => {
         ) : (
           <Moon size={24} color="white" />
         )}
-      </Pressable>
+      </View>
     </Animated.View>
   );
 };

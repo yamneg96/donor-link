@@ -58,4 +58,24 @@ export class UserService {
   async getUsersByOrganization(organizationId: string, pagination: PaginationParams) {
     return this.userRepo.findByOrganization(organizationId, pagination);
   }
+
+  async savePushToken(userId: string, token: string) {
+    const user = await this.userRepo.findById(userId);
+    if (!user) throw new NotFoundError('User');
+
+    if (!user.pushTokens.includes(token)) {
+      user.pushTokens.push(token);
+      await user.save();
+    }
+    return { message: 'Push token saved successfully' };
+  }
+
+  async removePushToken(userId: string, token: string) {
+    const user = await this.userRepo.findById(userId);
+    if (!user) throw new NotFoundError('User');
+
+    user.pushTokens = user.pushTokens.filter(t => t !== token);
+    await user.save();
+    return { message: 'Push token removed successfully' };
+  }
 }

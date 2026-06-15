@@ -14,10 +14,15 @@ import { formatDistanceToNow } from 'date-fns';
 import { Button } from '@/src/components/ui/button';
 
 export default function NotificationCenter() {
+  const [isMounted, setIsMounted] = React.useState(false);
   const { data: notificationsResponse, isLoading, refetch, isRefetching } = useNotifications();
   const markAsRead = useMarkAsRead();
 
-  if (isLoading && !notificationsResponse) return <PageLoader message="Fetching notifications..." />;
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted || (isLoading && !notificationsResponse)) return <PageLoader message="Fetching notifications..." />;
 
   const notifications = notificationsResponse?.data || [];
 
@@ -75,7 +80,7 @@ export default function NotificationCenter() {
                 onPress={() => {
                   if (!notification.isRead) markAsRead.mutate(notification.id);
                   if (notification.data?.screen) {
-                    router.push({ pathname: notification.data.screen, params: notification.data.params });
+                    router.push({ pathname: notification.data.screen as any, params: notification.data.params });
                   }
                 }}
                 className={`px-6 py-5 flex-row gap-4 border-b border-border/30 ${notification.isRead ? 'bg-transparent' : 'bg-primary/5'}`}

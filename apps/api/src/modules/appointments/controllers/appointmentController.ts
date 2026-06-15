@@ -28,6 +28,7 @@ export class AppointmentController {
     try {
       const pagination = parsePagination(req.query);
       const donorId = req.params.donorId || req.user?.id?.toString();
+      if (!donorId) throw new Error('Donor ID is required');
       const result = await AppointmentController.service.getDonorAppointments(donorId, pagination);
       sendPaginated(res, result.appointments, { page: pagination.page, limit: pagination.limit, total: result.total });
     } catch (error) {
@@ -39,6 +40,7 @@ export class AppointmentController {
     try {
       const pagination = parsePagination(req.query);
       const hospitalId = req.params.hospitalId || req.user?.organizationId?.toString();
+      if (!hospitalId) throw new Error('Hospital ID is required');
       const filters: Record<string, any> = {};
       if (req.query.status) filters.status = req.query.status;
       if (req.query.date) filters.scheduledDate = new Date(req.query.date as string);
@@ -52,6 +54,7 @@ export class AppointmentController {
   static getSchedule = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const hospitalId = req.params.hospitalId || req.user?.organizationId?.toString();
+      if (!hospitalId) throw new Error('Hospital ID is required');
       const startDate = new Date(req.query.startDate as string);
       const endDate = new Date(req.query.endDate as string);
       const schedule = await AppointmentController.service.getHospitalSchedule(hospitalId, startDate, endDate);
@@ -64,6 +67,7 @@ export class AppointmentController {
   static getTodaysQueue = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const hospitalId = req.params.hospitalId || req.user?.organizationId?.toString();
+      if (!hospitalId) throw new Error('Hospital ID is required');
       const queue = await AppointmentController.service.getTodaysQueue(hospitalId);
       sendSuccess(res, { queue });
     } catch (error) {
@@ -132,6 +136,7 @@ export class AppointmentController {
   static getStats = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const hospitalId = req.params.hospitalId || req.user?.organizationId?.toString();
+      if (!hospitalId) throw new Error('Hospital ID is required');
       const stats = await AppointmentController.service.getStats(hospitalId);
       sendSuccess(res, { stats });
     } catch (error) {
